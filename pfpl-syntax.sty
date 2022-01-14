@@ -2,16 +2,15 @@
 \ProvidesPackage{pfpl-syntax}[2022/01/15 1.0.0 PFPL Syntax Macros]
 \RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd}
 
-\NewDocumentCommand{\kw}{m}{\mathtt{#1}}
+\ProvideDocumentCommand{\kw}{m}{\texttt{#1}}
 
-\NewDocumentCommand{\finset}{m}{\underline{#1}}
+\ProvideDocumentCommand{\finset}{m}{\underline{#1}}
 
-\NewDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
-\NewDocumentCommand{\finmap}{m m m}{\singmap{#2}{#3_#2}\mid #2\in #1}
+\ProvideDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
+\ProvideDocumentCommand{\finmap}{m m m}{\singmap{#2}{#3_#2}\mid #2\in #1}
 
-\NewDocumentCommand{\cdbraces}{m}{\kw{\{}#1\kw{\}}}
-\NewDocumentCommand{\pto}{}{\mathbin{\rightharpoonup}}
-\NewDocumentCommand{\eqdef}{}{\mathrel{\triangleq}}
+\ProvideDocumentCommand{\cdbraces}{m}{\kw{\{}#1\kw{\}}}
+\ProvideDocumentCommand{\eqdef}{}{\mathrel{\triangleq}}
 
 % \bigplus, \bigtimes
 \DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
@@ -49,7 +48,7 @@
 \NewDocumentCommand{\appex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{ap}}[#2;#3]{\Abs{#4}{#5}}}
 
 \NewDocumentCommand{\parrabt}{m m}{\Abt{\Opn{parr}}{#1; #2}}
-\NewDocumentCommand{\parrcst}{m m}{#1\pto #2}
+\NewDocumentCommand{\parrcst}{m m}{#1\mathbin{\rightharpoonup} #2}
 \NewDocumentCommand{\parrty}{s m m}{\IfBooleanTF{#1}{\parrcst{#2}{#3}}{\parrabt{#2}{#3}}}
 \NewDocumentCommand{\funex}{s O{\tau_1} O{\tau_2} m m m}{\Abbrt{#1}{\Opn{fun}}[#2;#3]{\Abs(#4,#5){#6}}}
 \NewDocumentCommand{\pappex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{app}}[#2;#3]{\Abs{#4}{#5}}}
