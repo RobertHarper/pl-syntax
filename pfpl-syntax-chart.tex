@@ -1,0 +1,174 @@
+\documentclass[11pt,twoside]{article}
+\usepackage[authoryear,semicolon]{natbib}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{textgreek}
+\usepackage{fullpage}
+\usepackage[color=yellow,textwidth=1.0in]{todonotes}
+\setlength{\marginparwidth}{1.25in}
+\usepackage{xifthen}
+\usepackage{amsmath,amssymb,amsthm,mathtools,stmaryrd}
+\usepackage{proof,mathpartir}
+\usepackage{colonequals}
+\usepackage{code,verbatim}
+\usepackage{comment}
+\usepackage{textcomp}
+\usepackage[us]{optional}
+\usepackage{color}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{doi}
+\usepackage{graphics}
+\usepackage{import}
+\usepackage{stackengine}
+\usepackage{scalerel}
+%\usepackage{xparse}   % now default
+
+\usepackage{pfpl-syntax}
+
+\allowdisplaybreaks[1]       %mildly permissible to break up displayed equations
+
+% \subimport{../}{generic-defns}
+% \subimport{../}{supp-defns}
+% \setboolean{live}{true}
+
+\newcommand{\PFPL}{\textbf{\textsf{PFPL}}}
+
+\newboolean{draft}
+\setboolean{draft}{false}
+
+\title{\PFPL{} Syntax Macros%
+\footnote{\copyright{} \the\year{} Robert Harper.  All Rights Reserved.}
+  \ifthenelse{\boolean{draft}}{
+    \\{\Large\textbf{\textsc{DRAFT}}}
+  }
+  {}
+}
+\author{Robert Harper}
+\date{\today}
+
+\begin{document}
+
+\maketitle{}
+
+Finite sets: $\finset{n}\eqdef{}\{\,\kw{1},\kw{2},\dots,\kw{n}\,\}$.
+
+Basic types:
+\begin{displaymath}
+  \begin{array}{l l l}
+    \boolty & \boolty* \\
+    \trueex & \trueex* \\
+    \falseex & \falseex* \\
+    \ifex{e}{e_1}{e_2} & \ifex*{e}{e_1}{e_2} \\[1ex]
+
+    \arrty{\tau_1}{\tau_2} & \arrty*{\tau_1}{\tau_2} \\
+    \lamex{x}{e} & \lamex*{x}{e} \\
+    \appex{e_1}{e_2} & \appex*{e_1}{e_2} \\[1ex]
+
+    \unitty{} & \unitty*{} \\
+    \unitex{} & \unitex*{} \\[1ex]
+
+    \prodty{\tau_1}{\tau_2} & \prodty*{\tau_1}{\tau_2} \\
+    \projex<i>{e} & \projex*<i>{e} & (i=\kw{1},\kw{2}) \\
+    \pairex{e_1}{e_2} & \pairex*{e_1}{e_2} \\[1ex]
+
+    \voidty & \voidty* \\
+    \absurdex[\rho]{e} & \absurdex*{e} \\[1ex]
+
+    \sumty{\tau_1}{\tau_2} & \sumty*{\tau_1}{\tau_2} \\
+    \injex<i>[\tau_1][\tau_2]{e} & \injex*<i>{e} & (i=\kw{1},\kw{2}) \\
+    \caseex[\rho][\tau]{e}{x}{e'} & \multicolumn{2}{l}{\caseex*{e}{x}{e'}}   % implicitly indexed branches
+
+  \end{array}
+\end{displaymath}
+
+Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constants of sort \kw{lbl}.  Notation: $\tau_I\eqdef \finmap{I}{i}{\tau}$.}
+\begin{displaymath}
+  \begin{array}{l l l}
+    \vprodty<I><i>{\tau} & \vprodty*{\tau} \\
+    \vtupleex<I>[\tau]{e} & \vtupleex*<I>{e} \\
+    \vprojex<I><i>[\tau]{e} & \vprojex*<i>{e} & (i\in I) \\[1ex]
+
+    \vsumty<I><i>{\tau}  & \vsumty*<I><i>{\tau} \\
+    \vinjex<I><i>[\tau]{e} & \vinjex*<I><i>{e} & (i\in I) \\
+    \vcaseex<I>[\rho][\tau]{e}{x}{e'}  & \vcaseex*<I>{e}{x}{e'} 
+  \end{array}
+\end{displaymath}
+
+Polymorphism:
+\begin{displaymath}
+  \begin{array}{l l l}
+    \Allty{t}{\tau} & \Allty*{t}{\tau} \\
+    \Lamex{t}[\tau]{e} & \Lamex*{t}{e} \\
+    \Appex[t][\tau]{e}{\sigma} & \Appex*{e}{\sigma}\\[1ex]
+    \Somety{t}{\tau}  & \Somety*{t}{\tau} \\
+    \Packex[t][\tau]{\rho}{e} & \Packex*{\rho}{e} \\
+    \Openex[t][\tau]{e}[\rho]{x}{e'} & \Openex*[t][\tau]{e}[\rho]{x}{e'}
+  \end{array}
+\end{displaymath}
+
+Recursive types:
+\begin{displaymath}
+  \begin{array}{l l l}
+
+    \parrty{\tau_1}{\tau_2} & \parrty*{\tau_1}{\tau_2} \\
+    \funex{f}{x}{e} & \funex*{f}{x}{e} \\
+    \pappex{e_1}{e_2} & \pappex*{e_1}{e_2} \\[1ex]
+
+    \fixex[\tau]{x}{e} & \fixex*[\tau]{x}{e}  \\[1ex]
+
+    \recty{t}{\tau} & \recty*{t}{\tau} \\
+    \foldex[t][\tau]{e}  & \foldex*{e} \\
+    \unfoldex[t][\tau]{e} & \unfoldex*{e}
+  \end{array}
+\end{displaymath}
+
+Inductive and co-inductive types:\footnote{Use of $\Opn{fold}$ and $\Opn{unfold}$ may conflict with recursive types when both are present.}
+\begin{displaymath}
+  \begin{array}{l l l}
+    \indty{t}{\tau} & \indty*{t}{\tau} \\
+    \foldex[t][\tau]{e} & \foldex*{e} \\
+    \recex[t][\tau][\rho]{e}{x}{e'} & \recex*{e}{x}{e'} \\[1ex]
+    \coity{t}{\tau} & \coity*{t}{\tau} \\
+    \unfoldex[t][\tau]{e} & \unfoldex*{e} \\
+    \genex[t][\tau][\sigma]{e}{x}{e'} & \genex*{e}{x}{e'}
+  \end{array}
+\end{displaymath}
+
+Commands:\footnote{Symbols $a$ are constants of sort $\kw{loc}$.}
+\begin{displaymath}
+  \begin{array}{l l l}
+    \cmdty{\tau}  & \cmdty*{\tau} \\
+    \cmdex[\tau]{m} & \cmdex*{m} \\[1ex]
+    \retcmd[\tau]{e} & \retcmd*{e} \\
+    \bndcmd{e}{x}{m} & \bndcmd*{e}{x}{m} \\
+    \dclcmd{e}{a}{m} & \dclcmd*{e}{a}{m} \\[1ex]
+    \refex{a} & \refex*{a} \\[1ex]
+    \getcmd{a} & \getcmd*{a} \\
+    \getrefcmd[\tau]{e} & \getrefcmd*{e} \\
+    \setcmd{a}{e} & \setcmd*{a}{e} \\
+    \setrefcmd[\tau]{e_1}{e_2} & \setrefcmd*[\tau]{e_1}{e_2} 
+ \end{array}
+\end{displaymath}
+
+Modules:
+\begin{displaymath}
+  \begin{array}{l l l}
+    \univsg  & \univsg* \\
+    \valmod{\tau} & \valmod*{\tau} \\
+    \extsg{S}{M} & \extsg*{S}{M} \\
+    \compsg{S}  & \compsg*{S} \\
+    \pisg{S_1}{X}{S_2} & \pisg*{S_1}{X}{S_2} \\
+    \sigsg{S_1}{X}{S_2} & \sigsg*{S_1}{X}{S_2}
+  \end{array}
+\end{displaymath}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% fill-column: 90
+%%% auto-fill-mode: t
+%%% End:
