@@ -1,2 +1,2 @@
-# PFPL-Syntax-Macros
+# pfpl-syntax
 PFPL syntax macros.
