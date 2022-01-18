@@ -20,17 +20,90 @@
 % choose starred form abt according to argument
 \NewDocumentCommand{\Abbrt}{m}{\IfBooleanTF{#1}{\Abt*}{\Abt}}
 
-\NewDocumentCommand{\boolty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{2}}{\Opn{bool}}}{}}
-\NewDocumentCommand{\trueex}{s}{\Abt{\Opn{true}}{}}
-\NewDocumentCommand{\falseex}{s}{\Abt{\Opn{false}}{}}
-\NewDocumentCommand{\ifex}{s O{\rho} m m m}{\Abbrt{#1}{\Opn{if}}[#2]{#3; #4; #5}}
+% product types in all their glory
+% nullary
+\NewDocumentCommand{\unitty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{1}}{\Opn{unit}}}{}}
+\NewDocumentCommand{\unitex}{s}{\IfBooleanTF{#1}{\langle\rangle}{\Abt{\Opn{null}}{}}}
+% binary
+\NewDocumentCommand{\prodabt}{m m}{\Abt{\Opn{prod}}{#1;#2}}
+\NewDocumentCommand{\prodcst}{m m}{#1\times #2}
+\NewDocumentCommand{\prodty}{s m m}{\IfBooleanTF{#1}{\prodcst{#2}{#3}}{\prodabt{#2}{#3}}}
+\NewDocumentCommand{\pairabt}{m m m m}{\Abt{\Opn{pair}}[#1;#2]{#3; #4}}
+\NewDocumentCommand{\paircst}{m m}{\langle #1, #2\rangle}
+\NewDocumentCommand{\pairex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{\paircst{#4}{#5}}{\pairabt{#2}{#3}{#4}{#5}}}
+\NewDocumentCommand{\projabt}{m m m m}{\Abt{\Opn{proj}}<#1>[#2;#3]{#4}}
+\NewDocumentCommand{\projcst}{m m}{#2\cdot #1}
+\NewDocumentCommand{\projex}{s d<> O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\projcst{#2}{#5}}{\projabt{#2}{#3}{#4}{#5}}}
+% n-ary
+\NewDocumentCommand{\vprodabt}{m m m}{\Abt{\Opn{prod}[#1]}{\finmap{#1}{#2}{#3}}}
+\NewDocumentCommand{\vprodcst}{m m m}{\bigtimes_{#2\in #1}(\singmap{#2}{{#3}_{#2}})}
+\NewDocumentCommand{\vprodty}{s D<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vprodcst{#2}{#3}{#4}}{\vprodabt{#2}{#3}{#4}}}
+\NewDocumentCommand{\vtupleabt}{m m m m}{\Abt{\Opn{tuple}[#1]}[#3_#1]{\finmap{#1}{#2}{#4}}}
+\NewDocumentCommand{\vtuplecst}{m m m}{\langle \singmap{#2}{#3_{#2}}\mid #2\in #1\rangle}
+\NewDocumentCommand{\vtupleex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vtuplecst{#2}{#3}{#5}}{\vtupleabt{#2}{#3}{#4}{#5}}}
+\NewDocumentCommand{\vprojabt}{m m m m}{\Abt{\Opn{proj}[#1]}<#2>[#3_{#1}]{#4}}
+\NewDocumentCommand{\vprojcst}{m m}{#2\cdot #1}
+\NewDocumentCommand{\vprojex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vprojcst{#3}{#5}}
+{\vprojabt{#2}{#3}{#4}{#5}}}
 
+% total function type
 \NewDocumentCommand{\arrabt}{m m}{\Abt{\Opn{arr}}{#1; #2}}
 \NewDocumentCommand{\arrcst}{m m}{#1\to #2}
 \NewDocumentCommand{\arrty}{s m m}{\IfBooleanTF{#1}{\arrcst{#2}{#3}}{\arrabt{#2}{#3}}}
 \NewDocumentCommand{\lamex}{s O{\tau_1} m O{\tau_2} m}{\Abbrt{#1}{\Opn*{\lambda}}[#2;#4]{#3; #5}}
 \NewDocumentCommand{\appex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{ap}}[#2;#3]{\Abs{#4}{#5}}}
 
+% sum types in all their glory
+% nullary
+\NewDocumentCommand{\voidty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{0}}{\Opn{void}}}{}}
+\NewDocumentCommand{\absurdex}{s O{\rho} m}{\Abbrt{#1}{\Opn{absurd}}[#2]{#3}}
+% binary
+\NewDocumentCommand{\sumabt}{m m}{\Abt{\Opn{sum}}{#1; #2}}
+\NewDocumentCommand{\sumcst}{m m}{#1+#2}
+\NewDocumentCommand{\sumty}{s m m}{\IfBooleanTF{#1}{\sumcst{#2}{#3}}{\sumabt{#2}{#3}}}
+\NewDocumentCommand{\injabt}{d<> m m m}{\Abt{\Opn{inj}}<#1>[#2;#3]{#4}}
+\NewDocumentCommand{\injcst}{d<> m}{#1\cdot #2}
+\NewDocumentCommand{\injex}{s d<> O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\injcst<#2>{#5}}{\injabt<#2>{#3}{#4}{#5}}}
+\NewDocumentCommand{\caseabt}{m m m m m}{\Abt{\Opn{case}}[#1; #2_1; #2_2]{#3; \Abs(#4){#5_1}; \Abs(#4){#5_2}}}
+\NewDocumentCommand{\casecst}{m m m}{\Opn{case} #1\,\{\singmap{\kw{1}}{\Abs(#2){#3_1}} \mid \singmap{\kw{2}}{\Abs(#2){#3_2}}\}}
+\NewDocumentCommand{\caseex}{s O{\rho} O{\tau} m m m}{\IfBooleanTF{#1}{\casecst{#4}{#5}{#6}}{\caseabt{#2}{#3}{#4}{#5}{#6}}}
+% n-ary
+\NewDocumentCommand{\vsumabt}{m m m}{\Abt{\Opn{sum}[#1]}{\finmap{#1}{#2}{#3}}}
+\NewDocumentCommand{\vsumcst}{m m m}{\bigplus_{#2\in #1}(\singmap{#2}{{#3}_{#2}})}
+\NewDocumentCommand{\vsumty}{s D<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vsumcst{#2}{#3}{#4}}{\vsumabt{#2}{#3}{#4}}}
+\NewDocumentCommand{\vinjabt}{m m m m}{\Abt{\Opn{inj}[#1]}<#2>[#3_{#1}]{#4}}
+\NewDocumentCommand{\vinjcst}{m m}{#1\cdot #2}
+\NewDocumentCommand{\vinjex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vinjcst{#3}{#5}}{\vinjabt{#2}{#3}{#4}{#5}}}
+\NewDocumentCommand{\vcaseabt}{m m m m m m m}{\Abt{\Opn{case}[#1]}[#3;#4_#1]{#5;\finmap{#1}{#2}{\Abs(#6){#7}}}}
+\NewDocumentCommand{\vcasecst}{m m m m m}{\Opn{case} #3\,\{\finmap{#1}{#2}{\Abs(#4){#5}}\}}
+\NewDocumentCommand{\vcaseex}{s D<>{I} D<>{i} O{\rho} O{\tau} m m m}{\IfBooleanTF{#1}{\vcasecst{#2}{#3}{#6}{#7}{#8}}{\vcaseabt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
+
+% booleans, sum of one and one.
+\NewDocumentCommand{\boolty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{2}}{\Opn{bool}}}{}}
+\NewDocumentCommand{\trueex}{s}{\Abt{\Opn{true}}{}}
+\NewDocumentCommand{\falseex}{s}{\Abt{\Opn{false}}{}}
+\NewDocumentCommand{\ifex}{s O{\rho} m m m}{\Abbrt{#1}{\Opn{if}}[#2]{#3; #4; #5}}
+
+% inductive type; intro is foldex below
+\NewDocumentCommand{\indty}{s m m}{\Abt{\Opn{ind}}{\Abs(#2){#3}}}
+\NewDocumentCommand{\recex}{s O{t} O{\tau} O{\rho} m m m}{\Abbrt{#1}{\Opn{rec}}[\Abs(#2){#3}; #4]{#5;\Abs(#6){#7}}}
+% coinductive type; elim is unfoldex below
+\NewDocumentCommand{\coity}{s m m}{\Abt{\Opn{coi}}{\Abs(#2){#3}}}
+\NewDocumentCommand{\genex}{s O{t} O{\tau} O{\sigma} m m m}{\Abbrt{#1}{\Opn{gen}}[\Abs(#2){#3};#4]{#5;\Abs(#6){#7}}}
+
+% universal and existential types
+\NewDocumentCommand{\Allty}{s m m}{\Abt{\Opn*{\forall}}{\Abs(#2){#3}}}
+\NewDocumentCommand{\Lamex}{s m O{\tau} m}{\Abbrt{#1}{\Opn*{\Lambda}}[\Abs(#2){#3}]{\Abs(#2){#4}}}
+\NewDocumentCommand{\Appex}{s O{t} O{\tau} m m}{\Abbrt{#1}{\Opn{Ap}}[\Abs(#2){#3}]{#4;#5}}
+
+\NewDocumentCommand{\Somety}{s m m}{\Abt{\Opn*{\exists}}{\Abs(#2){#3}}}
+\NewDocumentCommand{\Packabt}{m m m m}{\Abt{\Opn{Pack}}[\Abs(#1){#2}]{#3; #4}}
+\NewDocumentCommand{\Packcst}{m m m m}{\Packabt{#1}{#2}{#3}{#4}}
+\NewDocumentCommand{\Packex}{s O{t} O{\tau} m m}{\Abbrt{#1}{\Opn{Pack}}[\Abs(#2){#3}]{#4; #5}}
+\NewDocumentCommand{\Openabt}{m m m m m m}{\Abt{\Opn{Open}}[\Abs(#1){#2};#4]{#3;\Abs(#1,#5){#6}}}
+\NewDocumentCommand{\Openex}{s O{t} O{\tau} m O{\rho} m m}{\Abbrt{#1}{\Opn{Open}}[\Abs(#2){#3};#5]{#4;\Abs(#2,#6){#7}}}
+
+% partial function type with recursive lambda
 \NewDocumentCommand{\parrabt}{m m}{\Abt{\Opn{parr}}{#1; #2}}
 \NewDocumentCommand{\parrcst}{m m}{#1\mathbin{\rightharpoonup} #2}
 \NewDocumentCommand{\parrty}{s m m}{\IfBooleanTF{#1}{\parrcst{#2}{#3}}{\parrabt{#2}{#3}}}
@@ -38,17 +111,16 @@
 \NewDocumentCommand{\pappex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{app}}[#2;#3]{\Abs{#4}{#5}}}
 \NewDocumentCommand{\fixex}{s O{\tau} m m}{\Abbrt{#1}{\Opn{fix}}[#2]{\Abs(#3){#4}}}
 
+% recursive type
 \NewDocumentCommand{\recty}{s m m}{\Abt{\Opn{rec}}{\Abs(#2){#3}}}
 \NewDocumentCommand{\foldex}{s O{t} O{\tau} m}{\Abbrt{#1}{\Opn{fold}}[\Abs(#2){#3}]{#4}}
 \NewDocumentCommand{\unfoldex}{s O{t} O{\tau} m}{\Abbrt{#1}{\Opn{unfold}}[\Abs(#2){#3}]{#4}}
 
-\NewDocumentCommand{\indty}{s m m}{\Abt{\Opn{ind}}{\Abs(#2){#3}}}
-\NewDocumentCommand{\recex}{s O{t} O{\tau} O{\rho} m m m}{\Abbrt{#1}{\Opn{rec}}[\Abs(#2){#3}; #4]{#5;\Abs(#6){#7}}}
-\NewDocumentCommand{\coity}{s m m}{\Abt{\Opn{coi}}{\Abs(#2){#3}}}
-\NewDocumentCommand{\genex}{s O{t} O{\tau} O{\sigma} m m m}{\Abbrt{#1}{\Opn{gen}}[\Abs(#2){#3};#4]{#5;\Abs(#6){#7}}}
-
+% commands
 \NewDocumentCommand{\cmdty}{s m}{\Abt{\Opn{cmd}}{#2}}
 \NewDocumentCommand{\cmdex}{s O{\tau} m}{\Abbrt{#1}{\Opn{cmd}}[#2]{#3}}
+
+\NewDocumentCommand{\retcmd}{s O{\tau} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#3}}
 
 \NewDocumentCommand{\dclabt}{m m m m}{\Abt{\Opn{dcl}}[#1; #2]{#3; #4}}
 \NewDocumentCommand{\dclcst}{m m m}{\Opn{dcl}#2\mathbin{\kw{:=}}#1\mathbin{\kw{in}}#3}
@@ -58,8 +130,7 @@
 \NewDocumentCommand{\bndcst}{m m m}{\kw{bnd}\,#2\mathbin{\leftarrow}#1\mathbin{\kw{;}}#3}
 \NewDocumentCommand{\bndcmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bndcst{#3}{#5}{#6}}{\bndabt{#2}{#4}{#3}{#5}{#6}}}
 
-\NewDocumentCommand{\retcmd}{s O{\tau} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#3}}
-
+% reference types
 \NewDocumentCommand{\refabt}{m}{\Abt{\Opn{ref}}<#1>{}}
 \NewDocumentCommand{\refcst}{m}{\texttt{\&}\,#1}
 \NewDocumentCommand{\refex}{s m}{\IfBooleanTF{#1}{\refcst{#2}}{\refabt{#2}}}
@@ -80,57 +151,7 @@
 \NewDocumentCommand{\setrefcst}{m m}{#1\mathbin{\kw{*{=}}} #2}
 \NewDocumentCommand{\setrefcmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setrefcst{#3}{#4}}{\setrefabt{#2}{#3}{#4}}}
 
-\NewDocumentCommand{\unitty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{1}}{\Opn{unit}}}{}}
-\NewDocumentCommand{\unitex}{s}{\IfBooleanTF{#1}{\langle\rangle}{\Abt{\Opn{null}}{}}}
-
-\NewDocumentCommand{\prodabt}{m m}{\Abt{\Opn{prod}}{#1;#2}}
-\NewDocumentCommand{\prodcst}{m m}{#1\times #2}
-\NewDocumentCommand{\prodty}{s m m}{\IfBooleanTF{#1}{\prodcst{#2}{#3}}{\prodabt{#2}{#3}}}
-
-\NewDocumentCommand{\pairabt}{m m m m}{\Abt{\Opn{pair}}[#1;#2]{#3; #4}}
-\NewDocumentCommand{\paircst}{m m}{\langle #1, #2\rangle}
-\NewDocumentCommand{\pairex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{\paircst{#4}{#5}}{\pairabt{#2}{#3}{#4}{#5}}}
-
-\NewDocumentCommand{\projabt}{m m m m}{\Abt{\Opn{proj}}<#1>[#2;#3]{#4}}
-\NewDocumentCommand{\projcst}{m m}{#2\cdot #1}
-\NewDocumentCommand{\projex}{s d<> O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\projcst{#2}{#5}}{\projabt{#2}{#3}{#4}{#5}}}
-
-\NewDocumentCommand{\vprodabt}{m m m}{\Abt{\Opn{prod}[#1]}{\finmap{#1}{#2}{#3}}}
-\NewDocumentCommand{\vprodcst}{m m m}{\bigtimes_{#2\in #1}(\singmap{#2}{{#3}_{#2}})}
-\NewDocumentCommand{\vprodty}{s D<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vprodcst{#2}{#3}{#4}}{\vprodabt{#2}{#3}{#4}}}
-
-\NewDocumentCommand{\vtupleabt}{m m m m}{\Abt{\Opn{tuple}[#1]}[#3_#1]{\finmap{#1}{#2}{#4}}}
-\NewDocumentCommand{\vtuplecst}{m m m}{\langle \singmap{#2}{#3_{#2}}\mid #2\in #1\rangle}
-\NewDocumentCommand{\vtupleex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vtuplecst{#2}{#3}{#5}}{\vtupleabt{#2}{#3}{#4}{#5}}}
-
-\NewDocumentCommand{\vprojabt}{m m m m}{\Abt{\Opn{proj}[#1]}<#2>[#3_{#1}]{#4}}
-\NewDocumentCommand{\vprojcst}{m m}{#2\cdot #1}
-\NewDocumentCommand{\vprojex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vprojcst{#3}{#5}}
-{\vprojabt{#2}{#3}{#4}{#5}}}
-
-\NewDocumentCommand{\voidty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{0}}{\Opn{void}}}{}}
-\NewDocumentCommand{\absurdex}{s O{\rho} m}{\Abbrt{#1}{\Opn{absurd}}[#2]{#3}}
-
-\NewDocumentCommand{\sumabt}{m m}{\Abt{\Opn{sum}}{#1; #2}}
-\NewDocumentCommand{\sumcst}{m m}{#1+#2}
-\NewDocumentCommand{\sumty}{s m m}{\IfBooleanTF{#1}{\sumcst{#2}{#3}}{\sumabt{#2}{#3}}}
-\NewDocumentCommand{\injabt}{d<> m m m}{\Abt{\Opn{inj}}<#1>[#2;#3]{#4}}
-\NewDocumentCommand{\injcst}{d<> m}{#1\cdot #2}
-\NewDocumentCommand{\injex}{s d<> O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\injcst<#2>{#5}}{\injabt<#2>{#3}{#4}{#5}}}
-\NewDocumentCommand{\caseabt}{m m m m m}{\Abt{\Opn{case}}[#1; #2_1; #2_2]{#3; \Abs(#4){#5_1}; \Abs(#4){#5_2}}}
-\NewDocumentCommand{\casecst}{m m m}{\Opn{case} #1\,\{\singmap{\kw{1}}{\Abs(#2){#3_1}} \mid \singmap{\kw{2}}{\Abs(#2){#3_2}}\}}
-\NewDocumentCommand{\caseex}{s O{\rho} O{\tau} m m m}{\IfBooleanTF{#1}{\casecst{#4}{#5}{#6}}{\caseabt{#2}{#3}{#4}{#5}{#6}}}
-
-\NewDocumentCommand{\vsumabt}{m m m}{\Abt{\Opn{sum}[#1]}{\finmap{#1}{#2}{#3}}}
-\NewDocumentCommand{\vsumcst}{m m m}{\bigplus_{#2\in #1}(\singmap{#2}{{#3}_{#2}})}
-\NewDocumentCommand{\vsumty}{s D<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vsumcst{#2}{#3}{#4}}{\vsumabt{#2}{#3}{#4}}}
-\NewDocumentCommand{\vinjabt}{m m m m}{\Abt{\Opn{inj}[#1]}<#2>[#3_{#1}]{#4}}
-\NewDocumentCommand{\vinjcst}{m m}{#1\cdot #2}
-\NewDocumentCommand{\vinjex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vinjcst{#3}{#5}}{\vinjabt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\vcaseabt}{m m m m m m m}{\Abt{\Opn{case}[#1]}[#3;#4_#1]{#5;\finmap{#1}{#2}{\Abs(#6){#7}}}}
-\NewDocumentCommand{\vcasecst}{m m m m m}{\Opn{case} #3\,\{\finmap{#1}{#2}{\Abs(#4){#5}}\}}
-\NewDocumentCommand{\vcaseex}{s D<>{I} D<>{i} O{\rho} O{\tau} m m m}{\IfBooleanTF{#1}{\vcasecst{#2}{#3}{#6}{#7}{#8}}{\vcaseabt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
-
+% dependent types
 \NewDocumentCommand{\univsg}{s}{\Abt{\Opn{type}}{}}
 \NewDocumentCommand{\valmod}{s m}{\Abt{\Opn{val}}{#2}}
 
@@ -150,13 +171,3 @@
 \NewDocumentCommand{\compcst}{m}{\mathop{\bigcirc} #1}
 \NewDocumentCommand{\compsg}{s m}{\IfBooleanTF{#1}{\compcst{#2}}{\compabt{#2}}}
 
-\NewDocumentCommand{\Allty}{s m m}{\Abt{\Opn*{\forall}}{\Abs(#2){#3}}}
-\NewDocumentCommand{\Lamex}{s m O{\tau} m}{\Abbrt{#1}{\Opn*{\Lambda}}[\Abs(#2){#3}]{\Abs(#2){#4}}}
-\NewDocumentCommand{\Appex}{s O{t} O{\tau} m m}{\Abbrt{#1}{\Opn{Ap}}[\Abs(#2){#3}]{#4;#5}}
-
-\NewDocumentCommand{\Somety}{s m m}{\Abt{\Opn*{\exists}}{\Abs(#2){#3}}}
-\NewDocumentCommand{\Packabt}{m m m m}{\Abt{\Opn{Pack}}[\Abs(#1){#2}]{#3; #4}}
-\NewDocumentCommand{\Packcst}{m m m m}{\Packabt{#1}{#2}{#3}{#4}}
-\NewDocumentCommand{\Packex}{s O{t} O{\tau} m m}{\Abbrt{#1}{\Opn{Pack}}[\Abs(#2){#3}]{#4; #5}}
-\NewDocumentCommand{\Openabt}{m m m m m m}{\Abt{\Opn{Open}}[\Abs(#1){#2};#4]{#3;\Abs(#1,#5){#6}}}
-\NewDocumentCommand{\Openex}{s O{t} O{\tau} m O{\rho} m m}{\Abbrt{#1}{\Opn{Open}}[\Abs(#2){#3};#5]{#4;\Abs(#2,#6){#7}}}
