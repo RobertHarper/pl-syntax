@@ -46,13 +46,6 @@
 \NewDocumentCommand{\vprojex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vprojcst{#3}{#5}}
 {\vprojabt{#2}{#3}{#4}{#5}}}
 
-% total function type
-\NewDocumentCommand{\arrabt}{m m}{\Abt{\Opn{arr}}{#1; #2}}
-\NewDocumentCommand{\arrcst}{m m}{#1\to #2}
-\NewDocumentCommand{\arrty}{s m m}{\IfBooleanTF{#1}{\arrcst{#2}{#3}}{\arrabt{#2}{#3}}}
-\NewDocumentCommand{\lamex}{s O{\tau_1} m O{\tau_2} m}{\Abbrt{#1}{\Opn*{\lambda}}[#2;#4]{#3; #5}}
-\NewDocumentCommand{\appex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{ap}}[#2;#3]{\Abs{#4}{#5}}}
-
 % sum types in all their glory
 % nullary
 \NewDocumentCommand{\voidty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{0}}{\Opn{void}}}{}}
@@ -83,6 +76,13 @@
 \NewDocumentCommand{\trueex}{s}{\Abt{\Opn{true}}{}}
 \NewDocumentCommand{\falseex}{s}{\Abt{\Opn{false}}{}}
 \NewDocumentCommand{\ifex}{s O{\rho} m m m}{\Abbrt{#1}{\Opn{if}}[#2]{#3; #4; #5}}
+
+% total function type
+\NewDocumentCommand{\arrabt}{m m}{\Abt{\Opn{arr}}{#1; #2}}
+\NewDocumentCommand{\arrcst}{m m}{#1\to #2}
+\NewDocumentCommand{\arrty}{s m m}{\IfBooleanTF{#1}{\arrcst{#2}{#3}}{\arrabt{#2}{#3}}}
+\NewDocumentCommand{\lamex}{s O{\tau_1} m O{\tau_2} m}{\Abbrt{#1}{\Opn*{\lambda}}[#2;#4]{\Abs(#3){#5}}}
+\NewDocumentCommand{\appex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{ap}}[#2;#3]{\Abs{#4}{#5}}}
 
 % inductive type; intro is foldex below
 \NewDocumentCommand{\indty}{s m m}{\Abt{\Opn{ind}}{\Abs(#2){#3}}}
@@ -115,6 +115,10 @@
 \NewDocumentCommand{\recty}{s m m}{\Abt{\Opn{rec}}{\Abs(#2){#3}}}
 \NewDocumentCommand{\foldex}{s O{t} O{\tau} m}{\Abbrt{#1}{\Opn{fold}}[\Abs(#2){#3}]{#4}}
 \NewDocumentCommand{\unfoldex}{s O{t} O{\tau} m}{\Abbrt{#1}{\Opn{unfold}}[\Abs(#2){#3}]{#4}}
+
+% untyped
+\NewDocumentCommand{\ulamex}{s m m}{\lamex*{#2}{#3}}
+\NewDocumentCommand{\uapex}{s m m}{\appex*{#2}{#3}}
 
 % commands
 \NewDocumentCommand{\cmdty}{s m}{\Abt{\Opn{cmd}}{#2}}

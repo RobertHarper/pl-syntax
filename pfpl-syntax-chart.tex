@@ -58,7 +58,7 @@ Finite sets: $\finset{n}\eqdef{}\{\,\kw{1},\kw{2},\dots,\kw{n}\,\}$.
 
 Basic types:
 \begin{displaymath}
-  \begin{array}{l l l}
+  \begin{array}{l@{\quad}l@{\quad}l}
     \boolty & \boolty* \\
     \trueex & \trueex* \\
     \falseex & \falseex* \\
@@ -87,7 +87,7 @@ Basic types:
 
 Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constants of sort \kw{lbl}.  Notation: $\tau_I\eqdef \finmap{I}{i}{\tau}$.}
 \begin{displaymath}
-  \begin{array}{l l l}
+  \begin{array}{l@{\quad}l@{\quad}l}
     \vprodty<I><i>{\tau} & \vprodty*{\tau} \\
     \vtupleex<I>[\tau]{e} & \vtupleex*<I>{e} \\
     \vprojex<I><i>[\tau]{e} & \vprojex*<i>{e} & (i\in I) \\[1ex]
@@ -100,7 +100,7 @@ Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constan
 
 Polymorphism:
 \begin{displaymath}
-  \begin{array}{l l l}
+  \begin{array}{l@{\quad}l@{\quad}l}
     \Allty{t}{\tau} & \Allty*{t}{\tau} \\
     \Lamex{t}[\tau]{e} & \Lamex*{t}{e} \\
     \Appex[t][\tau]{e}{\sigma} & \Appex*{e}{\sigma}\\[1ex]
@@ -110,9 +110,21 @@ Polymorphism:
   \end{array}
 \end{displaymath}
 
+Inductive and co-inductive types:\footnote{Use of $\Opn{fold}$ and $\Opn{unfold}$ may conflict with recursive types when both are present.}
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \indty{t}{\tau} & \indty*{t}{\tau} \\
+    \foldex[t][\tau]{e} & \foldex*{e} \\
+    \recex[t][\tau][\rho]{e}{x}{e'} & \recex*{e}{x}{e'} \\[1ex]
+    \coity{t}{\tau} & \coity*{t}{\tau} \\
+    \unfoldex[t][\tau]{e} & \unfoldex*{e} \\
+    \genex[t][\tau][\sigma]{e}{x}{e'} & \genex*{e}{x}{e'}
+  \end{array}
+\end{displaymath}
+
 Recursive types:
 \begin{displaymath}
-  \begin{array}{l l l}
+  \begin{array}{l@{\quad}l@{\quad}l}
 
     \parrty{\tau_1}{\tau_2} & \parrty*{\tau_1}{\tau_2} \\
     \funex{f}{x}{e} & \funex*{f}{x}{e} \\
@@ -126,21 +138,17 @@ Recursive types:
   \end{array}
 \end{displaymath}
 
-Inductive and co-inductive types:\footnote{Use of $\Opn{fold}$ and $\Opn{unfold}$ may conflict with recursive types when both are present.}
+Untyped $\lambda$-calculus:
 \begin{displaymath}
-  \begin{array}{l l l}
-    \indty{t}{\tau} & \indty*{t}{\tau} \\
-    \foldex[t][\tau]{e} & \foldex*{e} \\
-    \recex[t][\tau][\rho]{e}{x}{e'} & \recex*{e}{x}{e'} \\[1ex]
-    \coity{t}{\tau} & \coity*{t}{\tau} \\
-    \unfoldex[t][\tau]{e} & \unfoldex*{e} \\
-    \genex[t][\tau][\sigma]{e}{x}{e'} & \genex*{e}{x}{e'}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \ulamex{x}{M} & \ulamex*{x}{M} \\
+    \uapex{M_1}{M_2} & \uapex*{M_1}{M_2}
   \end{array}
 \end{displaymath}
 
 Commands:\footnote{Symbols $a$ are constants of sort $\kw{loc}$.}
 \begin{displaymath}
-  \begin{array}{l l l}
+  \begin{array}{l@{\quad}l@{\quad}l}
     \cmdty{\tau}  & \cmdty*{\tau} \\
     \cmdex[\tau]{m} & \cmdex*{m} \\[1ex]
     \retcmd[\tau]{e} & \retcmd*{e} \\
@@ -156,7 +164,7 @@ Commands:\footnote{Symbols $a$ are constants of sort $\kw{loc}$.}
 
 Modules:
 \begin{displaymath}
-  \begin{array}{l l l}
+  \begin{array}{l@{\quad}l@{\quad}l}
     \univsg  & \univsg* \\
     \valmod{\tau} & \valmod*{\tau} \\
     \extsg{S}{M} & \extsg*{S}{M} \\
