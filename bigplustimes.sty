@@ -1,0 +1,15 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bigplustimes}[2022/01/17 1.0.0 Big plus and times operators.]
+\RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd}
+
+% \bigplus, \bigtimes
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+    <5> <6> <7> <8> <9> <10> gen * mathx
+    <10.95> mathx10
+    <12> <14.4> <17.28> <20.74> <24.88> mathx12
+}{}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathSymbol{\bigplus} {\mathop}{mathx}{"90}
+\DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}

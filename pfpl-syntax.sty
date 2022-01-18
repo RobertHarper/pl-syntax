@@ -1,25 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{pfpl-syntax}[2022/01/15 1.0.0 PFPL Syntax Macros]
-\RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd,bigplustimes}
 
 \ProvideDocumentCommand{\kw}{m}{\texttt{#1}}
 \ProvideDocumentCommand{\finset}{m}{\underline{#1}}
 \ProvideDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
 \ProvideDocumentCommand{\finmap}{m m m}{\singmap{#2}{#3_#2}\mid #2\in #1}
 
-% \bigplus, \bigtimes
-\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
-\DeclareFontShape{U}{mathx}{m}{n}{
-    <5> <6> <7> <8> <9> <10> gen * mathx
-    <10.95> mathx10
-    <12> <14.4> <17.28> <20.74> <24.88> mathx12
-}{}
-\DeclareFontSubstitution{U}{mathx}{m}{n}
-\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
-\DeclareMathSymbol{\bigplus} {\mathop}{mathx}{"90}
-\DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
-
 \newboolean{opnidx}\setboolean{opnidx}{false}  % typeset operator indices or not
+
 % starred for math name, non-starred for verbatim name, optional index
 \NewDocumentCommand{\Opn}{s m o}{\mathop{\IfBooleanTF{#1}{#2}{\kw{#2}}\IfValueT{#3}{\ifthenelse{\boolean{opnidx}}{_{#3}}{}}}}
 
