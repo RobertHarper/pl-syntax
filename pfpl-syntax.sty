@@ -19,6 +19,10 @@
 % choose starred form abt according to argument
 \NewDocumentCommand{\Abbrt}{m}{\IfBooleanTF{#1}{\Abt*}{\Abt}}
 
+% positive/negative type indicator
+\NewDocumentCommand{\posty}{m}{#1^{\mathtt{+}}}
+\NewDocumentCommand{\negty}{m}{#1^{\mathtt{-}}}
+
 % yes/no answer type
 \NewDocumentCommand{\ansty}{s}{\Abt{\Opn{ans}}{}}
 \NewDocumentCommand{\yesex}{s}{\Abt{\Opn{yes}}{}}
