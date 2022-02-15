@@ -62,7 +62,7 @@
 \NewDocumentCommand{\injcst}{d<> m}{#1\cdot #2}
 \NewDocumentCommand{\injex}{s d<> O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\injcst<#2>{#5}}{\injabt<#2>{#3}{#4}{#5}}}
 \NewDocumentCommand{\caseabt}{m m m m m}{\Abt{\Opn{case}}[#1; #2_1; #2_2]{#3; \Abs(#4){#5_1}; \Abs(#4){#5_2}}}
-\NewDocumentCommand{\casecst}{m m m}{\Opn{case} #1\,\{\singmap{\kw{1}}{\Abs(#2){#3_1}} \mid \singmap{\kw{2}}{\Abs(#2){#3_2}}\}}
+\NewDocumentCommand{\casecst}{m m m}{\Opn{case} #1\,\{\singmap{1}{\Abs(#2){#3_1}} \mid \singmap{2}{\Abs(#2){#3_2}}\}}
 \NewDocumentCommand{\caseex}{s O{\rho} O{\tau} m m m}{\IfBooleanTF{#1}{\casecst{#4}{#5}{#6}}{\caseabt{#2}{#3}{#4}{#5}{#6}}}
 % n-ary
 \NewDocumentCommand{\vsumabt}{m m m}{\Abt{\Opn{sum}[#1]}{\finmap{#1}{#2}{#3}}}
@@ -131,11 +131,11 @@
 \NewDocumentCommand{\retcmd}{s O{\tau} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#3}}
 
 \NewDocumentCommand{\dclabt}{m m m m}{\Abt{\Opn{dcl}}[#1; #2]{#3; #4}}
-\NewDocumentCommand{\dclcst}{m m m}{\Opn{dcl}#2\mathbin{\kw{:=}}#1\mathbin{\kw{in}}#3}
+\NewDocumentCommand{\dclcst}{m m m}{\Opn{dcl}\,#2\mathbin{\mathtt{:=}}#1\mathbin{\kw{in}}#3}
 \NewDocumentCommand{\dclcmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\dclcst{#3}{#5}{#6}}{\dclabt{#2}{#4}{#3}{\Abs<#5>{#6}}}}
 
 \NewDocumentCommand{\bndabt}{m m m m m}{\Abt{\Opn{bnd}}[#1; #2]{#3; \Abs(#4){#5}}}
-\NewDocumentCommand{\bndcst}{m m m}{\kw{bnd}\,#2\mathbin{\leftarrow}#1\mathbin{\kw{;}}#3}
+\NewDocumentCommand{\bndcst}{m m m}{\Opn{bnd}\,#2\mathbin{\leftarrow}#1\mathbin{\mathtt{;}}#3}
 \NewDocumentCommand{\bndcmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bndcst{#3}{#5}{#6}}{\bndabt{#2}{#4}{#3}{#5}{#6}}}
 
 % reference types
@@ -148,15 +148,15 @@
 \NewDocumentCommand{\getcmd}{s m}{\IfBooleanTF{#1}{\getcst{#2}}{\getabt{#2}}}
 
 \NewDocumentCommand{\getrefabt}{m m}{\Abt{\Opn{getref}}[#1]{#2}}
-\NewDocumentCommand{\getrefcst}{m}{\kw{*}#1}
+\NewDocumentCommand{\getrefcst}{m}{\mathtt{*}#1}
 \NewDocumentCommand{\getrefcmd}{s O{\tau} m}{\IfBooleanTF{#1}{\getrefcst{#3}}{\getrefabt{#2}{#3}}}
 
 \NewDocumentCommand{\setabt}{m m}{\Abt{\Opn{set}}<#1>{#2}}
-\NewDocumentCommand{\setcst}{m m}{#1\mathbin{\kw{:=}}#2}
+\NewDocumentCommand{\setcst}{m m}{#1\mathbin{\mathtt{:=}}#2}
 \NewDocumentCommand{\setcmd}{s m m}{\IfBooleanTF{#1}{\setcst{#2}{#3}}{\setabt{#2}{#3}}}
 
 \NewDocumentCommand{\setrefabt}{m m m}{\Abt{\Opn{setref}}[#1]{#2; #3}}
-\NewDocumentCommand{\setrefcst}{m m}{#1\mathbin{\kw{*{=}}} #2}
+\NewDocumentCommand{\setrefcst}{m m}{#1\mathbin{\mathtt{*{=}}} #2}
 \NewDocumentCommand{\setrefcmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setrefcst{#3}{#4}}{\setrefabt{#2}{#3}{#4}}}
 
 % dependent types
