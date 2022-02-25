@@ -11,7 +11,7 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools,stmaryrd}
 \usepackage{proof,mathpartir}
 \usepackage{colonequals}
-\usepackage{code,verbatim}
+\usepackage{verbatim}
 \usepackage{comment}
 \usepackage{textcomp}
 \usepackage[us]{optional}
@@ -63,7 +63,7 @@ Answer type:
   \begin{array}{l@{\quad}l@{\quad}l}
     \ansty & \ansty* \\
     \yesex & \yesex* \\
-    \noex & \noex*  
+    \noex & \noex*
   \end{array}
 \end{displaymath}
 
@@ -91,7 +91,7 @@ Basic types:
 
     \sumty{\tau_1}{\tau_2} & \sumty*{\tau_1}{\tau_2} \\
     \injex<i>[\tau_1][\tau_2]{e} & \injex*<i>{e} & (i=\kw{1},\kw{2}) \\
-    \caseex[\rho][\tau]{e}{x}{e'} & \multicolumn{2}{l}{\caseex*{e}{x}{e'}}   % implicitly indexed branches
+    \caseex[\rho][\tau]{e}{x}{e'} & \multicolumn{2}{l}{\!\!\!\caseex*{e}{x}{e'}}   % implicitly indexed branches
 
   \end{array}
 \end{displaymath}
@@ -105,7 +105,7 @@ Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constan
 
     \vsumty<I><i>{\tau}  & \vsumty*<I><i>{\tau} \\
     \vinjex<I><i>[\tau]{e} & \vinjex*<I><i>{e} & (i\in I) \\
-    \vcaseex<I>[\rho][\tau]{e}{x}{e'}  & \vcaseex*<I>{e}{x}{e'} 
+    \vcaseex<I>[\rho][\tau]{e}{x}{e'}  & \vcaseex*<I>{e}{x}{e'}
   \end{array}
 \end{displaymath}
 
@@ -169,7 +169,7 @@ Commands:\footnote{Symbols $a$ are constants of sort $\kw{loc}$.}
     \getcmd{a} & \getcmd*{a} \\
     \getrefcmd[\tau]{e} & \getrefcmd*{e} \\
     \setcmd{a}{e} & \setcmd*{a}{e} \\
-    \setrefcmd[\tau]{e_1}{e_2} & \setrefcmd*[\tau]{e_1}{e_2} 
+    \setrefcmd[\tau]{e_1}{e_2} & \setrefcmd*[\tau]{e_1}{e_2}
  \end{array}
 \end{displaymath}
 
