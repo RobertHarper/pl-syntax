@@ -33,22 +33,12 @@
 % \subimport{../}{supp-defns}
 % \setboolean{live}{true}
 
-\newcommand{\PFPL}{\textbf{\textsf{PFPL}}}
-\NewDocumentCommand{\eqdef}{}{\mathrel{\triangleq}}
+\ProvideDocumentCommand{\PFPL}{}{\textsf{PFPL}}
+\ProvideDocumentCommand{\eqdef}{}{\mathrel{\triangleq}}
 \ProvideDocumentCommand{\finset}{m}{\underline{#1}}
 
-% \RenewDocumentCommand{\kw}{m}{\textsf{#1}}
-
-\newboolean{draft}
-\setboolean{draft}{false}
-
-\title{\PFPL{} Syntax Macros%
-\footnote{\copyright{} \the\year{} Robert Harper.  All Rights Reserved.}
-  \ifthenelse{\boolean{draft}}{
-    \\{\Large\textbf{\textsc{DRAFT}}}
-  }
-  {}
-}
+\title{\PFPL{} Syntax Master Chart%
+\footnote{\copyright{} \the\year{} Robert Harper.  All Rights Reserved.}}
 \author{Robert Harper}
 \date{\today}
 
@@ -56,7 +46,7 @@
 
 \maketitle{}
 
-Finite sets: $\finset{n}\eqdef{}\{\,\kw{1},\kw{2},\dots,\kw{n}\,\}$.
+% Finite sets: $\finset{n}\eqdef{}\{\,\kw{1},\kw{2},\dots,\kw{n}\,\}$.
 
 Answer type:
 \begin{displaymath}
@@ -91,7 +81,7 @@ Basic types:
 
     \sumty{\tau_1}{\tau_2} & \sumty*{\tau_1}{\tau_2} \\
     \injex<i>[\tau_1][\tau_2]{e} & \injex*<i>{e} & (i=\kw{1},\kw{2}) \\
-    \caseex[\rho][\tau]{e}{x}{e'} & \multicolumn{2}{l}{\!\!\!\caseex*{e}{x}{e'}}   % implicitly indexed branches
+    \caseex[\tau][\rho]{e}{x}{e'} & \multicolumn{2}{l}{\!\!\!\caseex*{e}{x}{e'}}   % implicitly indexed branches
 
   \end{array}
 \end{displaymath}
@@ -153,7 +143,11 @@ Untyped $\lambda$-calculus:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
     \ulamex{x}{M} & \ulamex*{x}{M} \\
-    \uapex{M_1}{M_2} & \uapex*{M_1}{M_2}
+    \uapex{M_1}{M_2} & \uapex*{M_1}{M_2} \\
+    \uIex & \uIex* \\
+    \uKex & \uKex* \\
+    \uSex & \uSex& \\
+    \uBex & \uBex*
   \end{array}
 \end{displaymath}
 
