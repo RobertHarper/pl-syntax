@@ -98,6 +98,18 @@ Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constan
   \end{array}
 \end{displaymath}
 
+Continuations:
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \contty{\tau}     & \contty*{\tau} \\
+    \contex{k}        & \contex*{k} \\
+    \letccex[\tau]{x}{e} & \letccex*{x}{e} \\
+    \throwex[\tau][\rho]{e_1}{e_2} & \throwex*{e_1}{e_2} \\
+    \empstk[\tau]     & \empstk*[\tau] \\
+    \extstk{k}{f}     & \extstk*{k}{f} 
+  \end{array}
+\end{displaymath}
+
 Polymorphism:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
@@ -128,7 +140,7 @@ Recursive types:
 
     \parrty{\tau_1}{\tau_2} & \parrty*{\tau_1}{\tau_2} \\
     \funex{f}{x}{e} & \funex*{f}{x}{e} \\
-    \pappex{e_1}{e_2} & \pappex*{e_1}{e_2} \\[1ex]
+    \appex{e_1}{e_2} & \appex*{e_1}{e_2} \\[1ex]
 
     \fixex[\tau]{x}{e} & \fixex*[\tau]{x}{e}  \\[1ex]
 
