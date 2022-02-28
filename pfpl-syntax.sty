@@ -18,7 +18,7 @@
 % starred form of \Abt sets optional argument as subscript to operator
 \NewDocumentCommand{\Var}{m d<> d()}{\mathop{#1}\IfValueT{#2}{\,\langle #2\rangle\,}\IfValueT{#3}{(#3)}}
 \NewDocumentCommand{\Abs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
-\NewDocumentCommand{\Abt}{s m d<> o m}{\mathop{#2}\IfBooleanT{#1}{\IfValueT{#4}{_{#4}}}\IfValueT{#3}{\langle #3\rangle}\IfBooleanF{#1}{\IfValueT{#4}{[#4]}}\ifthenelse{\isempty{#5}}{}{(#5)}}
+\NewDocumentCommand{\Abt}{s m d<> o m}{\mathop{#2}\nolimits\IfValueT{#3}{\langle #3\rangle}\IfBooleanTF{#1}{\IfValueT{#4}{_{#4}}}{\IfValueT{#4}{[#4]}}\ifthenelse{\isempty{#5}}{}{(#5)}}
 % choose starred form of \Abt according to argument
 \NewDocumentCommand{\Abbrt}{m}{\IfBooleanTF{#1}{\Abt*}{\Abt}}
 
@@ -201,13 +201,15 @@
 \NewDocumentCommand{\posty}{m}{#1^{\mathtt{+}}}
 \NewDocumentCommand{\negty}{m}{#1^{\mathtt{-}}}
 \NewDocumentCommand{\freety}{s m}{\Abt{\Opn{F}}{#2}}
-\NewDocumentCommand{\freeex}{s O{\tau} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#1}}
-\NewDocumentCommand{\fletex}{s O{\tau} O{\rho} m m m}{\Abbrt{#1}{\Opn{flet}}[#2;#3]{\Opn{flet}}{#4;\Abt(#5){#6}}}
+\NewDocumentCommand{\freeex}{s O{\tau} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#3}}
+\NewDocumentCommand{\fletex}{s O{\tau} O{\rho} m m m}{\Abbrt{#1}{\Opn{flet}}[#2;#3]{#4;\Abs(#5){#6}}}
 \NewDocumentCommand{\thunkty}{s m}{\Abt{\Opn{U}}{#2}}
-\NewDocumentCommand{\suspty}{s O{\tau} m}{\Abt{\Opn{susp}}[#2]{#3}}
-\NewDocumentCommand{\thunkex}{s O{\tau} m}{\Abt{\Opn{thunk}}[#2]{#3}}
+\NewDocumentCommand{\suspty}{s m}{\Abt{\Opn{susp}}{#2}}
+\NewDocumentCommand{\thunkex}{s O{\tau} m}{\Abbrt{#1}{\Opn{thunk}}[#2]{#3}}
 \NewDocumentCommand{\suspex}{s O{\tau} m}{\Abt{\Opn{susp}}[#2]{#3}}
-\NewDocumentCommand{\forceex}{s m}{\Abt{\Opn{force}}{#1}}
-\NewDocumentCommand{\tensorty}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\Abt{\Opn{vprod}}}{#2;#3}}
+\NewDocumentCommand{\forceex}{s m}{\Abt{\Opn{force}}{#2}}
+
+% eager product
+\NewDocumentCommand{\tensorty}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\Abt{\Opn{vprod}}{#2;#3}}}
 \NewDocumentCommand{\tensorex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\Abt{\Opn{vpair}}[#2; #3]{#4; #5}}}
-\NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}_{#4}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2;#3;#4]{#5; \Abt{#6,#7}{#8}}}}
+\NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}_{#4}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2;#3;#4]{#5; \Abs(#6,#7){#8}}}}
