@@ -22,10 +22,6 @@
 % choose starred form of \Abt according to argument
 \NewDocumentCommand{\Abbrt}{m}{\IfBooleanTF{#1}{\Abt*}{\Abt}}
 
-% positive/negative type indicator
-\NewDocumentCommand{\posty}{m}{#1^{\mathtt{+}}}
-\NewDocumentCommand{\negty}{m}{#1^{\mathtt{-}}}
-
 % yes/no answer type
 \NewDocumentCommand{\ansty}{s}{\Abt{\Opn{ans}}{}}
 \NewDocumentCommand{\yesex}{s}{\Abt{\Opn{yes}}{}}
@@ -183,9 +179,24 @@
 \NewDocumentCommand{\sigsg}{s m m m}{\IfBooleanTF{#1}{\sigCst{#2}{#3}{#4}}{\sigAbt{#2}{#3}{#4}}}
 
 \NewDocumentCommand{\extAbt}{m m}{\Abt{\Opn{Ext}}{#1; #2}}
-\NewDocumentCommand{\extCst}{m m}{\{#1\mid \textsf{st}\hookrightarrow #2\}}
+\NewDocumentCommand{\extCst}{m m}{\{#1\mid \kw{st}\hookrightarrow #2\}}
 \NewDocumentCommand{\extsg}{s m m}{\IfBooleanTF{#1}{\extCst{#2}{#3}}{\extAbt{#2}{#3}}}
 
 \NewDocumentCommand{\compAbt}{m}{\Abt{\Opn{Comp}}{#1}}
 \NewDocumentCommand{\compCst}{m}{\mathop{\bigcirc} #1}
 \NewDocumentCommand{\compsg}{s m}{\IfBooleanTF{#1}{\compCst{#2}}{\compAbt{#2}}}
+
+% cbpv / polarization
+\NewDocumentCommand{\posty}{m}{#1^{\mathtt{+}}}
+\NewDocumentCommand{\negty}{m}{#1^{\mathtt{-}}}
+\NewDocumentCommand{\freety}{s m}{\Abt{\Opn{F}}{#2}}
+\NewDocumentCommand{\freeex}{s O{\tau} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#1}}
+\NewDocumentCommand{\fletex}{s O{\tau} O{\rho} m m m}{\Abbrt{#1}{\Opn{flet}}[#2;#3]{\Opn{flet}}{#4;\Abt(#5){#6}}}
+\NewDocumentCommand{\thunkty}{s m}{\Abt{\Opn{U}}{#2}}
+\NewDocumentCommand{\suspty}{s O{\tau} m}{\Abt{\Opn{susp}}[#2]{#3}}
+\NewDocumentCommand{\thunkex}{s O{\tau} m}{\Abt{\Opn{thunk}}[#2]{#3}}
+\NewDocumentCommand{\suspex}{s O{\tau} m}{\Abt{\Opn{susp}}[#2]{#3}}
+\NewDocumentCommand{\forceex}{s m}{\Abt{\Opn{force}}{#1}}
+\NewDocumentCommand{\tensorty}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\Abt{\Opn{vprod}}}{#2;#3}}
+\NewDocumentCommand{\tensorex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\Abt{\Opn{vpair}}[#2; #3]{#4; #5}}}
+\NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}_{#4}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2;#3;#4]{#5; \Abt{#6,#7}{#8}}}}
