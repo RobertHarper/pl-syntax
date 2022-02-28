@@ -18,7 +18,7 @@
 % starred form of \Abt sets optional argument as subscript to operator
 \NewDocumentCommand{\Var}{m d<> d()}{\mathop{#1}\IfValueT{#2}{\,\langle #2\rangle\,}\IfValueT{#3}{(#3)}}
 \NewDocumentCommand{\Abs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
-\NewDocumentCommand{\Abt}{s m d<> o m}{\mathop{#2}\IfValueT{#3}{\langle #3\rangle}\IfBooleanTF{#1}{\IfValueT{#4}{_{#4}}}{\IfValueT{#4}{[#4]}}\ifthenelse{\isempty{#5}}{}{(#5)}}
+\NewDocumentCommand{\Abt}{s m d<> o m}{\mathop{#2}\IfBooleanT{#1}{\IfValueT{#4}{_{#4}}}\IfValueT{#3}{\langle #3\rangle}\IfBooleanF{#1}{\IfValueT{#4}{[#4]}}\ifthenelse{\isempty{#5}}{}{(#5)}}
 % choose starred form of \Abt according to argument
 \NewDocumentCommand{\Abbrt}{m}{\IfBooleanTF{#1}{\Abt*}{\Abt}}
 
@@ -27,9 +27,17 @@
 \NewDocumentCommand{\yesex}{s}{\Abt{\Opn{yes}}{}}
 \NewDocumentCommand{\noex}{s}{\Abt{\Opn{no}}{}}
 
-% product types in all their glory
+% total function type
+\NewDocumentCommand{\arrAbt}{m m}{\Abt{\Opn{fun}}{#1; #2}}
+\NewDocumentCommand{\arrCst}{m m}{#1\to #2}
+\NewDocumentCommand{\arrty}{s m m}{\IfBooleanTF{#1}{\arrCst{#2}{#3}}{\arrAbt{#2}{#3}}}
+\NewDocumentCommand{\funty}{s m m}{\IfBooleanTF{#1}{\arrCst{#2}{#3}}{\arrAbt{#2}{#3}}}
+\NewDocumentCommand{\lamex}{s O{\tau_1} m O{\tau_2} m}{\Abbrt{#1}{\Opn*{\lambda}}[#2;#4]{\Abs(#3){#5}}}
+\NewDocumentCommand{\appex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{ap}}[#2;#3]{#4;#5}}
+
+% product types
 % nullary
-\NewDocumentCommand{\unitty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{1}}{\Opn{unit}}}{}}
+\NewDocumentCommand{\unitty}{s}{\Abt{\IfBooleanTF{#1}{\Opn*{\mathbf{1}}}{\Opn{unit}}}{}}
 \NewDocumentCommand{\unitex}{s}{\IfBooleanTF{#1}{\langle\rangle}{\Abt{\Opn{null}}{}}}
 % binary
 \NewDocumentCommand{\prodAbt}{m m}{\Abt{\Opn{prod}}{#1;#2}}
@@ -53,9 +61,9 @@
 \NewDocumentCommand{\vprojex}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vprojCst{#3}{#5}}
 {\vprojAbt{#2}{#3}{#4}{#5}}}
 
-% sum types in all their glory
+% sum types
 % nullary
-\NewDocumentCommand{\voidty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{0}}{\Opn{void}}}{}}
+\NewDocumentCommand{\voidty}{s}{\Abt{\IfBooleanTF{#1}{\Opn*{\mathbf{0}}}{\Opn{void}}}{}}
 \NewDocumentCommand{\absurdex}{s O{\rho} m}{\Abbrt{#1}{\Opn{absurd}}[#2]{#3}}
 % binary
 \NewDocumentCommand{\sumAbt}{m m}{\Abt{\Opn{sum}}{#1; #2}}
@@ -79,24 +87,27 @@
 \NewDocumentCommand{\vcaseex}{s D<>{I} D<>{i} O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\vcaseCst{#2}{#3}{#5}{#6}{#7}{#8}}{\vcaseAbt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
 
 % booleans, sum of one and one.
-\NewDocumentCommand{\boolty}{s}{\Abt{\IfBooleanTF{#1}{\Opn{2}}{\Opn{bool}}}{}}
+\NewDocumentCommand{\boolty}{s}{\Abt{\IfBooleanTF{#1}{\Opn*{\mathbf{2}}}{\Opn{bool}}}{}}
 \NewDocumentCommand{\trueex}{s}{\Abt{\Opn{true}}{}}
 \NewDocumentCommand{\falseex}{s}{\Abt{\Opn{false}}{}}
 \NewDocumentCommand{\ifex}{s O{\rho} m m m}{\Abbrt{#1}{\Opn{if}}[#2]{#3; #4; #5}}
 
-% total function type
-\NewDocumentCommand{\arrAbt}{m m}{\Abt{\Opn{arr}}{#1; #2}}
-\NewDocumentCommand{\arrCst}{m m}{#1\to #2}
-\NewDocumentCommand{\arrty}{s m m}{\IfBooleanTF{#1}{\arrCst{#2}{#3}}{\arrAbt{#2}{#3}}}
-\NewDocumentCommand{\lamex}{s O{\tau_1} m O{\tau_2} m}{\Abbrt{#1}{\Opn*{\lambda}}[#2;#4]{\Abs(#3){#5}}}
-\NewDocumentCommand{\appex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{ap}}[#2;#3]{\Abs{#4}{#5}}}
-
 % inductive type; intro is foldex below
 \NewDocumentCommand{\indty}{s m m}{\Abt{\Opn{ind}}{\Abs(#2){#3}}}
 \NewDocumentCommand{\recex}{s O{t} O{\tau} O{\rho} m m m}{\Abbrt{#1}{\Opn{rec}}[\Abs(#2){#3}; #4]{#5;\Abs(#6){#7}}}
+
 % coinductive type; elim is unfoldex below
 \NewDocumentCommand{\coity}{s m m}{\Abt{\Opn{coi}}{\Abs(#2){#3}}}
 \NewDocumentCommand{\genex}{s O{t} O{\tau} O{\sigma} m m m}{\Abbrt{#1}{\Opn{gen}}[\Abs(#2){#3};#4]{#5;\Abs(#6){#7}}}
+
+% continuation type
+\NewDocumentCommand{\contty}{s m}{\Abt{\Opn{cont}}{#2}}
+\NewDocumentCommand{\contex}{s m}{\Abt{\Opn{cont}}{#2}}
+\NewDocumentCommand{\letccex}{s O{\tau} m m}{\Abbrt{#1}{\Opn{letcc}}[#2]{\Abs(#3){#4}}}
+\NewDocumentCommand{\throwex}{s O{\tau} O{\rho} m m}{\Abbrt{#1}{\Opn{throw}}[#3]{#4; #5}}  % first type argument is lost
+\NewDocumentCommand{\stkhole}{s}{\IfBooleanTF{#1}{\Abt{\Opn*{\mathord{-}}}{}}{\Abt{\Opn*{\circ}}{}}}
+\NewDocumentCommand{\empstk}{s O{\tau}}{\IfBooleanTF{#1}{\Abt*{\Opn*{\varepsilon}}[#2]{}}{\Abt{\Opn{emp}}[#2]{}}}
+\NewDocumentCommand{\extstk}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\kw{;}}#3}{\Abt{\Opn{ext}}{#2; #3}}}
 
 % universal and existential types
 \NewDocumentCommand{\Allty}{s m m}{\Abt{\Opn*{\forall}}{\Abs(#2){#3}}}
@@ -110,12 +121,12 @@
 \NewDocumentCommand{\OpenAbt}{m m m m m m}{\Abt{\Opn{Open}}[\Abs(#1){#2};#4]{#3;\Abs(#1,#5){#6}}}
 \NewDocumentCommand{\Openex}{s O{t} O{\tau} m O{\rho} m m}{\Abbrt{#1}{\Opn{Open}}[\Abs(#2){#3};#5]{#4;\Abs(#2,#6){#7}}}
 
-% partial function type with recursive lambda
-\NewDocumentCommand{\parrAbt}{m m}{\Abt{\Opn{parr}}{#1; #2}}
+% partial function type with recursive lambda, shares application form with total
+\NewDocumentCommand{\parrAbt}{m m}{\Abt{\Opn{pfun}}{#1; #2}}
 \NewDocumentCommand{\parrCst}{m m}{#1\mathbin{\rightharpoonup} #2}
 \NewDocumentCommand{\parrty}{s m m}{\IfBooleanTF{#1}{\parrCst{#2}{#3}}{\parrAbt{#2}{#3}}}
+\NewDocumentCommand{\pfunty}{s m m}{\IfBooleanTF{#1}{\parrCst{#2}{#3}}{\parrAbt{#2}{#3}}}
 \NewDocumentCommand{\funex}{s O{\tau_1} O{\tau_2} m m m}{\Abbrt{#1}{\Opn{fun}}[#2;#3]{\Abs(#4,#5){#6}}}
-\NewDocumentCommand{\pappex}{s O{\tau_1} O{\tau_2} m m}{\Abbrt{#1}{\Opn{app}}[#2;#3]{\Abs{#4}{#5}}}
 \NewDocumentCommand{\fixex}{s O{\tau} m m}{\Abbrt{#1}{\Opn{fix}}[#2]{\Abs(#3){#4}}}
 
 % recursive type
