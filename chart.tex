@@ -193,18 +193,26 @@ Modules:
 Polarization:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \freety{\tau}   & \freety*{\tau} \\
-    \freeex[\tau]{v} & \freeex*[\tau]{v} \\
-    \fletex[\tau][\rho]{e}{x}{e'} & \fletex*{e}{x}{e'} \\
-    \thunkty{\tau}  & \thunkty*{\tau} \\
-    \thunkex[\tau]{e} & \thunkex*{e} \\
-    \forceex{v}   & \forceex*{v} \\
-    \tensorty{\tau_1}{\tau_2} & \tensorty*{\tau_1}{\tau_2} \\
-    \tensorex{v_1}{v_2} & \tensorex*{v_1}{v_2} \\
-    \splitex{v}{x_1}{x_2}{e} & \splitex*{v}{x_1}{x_2}{e}
+    \freety{\posty{\tau}}   & \freety*{\posty{\tau}} \\
+    \freeex[\posty{\tau}]{v} & \freeex*[\posty{\tau}]{v} \\
+    \fletex[\negty{\tau}][\negty{\rho}]{e}{x}{e'} & \fletex*{e}{x}{e'} \\
+    \thunkty{\negty{\tau}}  & \thunkty*{\negty{\tau}} \\
+    \thunkex[\negty{\tau}]{e} & \thunkex*{e} \\
+    \forceex{v}   & \forceex*{v}
   \end{array}
 \end{displaymath}
 
+Parallelism:
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \tensorty{\tau_1}{\tau_2} & \tensorty*{\tau_1}{\tau_2} \\
+    \tensorex{v_1}{v_2} & \tensorex*{v_1}{v_2} \\
+    \splitex{v}{x_1}{x_2}{e} & \splitex*{v}{x_1}{x_2}{e} \\
+    \bothty{\tau_1}{\tau_2} & \bothty*{\tau_1}{\tau_2} \\
+    \bothex{e_1}{e_2} & \bothex*{e_1}{e_2} \\
+    \parex{e}{x}{y}{e'} & \parex*{e}{x}{y}{e'}
+  \end{array}
+\end{displaymath}
 \end{document}
 
 %%% Local Variables:
