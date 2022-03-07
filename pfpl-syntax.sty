@@ -135,6 +135,9 @@
 \NewDocumentCommand{\recty}{s m m}{\Abt{\Opn{rec}}{\Abs(#2){#3}}}
 \NewDocumentCommand{\foldex}{s O{t} O{\tau} m}{\Abbrt{#1}{\Opn{fold}}[\Abs(#2){#3}]{#4}}
 \NewDocumentCommand{\unfoldex}{s O{t} O{\tau} m}{\Abbrt{#1}{\Opn{unfold}}[\Abs(#2){#3}]{#4}}
+\NewDocumentCommand{\selfty}{s m}{\Abt{\Opn{self}}{#2}}
+\NewDocumentCommand{\rollex}{s O{\tau} m}{\Abbrt{#1}{\Opn{roll}}[#2]{#3}}
+\NewDocumentCommand{\selfex}{s O{\tau} m m}{\Abbrt{#1}{\Opn{self}}[#2]{\Abs(#3){#4}}}
 
 % untyped
 \NewDocumentCommand{\ulamex}{s m m}{\Abt{\Opn*{\lambda}}{\Abs(#2){#3}}}
