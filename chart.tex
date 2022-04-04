@@ -47,7 +47,7 @@
 
 Yet another test.
 
-% Finite sets: $\finset{n}\eqdef{}\{\,\kw{1},\kw{2},\dots,\kw{n}\,\}$.
+% Finite sets: $\finset{n}\eqdef{}\{\,\KW{1},\KW{2},\dots,\KW{n}\,\}$.
 
 Answer type:
 \begin{displaymath}
@@ -74,20 +74,20 @@ Basic types:
     \unitex{} & \unitex*{} \\[1ex]
 
     \prodty{\tau_1}{\tau_2} & \prodty*{\tau_1}{\tau_2} \\
-    \projex<i>{e} & \projex*<i>{e} & (i=\kw{1},\kw{2}) \\
+    \projex<i>{e} & \projex*<i>{e} & (i=\KW{1},\KW{2}) \\
     \pairex{e_1}{e_2} & \pairex*{e_1}{e_2} \\[1ex]
 
     \voidty & \voidty* \\
     \absurdex[\rho]{e} & \absurdex*{e} \\[1ex]
 
     \sumty{\tau_1}{\tau_2} & \sumty*{\tau_1}{\tau_2} \\
-    \injex<i>[\tau_1][\tau_2]{e} & \injex*<i>{e} & (i=\kw{1},\kw{2}) \\
+    \injex<i>[\tau_1][\tau_2]{e} & \injex*<i>{e} & (i=\KW{1},\KW{2}) \\
     \caseex[\tau][\rho]{e}{x}{e'} & \multicolumn{2}{l}{\!\!\!\caseex*{e}{x}{e'}}   % implicitly indexed branches
 
   \end{array}
 \end{displaymath}
 
-Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constants of sort \kw{lbl}.  Notation: $\tau_I\eqdef \finmap{I}{i}{\tau}$.}
+Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constants of sort \KW{lbl}.  Notation: $\tau_I\eqdef \finmap{I}{i}{\tau}$.}
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
     \vprodty<I><i>{\tau} & \vprodty*{\tau} \\
@@ -108,7 +108,7 @@ Continuations:
     \letccex[\tau]{x}{e} & \letccex*{x}{e} \\
     \throwex[\tau][\rho]{e_1}{e_2} & \throwex*{e_1}{e_2} \\
     \empstk[\tau]     & \empstk*[\tau] \\
-    \extstk{k}{f}     & \extstk*{k}{f} 
+    \extstk{k}{f}     & \extstk*{k}{f}
   \end{array}
 \end{displaymath}
 
@@ -168,7 +168,7 @@ Untyped $\lambda$-calculus:
   \end{array}
 \end{displaymath}
 
-Commands:\footnote{Symbols $a$ are constants of sort $\kw{loc}$.}
+Commands:\footnote{Symbols $a$ are constants of sort $\KW{loc}$.}
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
     \cmdty{\tau}  & \cmdty*{\tau} \\
