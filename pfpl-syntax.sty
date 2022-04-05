@@ -5,7 +5,7 @@
 % camel case is used for internal macros in the vain hope to avoid conflicts.
 % latex desperately needs sensible scoping of identifiers!
 
-\ProvideDocumentCommand{\KW}{m}{\texttt{#1}}
+\ProvideDocumentCommand{\kw}{m}{\texttt{#1}}
 \ProvideDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
 \ProvideDocumentCommand{\finmap}{m m m}{\singmap{#2}{#3_#2}\mid #2\in #1}
 
@@ -14,7 +14,7 @@
 \newboolean{opnidx}\setboolean{opnidx}{false}  % typeset operator indices or not
 
 % starred for math name, non-starred for verbatim name, optional index
-\NewDocumentCommand{\Opn}{s m o}{\mathop{\IfBooleanTF{#1}{#2}{\KW{#2}}\IfValueT{#3}{\ifthenelse{\boolean{opnidx}}{_{#3}}{}}}}
+\NewDocumentCommand{\Opn}{s m o}{\mathop{\IfBooleanTF{#1}{#2}{\kw{#2}}\IfValueT{#3}{\ifthenelse{\boolean{opnidx}}{_{#3}}{}}}}
 
 % applied form of \Abt allows for optional argument and omission of main argument.  
 % starred form of \Abt sets optional argument as subscript to operator
@@ -109,7 +109,7 @@
 \NewDocumentCommand{\throwex}{s O{\tau} O{\rho} m m}{\Abbrt{#1}{\Opn{throw}}[#3]{#4\sep  #5}}  % first type argument is lost
 \NewDocumentCommand{\stkhole}{s}{\IfBooleanTF{#1}{\Abt{\Opn*{\mathord{-}}}{}}{\Abt{\Opn*{\circ}}{}}}
 \NewDocumentCommand{\empstk}{s O{\tau}}{\IfBooleanTF{#1}{\Abt*{\Opn*{\varepsilon}}[#2]{}}{\Abt{\Opn{emp}}[#2]{}}}
-\NewDocumentCommand{\extstk}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\KW{;}}#3}{\Abt{\Opn{ext}}{#2\sep  #3}}}
+\NewDocumentCommand{\extstk}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\kw{;}}#3}{\Abt{\Opn{ext}}{#2\sep  #3}}}
 
 % universal and existential types
 \NewDocumentCommand{\Allty}{s m m}{\Abt{\Opn*{\forall}}{\Abs(#2){#3}}}
@@ -142,10 +142,10 @@
 % untyped
 \NewDocumentCommand{\ulamex}{s m m}{\Abt{\Opn*{\lambda}}{\Abs(#2){#3}}}
 \NewDocumentCommand{\uapex}{s m m}{\IfBooleanTF{#1}{#2(#3)}{\Abt{\Opn{app}}{#2\sep #3}}}
-\NewDocumentCommand{\uIex}{s}{\textbf{\KW{I}}}
-\NewDocumentCommand{\uKex}{s}{\textbf{\KW{K}}}
-\NewDocumentCommand{\uSex}{s}{\textbf{\KW{S}}}
-\NewDocumentCommand{\uBex}{s}{\textbf{\KW{B}}}
+\NewDocumentCommand{\uIex}{s}{\textbf{\kw{I}}}
+\NewDocumentCommand{\uKex}{s}{\textbf{\kw{K}}}
+\NewDocumentCommand{\uSex}{s}{\textbf{\kw{S}}}
+\NewDocumentCommand{\uBex}{s}{\textbf{\kw{B}}}
 
 % commands
 \NewDocumentCommand{\cmdty}{s m}{\Abt{\Opn{cmd}}{#2}}
@@ -154,11 +154,11 @@
 \NewDocumentCommand{\retcmd}{s O{\tau} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#3}}
 
 \NewDocumentCommand{\dclAbt}{m m m m}{\Abt{\Opn{dcl}}[#1\sep  #2]{#3\sep  #4}}
-\NewDocumentCommand{\dclCst}{m m m m}{\Opn{dcl}_{#1}\,#3\mathbin{\KW{:=}}#2\mathbin{\KW{in}}#4}
+\NewDocumentCommand{\dclCst}{m m m m}{\Opn{dcl}_{#1}\,#3\mathbin{\kw{:=}}#2\mathbin{\kw{in}}#4}
 \NewDocumentCommand{\dclcmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\dclCst{#2}{#3}{#5}{#6}}{\dclAbt{#2}{#4}{#3}{\Abs<#5>{#6}}}}
 
 \NewDocumentCommand{\bndAbt}{m m m m m}{\Abt{\Opn{bnd}}[#1\sep  #2]{#3\sep  \Abs(#4){#5}}}
-\NewDocumentCommand{\bndCst}{m m m m}{\Opn{bnd}_{#1}\,#2\mathbin{\leftarrow}#1\mathbin{\KW{;}}#3}
+\NewDocumentCommand{\bndCst}{m m m m}{\Opn{bnd}_{#1}\,#2\mathbin{\leftarrow}#1\mathbin{\kw{;}}#3}
 \NewDocumentCommand{\bndcmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bndCst{#4}{#3}{#5}{#6}}{\bndAbt{#2}{#4}{#3}{#5}{#6}}}
 
 % reference types
@@ -171,15 +171,15 @@
 \NewDocumentCommand{\getcmd}{s m}{\IfBooleanTF{#1}{\getCst{#2}}{\getAbt{#2}}}
 
 \NewDocumentCommand{\getrefAbt}{m m}{\Abt{\Opn{getref}}[#1]{#2}}
-\NewDocumentCommand{\getrefCst}{m}{\KW{*}#1}
+\NewDocumentCommand{\getrefCst}{m}{\kw{*}#1}
 \NewDocumentCommand{\getrefcmd}{s O{\tau} m}{\IfBooleanTF{#1}{\getrefCst{#3}}{\getrefAbt{#2}{#3}}}
 
 \NewDocumentCommand{\setAbt}{m m}{\Abt{\Opn{set}}<#1>{#2}}
-\NewDocumentCommand{\setCst}{m m}{#1\mathbin{\KW{:=}}#2}
+\NewDocumentCommand{\setCst}{m m}{#1\mathbin{\kw{:=}}#2}
 \NewDocumentCommand{\setcmd}{s m m}{\IfBooleanTF{#1}{\setCst{#2}{#3}}{\setAbt{#2}{#3}}}
 
 \NewDocumentCommand{\setrefAbt}{m m m}{\Abt{\Opn{setref}}[#1]{#2\sep  #3}}
-\NewDocumentCommand{\setrefCst}{m m}{#1\mathbin{\KW{*{=}}} #2}
+\NewDocumentCommand{\setrefCst}{m m}{#1\mathbin{\kw{*{=}}} #2}
 \NewDocumentCommand{\setrefcmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setrefCst{#3}{#4}}{\setrefAbt{#2}{#3}{#4}}}
 
 % dependent types
@@ -195,7 +195,7 @@
 \NewDocumentCommand{\sigsg}{s m m m}{\IfBooleanTF{#1}{\sigCst{#2}{#3}{#4}}{\sigAbt{#2}{#3}{#4}}}
 
 \NewDocumentCommand{\extAbt}{m m}{\Abt{\Opn{Ext}}{#1\sep  #2}}
-\NewDocumentCommand{\extCst}{m m}{\{#1\mid \KW{st}\hookrightarrow #2\}}
+\NewDocumentCommand{\extCst}{m m}{\{#1\mid \kw{st}\hookrightarrow #2\}}
 \NewDocumentCommand{\extsg}{s m m}{\IfBooleanTF{#1}{\extCst{#2}{#3}}{\extAbt{#2}{#3}}}
 
 \NewDocumentCommand{\compAbt}{m}{\Abt{\Opn{Comp}}{#1}}
@@ -203,8 +203,8 @@
 \NewDocumentCommand{\compsg}{s m}{\IfBooleanTF{#1}{\compCst{#2}}{\compAbt{#2}}}
 
 % cbpv / polarization
-\NewDocumentCommand{\posty}{m}{#1^{\KW{+}}}
-\NewDocumentCommand{\negty}{m}{#1^{\KW{-}}}
+\NewDocumentCommand{\posty}{m}{#1^{\kw{+}}}
+\NewDocumentCommand{\negty}{m}{#1^{\kw{-}}}
 \NewDocumentCommand{\freety}{s m}{\Abt{\Opn{F}}{#2}}
 \NewDocumentCommand{\freeex}{s O{\negty{\tau}} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#3}}
 \NewDocumentCommand{\fletex}{s O{\negty{\tau}} O{\negty{\rho}} m m m}{\Abbrt{#1}{\Opn{flet}}[#2\sep #3]{#4\sep \Abs(#5){#6}}}
@@ -217,7 +217,7 @@
 % eager product
 \NewDocumentCommand{\tensorty}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\Abt{\Opn{tprod}}{#2\sep #3}}}
 \NewDocumentCommand{\tensorex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\Abt{\Opn{tpair}}[#2\sep  #3]{#4\sep  #5}}}
-\NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\KW{split}_{#4}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2\sep #3\sep #4]{#5\sep  \Abs(#6,#7){#8}}}}
+\NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}_{#4}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2\sep #3\sep #4]{#5\sep  \Abs(#6,#7){#8}}}}
 % lazy, not memoized, product
 \NewDocumentCommand{\bothty}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&}  #3}{\Abt{\Opn{and}}{#2\sep  #3}}}
 \NewDocumentCommand{\bothex}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&}#3}{\Abt{\Opn{both}}{#2\sep  #3}}}
