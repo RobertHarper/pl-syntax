@@ -216,8 +216,8 @@
 \NewDocumentCommand{\forceex}{s m}{\Abt{\Opn{force}}{#2}}
 
 % eager product
-\NewDocumentCommand{\tensorty}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\Abt{\Opn{tprod}}{#2\sep #3}}}
-\NewDocumentCommand{\tensorex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\Abt{\Opn{tpair}}[#2\sep  #3]{#4\sep  #5}}}
+\NewDocumentCommand{\tensorty}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\Abt{\Opn{tensor}}{#2\sep #3}}}
+\NewDocumentCommand{\tensorex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\Abt{\Opn{with}}[#2\sep  #3]{#4\sep  #5}}}
 \NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}_{#4}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2\sep #3\sep #4]{#5\sep  \Abs(#6,#7){#8}}}}
 % lazy, not memoized, product
 \NewDocumentCommand{\bothty}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&}  #3}{\Abt{\Opn{and}}{#2\sep  #3}}}
