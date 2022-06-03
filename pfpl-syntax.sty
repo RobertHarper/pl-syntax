@@ -208,7 +208,7 @@
 \NewDocumentCommand{\negty}{m}{#1^{\kw{-}}}
 \NewDocumentCommand{\freety}{s m}{\Abt{\Opn{F}}{#2}}
 \NewDocumentCommand{\freeex}{s O{\negty{\tau}} m}{\Abbrt{#1}{\Opn{ret}}[#2]{#3}}
-\NewDocumentCommand{\fletex}{s O{\negty{\tau}} O{\negty{\rho}} m m m}{\Abbrt{#1}{\Opn{flet}}[#2\sep #3]{#4\sep \Abs(#5){#6}}}
+\NewDocumentCommand{\fletex}{s O{\negty{\tau}} O{\negty{\rho}} m m m}{\Abbrt{#1}{\Opn{let}}[#2\sep #3]{#4\sep \Abs(#5){#6}}}
 \NewDocumentCommand{\thunkty}{s m}{\Abt{\Opn{U}}{#2}}
 \NewDocumentCommand{\suspty}{s m}{\Abt{\Opn{susp}}{#2}}  % for unpolarized uses
 \NewDocumentCommand{\thunkex}{s O{\negty{\tau}} m}{\Abbrt{#1}{\Opn{thunk}}[#2]{#3}}
@@ -218,7 +218,7 @@
 % eager product
 \NewDocumentCommand{\tensorty}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\Abt{\Opn{tensor}}{#2\sep #3}}}
 \NewDocumentCommand{\tensorex}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\Abt{\Opn{with}}[#2\sep  #3]{#4\sep  #5}}}
-\NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}_{#4}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2\sep #3\sep #4]{#5\sep  \Abs(#6,#7){#8}}}}
+\NewDocumentCommand{\splitex}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}\,{#5}\,\{\Abs(#6,#7){#8}\}}{\Abt{\Opn{split}}[#2\sep #3\sep #4]{#5\sep  \Abs(#6,#7){#8}}}}
 % lazy, not memoized, product
 \NewDocumentCommand{\bothty}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&}  #3}{\Abt{\Opn{and}}{#2\sep  #3}}}
 \NewDocumentCommand{\bothex}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&}#3}{\Abt{\Opn{both}}{#2\sep  #3}}}
