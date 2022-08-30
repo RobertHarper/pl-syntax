@@ -25,15 +25,7 @@
 
 \allowdisplaybreaks[1]       %mildly permissible to break up displayed equations
 
-% \subimport{../}{generic-defns}
-% \subimport{../}{supp-defns}
-% \setboolean{live}{true}
-
-\ProvideDocumentCommand{\PFPL}{}{\textsf{PFPL}}
-\ProvideDocumentCommand{\eqdef}{}{\mathrel{\triangleq}}
-\ProvideDocumentCommand{\finset}{m}{\underline{#1}}
-
-\title{\PFPL{} Syntax Master Chart%
+\title{\textsf{PFPL} Syntax Master Chart%
 \footnote{\copyright{} \the\year{} Robert Harper.  All Rights Reserved.}}
 \author{Robert Harper}
 \date{\today}
@@ -41,8 +33,6 @@
 \begin{document}
 
 \maketitle{}
-
-% Finite sets: $\finset{n}\eqdef{}\{\,\kw{1},\kw{2},\dots,\kw{n}\,\}$.
 
 Answer type:
 \begin{displaymath}
@@ -82,7 +72,7 @@ Basic types:
   \end{array}
 \end{displaymath}
 
-Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constants of sort \kw{lbl}.  Notation: $\tau_I\eqdef \finmap{I}{i}{\tau}$.}
+Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constants of sort \kw{lbl}.  Notation: $\tau_I$ stands for $\finmap{I}{i}{\tau}$.}
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
     \vprodty<I><i>{\tau} & \vprodty*{\tau} \\
