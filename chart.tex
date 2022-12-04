@@ -34,176 +34,172 @@
 
 \maketitle{}
 
-Answer type:
+\noindent Product types:\footnote{Variadic operators are implicitly indexed by finite sets $I$ of labels.  Then $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$, $e_I$ stands for $\finmap{I}{i}{e}$, and $\Abs(x){e_I}$ stands for $\finmap{I}{i}{\Abs(x){e}}$.}
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \ansty & \ansty* \\
-    \yesex & \yesex* \\
-    \noex & \noex*
+    \unitTy{} & \unitTy*{} \\
+    \unitEx{} & \unitEx*{} \\[1ex]
+
+    \prodTy{\tau_1}{\tau_2} & \prodTy*{\tau_1}{\tau_2} \\
+    \projEx<i>{e} & \projEx*<i>{e} & (i=\kw{1},\kw{2}) \\
+    \pairEx{e_1}{e_2} & \pairEx*{e_1}{e_2} \\[1ex]
+
+    \vprodTy<I><i>{\tau} & \vprodTy*{\tau} \\
+    \vtupleEx<I>[\tau]{e} & \vtupleEx*<I>{e} \\
+    \vprojEx<I><i>[\tau]{e} & \vprojEx*<i>{e} & (i\in I)
   \end{array}
 \end{displaymath}
 
-Basic types:
+\noindent Sum types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \boolty & \boolty* \\
-    \trueex & \trueex* \\
-    \falseex & \falseex* \\
-    \ifex{e}{e_1}{e_2} & \ifex*{e}{e_1}{e_2} \\[1ex]
+    \voidTy & \voidTy* \\
+    \absurdEx[\rho]{e} & \absurdEx*{e} \\[1ex]
 
-    \arrty{\tau_1}{\tau_2} & \arrty*{\tau_1}{\tau_2} \\
-    \lamex{x}{e} & \lamex*{x}{e} \\
-    \appex{e_1}{e_2} & \appex*{e_1}{e_2} \\[1ex]
+    \sumTy{\tau_1}{\tau_2} & \sumTy*{\tau_1}{\tau_2} \\
+    \injEx<i>[\tau_1][\tau_2]{e} & \injEx*<i>{e} & (i=\kw{1},\kw{2}) \\
+    \caseEx[\tau][\rho]{e}{x}{e} & \caseEx*{e}{x}{e} \\[1ex]
 
-    \unitty{} & \unitty*{} \\
-    \unitex{} & \unitex*{} \\[1ex]
+    \vsumTy<I><i>{\tau}  & \vsumTy*<I><i>{\tau} \\
+    \vinjEx<I><i>[\tau]{e} & \vinjEx*<I><i>{e} & (i\in I) \\
+    \vcaseEx<I>[\rho][\tau]{e}{x}{e'}  & \vcaseEx*<I>{e}{x}{e'} \\[1ex]
 
-    \prodty{\tau_1}{\tau_2} & \prodty*{\tau_1}{\tau_2} \\
-    \projex<i>{e} & \projex*<i>{e} & (i=\kw{1},\kw{2}) \\
-    \pairex{e_1}{e_2} & \pairex*{e_1}{e_2} \\[1ex]
-
-    \voidty & \voidty* \\
-    \absurdex[\rho]{e} & \absurdex*{e} \\[1ex]
-
-    \sumty{\tau_1}{\tau_2} & \sumty*{\tau_1}{\tau_2} \\
-    \injex<i>[\tau_1][\tau_2]{e} & \injex*<i>{e} & (i=\kw{1},\kw{2}) \\
-    \caseex[\tau][\rho]{e}{x}{e'} & \multicolumn{2}{l}{\!\!\!\caseex*{e}{x}{e'}}   % implicitly indexed branches
-
+    \boolTy & \boolTy* \\
+    \trueEx & \trueEx* \\
+    \falseEx & \falseEx* \\
+    \ifEx{e}{e_1}{e_2} & \ifEx*{e}{e_1}{e_2}
   \end{array}
 \end{displaymath}
 
-Variadic forms:\footnote{All operators are indexed by finite sets $I$ of constants of sort \kw{lbl}.  Notation: $\tau_I$ stands for $\finmap{I}{i}{\tau}$.}
+\noindent Total function types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \vprodty<I><i>{\tau} & \vprodty*{\tau} \\
-    \vtupleex<I>[\tau]{e} & \vtupleex*<I>{e} \\
-    \vprojex<I><i>[\tau]{e} & \vprojex*<i>{e} & (i\in I) \\[1ex]
-
-    \vsumty<I><i>{\tau}  & \vsumty*<I><i>{\tau} \\
-    \vinjex<I><i>[\tau]{e} & \vinjex*<I><i>{e} & (i\in I) \\
-    \vcaseex<I>[\rho][\tau]{e}{x}{e'}  & \vcaseex*<I>{e}{x}{e'}
+    \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} \\
+    \lamEx{x}{e} & \lamEx*{x}{e} \\
+    \appEx{e_1}{e_2} & \appEx*{e_1}{e_2}
   \end{array}
 \end{displaymath}
 
-Continuations:
+\noindent Continuation types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \contty{\tau}     & \contty*{\tau} \\
-    \contex{k}        & \contex*{k} \\
-    \letccex[\tau]{x}{e} & \letccex*{x}{e} \\
-    \throwex[\tau][\rho]{e_1}{e_2} & \throwex*{e_1}{e_2} \\
-    \empstk[\tau]     & \empstk*[\tau] \\
-    \extstk{k}{f}     & \extstk*{k}{f} 
+    \contTy{\tau}     & \contTy*{\tau} \\
+    \contEx{k}        & \contEx*{k} \\
+    \letccEx[\tau]{x}{e} & \letccEx*{x}{e} \\
+    \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} \\[1ex]
+
+    \ansTy & \ansTy* \\
+    \yesEx & \yesEx* \\
+    \noEx & \noEx* \\[1ex]
+
+    \empStk[\tau]     & \empStk*[\tau] \\
+    \extStk{k}{f}     & \extStk*{k}{f} 
   \end{array}
 \end{displaymath}
 
-Polymorphism:
+\noindent Inductive and co-inductive types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \Allty{t}{\tau} & \Allty*{t}{\tau} \\
-    \Lamex{t}[\tau]{e} & \Lamex*{t}{e} \\
-    \Appex[t][\tau]{e}{\sigma} & \Appex*{e}{\sigma}\\[1ex]
-    \Somety{t}{\tau}  & \Somety*{t}{\tau} \\
-    \Packex[t][\tau]{\rho}{e} & \Packex*{\rho}{e} \\
-    \Openex[t][\tau]{e}[\rho]{x}{e'} & \Openex*[t][\tau]{e}[\rho]{x}{e'}
+    \indTy{t}{\tau} & \indTy*{t}{\tau} \\
+    \inEx[t][\tau]{e} & \inEx*{e} \\
+    \recEx[t][\tau][\rho]{e}{x}{e'} & \recEx*{e}{x}{e'} \\[1ex]
+    \coiTy{t}{\tau} & \coiTy*{t}{\tau} \\
+    \outEx[t][\tau]{e} & \outEx*{e} \\
+    \genEx[t][\tau][\sigma]{e}{x}{e'} & \genEx*{e}{x}{e'}
   \end{array}
 \end{displaymath}
 
-Inductive and co-inductive types:\footnote{Use of $\Opn{fold}$ and $\Opn{unfold}$ may conflict with recursive types when both are present.}
+\noindent Polymorphic types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \indty{t}{\tau} & \indty*{t}{\tau} \\
-    \foldex[t][\tau]{e} & \foldex*{e} \\
-    \recex[t][\tau][\rho]{e}{x}{e'} & \recex*{e}{x}{e'} \\[1ex]
-    \coity{t}{\tau} & \coity*{t}{\tau} \\
-    \unfoldex[t][\tau]{e} & \unfoldex*{e} \\
-    \genex[t][\tau][\sigma]{e}{x}{e'} & \genex*{e}{x}{e'}
+    \AllTy{t}{\tau} & \AllTy*{t}{\tau} \\
+    \LamEx{t}[\tau]{e} & \LamEx*{t}{e} \\
+    \AppEx[t][\tau]{e}{\sigma} & \AppEx*{e}{\sigma}\\[1ex]
+    \SomeTy{t}{\tau}  & \SomeTy*{t}{\tau} \\
+    \PackEx[t][\tau]{\rho}{e} & \PackEx*{\rho}{e} \\
+    \OpenEx[t][\tau]{e}[\rho]{x}{e'} & \OpenEx*[t][\tau]{e}[\rho]{x}{e'}
   \end{array}
 \end{displaymath}
 
-Recursive types:
+\noindent Recursive types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
 
-    \parrty{\tau_1}{\tau_2} & \parrty*{\tau_1}{\tau_2} \\
-    \funex{f}{x}{e} & \funex*{f}{x}{e} \\
-    \appex{e_1}{e_2} & \appex*{e_1}{e_2} \\[1ex]
+    \parrTy{\tau_1}{\tau_2} & \parrTy*{\tau_1}{\tau_2} \\
+    \funEx{f}{x}{e} & \funEx*{f}{x}{e} \\
+    \appEx{e_1}{e_2} & \appEx*{e_1}{e_2} \\[1ex]
 
-    \fixex[\tau]{x}{e} & \fixex*[\tau]{x}{e}  \\[1ex]
+    \fixEx[\tau]{x}{e} & \fixEx*[\tau]{x}{e}  \\[1ex]
 
-    \recty{t}{\tau} & \recty*{t}{\tau} \\
-    \foldex[t][\tau]{e}  & \foldex*{e} \\
-    \unfoldex[t][\tau]{e} & \unfoldex*{e} \\[1ex]
+    \recTy{t}{\tau} & \recTy*{t}{\tau} \\
+    \foldEx[t][\tau]{e}  & \foldEx*{e} \\
+    \unfoldEx[t][\tau]{e} & \unfoldEx*{e} \\[1ex]
 
-    \selfty{\tau}  & \selfty*{\tau} \\
-    \rollex[\tau]{e} & \rollex*{e} \\
-    \selfex[\tau]{x}{e} & \selfex*{x}{e}
+    \selfTy{\tau}  & \selfTy*{\tau} \\
+    \rollEx[\tau]{e} & \rollEx*{e} \\
+    \selfEx[\tau]{x}{e} & \selfEx*{x}{e} \\[1ex]
+
+    \ulamEx{x}{M} & \ulamEx*{x}{M} \\
+    \uapEx{M_1}{M_2} & \uapEx*{M_1}{M_2} \\
+    \uIEx & \uIEx* \\
+    \uKEx & \uKEx* \\
+    \uSEx & \uSEx* \\
+    \uBEx & \uBEx*
   \end{array}
 \end{displaymath}
 
-Untyped $\lambda$-calculus:
+\noindent Commands:\footnote{Symbols $a$ are constants of sort $\kw{loc}$.}
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \ulamex{x}{M} & \ulamex*{x}{M} \\
-    \uapex{M_1}{M_2} & \uapex*{M_1}{M_2} \\
-    \uIex & \uIex* \\
-    \uKex & \uKex* \\
-    \uSex & \uSex& \\
-    \uBex & \uBex*
-  \end{array}
-\end{displaymath}
-
-Commands:\footnote{Symbols $a$ are constants of sort $\kw{loc}$.}
-\begin{displaymath}
-  \begin{array}{l@{\quad}l@{\quad}l}
-    \cmdty{\tau}  & \cmdty*{\tau} \\
-    \cmdex[\tau]{m} & \cmdex*{m} \\[1ex]
-    \retcmd[\tau]{e} & \retcmd*{e} \\
-    \bndcmd{e}{x}{m} & \bndcmd*{e}{x}{m} \\
-    \dclcmd{e}{a}{m} & \dclcmd*{e}{a}{m} \\[1ex]
-    \refex{a} & \refex*{a} \\[1ex]
-    \getcmd{a} & \getcmd*{a} \\
-    \getrefcmd[\tau]{e} & \getrefcmd*{e} \\
-    \setcmd{a}{e} & \setcmd*{a}{e} \\
-    \setrefcmd[\tau]{e_1}{e_2} & \setrefcmd*[\tau]{e_1}{e_2}
+    \cmdTy{\tau}  & \cmdTy*{\tau} \\
+    \cmdEx[\tau]{m} & \cmdEx*{m} \\[1ex]
+    \retCmd[\tau]{e} & \retCmd*{e} \\
+    \bndCmd{e}{x}{m} & \bndCmd*{e}{x}{m} \\
+    \dclCmd{e}{a}{m} & \dclCmd*{e}{a}{m} \\[1ex]
+    \refEx{a} & \refEx*{a} \\[1ex]
+    \getCmd{a} & \getCmd*{a} \\
+    \getrefCmd[\tau]{e} & \getrefCmd*{e} \\
+    \setCmd{a}{e} & \setCmd*{a}{e} \\
+    \setrefCmd[\tau]{e_1}{e_2} & \setrefCmd*[\tau]{e_1}{e_2}
  \end{array}
 \end{displaymath}
 
-Modules:
+\noindent Polarized types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \univsg  & \univsg* \\
-    \valmod{\tau} & \valmod*{\tau} \\
-    \extsg{S}{M} & \extsg*{S}{M} \\
-    \compsg{S}  & \compsg*{S} \\
-    \pisg{S_1}{X}{S_2} & \pisg*{S_1}{X}{S_2} \\
-    \sigsg{S_1}{X}{S_2} & \sigsg*{S_1}{X}{S_2}
+    \freeTy{\posTy{\tau}}   & \freeTy*{\posTy{\tau}} \\
+    \freeEx[\posTy{\tau}]{v} & \freeEx*[\posTy{\tau}]{v} \\
+    \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'} \\
+    \thunkTy{\negTy{\tau}}  & \thunkTy*{\negTy{\tau}} \\
+    \thunkEx[\negTy{\tau}]{e} & \thunkEx*{e} \\
+    \forceEx{v}   & \forceEx*{v}
   \end{array}
 \end{displaymath}
 
-Polarization:
+\noindent Parallel types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \freety{\posty{\tau}}   & \freety*{\posty{\tau}} \\
-    \freeex[\posty{\tau}]{v} & \freeex*[\posty{\tau}]{v} \\
-    \fletex[\negty{\tau}][\negty{\rho}]{e}{x}{e'} & \fletex*{e}{x}{e'} \\
-    \thunkty{\negty{\tau}}  & \thunkty*{\negty{\tau}} \\
-    \thunkex[\negty{\tau}]{e} & \thunkex*{e} \\
-    \forceex{v}   & \forceex*{v}
+    \tensorTy{\tau_1}{\tau_2} & \tensorTy*{\tau_1}{\tau_2} \\
+    \tensorEx{v_1}{v_2} & \tensorEx*{v_1}{v_2} \\
+    \splitEx{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e} \\
+    \bothTy{\tau_1}{\tau_2} & \bothTy*{\tau_1}{\tau_2} \\
+    \bothEx{e_1}{e_2} & \bothEx*{e_1}{e_2} \\
+    \parEx{e}{x}{y}{e'} & \parEx*{e}{x}{y}{e'}
   \end{array}
 \end{displaymath}
 
-Parallelism:
+\noindent Module signatures:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \tensorty{\tau_1}{\tau_2} & \tensorty*{\tau_1}{\tau_2} \\
-    \tensorex{v_1}{v_2} & \tensorex*{v_1}{v_2} \\
-    \splitex{v}{x_1}{x_2}{e} & \splitex*{v}{x_1}{x_2}{e} \\
-    \bothty{\tau_1}{\tau_2} & \bothty*{\tau_1}{\tau_2} \\
-    \bothex{e_1}{e_2} & \bothex*{e_1}{e_2} \\
-    \parex{e}{x}{y}{e'} & \parex*{e}{x}{y}{e'}
+    \univSg  & \univSg* \\
+    \valSg{\tau} & \valSg*{\tau} \\
+    \extSg{S}{M} & \extSg*{S}{M} \\
+    \compSg{S}  & \compSg*{S} \\
+    \piSg{S_1}{X}{S_2} & \piSg*{S_1}{X}{S_2} \\
+    \sigSg{S_1}{X}{S_2} & \sigSg*{S_1}{X}{S_2}
   \end{array}
 \end{displaymath}
+
 \end{document}
 
 %%% Local Variables:
