@@ -22,7 +22,8 @@
 % \NewDocumentCommand{\Var}{m d<> d()}{\mathop{#1}\IfValueT{#2}{\,\langle #2\rangle\,}\IfValueT{#3}{(#3)}}
 \NewDocumentCommand{\Abs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
 \NewDocumentCommand{\Abt}{s m d<> o m}{\mathop{#2}\nolimits\IfValueT{#3}{\langle #3\rangle}\IfBooleanTF{#1}{\IfValueT{#4}{_{#4}}}{\IfValueT{#4}{[#4]}}\ifthenelse{\isempty{#5}}{}{(#5)}}
-% choose starred form of \Abt according to argument; trick for cst to attach first optional argument to the operation to allow for index-free cst's.
+% choose starred form of \Abt according to argument; trick for cst to attach first 
+% optional argument to the operation to allow for index-free cst's.
 \NewDocumentCommand{\Abbrt}{m m o}{\IfBooleanTF{#1}{\Abt*{#2[#3]}}{\Abt{#2}[#3]}}
 
 % yes/no answer type
