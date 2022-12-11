@@ -113,7 +113,7 @@
 \NewDocumentCommand{\throwEx}{s O{\tau} O{\rho} m m}{\Abbrt{#1}{\Opn{throw}}[#3]{#4\sep  #5}}  % first type argument is lost
 
 \NewDocumentCommand{\frmHole}{s}{\IfBooleanTF{#1}{\Abt{\Opn*{\mathord{-}}}{}}{\Abt{\Opn*{\circ}}{}}}
-\NewDocumentCommand{\empStk}{s O{\tau}}{\IfBooleanTF{#1}{\Abt*{\Opn*{\varepsilon}}[#2]{}}{\Abt{\Opn{emp}}[#2]{}}}
+\NewDocumentCommand{\empStk}{s O{\tau}}{\IfBooleanTF{#1}{\Abt*{\Opn*{\varepsilon}}{}}{\Abt{\Opn{emp}}[#2]{}}}
 \NewDocumentCommand{\extStk}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\kw{;}}#3}{\Abt{\Opn{ext}}{#2\sep  #3}}}
 
 % universal and existential types
