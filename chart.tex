@@ -60,14 +60,14 @@
     \injEx<i>[\tau_1][\tau_2]{e} & \injEx*<i>{e} & (i=\kw{1},\kw{2}) \\
     \caseEx[\tau][\rho]{e}{x}{e} & \caseEx*{e}{x}{e} \\[1ex]
 
-    \vsumTy<I><i>{\tau}  & \vsumTy*<I><i>{\tau} \\
-    \vinjEx<I><i>[\tau]{e} & \vinjEx*<I><i>{e} & (i\in I) \\
-    \vcaseEx<I>[\rho][\tau]{e}{x}{e'}  & \vcaseEx*<I>{e}{x}{e'} \\[1ex]
-
     \boolTy & \boolTy* \\
     \trueEx & \trueEx* \\
     \falseEx & \falseEx* \\
-    \ifEx{e}{e_1}{e_2} & \ifEx*{e}{e_1}{e_2}
+    \ifEx{e}{e_1}{e_2} & \ifEx*{e}{e_1}{e_2} \\[1ex]
+
+    \vsumTy<I><i>{\tau}  & \vsumTy*<I><i>{\tau} \\
+    \vinjEx<I><i>[\tau]{e} & \vinjEx*<I><i>{e} & (i\in I) \\
+    \vcaseEx<I>[\rho][\tau]{e}{x}{e'}  & \vcaseEx*<I>{e}{x}{e'}
   \end{array}
 \end{displaymath}
 
@@ -83,14 +83,14 @@
 \noindent Continuation types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
+    \ansTy & \ansTy* \\
+    \yesEx & \yesEx* \\
+    \noEx & \noEx* \\[1ex]
+
     \contTy{\tau}     & \contTy*{\tau} \\
     \contEx{k}        & \contEx*{k} \\
     \letccEx[\tau]{x}{e} & \letccEx*{x}{e} \\
     \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} \\[1ex]
-
-    \ansTy & \ansTy* \\
-    \yesEx & \yesEx* \\
-    \noEx & \noEx* \\[1ex]
 
     \empStk[\tau]     & \empStk*[\tau] \\
     \extStk{k}{f}     & \extStk*{k}{f} 
