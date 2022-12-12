@@ -179,7 +179,7 @@
 \NewDocumentCommand{\setrefCst}{m m}{#1\mathbin{\kw{*{=}}} #2}
 \NewDocumentCommand{\setrefCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setrefCst{#3}{#4}}{\setrefAbt{#2}{#3}{#4}}}
 
-% dependent types
+% module types
 \NewDocumentCommand{\univSg}{s}{\Abt{\Opn{type}}{}}
 \NewDocumentCommand{\valSg}{s m}{\Abt{\Opn{val}}{#2}}
 
@@ -192,11 +192,11 @@
 \NewDocumentCommand{\sigSg}{s m m m}{\IfBooleanTF{#1}{\sigCst{#2}{#3}{#4}}{\sigAbt{#2}{#3}{#4}}}
 
 \NewDocumentCommand{\extAbt}{m m}{\Abt{\Opn{Ext}}{#1\sep  #2}}
-\NewDocumentCommand{\extCst}{m m}{\{#1\mid \kw{st}\hookrightarrow #2\}}
+\NewDocumentCommand{\extCst}{m m}{\{#1\mid #2\}}
 \NewDocumentCommand{\extSg}{s m m}{\IfBooleanTF{#1}{\extCst{#2}{#3}}{\extAbt{#2}{#3}}}
 
 \NewDocumentCommand{\compAbt}{m}{\Abt{\Opn{Comp}}{#1}}
-\NewDocumentCommand{\compCst}{m}{\mathop{\bigcirc} #1}
+\NewDocumentCommand{\compCst}{m}{#1\,\kw{Comp}}
 \NewDocumentCommand{\compSg}{s m}{\IfBooleanTF{#1}{\compCst{#2}}{\compAbt{#2}}}
 
 % cbpv / polarization
