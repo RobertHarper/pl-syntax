@@ -17,7 +17,8 @@
 % abstractor of symbols in <>'s and variables in ()'s in an abt
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
 % abstract binding tree with operator, index, option, and argument
-% starred form omits the index and option.  empty arguments are dropped entirely.
+% starred form omits the index and option.  
+% empty principle arguments are dropped entirely.
 \NewDocumentCommand{\A@bt}{s m d<> o m}{\mathop{#2}\nolimits\IfValueT{#3}{\langle #3\rangle}\IfBooleanTF{#1}{}{\IfValueT{#4}{[#4]}}\ifthenelse{\isempty{#5}}{}{(#5)}}
 
 % choose starred form of \A@bt according to boolean argument
