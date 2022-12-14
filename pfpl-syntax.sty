@@ -3,16 +3,15 @@
 \RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd,bigplustimes}
 \RequirePackage{xifthen}
 
-\ProvideDocumentCommand{\kw}{m}{\texttt{#1}}
-
 \makeatletter  % internal commands have an @ sign to avoid collision
 
+\NewDocumentCommand{\@kw}{m}{\texttt{#1}}
 \NewDocumentCommand{\@sep}{}{\mathbin{;}}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\fin@map}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\sing@map{#3}{#4_#3}\mid #3\in #2}}
 
 % starred for math name, non-starred for verbatim name, optional index
-\NewDocumentCommand{\O@pn}{s m d<>}{\mathop{\IfBooleanTF{#1}{#2}{\kw{#2}}\IfValueT{#3}{\langle #3\rangle}{}}}
+\NewDocumentCommand{\O@pn}{s m d<>}{\mathop{\IfBooleanTF{#1}{#2}{\@kw{#2}}\IfValueT{#3}{\langle #3\rangle}{}}}
 
 % abstractor of symbols in <>'s and variables in ()'s in an abt
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
@@ -110,7 +109,7 @@
 % stacks
 \NewDocumentCommand{\frmSlot}{s}{\A@bt{\O@pn*{\mathord{-}}}{}}
 \NewDocumentCommand{\empStk}{s O{\tau}}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\varepsilon}}{}}{\A@bt{\O@pn{emp}}[#2]{}}}
-\NewDocumentCommand{\extStk}{s O{\tau} O{\tau'} m m}{\IfBooleanTF{#1}{#4\mathbin{\kw{;}}#5}{\A@bt{\O@pn{ext}}[#2\@sep #3]{#4\@sep #5}}}
+\NewDocumentCommand{\extStk}{s O{\tau} O{\tau'} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}}#5}{\A@bt{\O@pn{ext}}[#2\@sep #3]{#4\@sep #5}}}
 
 % universal and existential types
 \NewDocumentCommand{\AllTy}{s m m}{\IfBooleanTF{#1}{\A@bt{\O@pn*{\forall}}}{\A@bt{\O@pn{All}}}{\A@bs(#2){#3}}}
@@ -139,10 +138,10 @@
 % untyped
 \NewDocumentCommand{\ulamEx}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\lambda}}}{\A@bt{\O@pn{lam}}}{\A@bs(#2){#3}}}
 \NewDocumentCommand{\uapEx}{s m m}{\IfBooleanTF{#1}{#2(#3)}{\A@bt{\O@pn{app}}{#2\@sep #3}}}
-\NewDocumentCommand{\uIEx}{s}{\A@bt{\textbf{\kw{I}}}{}}
-\NewDocumentCommand{\uKEx}{s}{\A@bt{\textbf{\kw{K}}}{}}
-\NewDocumentCommand{\uSEx}{s}{\A@bt{\textbf{\kw{S}}}{}}
-\NewDocumentCommand{\uBEx}{s}{\A@bt{\textbf{\kw{B}}}{}}
+\NewDocumentCommand{\uIEx}{s}{\A@bt{\textbf{\@kw{I}}}{}}
+\NewDocumentCommand{\uKEx}{s}{\A@bt{\textbf{\@kw{K}}}{}}
+\NewDocumentCommand{\uSEx}{s}{\A@bt{\textbf{\@kw{S}}}{}}
+\NewDocumentCommand{\uBEx}{s}{\A@bt{\textbf{\@kw{B}}}{}}
 
 % commands
 \NewDocumentCommand{\cmdTy}{s m}{\A@bt{\O@pn{cmd}}{#2}}
@@ -151,11 +150,11 @@
 \NewDocumentCommand{\retCmd}{s O{\tau} m}{\Abt@{#1}{\O@pn{ret}}[#2]{#3}}
 
 \NewDocumentCommand{\bnd@Abt}{m m m m m}{\A@bt{\O@pn{bnd}}[#1\@sep  #2]{#3\@sep  \A@bs(#4){#5}}}
-\NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\mathbin{\kw{;}}#3}
+\NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\mathbin{\@kw{;}}#3}
 \NewDocumentCommand{\bndCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bnd@Cst{#3}{#5}{#6}}{\bnd@Abt{#2}{#4}{#3}{#5}{#6}}}
 
 \NewDocumentCommand{\dcl@Abt}{m m m m}{\A@bt{\O@pn{dcl}}[#1\@sep  #2]{#3\@sep  #4}}
-\NewDocumentCommand{\dcl@Cst}{m m m}{\O@pn{dcl}\,#2\mathbin{\kw{:=}}#1\,\kw{;}\,#3}
+\NewDocumentCommand{\dcl@Cst}{m m m}{\O@pn{dcl}\,#2\mathbin{\@kw{:=}}#1\,\@kw{;}\,#3}
 \NewDocumentCommand{\dclCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\dcl@Cst{#3}{#5}{#6}}{\dcl@Abt{#2}{#4}{#3}{\A@bs<#5>{#6}}}}
 
 % reference types
@@ -168,15 +167,15 @@
 \NewDocumentCommand{\getCmd}{s m}{\IfBooleanTF{#1}{\get@Cst{#2}}{\get@Abt{#2}}}
 
 \NewDocumentCommand{\getref@Abt}{m m}{\A@bt{\O@pn{getref}}[#1]{#2}}
-\NewDocumentCommand{\getref@Cst}{m}{\kw{*}#1}
+\NewDocumentCommand{\getref@Cst}{m}{\@kw{*}#1}
 \NewDocumentCommand{\getrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\getref@Cst{#3}}{\getref@Abt{#2}{#3}}}
 
 \NewDocumentCommand{\set@Abt}{m m}{\A@bt{\O@pn{set}<#1>}{#2}}
-\NewDocumentCommand{\set@Cst}{m m}{#1\mathbin{\kw{:=}}#2}
+\NewDocumentCommand{\set@Cst}{m m}{#1\mathbin{\@kw{:=}}#2}
 \NewDocumentCommand{\setCmd}{s m m}{\IfBooleanTF{#1}{\set@Cst{#2}{#3}}{\set@Abt{#2}{#3}}}
 
 \NewDocumentCommand{\setref@Abt}{m m m}{\A@bt{\O@pn{setref}}[#1]{#2\@sep  #3}}
-\NewDocumentCommand{\setref@Cst}{m m}{#1\mathbin{\kw{*{=}}} #2}
+\NewDocumentCommand{\setref@Cst}{m m}{#1\mathbin{\@kw{*{=}}} #2}
 \NewDocumentCommand{\setrefCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setref@Cst{#3}{#4}}{\setref@Abt{#2}{#3}{#4}}}
 
 % module types
@@ -196,12 +195,12 @@
 \NewDocumentCommand{\extSg}{s m m}{\IfBooleanTF{#1}{\ext@Cst{#2}{#3}}{\ext@Abt{#2}{#3}}}
 
 \NewDocumentCommand{\comp@Abt}{m}{\A@bt{\O@pn{Comp}}{#1}}
-\NewDocumentCommand{\comp@Cst}{m}{#1\,\kw{Comp}}
+\NewDocumentCommand{\comp@Cst}{m}{#1\,\@kw{Comp}}
 \NewDocumentCommand{\compSg}{s m}{\IfBooleanTF{#1}{\comp@Cst{#2}}{\comp@Abt{#2}}}
 
 % cbpv / polarization
-\NewDocumentCommand{\posTy}{m}{#1^{\kw{+}}}
-\NewDocumentCommand{\negTy}{m}{#1^{\kw{-}}}
+\NewDocumentCommand{\posTy}{m}{#1^{\@kw{+}}}
+\NewDocumentCommand{\negTy}{m}{#1^{\@kw{-}}}
 \NewDocumentCommand{\freeTy}{s m}{\A@bt{\O@pn{F}}{#2}}
 \NewDocumentCommand{\freeEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{ret}}[#2]{#3}}
 \NewDocumentCommand{\fletEx}{s O{\negTy{\tau}} O{\negTy{\rho}} m m m}{\Abt@{#1}{\O@pn{let}}[#2\@sep #3]{#4\@sep \A@bs(#5){#6}}}
@@ -214,7 +213,7 @@
 % eager product
 \NewDocumentCommand{\tensorTy}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\A@bt{\O@pn{tens}}{#2\@sep #3}}}
 \NewDocumentCommand{\tensorEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\A@bt{\O@pn{with}}[#2\@sep  #3]{#4\@sep  #5}}}
-\NewDocumentCommand{\splitEx}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\kw{split}\,{#5}\,\{\A@bs(#6,#7){#8}\}}{\A@bt{\O@pn{split}}[#2\@sep #3\@sep #4]{#5\@sep \A@bs(#6,#7){#8}}}}
+\NewDocumentCommand{\splitEx}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\@kw{split}\,{#5}\,\{\A@bs(#6,#7){#8}\}}{\A@bt{\O@pn{split}}[#2\@sep #3\@sep #4]{#5\@sep \A@bs(#6,#7){#8}}}}
 
 % lazy, not memoized, product
 \NewDocumentCommand{\bothTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{and}}{#2\@sep #3}}}
