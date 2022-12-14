@@ -30,9 +30,9 @@
 \author{Robert Harper}
 \date{\today}
 
-\ProvideDocumentCommand{\kw}{m}{\texttt{#1}}
-\ProvideDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
-\ProvideDocumentCommand{\finmap}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\singmap{#3}{#4_#3}\mid #3\in #2}}
+\NewDocumentCommand{\kw}{m}{\texttt{#1}}
+\NewDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
+\NewDocumentCommand{\finmap}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\singmap{#3}{#4_#3}\mid #3\in #2}}
 
 \begin{document}
 
