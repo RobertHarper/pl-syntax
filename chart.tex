@@ -30,11 +30,15 @@
 \author{Robert Harper}
 \date{\today}
 
+\ProvideDocumentCommand{\kw}{m}{\texttt{#1}}
+\ProvideDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
+\ProvideDocumentCommand{\finmap}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\singmap{#3}{#4_#3}\mid #3\in #2}}
+
 \begin{document}
 
 \maketitle{}
 
-\noindent Product types:\footnote{Variadic operators are implicitly indexed by finite sets $I$ of labels.  Then $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$, $e_I$ stands for $\finmap{I}{i}{e}$, and $\Abs(x){e_I}$ stands for $\finmap{I}{i}{\Abs(x){e}}$.}
+\noindent Product types:\footnote{Variadic operators are implicitly indexed by finite sets $I$ of labels.  Then $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.}
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
     \unitTy{} & \unitTy*{} \\
