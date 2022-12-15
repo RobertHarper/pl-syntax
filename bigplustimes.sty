@@ -13,3 +13,18 @@
 \DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
 \DeclareMathSymbol{\bigplus} {\mathop}{mathx}{"90}
 \DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
+
+\makeatletter
+
+\@ifpackageloaded{amsmath}{%
+    \@ifundefined{coprod@}{}{
+        \typeout{*** Applying amsmath patches to \protect\bigplus\space
+                    and \protect\bigtimes. ***}
+        \global\let\bigplus@\bigplus
+        \gdef\bigplus{\DOTSB\bigplus@\slimits@}
+        \global\let\bigtimes@\bigtimes
+        \gdef\bigtimes{\DOTSB\bigtimes@\slimits@}
+    }
+}{}
+
+\makeatother
