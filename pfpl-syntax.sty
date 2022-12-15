@@ -102,7 +102,7 @@
 \NewDocumentCommand{\noEx}{s}{\A@bt{\O@pn{no}}{}}
 
 % continuation type
-\NewDocumentCommand{\contTy}{s m}{\A@bt{\O@pn{cont}}{#2}}
+\NewDocumentCommand{\contTy}{s m}{\IfBooleanTF{#1}{#2\,\kw{cont}}{\A@bt{\O@pn{cont}}{#2}}}
 \NewDocumentCommand{\contEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{cont}}[#2]{#3}}
 \NewDocumentCommand{\letccEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{letcc}}[#2]{\A@bs(#3){#4}}}
 \NewDocumentCommand{\throwEx}{s O{\tau} O{\rho} m m}{\Abt@{#1}{\O@pn{throw}}[#2\@sep #3]{#4\@sep  #5}}
