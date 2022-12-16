@@ -101,15 +101,38 @@
   \end{array}
 \end{displaymath}
 
-\noindent Inductive and co-inductive types:
+\noindent Inductive types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
     \indTy{t}{\tau} & \indTy*{t}{\tau} \\
     \inEx[t][\tau]{e} & \inEx*{e} \\
     \recEx[t][\tau][\rho]{e}{x}{e'} & \recEx*{e}{x}{e'} \\[1ex]
+
+    \natTy{} & \natTy*{} \\
+    \zeroEx  & \zeroEx* \\
+    \succEx{e} & \succEx*{e} \\
+    \natitEx[\rho]{e}{e_0}{x}{e_1} & \natitEx*{e}{e_0}{x}{e_1} \\
+    \ifzEx[\rho]{e}{e_0}{x}{e_1} & \ifzEx*{e}{e_0}{x}{e_1} \\[1ex]
+
+    \listTy{\tau} & \listTy*{\tau}  \\
+    \nilEx[\tau] & \nilEx*{} \\
+    \consEx[\tau]{e_1}{e_2} & \consEx*{e_1}{e_2} \\
+    \listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listrecEx*{e}{e_1}{x}{y}{e_2} \\
+    \listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2}
+  \end{array}
+\end{displaymath}
+
+\noindent Coinductive Types:
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
     \coiTy{t}{\tau} & \coiTy*{t}{\tau} \\
     \outEx[t][\tau]{e} & \outEx*{e} \\
-    \genEx[t][\tau][\sigma]{e}{x}{e'} & \genEx*{e}{x}{e'}
+    \genEx[t][\tau][\sigma]{e}{x}{e'} & \genEx*{e}{x}{e'} \\[1ex]
+
+    \conatTy{} & \conatTy*{} \\[1ex]
+
+    \streamTy{\tau} & \streamTy*{\tau} \\[1ex]
+
   \end{array}
 \end{displaymath}
 

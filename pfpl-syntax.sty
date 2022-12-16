@@ -60,7 +60,7 @@
 \NewDocumentCommand{\inj@Cst}{d<> m}{#1\cdot #2}
 \NewDocumentCommand{\injEx}{s D<>{i} O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\inj@Cst<#2>{#5}}{\inj@Abt<#2>{#3}{#4}{#5}}}
 \NewDocumentCommand{\case@Abt}{m m m m m}{\A@bt{\O@pn{case}}[#1_1\@sep  #1_2\@sep  #2]{#3\@sep  \A@bs(#4){#5_1}\@sep  \A@bs(#4){#5_2}}}
-\NewDocumentCommand{\case@Cst}{m m m}{\O@pn{case}\, #1\,\{\A@bs(#2){#3_1} \mid \A@bs(#2){#3_2}\}}
+\NewDocumentCommand{\case@Cst}{m m m}{\O@pn{case}\, #1\,\{\,\A@bs(#2){#3_1} \mid \A@bs(#2){#3_2}\,\}}
 \NewDocumentCommand{\caseEx}{s O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\case@Cst{#4}{#5}{#6}}{\case@Abt{#2}{#3}{#4}{#5}{#6}}}
 % n-ary
 \NewDocumentCommand{\vsum@Abt}{m m m}{\A@bt{\O@pn{vsum}}<#1>{\fin@map*{#1}{#2}{#3}}}
@@ -70,8 +70,9 @@
 \NewDocumentCommand{\vinj@Cst}{m m}{#1\cdot #2}
 \NewDocumentCommand{\vinjEx}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vinj@Cst{#3}{#5}}{\vinj@Abt{#2}{#3}{#4}{#5}}}
 \NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}<#1>}[#4_#1\@sep #3]{#5\@sep \fin@map*{#1}{#2}{\A@bs(#6){#7}}}}
-\NewDocumentCommand{\vcase@Cst}{m m m m m}{\O@pn{vcase}\, #3\,\{\fin@map{#1}{#2}{\A@bs(#4){#5}}\}}
+\NewDocumentCommand{\vcase@Cst}{m m m m m}{\O@pn{vcase}\, #3\,\{\,\fin@map{#1}{#2}{\A@bs(#4){#5}}\,\}}
 \NewDocumentCommand{\vcaseEx}{s D<>{I} D<>{i} O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\vcase@Cst{#2}{#3}{#6}{#7}{#8}}{\vcase@Abt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
+
 % booleans, sum of one and one.
 \NewDocumentCommand{\boolTy}{s}{\A@bt{\IfBooleanTF{#1}{\O@pn*{\mathbf{2}}}{\O@pn{bool}}}{}}
 \NewDocumentCommand{\trueEx}{s}{\A@bt{\O@pn{true}}{}}
@@ -86,15 +87,43 @@
 \NewDocumentCommand{\lamEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\lambda}}}{\A@bt{\O@pn{lam}}}[#2\@sep #3]{\A@bs(#4){#5}}}
 \NewDocumentCommand{\appEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\O@pn{ap}}[#2\@sep #3]{#4\@sep #5}}
 
-% inductive type; intro is foldex below
+% inductive type
 \NewDocumentCommand{\indTy}{s m m}{\A@bt{\O@pn{ind}}{\A@bs(#2){#3}}}
 \NewDocumentCommand{\inEx}{s O{t} O{\tau} m}{\Abt@{#1}{\O@pn{in}}[\A@bs(#2){#3}]{#4}}
 \NewDocumentCommand{\recEx}{s O{t} O{\tau} O{\rho} m m m}{\Abt@{#1}{\O@pn{rec}}[\A@bs(#2){#3}\@sep  #4]{#5\@sep \A@bs(#6){#7}}}
 
-% coinductive type; elim is unfoldex below
+% list type
+\NewDocumentCommand{\listTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{list}}{\A@bt{\O@pn{list}}{#2}}}
+\NewDocumentCommand{\nilEx}{s O{\tau}}{\Abt@{#1}{\O@pn{nil}}[#2]{}}
+\NewDocumentCommand{\consEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{cons}}[#2]{#3\@sep #4}}
+\NewDocumentCommand{\listrec@Abt}{o o m m m m m}{\A@bt{\O@pn{listrec}}[#1\@sep #2]{#3\@sep #4\@sep \A@bs(#5,#6){#7}}}
+\NewDocumentCommand{\listrec@Cst}{m m m m m}{\O@pn{listrec}\,#1\,\{\,#2\mid\A@bs(#3,#4){#5}\}}
+\NewDocumentCommand{\listrecEx}{s O{\tau} O{\rho} m m m m m}{\IfBooleanTF{#1}{\listrec@Cst{#4}{#5}{#6}{#7}{#8}}{\listrec@Abt[#2][#3]{#4}{#5}{#6}{#7}{#8}}}
+\NewDocumentCommand{\listcase@Abt}{o o m m m m m}{\A@bt{\O@pn{listcase}}[#1\@sep #2]{#3\@sep #4\@sep \A@bs(#5,#6){#7}}}
+\NewDocumentCommand{\listcase@Cst}{m m m m m}{\O@pn{listcase}\,#1\,\{\,#2\mid\A@bs(#3,#4){#5}\}}
+\NewDocumentCommand{\listcaseEx}{s O{\tau} O{\rho} m m m m m}{\IfBooleanTF{#1}{\listcase@Cst{#4}{#5}{#6}{#7}{#8}}{\listcase@Abt[#2][#3]{#4}{#5}{#6}{#7}{#8}}}
+
+% nat type
+\NewDocumentCommand{\natTy}{s}{\A@bt{\O@pn{nat}}{}}
+\NewDocumentCommand{\zeroEx}{s}{\A@bt{\O@pn{zero}}{}}
+\NewDocumentCommand{\succEx}{s m}{\A@bt{\O@pn{succ}}{#2}}
+\NewDocumentCommand{\natit@Abt}{o m m m m}{\A@bt{\O@pn{natit}}[#1]{#2\@sep #3\@sep \A@bs(#4){#5}}}
+\NewDocumentCommand{\natit@Cst}{m m m m}{\O@pn{natit}\,#1\,\{\,#2\mid\A@bs(#3){#4}\}}
+\NewDocumentCommand{\natitEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\natit@Cst{#3}{#4}{#5}{#6}}{\natit@Abt[#2]{#3}{#4}{#5}{#6}}}
+\NewDocumentCommand{\ifz@Abt}{o m m m m}{\A@bt{\O@pn{ifz}}[#1]{#2\@sep #3\@sep \A@bs(#4){#5}}}
+\NewDocumentCommand{\ifz@Cst}{m m m m}{\O@pn{ifz}\,#1\,\{\,#2\mid\A@bs(#3){#4}\}}
+\NewDocumentCommand{\ifzEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\ifz@Cst{#3}{#4}{#5}{#6}}{\ifz@Abt[#2]{#3}{#4}{#5}{#6}}}
+
+% coinductive type
 \NewDocumentCommand{\coiTy}{s m m}{\A@bt{\O@pn{coi}}{\A@bs(#2){#3}}}
 \NewDocumentCommand{\outEx}{s O{t} O{\tau} m}{\Abt@{#1}{\O@pn{out}}[\A@bs(#2){#3}]{#4}}
 \NewDocumentCommand{\genEx}{s O{t} O{\tau} O{\sigma} m m m}{\Abt@{#1}{\O@pn{gen}}[\A@bs(#2){#3}\@sep #4]{#5\@sep \A@bs(#6){#7}}}
+
+% conat
+\NewDocumentCommand{\conatTy}{s}{\A@bt{\O@pn{conat}}{}}
+
+% stream
+\NewDocumentCommand{\streamTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{stream}}{\A@bt{\O@pn{stream}}{#2}}}
 
 % yes/no answer type
 \NewDocumentCommand{\ansTy}{s}{\A@bt{\O@pn{ans}}{}}
@@ -144,7 +173,7 @@
 \NewDocumentCommand{\uBEx}{s}{\A@bt{\textbf{\@kw{B}}}{}}
 
 % commands
-\NewDocumentCommand{\cmdTy}{s m}{\A@bt{\O@pn{cmd}}{#2}}
+\NewDocumentCommand{\cmdTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{cmd}}{\A@bt{\O@pn{cmd}}{#2}}}
 \NewDocumentCommand{\cmdEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{cmd}}[#2]{#3}}
 
 \NewDocumentCommand{\retCmd}{s O{\tau} m}{\Abt@{#1}{\O@pn{ret}}[#2]{#3}}
