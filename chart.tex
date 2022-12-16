@@ -38,6 +38,15 @@
 
 \maketitle{}
 
+\noindent Function types:
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} \\
+    \lamEx{x}{e} & \lamEx*{x}{e} \\
+    \appEx{e_1}{e_2} & \appEx*{e_1}{e_2}
+  \end{array}
+\end{displaymath}
+
 \noindent Product types:\footnote{Variadic operators are implicitly indexed by finite sets $I$ of labels.  Then $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.}
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
@@ -75,12 +84,43 @@
   \end{array}
 \end{displaymath}
 
-\noindent Total function types:
+\noindent Inductive and coinductive types:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} \\
-    \lamEx{x}{e} & \lamEx*{x}{e} \\
-    \appEx{e_1}{e_2} & \appEx*{e_1}{e_2}
+    \indTy{t}{\tau} & \indTy*{t}{\tau} \\
+    \inEx[t][\tau]{e} & \inEx*{e} \\
+    \recEx[t][\tau][\rho]{e}{x}{e'} & \recEx*{e}{x}{e'} \\[1ex]
+
+    \natTy{} & \natTy*{} \\
+    \zeroEx  & \zeroEx* \\
+    \succEx{e} & \succEx*{e} \\
+    \natitEx[\rho]{e}{e_0}{x}{e_1} & \natitEx*{e}{e_0}{x}{e_1} \\
+    \ifzEx[\rho]{e}{e_0}{x}{e_1} & \ifzEx*{e}{e_0}{x}{e_1} \\[1ex]
+
+    \listTy{\tau} & \listTy*{\tau}  \\
+    \nilEx[\tau] & \nilEx*{} \\
+    \consEx[\tau]{e_1}{e_2} & \consEx*{e_1}{e_2} \\
+    \listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listrecEx*{e}{e_1}{x}{y}{e_2} \\
+    \listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2} \\[1ex]
+
+    \coiTy{t}{\tau} & \coiTy*{t}{\tau} \\
+    \outEx[t][\tau]{e} & \outEx*{e} \\
+    \genEx[t][\tau][\sigma]{e}{x}{e'} & \genEx*{e}{x}{e'} \\[1ex]
+
+    \conatTy{} & \conatTy*{} \\
+    \streamTy{\tau} & \streamTy*{\tau}
+  \end{array}
+\end{displaymath}
+
+\noindent Polymorphic types:
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \AllTy{t}{\tau} & \AllTy*{t}{\tau} \\
+    \LamEx{t}[\tau]{e} & \LamEx*{t}{e} \\
+    \AppEx[t][\tau]{e}{\sigma} & \AppEx*{e}{\sigma}\\[1ex]
+    \SomeTy{t}{\tau}  & \SomeTy*{t}{\tau} \\
+    \PackEx[t][\tau]{\rho}{e} & \PackEx*{\rho}{e} \\
+    \OpenEx[t][\tau]{e}[\rho]{x}{e'} & \OpenEx*[t][\tau]{e}[\rho]{x}{e'}
   \end{array}
 \end{displaymath}
 
@@ -98,53 +138,6 @@
 
     \empStk[\tau]     & \empStk*[\tau] \\
     \extStk[\tau_1][\tau_2]{k}{f}     & \extStk*{k}{f} 
-  \end{array}
-\end{displaymath}
-
-\noindent Inductive types:
-\begin{displaymath}
-  \begin{array}{l@{\quad}l@{\quad}l}
-    \indTy{t}{\tau} & \indTy*{t}{\tau} \\
-    \inEx[t][\tau]{e} & \inEx*{e} \\
-    \recEx[t][\tau][\rho]{e}{x}{e'} & \recEx*{e}{x}{e'} \\[1ex]
-
-    \natTy{} & \natTy*{} \\
-    \zeroEx  & \zeroEx* \\
-    \succEx{e} & \succEx*{e} \\
-    \natitEx[\rho]{e}{e_0}{x}{e_1} & \natitEx*{e}{e_0}{x}{e_1} \\
-    \ifzEx[\rho]{e}{e_0}{x}{e_1} & \ifzEx*{e}{e_0}{x}{e_1} \\[1ex]
-
-    \listTy{\tau} & \listTy*{\tau}  \\
-    \nilEx[\tau] & \nilEx*{} \\
-    \consEx[\tau]{e_1}{e_2} & \consEx*{e_1}{e_2} \\
-    \listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listrecEx*{e}{e_1}{x}{y}{e_2} \\
-    \listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2}
-  \end{array}
-\end{displaymath}
-
-\noindent Coinductive Types:
-\begin{displaymath}
-  \begin{array}{l@{\quad}l@{\quad}l}
-    \coiTy{t}{\tau} & \coiTy*{t}{\tau} \\
-    \outEx[t][\tau]{e} & \outEx*{e} \\
-    \genEx[t][\tau][\sigma]{e}{x}{e'} & \genEx*{e}{x}{e'} \\[1ex]
-
-    \conatTy{} & \conatTy*{} \\[1ex]
-
-    \streamTy{\tau} & \streamTy*{\tau} \\[1ex]
-
-  \end{array}
-\end{displaymath}
-
-\noindent Polymorphic types:
-\begin{displaymath}
-  \begin{array}{l@{\quad}l@{\quad}l}
-    \AllTy{t}{\tau} & \AllTy*{t}{\tau} \\
-    \LamEx{t}[\tau]{e} & \LamEx*{t}{e} \\
-    \AppEx[t][\tau]{e}{\sigma} & \AppEx*{e}{\sigma}\\[1ex]
-    \SomeTy{t}{\tau}  & \SomeTy*{t}{\tau} \\
-    \PackEx[t][\tau]{\rho}{e} & \PackEx*{\rho}{e} \\
-    \OpenEx[t][\tau]{e}[\rho]{x}{e'} & \OpenEx*[t][\tau]{e}[\rho]{x}{e'}
   \end{array}
 \end{displaymath}
 
@@ -224,6 +217,30 @@
     \compSg{S}  & \compSg*{S} \\
     \piSg{S_1}{X}{S_2} & \piSg*{S_1}{X}{S_2} \\
     \sigSg{S_1}{X}{S_2} & \sigSg*{S_1}{X}{S_2}
+  \end{array}
+\end{displaymath}
+
+\noindent Processes:
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \unitProc{}    & \unitProc*{} \\
+    \parProc{p_1}{p_2} & \parProc*{p_1}{p_2} \\
+    \nullProc{} & \nullProc*{} \\
+    \orProc{p_1}{p_2}  & \orProc*{p_1}{p_2} \\
+    \queProc{a}{p} & \queProc*{a}{p} \\
+    \sigProc{a}{p}  & \sigProc*{a}{p} \\
+    \rcvProc{a}{x}{p} & \rcvProc*{a}{x}{p} \\
+    \sndProc{a}{e}{p} & \sndProc*{a}{e}{p} \\
+    \asndProc{a}{e} & \asndProc*{a}{e} \\
+    \syncProc{\varepsilon} & \syncProc*{\varepsilon} \\
+    \newProc{a}{p} & \newProc*{a}{p} \\[1ex]
+    \silAct & \silAct* \\
+    \sigAct{a} & \sigAct*{a} \\
+    \queAct{a}  & \queAct*{a} \\
+    \sndAct{a}{e} & \sndAct*{a}{e} \\
+    \rcvAct{a}{e} & \rcvAct*{a}{e} \\
+    \anyAct{e}  & \anyAct*{e} \\
+    \emitAct{e} & \emitAct*{e}
   \end{array}
 \end{displaymath}
 

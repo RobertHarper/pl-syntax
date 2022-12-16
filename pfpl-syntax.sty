@@ -137,7 +137,7 @@
 \NewDocumentCommand{\throwEx}{s O{\tau} O{\rho} m m}{\Abt@{#1}{\O@pn{throw}}[#2\@sep #3]{#4\@sep  #5}}
 % stacks
 \NewDocumentCommand{\frmSlot}{s}{\A@bt{\O@pn*{\mathord{-}}}{}}
-\NewDocumentCommand{\empStk}{s O{\tau}}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\varepsilon}}}{\A@bt{\O@pn{emp}}}[#2]{}}
+\NewDocumentCommand{\empStk}{s O{\tau}}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bullet}}}{\A@bt{\O@pn{emp}}}[#2]{}}
 \NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}} #5}{\A@bt{\O@pn{ext}}[#2\@sep #3]{#4\@sep #5}}}
 
 % universal and existential types
@@ -230,10 +230,10 @@
 % cbpv / polarization
 \NewDocumentCommand{\posTy}{m}{#1^{\@kw{+}}}
 \NewDocumentCommand{\negTy}{m}{#1^{\@kw{-}}}
-\NewDocumentCommand{\freeTy}{s m}{\A@bt{\O@pn{F}}{#2}}
+\NewDocumentCommand{\freeTy}{s m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\uparrow}}}{\A@bt{\O@pn{F}}}{#2}}
 \NewDocumentCommand{\freeEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{ret}}[#2]{#3}}
 \NewDocumentCommand{\fletEx}{s O{\negTy{\tau}} O{\negTy{\rho}} m m m}{\Abt@{#1}{\O@pn{let}}[#2\@sep #3]{#4\@sep \A@bs(#5){#6}}}
-\NewDocumentCommand{\thunkTy}{s m}{\A@bt{\O@pn{U}}{#2}}
+\NewDocumentCommand{\thunkTy}{s m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\downarrow}}{#2}}{\A@bt{\O@pn{U}}{#2}}}
 \NewDocumentCommand{\suspTy}{s m}{\A@bt{\O@pn{susp}}{#2}}  % for unpolarized uses
 \NewDocumentCommand{\thunkEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{thunk}}[#2]{#3}}
 \NewDocumentCommand{\suspEx}{s O{\tau} m}{\A@bt{\O@pn{susp}}[#2]{#3}}   % for unpolarized uses
@@ -248,5 +248,33 @@
 \NewDocumentCommand{\bothTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{and}}{#2\@sep #3}}}
 \NewDocumentCommand{\bothEx}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{both}}{#2\@sep #3}}}
 \NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}{#2\@sep \A@bs(#3,#4){#5}}}
+
+% processes
+\NewDocumentCommand{\unitProc}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{1}}{}}{\A@bt{\O@pn{one}}{}}}
+\NewDocumentCommand{\parProc}{s m m}{\IfBooleanTF{#1}{#2\otimes #3}{\A@bt{\O@pn{par}}{#2\@sep #3}}}
+\NewDocumentCommand{\nullProc}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{0}}{}}{\A@bt{\O@pn{null}}{}}}
+\NewDocumentCommand{\orProc}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}{#2\@sep #3}}}
+\NewDocumentCommand{\queProc}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{?}}}{\A@bt{\O@pn{que}}}<#2>{#3}}
+\NewDocumentCommand{\sigProc}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{!}}}{\A@bt{\O@pn{sig}}}<#2>{#3}}
+\NewDocumentCommand{\rcvProc}{s m m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{?}}}{\A@bt{\O@pn{rcv}}}<#2>{\A@bs(#3){#4}}}
+\NewDocumentCommand{\sndProc}{s m m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn{!}}}{\A@bt{\O@pn{snd}}}<#2>{#3\@sep #4}}
+\NewDocumentCommand{\asndProc}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{!}}}{\A@bt{\O@pn{asnd}}}<#2>{#3}}
+\NewDocumentCommand{\syncProc}{s m}{\Abt@{#1}{\O@pn{sync}}{#2}}
+\NewDocumentCommand{\newProc}{s O{\tau} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\nu}}}{\A@bt{\O@pn{new}}}[#2]{\A@bs(#3){#4}}}
+
+% events
+\NewDocumentCommand{\nullEvt}{s}{\IfBooleanTF{#1}{\zeroProc*}{\zeroProc}}
+\NewDocumentCommand{\orEvt}{s m m}{\IfBooleanTF{#1}{\orProc*}{\orProc}{#2}{#3}}
+\NewDocumentCommand{\rcvEvt}{s m m m}{\IfBooleanTF{#1}{\rcvProc*{#2}{#3}{#4}}{\rcvProc{#2}{#3}{#4}}}
+\NewDocumentCommand{\sndEvt}{s m m m}{\IfBooleanTF{#1}{\sndProc*{#2}{#3}{#4}}{\sndProc{#2}{#3}{#4}}}
+
+% actions
+\NewDocumentCommand{\silAct}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\epsilon}}{}}{\A@bt{\O@pn{sil}}{}}}
+\NewDocumentCommand{\sigAct}{s m}{\IfBooleanTF{#1}{#2\O@pn*{!}}{\A@bt{\O@pn{sig}}<#2>{}}}
+\NewDocumentCommand{\queAct}{s m}{\IfBooleanTF{#1}{#2\O@pn*{?}}{\A@bt{\O@pn{que}}<#2>{}}}
+\NewDocumentCommand{\sndAct}{s m m}{\IfBooleanTF{#1}{#2\O@pn*{!}#3}{\A@bt{\O@pn{snd}}<#2>{#3}}}
+\NewDocumentCommand{\rcvAct}{s m m}{\IfBooleanTF{#1}{#2\O@pn*{?}#3}{\A@bt{\O@pn{rcv}}<#2>{#3}}}
+\NewDocumentCommand{\anyAct}{s m}{\IfBooleanTF{#1}{\O@pn*{?}#2}{\A@bt{\O@pn{any}}{#2}}}
+\NewDocumentCommand{\emitAct}{s m}{\IfBooleanTF{#1}{\O@pn*{!}#2}{\A@bt{\O@pn{emit}}{#2}}}
 
 \makeatother
