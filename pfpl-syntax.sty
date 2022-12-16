@@ -224,11 +224,22 @@
 \NewDocumentCommand{\sig@Abt}{m m m}{\A@bt{\O@pn{Sig}}{#1\@sep \A@bs(#2){#3}}}
 \NewDocumentCommand{\sig@Cst}{m m m}{#2{\mathbin{:}}#1\times #3}
 \NewDocumentCommand{\sigSg}{s m m m}{\IfBooleanTF{#1}{\sig@Cst{#2}{#3}{#4}}{\sig@Abt{#2}{#3}{#4}}}
+\NewDocumentCommand{\str@Cst}{m m}{\O@pn{str} #1\mathbin{\O@pn{in}} #2}
+\NewDocumentCommand{\str@Abt}{m m m m m}{\A@bt{\O@pn{str}}[#1\@sep\A@bs(#2){#3}]{#4\@sep #5}}
+\NewDocumentCommand{\strMd}{s O{S_1} O{X} O{S_2} m m}{\IfBooleanTF{#1}{\str@Cst{#5}{#6}}{\str@Abt{#2}{#3}{#4}{#5}{#6}}}
+\NewDocumentCommand{\fst@Cst}{m}{#1\cdot \kw{1}}
+\NewDocumentCommand{\fst@Abt}{m m m m}{\A@bt{\O@pn{fst}}[#1\@sep \A@bs(#2){#3}]{#4}}
+\NewDocumentCommand{\fstMd}{s O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{\fst@Cst{#5}}{\fst@Abt{#2}{#3}{#4}{#5}}}
+\NewDocumentCommand{\snd@Cst}{m}{#1\cdot \kw{2}}
+\NewDocumentCommand{\snd@Abt}{m m m m}{\A@bt{\O@pn{snd}}[#1\@sep \A@bs(#2){#3}]{#4}}
+\NewDocumentCommand{\sndMd}{s O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{\snd@Cst{#5}}{\snd@Abt{#2}{#3}{#4}{#5}}}
 
 \NewDocumentCommand{\staticLock}{s}{\Abt@{#1}{\O@pn{st}}{}}
 \NewDocumentCommand{\ext@Abt}{m m}{\A@bt{\O@pn{Ext}}{#1\@sep  #2}}
 \NewDocumentCommand{\ext@Cst}{m m}{\{#1\mid #2\}}
 \NewDocumentCommand{\extSg}{s m m}{\IfBooleanTF{#1}{\ext@Cst{#2}{#3}}{\ext@Abt{#2}{#3}}}
+\NewDocumentCommand{\inMd}{s O{S} O{M} m}{\Abt@{#1}{\O@pn{in}}[#2\@sep #3]{#4}}
+\NewDocumentCommand{\outMd}{s O{S} O{M} m}{\Abt@{#1}{\O@pn{out}}[#2\@sep #3]{#4}}
 
 \NewDocumentCommand{\comp@Abt}{m}{\A@bt{\O@pn{Comp}}{#1}}
 \NewDocumentCommand{\comp@Cst}{m}{#1\,\@kw{Comp}}
