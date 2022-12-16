@@ -208,39 +208,42 @@
   \end{array}
 \end{displaymath}
 
-\noindent Module signatures:
+\noindent Modules:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
+    \staticLock & \staticLock* \\
     \univSg  & \univSg* \\
     \valSg{\tau} & \valSg*{\tau} \\
     \extSg{S}{M} & \extSg*{S}{M} \\
     \compSg{S}  & \compSg*{S} \\
     \piSg{S_1}{X}{S_2} & \piSg*{S_1}{X}{S_2} \\
+    \funMd{S_1}{X}{M_2} & \funMd*{S_1}{X}{M_2} \\
+    \instMd[S_1][X][S_2]{M_1}{M_2} & \instMd*{M_1}{M_2} \\
     \sigSg{S_1}{X}{S_2} & \sigSg*{S_1}{X}{S_2}
   \end{array}
 \end{displaymath}
 
-\noindent Processes:
+\noindent Presses:
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
-    \unitProc{}    & \unitProc*{} \\
-    \parProc{p_1}{p_2} & \parProc*{p_1}{p_2} \\
-    \nullProc{} & \nullProc*{} \\
-    \orProc{p_1}{p_2}  & \orProc*{p_1}{p_2} \\
-    \queProc{a}{p} & \queProc*{a}{p} \\
-    \sigProc{a}{p}  & \sigProc*{a}{p} \\
-    \rcvProc{a}{x}{p} & \rcvProc*{a}{x}{p} \\
-    \sndProc{a}{e}{p} & \sndProc*{a}{e}{p} \\
-    \asndProc{a}{e} & \asndProc*{a}{e} \\
-    \syncProc{\varepsilon} & \syncProc*{\varepsilon} \\
-    \newProc{a}{p} & \newProc*{a}{p} \\[1ex]
-    \silAct & \silAct* \\
-    \sigAct{a} & \sigAct*{a} \\
-    \queAct{a}  & \queAct*{a} \\
-    \sndAct{a}{e} & \sndAct*{a}{e} \\
-    \rcvAct{a}{e} & \rcvAct*{a}{e} \\
-    \anyAct{e}  & \anyAct*{e} \\
-    \emitAct{e} & \emitAct*{e}
+    \unitPr{}    & \unitPr*{} \\
+    \parPr{p_1}{p_2} & \parPr*{p_1}{p_2} \\
+    \nullPr{} & \nullPr*{} \\
+    \orPr{p_1}{p_2}  & \orPr*{p_1}{p_2} \\
+    \quePr{a}{p} & \quePr*{a}{p} \\
+    \sigPr{a}{p}  & \sigPr*{a}{p} \\
+    \rcvPr{a}{x}{p} & \rcvPr*{a}{x}{p} \\
+    \sndPr{a}{e}{p} & \sndPr*{a}{e}{p} \\
+    \asndPr{a}{e} & \asndPr*{a}{e} \\
+    \syncPr{\varepsilon} & \syncPr*{\varepsilon} \\
+    \newPr{a}{p} & \newPr*{a}{p} \\[1ex]
+    \silAc & \silAc* \\
+    \sigAc{a} & \sigAc*{a} \\
+    \queAc{a}  & \queAc*{a} \\
+    \sndAc{a}{e} & \sndAc*{a}{e} \\
+    \rcvAc{a}{e} & \rcvAc*{a}{e} \\
+    \anyAc{e}  & \anyAc*{e} \\
+    \emitAc{e} & \emitAc*{e}
   \end{array}
 \end{displaymath}
 
