@@ -234,7 +234,7 @@
     \unitPr{}    & \unitPr*{} \\
     \parPr{p_1}{p_2} & \parPr*{p_1}{p_2} \\
     \nullPr{} & \nullPr*{} \\
-    \orPr{p_1}{p_2}  & \orPr*{p_1}{p_2} \\
+    \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2} \\
     \quePr{a}{p} & \quePr*{a}{p} \\
     \sigPr{a}{p}  & \sigPr*{a}{p} \\
     \rcvPr{a}{x}{p} & \rcvPr*{a}{x}{p} \\
@@ -249,6 +249,37 @@
     \rcvAc{a}{e} & \rcvAc*{a}{e} \\
     \anyAc{e}  & \anyAc*{e} \\
     \emitAc{e} & \emitAc*{e}
+  \end{array}
+\end{displaymath}
+
+\noindent Propositions and proofs:
+\begin{displaymath}
+  \begin{array}{l@{\quad}l@{\quad}l}
+    \trueProp & \trueProp* \\    
+    \trueIPf & \trueIPf* \\[1ex]
+
+    \andProp{\phi_1}{\phi_2} & \andProp*{\phi_1}{\phi_2} \\
+    \andIPf{\pi_1}{\pi_2} & \andIPf*{\pi_1}{\pi_2} \\
+    \andEPf[\phi_1][\phi_2]<l>{\pi} & \andEPf*<l>{\pi} \\
+    \andEPf[\phi_1][\phi_2]<r>{\pi} & \andEPf*<r>{\pi} \\[1ex]
+
+    \falseProp & \falseProp* \\
+    \falseIPf[\phi]{\pi} & \falseIPf*{\pi} \\
+    \falseEPf[\phi]{\pi} & \falseEPf*{\pi} \\[1ex]
+    
+    \orProp{\phi_1}{\phi_2}  & \orProp*{\phi_1}{\phi_2} \\
+    \orIPf[\phi_1][\phi_2]<l>{\pi} & \orIPf*<l>{\pi} \\
+    \orIPf[\phi_1][\phi_2]<r>{\pi} & \orIPf*<r>{\pi} \\
+    \orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2} & \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} \\[1ex]
+
+    \impProp{\phi_1}{\phi_2} & \impProp*{\phi_1}{\phi_2} \\
+    \impIPf[\phi_1][\phi_2]{x}{\pi_2} & \impIPf*{x}{\pi_2} \\
+    \impEPf[\phi_1][\phi_2]{\pi}{\pi_1} & \impEPf*{\pi}{\pi_2} \\[1ex]
+
+    \notProp{\phi} & \notProp*{\phi} \\
+    \notIPf[\phi]{x}{\pi} & \notIPf*{x}{\pi} \\
+    \notEPf[\phi]{\pi}{\pi_2} & \notEPf*{\pi}{\pi_2}
+
   \end{array}
 \end{displaymath}
 

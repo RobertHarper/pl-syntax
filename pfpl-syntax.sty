@@ -271,7 +271,7 @@
 \NewDocumentCommand{\unitPr}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{1}}{}}{\A@bt{\O@pn{one}}{}}}
 \NewDocumentCommand{\parPr}{s m m}{\IfBooleanTF{#1}{#2\otimes #3}{\A@bt{\O@pn{par}}{#2\@sep #3}}}
 \NewDocumentCommand{\nullPr}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{0}}{}}{\A@bt{\O@pn{null}}{}}}
-\NewDocumentCommand{\orPr}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}{#2\@sep #3}}}
+\NewDocumentCommand{\choosePr}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}{#2\@sep #3}}}
 \NewDocumentCommand{\quePr}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{?}}}{\A@bt{\O@pn{que}}}<#2>{#3}}
 \NewDocumentCommand{\sigPr}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{!}}}{\A@bt{\O@pn{sig}}}<#2>{#3}}
 \NewDocumentCommand{\rcvPr}{s m m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{?}}}{\A@bt{\O@pn{rcv}}}<#2>{\A@bs(#3){#4}}}
@@ -282,7 +282,7 @@
 
 % events
 \NewDocumentCommand{\nullEv}{s}{\IfBooleanTF{#1}{\zeroPr*}{\zeroPr}}
-\NewDocumentCommand{\orEv}{s m m}{\IfBooleanTF{#1}{\orPr*}{\orPr}{#2}{#3}}
+\NewDocumentCommand{\orEv}{s m m}{\IfBooleanTF{#1}{\choosePr*}{\choosePr}{#2}{#3}}
 \NewDocumentCommand{\rcvEv}{s m m m}{\IfBooleanTF{#1}{\rcvPr*{#2}{#3}{#4}}{\rcvPr{#2}{#3}{#4}}}
 \NewDocumentCommand{\sndEv}{s m m m}{\IfBooleanTF{#1}{\sndPr*{#2}{#3}{#4}}{\sndPr{#2}{#3}{#4}}}
 
@@ -294,5 +294,29 @@
 \NewDocumentCommand{\rcvAc}{s m m}{\IfBooleanTF{#1}{#2\O@pn*{?}#3}{\A@bt{\O@pn{rcv}}<#2>{#3}}}
 \NewDocumentCommand{\anyAc}{s m}{\IfBooleanTF{#1}{\O@pn*{?}#2}{\A@bt{\O@pn{any}}{#2}}}
 \NewDocumentCommand{\emitAc}{s m}{\IfBooleanTF{#1}{\O@pn*{!}#2}{\A@bt{\O@pn{emit}}{#2}}}
+
+% propositions
+\NewDocumentCommand{\trueProp}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\top}}{}}{\A@bt{\O@pn{truth}}{}}}
+\NewDocumentCommand{\trueIPf}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\top\kw{I}}}{}}{\A@bt{\O@pn{truthI}}{}}}
+
+\NewDocumentCommand{\andProp}{s m m}{\IfBooleanTF{#1}{#2\wedge #3}{\A@bt{\O@pn{and}}{#2\@sep #3}}}
+\NewDocumentCommand{\andIPf}{s O{\phi_1} O{\phi_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\wedge\kw{I}}}}{\A@bt{\O@pn{andI}}}[#2\@sep #3]{#4\@sep #5}}
+\NewDocumentCommand{\andEPf}{s O{\phi_1} O{\phi_2} d<> m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\wedge\kw{E}}<#4>}}{\A@bt{\O@pn{andE}<#4>}}[#2\@sep #3]{#5}}
+
+\NewDocumentCommand{\falseProp}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bot}}{}}{\A@bt{\O@pn{falsity}}{}}}
+\NewDocumentCommand{\falseIPf}{s O{\phi} m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bot\kw{I}}}}{\A@bt{\O@pn{falseI}}}[#2]{#3}}  % for use when contradiction is a judgment
+\NewDocumentCommand{\falseEPf}{s O{\phi} m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bot\kw{E}}}}{\A@bt{\O@pn{falseE}}}[#2]{#3}}
+
+\NewDocumentCommand{\orProp}{s m m}{\IfBooleanTF{#1}{#2\vee #3}{\A@bt{\O@pn{or}}{#2\@sep #3}}}
+\NewDocumentCommand{\orIPf}{s O{\phi_1} O{\phi_2} d<> m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\vee\kw{I}}<#4>}}{\A@bt{\O@pn{orI}<#4>}}[#2\@sep #3]{#5}}
+\NewDocumentCommand{\orEPf}{s O{\phi_1} O{\phi_2} O{\rho} m m m m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\vee\kw{E}}}}{\A@bt{\O@pn{orE}}}[#2\@sep #3\@sep #4]{#5\@sep \A@bs(#6){#7}\@sep \A@bs(#8){#9}}}
+
+\NewDocumentCommand{\impProp}{s m m}{\IfBooleanTF{#1}{#2\supset #3}{\A@bt{\O@pn{imp}}{#2\@sep #3}}}
+\NewDocumentCommand{\impIPf}{s O{\phi_1} O{\phi_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\mathord{\supset}\kw{I}}}}{\A@bt{\O@pn{impI}}}[#2\@sep #3]{\A@bs(#4){#5}}}
+\NewDocumentCommand{\impEPf}{s O{\phi_1} O{\phi_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\mathord{\supset}\kw{E}}}}{\A@bt{\O@pn{impE}}}[#2\@sep #3]{#4\@sep #5}}
+
+\NewDocumentCommand{\notProp}{s m}{\IfBooleanTF{#1}{\neg #2}{\A@bt{\O@pn{not}}{#2}}}
+\NewDocumentCommand{\notIPf}{s O{\phi} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\neg\kw{I}}}}{\A@bt{\O@pn{notI}}}[#2]{\A@bs(#3){#4}}}
+\NewDocumentCommand{\notEPf}{s O{\phi} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\neg\kw{E}}}}{\A@bt{\O@pn{notE}}}[#2]{#3\@sep #4}}
 
 \makeatother
