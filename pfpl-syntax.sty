@@ -11,7 +11,9 @@
 \NewDocumentCommand{\fin@map}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\sing@map{#3}{#4_#3}\mid #3\in #2}}
 
 % starred for math name, non-starred for verbatim name, optional index
-\NewDocumentCommand{\O@pn}{s m d<>}{\mathop{\IfBooleanTF{#1}{#2}{\@kw{#2}}\IfValueT{#3}{\langle #3\rangle}{}}}
+\NewDocumentCommand{\O@pn}{s m}{\mathop{\IfBooleanTF{#1}{#2}{\@kw{#2}}}}
+% choose between concrete and abstract operation name
+\NewDocumentCommand{\Opn@}{m m m}{\IfBooleanTF{#1}{\O@pn*{#2}}{\O@pn{#3}}}
 
 % abstractor of symbols in <>'s and variables in ()'s in an abt
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
@@ -25,8 +27,8 @@
 
 % product types
 % nullary
-\NewDocumentCommand{\unitTy}{s}{\A@bt{\IfBooleanTF{#1}{\O@pn*{\mathbf{1}}}{\O@pn{unit}}}{}}
-\NewDocumentCommand{\unitEx}{s}{\IfBooleanTF{#1}{\langle\rangle}{\A@bt{\O@pn{null}}{}}}
+\NewDocumentCommand{\unitTy}{s}{\Abt@{#1}{\Opn@{#1}{\mathbf{1}}{unit}}{}}
+\NewDocumentCommand{\unitEx}{s}{\Abt@{#1}{\Opn@{#1}{\langle\rangle}{null}}{}}
 % binary
 \NewDocumentCommand{\prod@Abt}{m m}{\A@bt{\O@pn{prod}}{#1\@sep#2}}
 \NewDocumentCommand{\prod@Cst}{m m}{#1\times #2}
@@ -34,29 +36,29 @@
 \NewDocumentCommand{\pair@Abt}{m m m m}{\A@bt{\O@pn{pair}}[#1\@sep #2]{#3\@sep #4}}
 \NewDocumentCommand{\pair@Cst}{m m}{\langle #1, #2\rangle}
 \NewDocumentCommand{\pairEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{\pair@Cst{#4}{#5}}{\pair@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\proj@Abt}{m m m m}{\A@bt{\O@pn{proj}<#1>}[#2\@sep #3]{#4}}
+\NewDocumentCommand{\proj@Abt}{m m m m}{\A@bt{\O@pn{proj}}<#1>[#2\@sep #3]{#4}}
 \NewDocumentCommand{\proj@Cst}{m m}{#2\cdot #1}
 \NewDocumentCommand{\projEx}{s D<>{i} O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\proj@Cst{#2}{#5}}{\proj@Abt{#2}{#3}{#4}{#5}}}
 % n-ary
 \NewDocumentCommand{\vprod@Abt}{m m m}{\A@bt{\O@pn{vprod}}<#1>{\fin@map*{#1}{#2}{#3}}}
 \NewDocumentCommand{\vprod@Cst}{m m m}{\bigtimes_{#2\in #1}(\sing@map{#2}{{#3}_{#2}})}
 \NewDocumentCommand{\vprodTy}{s D<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vprod@Cst{#2}{#3}{#4}}{\vprod@Abt{#2}{#3}{#4}}}
-\NewDocumentCommand{\vtuple@Abt}{m m m m}{\A@bt{\O@pn{vtuple}<#1>}[#3_#1]{\fin@map*{#1}{#2}{#4}}}
+\NewDocumentCommand{\vtuple@Abt}{m m m m}{\A@bt{\O@pn{vtuple}}<#1>[#3_#1]{\fin@map*{#1}{#2}{#4}}}
 \NewDocumentCommand{\vtuple@Cst}{m m m}{\langle \sing@map{#2}{#3_{#2}}\mid #2\in #1\rangle}
 \NewDocumentCommand{\vtupleEx}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vtuple@Cst{#2}{#3}{#5}}{\vtuple@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\vproj@Abt}{m m m m}{\A@bt{\O@pn{vproj}<#2>}<#1>[#3_{#1}]{#4}}
+\NewDocumentCommand{\vproj@Abt}{m m m m}{\A@bt{\O@pn{vproj}}<#1\@sep #2>[#3_{#1}]{#4}}
 \NewDocumentCommand{\vproj@Cst}{m m}{#2\cdot #1}
 \NewDocumentCommand{\vprojEx}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vproj@Cst{#3}{#5}}{\vproj@Abt{#2}{#3}{#4}{#5}}}
 
 % sum types
 % nullary
-\NewDocumentCommand{\voidTy}{s}{\A@bt{\IfBooleanTF{#1}{\O@pn*{\mathbf{0}}}{\O@pn{void}}}{}}
+\NewDocumentCommand{\voidTy}{s}{\Abt@{#1}{\Opn@{#1}{\mathbf{0}}{void}}{}}
 \NewDocumentCommand{\absurdEx}{s O{\rho} m}{\Abt@{#1}{\O@pn{absurd}}[#2]{#3}}  % fix me
 % binary
 \NewDocumentCommand{\sum@Abt}{m m}{\A@bt{\O@pn{sum}}{#1\@sep  #2}}
 \NewDocumentCommand{\sum@Cst}{m m}{#1+#2}
 \NewDocumentCommand{\sumTy}{s m m}{\IfBooleanTF{#1}{\sum@Cst{#2}{#3}}{\sum@Abt{#2}{#3}}}
-\NewDocumentCommand{\inj@Abt}{d<> m m m}{\A@bt{\O@pn{inj}<#1>}[#2\@sep #3]{#4}}
+\NewDocumentCommand{\inj@Abt}{d<> m m m}{\A@bt{\O@pn{inj}}<#1>[#2\@sep #3]{#4}}
 \NewDocumentCommand{\inj@Cst}{d<> m}{#1\cdot #2}
 \NewDocumentCommand{\injEx}{s D<>{i} O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\inj@Cst<#2>{#5}}{\inj@Abt<#2>{#3}{#4}{#5}}}
 \NewDocumentCommand{\case@Abt}{m m m m m}{\A@bt{\O@pn{case}}[#1_1\@sep  #1_2\@sep  #2]{#3\@sep  \A@bs(#4){#5_1}\@sep  \A@bs(#4){#5_2}}}
@@ -66,15 +68,15 @@
 \NewDocumentCommand{\vsum@Abt}{m m m}{\A@bt{\O@pn{vsum}}<#1>{\fin@map*{#1}{#2}{#3}}}
 \NewDocumentCommand{\vsum@Cst}{m m m}{\bigplus_{#2\in #1}(\sing@map{#2}{{#3}_{#2}})}
 \NewDocumentCommand{\vsumTy}{s D<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vsum@Cst{#2}{#3}{#4}}{\vsum@Abt{#2}{#3}{#4}}}
-\NewDocumentCommand{\vinj@Abt}{m m m m}{\A@bt{\O@pn{vinj}<#2>}<#1>[#3_{#1}]{#4}}
+\NewDocumentCommand{\vinj@Abt}{m m m m}{\A@bt{\O@pn{vinj}}<#1\@sep #2>[#3_{#1}]{#4}}
 \NewDocumentCommand{\vinj@Cst}{m m}{#1\cdot #2}
 \NewDocumentCommand{\vinjEx}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vinj@Cst{#3}{#5}}{\vinj@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}<#1>}[#4_#1\@sep #3]{#5\@sep \fin@map*{#1}{#2}{\A@bs(#6){#7}}}}
+\NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}}<#1>[#4_#1\@sep #3]{#5\@sep \fin@map*{#1}{#2}{\A@bs(#6){#7}}}}
 \NewDocumentCommand{\vcase@Cst}{m m m m m}{\O@pn{vcase}\, #3\,\{\,\fin@map{#1}{#2}{\A@bs(#4){#5}}\,\}}
 \NewDocumentCommand{\vcaseEx}{s D<>{I} D<>{i} O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\vcase@Cst{#2}{#3}{#6}{#7}{#8}}{\vcase@Abt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
 
 % booleans, sum of one and one.
-\NewDocumentCommand{\boolTy}{s}{\A@bt{\IfBooleanTF{#1}{\O@pn*{\mathbf{2}}}{\O@pn{bool}}}{}}
+\NewDocumentCommand{\boolTy}{s}{\Abt@{#1}{\Opn@{#1}{\mathbf{2}}{bool}}{}}
 \NewDocumentCommand{\trueEx}{s}{\A@bt{\O@pn{true}}{}}
 \NewDocumentCommand{\falseEx}{s}{\A@bt{\O@pn{false}}{}}
 \NewDocumentCommand{\ifEx}{s O{\rho} m m m}{\Abt@{#1}{\O@pn{if}}[#2]{#3\@sep  #4\@sep  #5}}
@@ -84,7 +86,7 @@
 \NewDocumentCommand{\arr@Cst}{m m}{#1\to #2}
 \NewDocumentCommand{\arrTy}{s m m}{\IfBooleanTF{#1}{\arr@Cst{#2}{#3}}{\arr@Abt{#2}{#3}}}
 \NewDocumentCommand{\funTy}{s m m}{\IfBooleanTF{#1}{\arr@Cst{#2}{#3}}{\arr@Abt{#2}{#3}}}
-\NewDocumentCommand{\lamEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\lambda}}}{\A@bt{\O@pn{lam}}}[#2\@sep #3]{\A@bs(#4){#5}}}
+\NewDocumentCommand{\lamEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\Opn@{#1}{\lambda}{lam}}[#2\@sep #3]{\A@bs(#4){#5}}}
 \NewDocumentCommand{\appEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\O@pn{ap}}[#2\@sep #3]{#4\@sep #5}}
 
 % inductive type
@@ -137,15 +139,15 @@
 \NewDocumentCommand{\throwEx}{s O{\tau} O{\rho} m m}{\Abt@{#1}{\O@pn{throw}}[#2\@sep #3]{#4\@sep  #5}}
 % stacks
 \NewDocumentCommand{\frmSlot}{s}{\A@bt{\O@pn*{\mathord{-}}}{}}
-\NewDocumentCommand{\empStk}{s O{\tau}}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bullet}}}{\A@bt{\O@pn{emp}}}[#2]{}}
+\NewDocumentCommand{\empStk}{s O{\tau}}{\Abt@{#1}{\Opn@{#1}{\bullet}{emp}}[#2]{}}
 \NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}} #5}{\A@bt{\O@pn{ext}}[#2\@sep #3]{#4\@sep #5}}}
 
 % universal and existential types
-\NewDocumentCommand{\AllTy}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\forall}}}{\A@bt{\O@pn{All}}}{\A@bs(#2){#3}}}
-\NewDocumentCommand{\LamEx}{s m O{\tau} m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\Lambda}}{\A@bs(#2){#4}}}{\A@bt{\O@pn{Lam}}[\A@bs(#2){#3}]{\A@bs(#2){#4}}}}
+\NewDocumentCommand{\AllTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\forall}{All}}{\A@bs(#2){#3}}}
+\NewDocumentCommand{\LamEx}{s m O{\tau} m}{\Abt@{#1}{\Opn@{#1}{\Lambda}{Lam}}{\A@bs(#2){#4}}}
 \NewDocumentCommand{\AppEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{Ap}}[\A@bs(#2){#3}]{#4\@sep #5}}
 
-\NewDocumentCommand{\SomeTy}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\exists}}}{\A@bt{\O@pn{Some}}}{\A@bs(#2){#3}}}
+\NewDocumentCommand{\SomeTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\exists}{Some}}{\A@bs(#2){#3}}}
 \NewDocumentCommand{\PackEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{Pack}}[\A@bs(#2){#3}]{#4\@sep  #5}}
 \NewDocumentCommand{\OpenEx}{s O{t} O{\tau} m O{\rho} m m}{\Abt@{#1}{\O@pn{Open}}[\A@bs(#2){#3}\@sep #5]{#4\@sep \A@bs(#2,#6){#7}}}
 
@@ -165,7 +167,7 @@
 \NewDocumentCommand{\selfEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{self}}[#2]{\A@bs(#3){#4}}}
 
 % untyped
-\NewDocumentCommand{\ulamEx}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\lambda}}}{\A@bt{\O@pn{lam}}}{\A@bs(#2){#3}}}
+\NewDocumentCommand{\ulamEx}{s m m}{\Abt@{#1}{\Opn@{#1}{\lambda}{lam}}{\A@bs(#2){#3}}}
 \NewDocumentCommand{\uapEx}{s m m}{\IfBooleanTF{#1}{#2(#3)}{\A@bt{\O@pn{app}}{#2\@sep #3}}}
 \NewDocumentCommand{\uIEx}{s}{\A@bt{\textbf{\@kw{I}}}{}}
 \NewDocumentCommand{\uKEx}{s}{\A@bt{\textbf{\@kw{K}}}{}}
@@ -187,11 +189,11 @@
 \NewDocumentCommand{\dclCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\dcl@Cst{#3}{#5}{#6}}{\dcl@Abt{#2}{#4}{#3}{\A@bs<#5>{#6}}}}
 
 % reference types
-\NewDocumentCommand{\ref@Abt}{m}{\A@bt{\O@pn{ref}<#1>}{}}
+\NewDocumentCommand{\ref@Abt}{m}{\A@bt{\O@pn{ref}}<#1>{}}
 \NewDocumentCommand{\ref@Cst}{m}{\texttt{\&}\,#1}
 \NewDocumentCommand{\refEx}{s m}{\IfBooleanTF{#1}{\ref@Cst{#2}}{\ref@Abt{#2}}}
 
-\NewDocumentCommand{\get@Abt}{m}{\A@bt{\O@pn{get}<#1>}{}}
+\NewDocumentCommand{\get@Abt}{m}{\A@bt{\O@pn{get}}<#1>{}}
 \NewDocumentCommand{\get@Cst}{m}{\O@pn{!}{#1}}
 \NewDocumentCommand{\getCmd}{s m}{\IfBooleanTF{#1}{\get@Cst{#2}}{\get@Abt{#2}}}
 
@@ -199,7 +201,7 @@
 \NewDocumentCommand{\getref@Cst}{m}{\@kw{*}#1}
 \NewDocumentCommand{\getrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\getref@Cst{#3}}{\getref@Abt{#2}{#3}}}
 
-\NewDocumentCommand{\set@Abt}{m m}{\A@bt{\O@pn{set}<#1>}{#2}}
+\NewDocumentCommand{\set@Abt}{m m}{\A@bt{\O@pn{set}}<#1>{#2}}
 \NewDocumentCommand{\set@Cst}{m m}{#1\mathbin{\@kw{:=}}#2}
 \NewDocumentCommand{\setCmd}{s m m}{\IfBooleanTF{#1}{\set@Cst{#2}{#3}}{\set@Abt{#2}{#3}}}
 
@@ -227,12 +229,7 @@
 \NewDocumentCommand{\str@Cst}{m m}{\O@pn{str} #1\mathbin{\O@pn{in}} #2}
 \NewDocumentCommand{\str@Abt}{m m m m m}{\A@bt{\O@pn{str}}[#1\@sep\A@bs(#2){#3}]{#4\@sep #5}}
 \NewDocumentCommand{\strMd}{s O{S_1} O{X} O{S_2} m m}{\IfBooleanTF{#1}{\str@Cst{#5}{#6}}{\str@Abt{#2}{#3}{#4}{#5}{#6}}}
-\NewDocumentCommand{\fst@Cst}{m}{#1\cdot \kw{1}}
-\NewDocumentCommand{\fst@Abt}{m m m m}{\A@bt{\O@pn{fst}}[#1\@sep \A@bs(#2){#3}]{#4}}
-\NewDocumentCommand{\fstMd}{s O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{\fst@Cst{#5}}{\fst@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\snd@Cst}{m}{#1\cdot \kw{2}}
-\NewDocumentCommand{\snd@Abt}{m m m m}{\A@bt{\O@pn{snd}}[#1\@sep \A@bs(#2){#3}]{#4}}
-\NewDocumentCommand{\sndMd}{s O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{\snd@Cst{#5}}{\snd@Abt{#2}{#3}{#4}{#5}}}
+\NewDocumentCommand{\projMd}{s D<>{i} O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{#6\cdot\kw{#2}}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \A@bs(#4){#5}]{#6}}}
 
 \NewDocumentCommand{\staticLock}{s}{\Abt@{#1}{\O@pn{st}}{}}
 \NewDocumentCommand{\ext@Abt}{m m}{\A@bt{\O@pn{Ext}}{#1\@sep  #2}}
@@ -248,10 +245,10 @@
 % cbpv / polarization
 \NewDocumentCommand{\posTy}{m}{#1^{\@kw{+}}}
 \NewDocumentCommand{\negTy}{m}{#1^{\@kw{-}}}
-\NewDocumentCommand{\freeTy}{s m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\uparrow}}}{\A@bt{\O@pn{F}}}{#2}}
+\NewDocumentCommand{\freeTy}{s m}{\Abt@{#1}{\Opn@{#1}{\uparrow}{F}}{#2}}
 \NewDocumentCommand{\freeEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{ret}}[#2]{#3}}
 \NewDocumentCommand{\fletEx}{s O{\negTy{\tau}} O{\negTy{\rho}} m m m}{\Abt@{#1}{\O@pn{let}}[#2\@sep #3]{#4\@sep \A@bs(#5){#6}}}
-\NewDocumentCommand{\thunkTy}{s m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\downarrow}}{#2}}{\A@bt{\O@pn{U}}{#2}}}
+\NewDocumentCommand{\thunkTy}{s m}{\Abt@{#1}{\Opn@{#1}{\downarrow}{U}}{#2}}
 \NewDocumentCommand{\suspTy}{s m}{\A@bt{\O@pn{susp}}{#2}}  % for unpolarized uses
 \NewDocumentCommand{\thunkEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{thunk}}[#2]{#3}}
 \NewDocumentCommand{\suspEx}{s O{\tau} m}{\A@bt{\O@pn{susp}}[#2]{#3}}   % for unpolarized uses
@@ -268,26 +265,28 @@
 \NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}{#2\@sep \A@bs(#3,#4){#5}}}
 
 % processes
-\NewDocumentCommand{\unitPr}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{1}}{}}{\A@bt{\O@pn{one}}{}}}
+\NewDocumentCommand{\unitPr}{s}{\Abt@{#1}{\Opn@{#1}{1}{one}{}}}
 \NewDocumentCommand{\parPr}{s m m}{\IfBooleanTF{#1}{#2\otimes #3}{\A@bt{\O@pn{par}}{#2\@sep #3}}}
-\NewDocumentCommand{\nullPr}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{0}}{}}{\A@bt{\O@pn{null}}{}}}
+\NewDocumentCommand{\nullPr}{s}{\Abt@{#1}{\Opn@{#1}{0}{null}}{}}
 \NewDocumentCommand{\choosePr}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}{#2\@sep #3}}}
-\NewDocumentCommand{\quePr}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{?}}}{\A@bt{\O@pn{que}}}<#2>{#3}}
-\NewDocumentCommand{\sigPr}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{!}}}{\A@bt{\O@pn{sig}}}<#2>{#3}}
-\NewDocumentCommand{\rcvPr}{s m m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{?}}}{\A@bt{\O@pn{rcv}}}<#2>{\A@bs(#3){#4}}}
-\NewDocumentCommand{\sndPr}{s m m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn{!}}}{\A@bt{\O@pn{snd}}}<#2>{#3\@sep #4}}
-\NewDocumentCommand{\asndPr}{s m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{!}}}{\A@bt{\O@pn{asnd}}}<#2>{#3}}
+\NewDocumentCommand{\quePr}{s m m}{\Abt@{#1}{\Opn@{#1}{?}{que}}<#2>{#3}}
+\NewDocumentCommand{\sigPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{sig}}<#2>{#3}}
+\NewDocumentCommand{\rcvPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>{\A@bs(#3){#4}}}
+\NewDocumentCommand{\sndPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>{#3\@sep #4}}
+\NewDocumentCommand{\asndPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{asnd}}<#2>{#3}}
 \NewDocumentCommand{\syncPr}{s m}{\Abt@{#1}{\O@pn{sync}}{#2}}
-\NewDocumentCommand{\newPr}{s O{\tau} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\nu}}}{\A@bt{\O@pn{new}}}[#2]{\A@bs(#3){#4}}}
+\NewDocumentCommand{\newPr}{s O{\tau} m m}{\Abt@{#1}{\Opn@{#1}{\nu}{new}}[#2]{\A@bs(#3){#4}}}
+% TO DO : sndrefPr, rcvrefPr
 
 % events
-\NewDocumentCommand{\nullEv}{s}{\IfBooleanTF{#1}{\zeroPr*}{\zeroPr}}
-\NewDocumentCommand{\orEv}{s m m}{\IfBooleanTF{#1}{\choosePr*}{\choosePr}{#2}{#3}}
-\NewDocumentCommand{\rcvEv}{s m m m}{\IfBooleanTF{#1}{\rcvPr*{#2}{#3}{#4}}{\rcvPr{#2}{#3}{#4}}}
-\NewDocumentCommand{\sndEv}{s m m m}{\IfBooleanTF{#1}{\sndPr*{#2}{#3}{#4}}{\sndPr{#2}{#3}{#4}}}
+\NewDocumentCommand{\nullEv}{s}{\Abt@{#1}{\Opn@{#1}{0}{null}}{}}
+\NewDocumentCommand{\orEv}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}{#2\@sep #3}}}
+\NewDocumentCommand{\rcvEv}{s m m m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>{\A@bs(#3){#4}}}
+\NewDocumentCommand{\sndEv}{s m m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>{#3\@sep #4}}
+% TO DO : sndrefEv, rcvrefEv
 
 % actions
-\NewDocumentCommand{\silAc}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\epsilon}}{}}{\A@bt{\O@pn{sil}}{}}}
+\NewDocumentCommand{\silAc}{s}{\Abt@{#1}{\Opn@{#1}{\epsilon}{sil}}{}}
 \NewDocumentCommand{\sigAc}{s m}{\IfBooleanTF{#1}{#2\O@pn*{!}}{\A@bt{\O@pn{sig}}<#2>{}}}
 \NewDocumentCommand{\queAc}{s m}{\IfBooleanTF{#1}{#2\O@pn*{?}}{\A@bt{\O@pn{que}}<#2>{}}}
 \NewDocumentCommand{\sndAc}{s m m}{\IfBooleanTF{#1}{#2\O@pn*{!}#3}{\A@bt{\O@pn{snd}}<#2>{#3}}}
@@ -296,27 +295,27 @@
 \NewDocumentCommand{\emitAc}{s m}{\IfBooleanTF{#1}{\O@pn*{!}#2}{\A@bt{\O@pn{emit}}{#2}}}
 
 % propositions
-\NewDocumentCommand{\trueProp}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\top}}{}}{\A@bt{\O@pn{truth}}{}}}
-\NewDocumentCommand{\trueIPf}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\top\kw{I}}}{}}{\A@bt{\O@pn{truthI}}{}}}
+\NewDocumentCommand{\trueProp}{s}{\Abt@{#1}{\Opn@{#1}{\top}{truth}}{}}
+\NewDocumentCommand{\trueIPf}{s}{\Abt@{#1}{\Opn@{#1}{\top\kw{I}}{truthI}}{}}
 
 \NewDocumentCommand{\andProp}{s m m}{\IfBooleanTF{#1}{#2\wedge #3}{\A@bt{\O@pn{and}}{#2\@sep #3}}}
-\NewDocumentCommand{\andIPf}{s O{\phi_1} O{\phi_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\wedge\kw{I}}}}{\A@bt{\O@pn{andI}}}[#2\@sep #3]{#4\@sep #5}}
-\NewDocumentCommand{\andEPf}{s O{\phi_1} O{\phi_2} d<> m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\wedge\kw{E}}<#4>}}{\A@bt{\O@pn{andE}<#4>}}[#2\@sep #3]{#5}}
+\NewDocumentCommand{\andIPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\wedge\kw{I}}{andI}}[#2\@sep #3]{#4\@sep #5}}
+\NewDocumentCommand{\andEPf}{s O{\phi_1} O{\phi_2} d<> m}{\Abt@{#1}{\Opn@{#1}{\wedge\kw{E}}{andE}}<#4>[#2\@sep #3]{#5}}
 
 \NewDocumentCommand{\falseProp}{s}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bot}}{}}{\A@bt{\O@pn{falsity}}{}}}
-\NewDocumentCommand{\falseIPf}{s O{\phi} m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bot\kw{I}}}}{\A@bt{\O@pn{falseI}}}[#2]{#3}}  % for use when contradiction is a judgment
-\NewDocumentCommand{\falseEPf}{s O{\phi} m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\bot\kw{E}}}}{\A@bt{\O@pn{falseE}}}[#2]{#3}}
+\NewDocumentCommand{\falseIPf}{s O{\phi} m}{\Abt@{#1}{\Opn@{#1}{\bot\kw{I}}{falseI}}[#2]{#3}}  % for use when contradiction is a judgment
+\NewDocumentCommand{\falseEPf}{s O{\phi} m}{\Abt@{#1}{\Opn@{#1}{\bot\kw{E}}{falseE}}[#2]{#3}}
 
 \NewDocumentCommand{\orProp}{s m m}{\IfBooleanTF{#1}{#2\vee #3}{\A@bt{\O@pn{or}}{#2\@sep #3}}}
-\NewDocumentCommand{\orIPf}{s O{\phi_1} O{\phi_2} d<> m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\vee\kw{I}}<#4>}}{\A@bt{\O@pn{orI}<#4>}}[#2\@sep #3]{#5}}
-\NewDocumentCommand{\orEPf}{s O{\phi_1} O{\phi_2} O{\rho} m m m m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\vee\kw{E}}}}{\A@bt{\O@pn{orE}}}[#2\@sep #3\@sep #4]{#5\@sep \A@bs(#6){#7}\@sep \A@bs(#8){#9}}}
+\NewDocumentCommand{\orIPf}{s O{\phi_1} O{\phi_2} d<> m}{\Abt@{#1}{\Opn@{#1}{\vee\kw{I}}{orI}}<#4>[#2\@sep #3]{#5}}
+\NewDocumentCommand{\orEPf}{s O{\phi_1} O{\phi_2} O{\rho} m m m m m}{\Abt@{#1}{\Opn@{#1}{\vee\kw{E}}{orE}}[#2\@sep #3\@sep #4]{#5\@sep \A@bs(#6){#7}\@sep \A@bs(#8){#9}}}
 
 \NewDocumentCommand{\impProp}{s m m}{\IfBooleanTF{#1}{#2\supset #3}{\A@bt{\O@pn{imp}}{#2\@sep #3}}}
-\NewDocumentCommand{\impIPf}{s O{\phi_1} O{\phi_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\mathord{\supset}\kw{I}}}}{\A@bt{\O@pn{impI}}}[#2\@sep #3]{\A@bs(#4){#5}}}
-\NewDocumentCommand{\impEPf}{s O{\phi_1} O{\phi_2} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\mathord{\supset}\kw{E}}}}{\A@bt{\O@pn{impE}}}[#2\@sep #3]{#4\@sep #5}}
+\NewDocumentCommand{\impIPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\kw{I}}{impI}}[#2\@sep #3]{\A@bs(#4){#5}}}
+\NewDocumentCommand{\impEPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\kw{E}}{impE}}[#2\@sep #3]{#4\@sep #5}}
 
 \NewDocumentCommand{\notProp}{s m}{\IfBooleanTF{#1}{\neg #2}{\A@bt{\O@pn{not}}{#2}}}
-\NewDocumentCommand{\notIPf}{s O{\phi} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\neg\kw{I}}}}{\A@bt{\O@pn{notI}}}[#2]{\A@bs(#3){#4}}}
-\NewDocumentCommand{\notEPf}{s O{\phi} m m}{\IfBooleanTF{#1}{\A@bt*{\O@pn*{\neg\kw{E}}}}{\A@bt{\O@pn{notE}}}[#2]{#3\@sep #4}}
+\NewDocumentCommand{\notIPf}{s O{\phi} m m}{\Abt@{#1}{\Opn@{#1}{\neg\kw{I}}{notI}}[#2]{\A@bs(#3){#4}}}
+\NewDocumentCommand{\notEPf}{s O{\phi} m m}{\Abt@{#1}{\Opn@{#1}{\neg\kw{E}}{notE}}[#2]{#3\@sep #4}}
 
 \makeatother

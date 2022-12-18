@@ -223,8 +223,7 @@
     \instMd[S_1][X][S_2]{M_1}{M_2} & \instMd*{M_1}{M_2} \\[1ex]
     \sigSg{S_1}{X}{S_2} & \sigSg*{S_1}{X}{S_2} \\
     \strMd[S_1][X][S_2]{M_1}{M_2} & \strMd*{M_1}{M_2} \\
-    \fstMd[S_1][X][S_2]{M} & \fstMd*{M} \\
-    \sndMd[S_1][X][S_2]{M} & \sndMd*{M}
+    \projMd<i>[S_1][X][S_2]{M} & \projMd*<i>{M} & (i=1,2)
   \end{array}
 \end{displaymath}
 
@@ -232,15 +231,15 @@
 \begin{displaymath}
   \begin{array}{l@{\quad}l@{\quad}l}
     \unitPr{}    & \unitPr*{} \\
-    \parPr{p_1}{p_2} & \parPr*{p_1}{p_2} \\
+    \parPr{p_1}{p_2} & \parPr*{p_1}{p_2} \\[1ex]
     \nullPr{} & \nullPr*{} \\
-    \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2} \\
+    \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2} \\[1ex]
     \quePr{a}{p} & \quePr*{a}{p} \\
-    \sigPr{a}{p}  & \sigPr*{a}{p} \\
+    \sigPr{a}{p}  & \sigPr*{a}{p} \\[1ex]
     \rcvPr{a}{x}{p} & \rcvPr*{a}{x}{p} \\
-    \sndPr{a}{e}{p} & \sndPr*{a}{e}{p} \\
+    \sndPr{a}{e}{p} & \sndPr*{a}{e}{p} \\[1ex]
     \asndPr{a}{e} & \asndPr*{a}{e} \\
-    \syncPr{\varepsilon} & \syncPr*{\varepsilon} \\
+    \syncPr{\varepsilon} & \syncPr*{\varepsilon} \\[1ex]
     \newPr{a}{p} & \newPr*{a}{p} \\[1ex]
     \silAc & \silAc* \\
     \sigAc{a} & \sigAc*{a} \\
@@ -260,16 +259,16 @@
 
     \andProp{\phi_1}{\phi_2} & \andProp*{\phi_1}{\phi_2} \\
     \andIPf{\pi_1}{\pi_2} & \andIPf*{\pi_1}{\pi_2} \\
-    \andEPf[\phi_1][\phi_2]<l>{\pi} & \andEPf*<l>{\pi} \\
-    \andEPf[\phi_1][\phi_2]<r>{\pi} & \andEPf*<r>{\pi} \\[1ex]
+    \andEPf[\phi_1][\phi_2]<1>{\pi} & \andEPf*<1>{\pi} \\
+    \andEPf[\phi_1][\phi_2]<2>{\pi} & \andEPf*<2>{\pi} \\[1ex]
 
     \falseProp & \falseProp* \\
     \falseIPf[\phi]{\pi} & \falseIPf*{\pi} \\
     \falseEPf[\phi]{\pi} & \falseEPf*{\pi} \\[1ex]
     
     \orProp{\phi_1}{\phi_2}  & \orProp*{\phi_1}{\phi_2} \\
-    \orIPf[\phi_1][\phi_2]<l>{\pi} & \orIPf*<l>{\pi} \\
-    \orIPf[\phi_1][\phi_2]<r>{\pi} & \orIPf*<r>{\pi} \\
+    \orIPf[\phi_1][\phi_2]<1>{\pi} & \orIPf*<1>{\pi} \\
+    \orIPf[\phi_1][\phi_2]<2>{\pi} & \orIPf*<2>{\pi} \\
     \orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2} & \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} \\[1ex]
 
     \impProp{\phi_1}{\phi_2} & \impProp*{\phi_1}{\phi_2} \\
