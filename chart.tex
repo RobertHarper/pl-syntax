@@ -71,271 +71,343 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
         produces $\Abt{\Opn{dcl}}[\tau;\rho]{e;\Abs<a>{m}}$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho]{e;\Abs<a>{m}}$.
 \end{itemize}
 
-\section*{Function types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
-      \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx{x}{e}|           \\
-      \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx{e_1}{e_2}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+\clearpage
 
-\section*{Product types\footnotemark}\footnotetext{The notation $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \unitTy{}                         & \unitTy*{}               & \verb|\unitTy{}|                              \\
-      \unitEx{}                         & \unitEx*{}               & \verb|\unitEx{}|                              \\[1ex]
+\begin{figure}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
+        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx{x}{e}|           \\
+        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx{e_1}{e_2}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-      \prodTy{\tau_1}{\tau_2}           & \prodTy*{\tau_1}{\tau_2} & \verb|\prodTy{\tau_1}{\tau_2}|                \\
-      \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>{e}| \quad (i=\kw{1},\kw{2})  \\
-      \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\[1ex]
+  \caption{Function Types}
+  \label{fig:function}
+\end{figure}
 
-      \vprodTy<I><i>{\tau}              & \vprodTy*{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
-      \vtupleEx<I>[\tau]{e}             & \vtupleEx*<I>{e}         & \verb|\vtupleEx<I>[\tau]{e}|                  \\
-      \vprojEx<I><i>[\tau]{e}           & \vprojEx*<i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I)
-    \end{array}
-  \end{displaymath}
-\end{small}
+\begin{figure}
+  
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \unitTy{}                         & \unitTy*{}               & \verb|\unitTy{}|                              \\
+        \unitEx{}                         & \unitEx*{}               & \verb|\unitEx{}|                              \\[1ex]
+  
+        \prodTy{\tau_1}{\tau_2}           & \prodTy*{\tau_1}{\tau_2} & \verb|\prodTy{\tau_1}{\tau_2}|                \\
+        \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>{e}| \quad (i=\kw{1},\kw{2})  \\
+        \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\[1ex]
+  
+        \vprodTy<I><i>{\tau}              & \vprodTy*{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
+        \vtupleEx<I>[\tau]{e}             & \vtupleEx*<I>{e}         & \verb|\vtupleEx<I>[\tau]{e}|                  \\
+        \vprojEx<I><i>[\tau]{e}           & \vprojEx*<i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I)
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-\section*{Sum types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \voidTy                           & \voidTy*                & \verb|\voidTy|                                                                     \\
-      \absurdEx[\rho]{e}                & \absurdEx*{e}           & \verb|\absurdEx[\rho]{e}|                                                          \\[1ex]
+  The notation $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.
+  
+  \caption{Product Types}
+  \label{fig:product}
+\end{figure}
 
-      \sumTy{\tau_1}{\tau_2}            & \sumTy*{\tau_1}{\tau_2} & \verb|\sumTy{\tau_1}{\tau_2}|                                                      \\
-      \injEx<i>[\tau_1][\tau_2]{e}      & \injEx*<i>{e}           & (i=\kw{1},\kw{2})                            & \verb|\injEx<i>[\tau_1][\tau_2]{e}| \\
-      \caseEx[\tau][\rho]{e}{x}{e}      & \caseEx*{e}{x}{e}       & \verb|\caseEx[\tau][\rho]{e}{x}{e}|                                                \\[1ex]
+\begin{figure}
 
-      \boolTy                           & \boolTy*                & \verb|\boolTy|                                                                     \\
-      \trueEx                           & \trueEx*                & \verb|\trueEx|                                                                     \\
-      \falseEx                          & \falseEx*               & \verb|\falseEx|                                                                    \\
-      \ifEx[\rho]{e}{e_1}{e_2}          & \ifEx*{e}{e_1}{e_2}     & \verb|\ifEx[\rho]{e}{e_1}{e_2}|                                                    \\[1ex]
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \voidTy                           & \voidTy*                & \verb|\voidTy|                                                                     \\
+        \absurdEx[\rho]{e}                & \absurdEx*{e}           & \verb|\absurdEx[\rho]{e}|                                                          \\[1ex]
+  
+        \sumTy{\tau_1}{\tau_2}            & \sumTy*{\tau_1}{\tau_2} & \verb|\sumTy{\tau_1}{\tau_2}|                                                      \\
+        \injEx<i>[\tau_1][\tau_2]{e}      & \injEx*<i>{e}           & (i=\kw{1},\kw{2})                            & \verb|\injEx<i>[\tau_1][\tau_2]{e}| \\
+        \caseEx[\tau][\rho]{e}{x}{e}      & \caseEx*{e}{x}{e}       & \verb|\caseEx[\tau][\rho]{e}{x}{e}|                                                \\[1ex]
+  
+        \boolTy                           & \boolTy*                & \verb|\boolTy|                                                                     \\
+        \trueEx                           & \trueEx*                & \verb|\trueEx|                                                                     \\
+        \falseEx                          & \falseEx*               & \verb|\falseEx|                                                                    \\
+        \ifEx[\rho]{e}{e_1}{e_2}          & \ifEx*{e}{e_1}{e_2}     & \verb|\ifEx[\rho]{e}{e_1}{e_2}|                                                    \\[1ex]
+  
+        \vsumTy<I><i>{\tau}               & \vsumTy*<I><i>{\tau}    & \verb|\vsumTy<I><i>{\tau}|                                                         \\
+        \vinjEx<I><i>[\tau]{e}            & \vinjEx*<I><i>{e}       & \verb|\vinjEx<I><i>[\tau]{e}| \quad (i\in I)                                       \\
+        \vcaseEx<I>[\rho][\tau]{e}{x}{e'} & \vcaseEx*<I>{e}{x}{e'}  & \verb|\vcaseEx<I>[\rho][\tau]{e}{x}{e'}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-      \vsumTy<I><i>{\tau}               & \vsumTy*<I><i>{\tau}    & \verb|\vsumTy<I><i>{\tau}|                                                         \\
-      \vinjEx<I><i>[\tau]{e}            & \vinjEx*<I><i>{e}       & \verb|\vinjEx<I><i>[\tau]{e}| \quad (i\in I)                                       \\
-      \vcaseEx<I>[\rho][\tau]{e}{x}{e'} & \vcaseEx*<I>{e}{x}{e'}  & \verb|\vcaseEx<I>[\rho][\tau]{e}{x}{e'}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+  \caption{Sum Types}
+  \label{fig:sums}
+\end{figure}
 
-\section*{Inductive and coinductive types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \indTy{t}{\tau}                            & \indTy*{t}{\tau}                & \verb|\indTy{t}{\tau}|                            \\
-      \inEx[t][\tau]{e}                          & \inEx*{e}                       & \verb|\inEx[t][\tau]{e}|                          \\
-      \recEx[t][\tau][\rho]{e}{x}{e'}            & \recEx*{e}{x}{e'}               & \small{\verb|\recEx[t][\tau][\rho]{e}{x}{e'}|}    \\[1ex]
 
-      \natTy{}                                   & \natTy*{}                       & \verb|\natTy{}|                                   \\
-      \zeroEx                                    & \zeroEx*                        & \verb|\zeroEx|                                    \\
-      \succEx{e}                                 & \succEx*{e}                     & \verb|\succEx{e}|                                 \\
-      \natitEx[\rho]{e}{e_0}{x}{e_1}             & \natitEx*{e}{e_0}{x}{e_1}       & \verb|\natitEx[\rho]{e}{e_0}{x}{e_1}|             \\
-      \ifzEx[\rho]{e}{e_0}{x}{e_1}               & \ifzEx*{e}{e_0}{x}{e_1}         & \verb|\ifzEx[\rho]{e}{e_0}{x}{e_1}|               \\[1ex]
+\begin{figure}
+  
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \indTy{t}{\tau}                            & \indTy*{t}{\tau}                & \verb|\indTy{t}{\tau}|                            \\
+        \inEx[t][\tau]{e}                          & \inEx*{e}                       & \verb|\inEx[t][\tau]{e}|                          \\
+        \recEx[t][\tau][\rho]{e}{x}{e'}            & \recEx*{e}{x}{e'}               & \small{\verb|\recEx[t][\tau][\rho]{e}{x}{e'}|}    \\[1ex]
+  
+        \natTy{}                                   & \natTy*{}                       & \verb|\natTy{}|                                   \\
+        \zeroEx                                    & \zeroEx*                        & \verb|\zeroEx|                                    \\
+        \succEx{e}                                 & \succEx*{e}                     & \verb|\succEx{e}|                                 \\
+        \natitEx[\rho]{e}{e_0}{x}{e_1}             & \natitEx*{e}{e_0}{x}{e_1}       & \verb|\natitEx[\rho]{e}{e_0}{x}{e_1}|             \\
+        \ifzEx[\rho]{e}{e_0}{x}{e_1}               & \ifzEx*{e}{e_0}{x}{e_1}         & \verb|\ifzEx[\rho]{e}{e_0}{x}{e_1}|               \\[1ex]
+  
+        \listTy{\tau}                              & \listTy*{\tau}                  & \verb|\listTy{\tau}|                              \\
+        \nilEx[\tau]                               & \nilEx*{}                       & \verb|\nilEx[\tau]|                               \\
+        \consEx[\tau]{e_1}{e_2}                    & \consEx*{e_1}{e_2}              & \verb|\consEx[\tau]{e_1}{e_2}|                    \\
+        \listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}  & \listrecEx*{e}{e_1}{x}{y}{e_2}  & \verb|\listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}|  \\
+        \listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2} & \verb|\listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}| \\[1ex]
+  
+        \coiTy{t}{\tau}                            & \coiTy*{t}{\tau}                & \verb|\coiTy{t}{\tau}|                            \\
+        \outEx[t][\tau]{e}                         & \outEx*{e}                      & \verb|\outEx[t][\tau]{e}|                         \\
+        \genEx[t][\tau][\sigma]{e}{x}{e'}          & \genEx*{e}{x}{e'}               & \verb|\genEx[t][\tau][\sigma]{e}{x}{e'}|          \\[1ex]
+  
+        \conatTy{}                                 & \conatTy*{}                     & \verb|\conatTy|                                   \\
+        \streamTy{\tau}                            & \streamTy*{\tau}                & \verb|\streamTy{\tau}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-      \listTy{\tau}                              & \listTy*{\tau}                  & \verb|\listTy{\tau}|                              \\
-      \nilEx[\tau]                               & \nilEx*{}                       & \verb|\nilEx[\tau]|                               \\
-      \consEx[\tau]{e_1}{e_2}                    & \consEx*{e_1}{e_2}              & \verb|\consEx[\tau]{e_1}{e_2}|                    \\
-      \listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}  & \listrecEx*{e}{e_1}{x}{y}{e_2}  & \verb|\listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}|  \\
-      \listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2} & \verb|\listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}| \\[1ex]
+  \caption{Inductive and Coinductive Types}
+  \label{fig:icoi}
+\end{figure}
 
-      \coiTy{t}{\tau}                            & \coiTy*{t}{\tau}                & \verb|\coiTy{t}{\tau}|                            \\
-      \outEx[t][\tau]{e}                         & \outEx*{e}                      & \verb|\outEx[t][\tau]{e}|                         \\
-      \genEx[t][\tau][\sigma]{e}{x}{e'}          & \genEx*{e}{x}{e'}               & \verb|\genEx[t][\tau][\sigma]{e}{x}{e'}|          \\[1ex]
+\begin{figure}
+  
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \AllTy{t}{\tau}                  & \AllTy*{t}{\tau}                  & \verb|\AllTy{t}{\tau}|                  \\
+        \LamEx{t}[\tau]{e}               & \LamEx*{t}{e}                     & \verb|\LamEx{t}[\tau]{e}|               \\
+        \AppEx[t][\tau]{e}{\sigma}       & \AppEx*{e}{\sigma}                & \verb|\AppEx[t][\tau]{e}{\sigma}|       \\[1ex]
+        \SomeTy{t}{\tau}                 & \SomeTy*{t}{\tau}                 & \verb|\SomeTy{t}{\tau}|                 \\
+        \PackEx[t][\tau]{\rho}{e}        & \PackEx*{\rho}{e}                 & \verb|\PackEx[t][\tau]{\rho}{e}|        \\
+        \OpenEx[t][\tau]{e}[\rho]{x}{e'} & \OpenEx*[t][\tau]{e}[\rho]{x}{e'} & \verb|\OpenEx[t][\tau]{e}[\rho]{x}{e'}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+  
+  \caption{Polymorphic Types}
+  \label{fig:poly}
+\end{figure}
 
-      \conatTy{}                                 & \conatTy*{}                     & \verb|\conatTy|                                   \\
-      \streamTy{\tau}                            & \streamTy*{\tau}                & \verb|\streamTy{\tau}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+\begin{figure}
 
-\section*{Polymorphic types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \AllTy{t}{\tau}                  & \AllTy*{t}{\tau}                  & \verb|\AllTy{t}{\tau}|                  \\
-      \LamEx{t}[\tau]{e}               & \LamEx*{t}{e}                     & \verb|\LamEx{t}[\tau]{e}|               \\
-      \AppEx[t][\tau]{e}{\sigma}       & \AppEx*{e}{\sigma}                & \verb|\AppEx[t][\tau]{e}{\sigma}|       \\[1ex]
-      \SomeTy{t}{\tau}                 & \SomeTy*{t}{\tau}                 & \verb|\SomeTy{t}{\tau}|                 \\
-      \PackEx[t][\tau]{\rho}{e}        & \PackEx*{\rho}{e}                 & \verb|\PackEx[t][\tau]{\rho}{e}|        \\
-      \OpenEx[t][\tau]{e}[\rho]{x}{e'} & \OpenEx*[t][\tau]{e}[\rho]{x}{e'} & \verb|\OpenEx[t][\tau]{e}[\rho]{x}{e'}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \ansTy                         & \ansTy*             & \verb|\ansTy|                         \\
+        \yesEx                         & \yesEx*             & \verb|\yesEx|                         \\
+        \noEx                          & \noEx*              & \verb|\noEx|                          \\[1ex]
+  
+        \contTy{\tau}                  & \contTy*{\tau}      & \verb|\contTy{\tau}|                  \\
+        \contEx{k}                     & \contEx*{k}         & \verb|\contEx{k} |                    \\
+        \letccEx[\tau]{x}{e}           & \letccEx*{x}{e}     & \verb|\letccEx[\tau]{x}{e}|           \\
+        \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} & \verb|\throwEx[\tau][\rho]{e_1}{e_2}| \\[1ex]
+  
+        \empStk[\tau]                  & \empStk*[\tau]      & \verb|\empStk[\tau]|                  \\
+        \extStk[\tau_1][\tau_2]{k}{f}  & \extStk*{k}{f}      & \verb|\extStk[\tau_1][\tau_2]{k}{f}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-\section*{Continuation types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \ansTy                         & \ansTy*             & \verb|\ansTy|                         \\
-      \yesEx                         & \yesEx*             & \verb|\yesEx|                         \\
-      \noEx                          & \noEx*              & \verb|\noEx|                          \\[1ex]
+  \caption{Continuation Types}
+  \label{fig:cont}
+\end{figure}
 
-      \contTy{\tau}                  & \contTy*{\tau}      & \verb|\contTy{\tau}|                  \\
-      \contEx{k}                     & \contEx*{k}         & \verb|\contEx{k} |                    \\
-      \letccEx[\tau]{x}{e}           & \letccEx*{x}{e}     & \verb|\letccEx[\tau]{x}{e}|           \\
-      \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} & \verb|\throwEx[\tau][\rho]{e_1}{e_2}| \\[1ex]
+\begin{figure}
 
-      \empStk[\tau]                  & \empStk*[\tau]      & \verb|\empStk[\tau]|                  \\
-      \extStk[\tau_1][\tau_2]{k}{f}  & \extStk*{k}{f}      & \verb|\extStk[\tau_1][\tau_2]{k}{f}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \parrTy{\tau_1}{\tau_2} & \parrTy*{\tau_1}{\tau_2} & \verb|\parrTy{\tau_1}{\tau_2}| \\
+        \funEx{f}{x}{e}         & \funEx*{f}{x}{e}         & \verb|\funEx{f}{x}{e}|         \\
+        \appEx{e_1}{e_2}        & \appEx*{e_1}{e_2}        & \verb|\appEx{e_1}{e_2}|        \\[1ex]
+  
+        \fixEx[\tau]{x}{e}      & \fixEx*[\tau]{x}{e}      & \verb|\fixEx[\tau]{x}{e}|      \\[1ex]
+  
+        \recTy{t}{\tau}         & \recTy*{t}{\tau}         & \verb|\recTy{t}{\tau}|         \\
+        \foldEx[t][\tau]{e}     & \foldEx*{e}              & \verb|\foldEx[t][\tau]{e}|     \\
+        \unfoldEx[t][\tau]{e}   & \unfoldEx*{e}            & \verb|\unfoldEx[t][\tau]{e}|   \\[1ex]
+  
+        \selfTy{\tau}           & \selfTy*{\tau}           & \verb|\selfTy{\tau}|           \\
+        \rollEx[\tau]{e}        & \rollEx*{e}              & \verb|\rollEx[\tau]{e}|        \\
+        \selfEx[\tau]{x}{e}     & \selfEx*{x}{e}           & \verb|\selfEx[\tau]{x}{e}|     \\[1ex]
+  
+        \ulamEx{x}{M}           & \ulamEx*{x}{M}           & \verb|\ulamEx{x}{M}|           \\
+        \uapEx{M_1}{M_2}        & \uapEx*{M_1}{M_2}        & \verb|\uapEx{M_1}{M_2}|        \\
+        \uIEx                   & \uIEx*                   & \verb|\uIEx|                   \\
+        \uKEx                   & \uKEx*                   & \verb|\uKEx|                   \\
+        \uSEx                   & \uSEx*                   & \verb|\uSEx|                   \\
+        \uBEx                   & \uBEx*                   & \verb|\uBEx|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+  
+  \caption{Recursive Types}
+  \label{fig:recursive}
+\end{figure}
 
-\section*{Recursive types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \parrTy{\tau_1}{\tau_2} & \parrTy*{\tau_1}{\tau_2} & \verb|\parrTy{\tau_1}{\tau_2}| \\
-      \funEx{f}{x}{e}         & \funEx*{f}{x}{e}         & \verb|\funEx{f}{x}{e}|         \\
-      \appEx{e_1}{e_2}        & \appEx*{e_1}{e_2}        & \verb|\appEx{e_1}{e_2}|        \\[1ex]
+\begin{figure}
 
-      \fixEx[\tau]{x}{e}      & \fixEx*[\tau]{x}{e}      & \verb|\fixEx[\tau]{x}{e}|      \\[1ex]
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \cmdTy{\tau}               & \cmdTy*{\tau}               & \verb|\cmdTy{\tau}|               \\
+        \cmdEx[\tau]{m}            & \cmdEx*{m}                  & \verb|\cmdEx[\tau]{m}|            \\[1ex]
+        \retCmd[\tau]{e}           & \retCmd*{e}                 & \verb|\retCmd[\tau]{e}|           \\
+        \bndCmd{e}{x}{m}           & \bndCmd*{e}{x}{m}           & \verb|\bndCmd{e}{x}{m}|           \\
+        \dclCmd{e}{a}{m}           & \dclCmd*{e}{a}{m}           & \verb|\dclCmd{e}{a}{m}|           \\[1ex]
+        \refEx{a}                  & \refEx*{a}                  & \verb|\refEx{a}|                  \\[1ex]
+        \getCmd{a}                 & \getCmd*{a}                 & \verb|\getCmd{a}|                 \\
+        \getrefCmd[\tau]{e}        & \getrefCmd*{e}              & \verb|\getrefCmd[\tau]{e}|        \\
+        \setCmd{a}{e}              & \setCmd*{a}{e}              & \verb|\setCmd{a}{e}|              \\
+        \setrefCmd[\tau]{e_1}{e_2} & \setrefCmd*[\tau]{e_1}{e_2} & \verb|\setrefCmd[\tau]{e_1}{e_2}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-      \recTy{t}{\tau}         & \recTy*{t}{\tau}         & \verb|\recTy{t}{\tau}|         \\
-      \foldEx[t][\tau]{e}     & \foldEx*{e}              & \verb|\foldEx[t][\tau]{e}|     \\
-      \unfoldEx[t][\tau]{e}   & \unfoldEx*{e}            & \verb|\unfoldEx[t][\tau]{e}|   \\[1ex]
+  Symbols $a$ are constants of sort $\kw{loc}$.
 
-      \selfTy{\tau}           & \selfTy*{\tau}           & \verb|\selfTy{\tau}|           \\
-      \rollEx[\tau]{e}        & \rollEx*{e}              & \verb|\rollEx[\tau]{e}|        \\
-      \selfEx[\tau]{x}{e}     & \selfEx*{x}{e}           & \verb|\selfEx[\tau]{x}{e}|     \\[1ex]
+  \caption{Command Types}
+  \label{fig:cmd}
+\end{figure}
 
-      \ulamEx{x}{M}           & \ulamEx*{x}{M}           & \verb|\ulamEx{x}{M}|           \\
-      \uapEx{M_1}{M_2}        & \uapEx*{M_1}{M_2}        & \verb|\uapEx{M_1}{M_2}|        \\
-      \uIEx                   & \uIEx*                   & \verb|\uIEx|                   \\
-      \uKEx                   & \uKEx*                   & \verb|\uKEx|                   \\
-      \uSEx                   & \uSEx*                   & \verb|\uSEx|                   \\
-      \uBEx                   & \uBEx*                   & \verb|\uBEx|
-    \end{array}
-  \end{displaymath}
-\end{small}
 
-\section*{Commands\footnotemark}\footnotetext{Symbols $a$ are constants of sort $\kw{loc}$.}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \cmdTy{\tau}               & \cmdTy*{\tau}               & \verb|\cmdTy{\tau}|               \\
-      \cmdEx[\tau]{m}            & \cmdEx*{m}                  & \verb|\cmdEx[\tau]{m}|            \\[1ex]
-      \retCmd[\tau]{e}           & \retCmd*{e}                 & \verb|\retCmd[\tau]{e}|           \\
-      \bndCmd{e}{x}{m}           & \bndCmd*{e}{x}{m}           & \verb|\bndCmd{e}{x}{m}|           \\
-      \dclCmd{e}{a}{m}           & \dclCmd*{e}{a}{m}           & \verb|\dclCmd{e}{a}{m}|           \\[1ex]
-      \refEx{a}                  & \refEx*{a}                  & \verb|\refEx{a}|                  \\[1ex]
-      \getCmd{a}                 & \getCmd*{a}                 & \verb|\getCmd{a}|                 \\
-      \getrefCmd[\tau]{e}        & \getrefCmd*{e}              & \verb|\getrefCmd[\tau]{e}|        \\
-      \setCmd{a}{e}              & \setCmd*{a}{e}              & \verb|\setCmd{a}{e}|              \\
-      \setrefCmd[\tau]{e_1}{e_2} & \setrefCmd*[\tau]{e_1}{e_2} & \verb|\setrefCmd[\tau]{e_1}{e_2}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+\begin{figure}
 
-\section*{Modules}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \staticLock                    & \staticLock*         & \verb|\staticLock|                              \\
-      \univSg                        & \univSg*             & \verb|\univSg|                                  \\
-      \valSg{\tau}                   & \valSg*{\tau}        & \verb|\valSg{\tau}|                             \\[1ex]
-      \extSg{S}{M}                   & \extSg*{S}{M}        & \verb|\extSg{S}{M}|                             \\
-      \inMd[S][M]{M'}                & \inMd*{M'}           & \verb|\inMd[S][M]{M'}|                          \\
-      \outMd[S][M]{M'}               & \outMd*{M'}          & \verb|\outMd[S][M]{M'}|                         \\[1ex]
-      \compSg{S}                     & \compSg*{S}          & \verb|\compSg{S}|                               \\[1ex]
-      \piSg{S_1}{X}{S_2}             & \piSg*{S_1}{X}{S_2}  & \verb|\piSg{S_1}{X}{S_2}|                       \\
-      \funMd{S_1}{X}{M_2}            & \funMd*{S_1}{X}{M_2} & \verb|\funMd{S_1}{X}{M_2}|                      \\
-      \instMd[S_1][X][S_2]{M_1}{M_2} & \instMd*{M_1}{M_2}   & \verb|\instMd[S_1][X][S_2]{M_1}{M_2}|           \\[1ex]
-      \sigSg{S_1}{X}{S_2}            & \sigSg*{S_1}{X}{S_2} & \verb|\sigSg{S_1}{X}{S_2}|                      \\
-      \strMd[S_1][X][S_2]{M_1}{M_2}  & \strMd*{M_1}{M_2}    & \verb|\strMd[S_1][X][S_2]{M_1}{M_2}|            \\
-      \projMd<i>[S_1][X][S_2]{M}     & \projMd*<i>{M}       & \verb|\projMd<i>[S_1][X][S_2]{M}| \quad (i=1,2)
-    \end{array}
-  \end{displaymath}
-\end{small}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \staticLock                    & \staticLock*         & \verb|\staticLock|                              \\
+        \univSg                        & \univSg*             & \verb|\univSg|                                  \\
+        \valSg{\tau}                   & \valSg*{\tau}        & \verb|\valSg{\tau}|                             \\[1ex]
+        \extSg{S}{M}                   & \extSg*{S}{M}        & \verb|\extSg{S}{M}|                             \\
+        \inMd[S][M]{M'}                & \inMd*{M'}           & \verb|\inMd[S][M]{M'}|                          \\
+        \outMd[S][M]{M'}               & \outMd*{M'}          & \verb|\outMd[S][M]{M'}|                         \\[1ex]
+        \compSg{S}                     & \compSg*{S}          & \verb|\compSg{S}|                               \\[1ex]
+        \piSg{S_1}{X}{S_2}             & \piSg*{S_1}{X}{S_2}  & \verb|\piSg{S_1}{X}{S_2}|                       \\
+        \funMd{S_1}{X}{M_2}            & \funMd*{S_1}{X}{M_2} & \verb|\funMd{S_1}{X}{M_2}|                      \\
+        \instMd[S_1][X][S_2]{M_1}{M_2} & \instMd*{M_1}{M_2}   & \verb|\instMd[S_1][X][S_2]{M_1}{M_2}|           \\[1ex]
+        \sigSg{S_1}{X}{S_2}            & \sigSg*{S_1}{X}{S_2} & \verb|\sigSg{S_1}{X}{S_2}|                      \\
+        \strMd[S_1][X][S_2]{M_1}{M_2}  & \strMd*{M_1}{M_2}    & \verb|\strMd[S_1][X][S_2]{M_1}{M_2}|            \\
+        \projMd<i>[S_1][X][S_2]{M}     & \projMd*<i>{M}       & \verb|\projMd<i>[S_1][X][S_2]{M}| \quad (i=1,2)
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-\section*{Processes}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \unitPr{}            & \unitPr*{}            & \verb|\unitPr{} |           \\
-      \parPr{p_1}{p_2}     & \parPr*{p_1}{p_2}     & \verb|\parPr{p_1}{p_2}|     \\[1ex]
-      \nullPr{}            & \nullPr*{}            & \verb|\nullPr{}|            \\
-      \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2}  & \verb|\choosePr{p_1}{p_2}|  \\[1ex]
-      \quePr{a}{p}         & \quePr*{a}{p}         & \verb|\quePr{a}{p}|         \\
-      \sigPr{a}{p}         & \sigPr*{a}{p}         & \verb||                     \\[1ex]
-      \rcvPr{a}{x}{p}      & \rcvPr*{a}{x}{p}      & \verb|\sigPr{a}{p}|         \\
-      \sndPr{a}{e}{p}      & \sndPr*{a}{e}{p}      & \verb|\sndPr{a}{e}{p}|      \\[1ex]
-      \asndPr{a}{e}        & \asndPr*{a}{e}        & \verb|\asndPr{a}{e}|        \\
-      \syncPr{\varepsilon} & \syncPr*{\varepsilon} & \verb|\syncPr{\varepsilon}| \\[1ex]
-      \newPr{a}{p}         & \newPr*{a}{p}         & \verb|\newPr{a}{p}|         \\[1ex]
-      \silAc               & \silAc*               & \verb|\silAc|               \\
-      \sigAc{a}            & \sigAc*{a}            & \verb|\sigAc{a}|            \\
-      \queAc{a}            & \queAc*{a}            & \verb|\queAc{a}|            \\
-      \sndAc{a}{e}         & \sndAc*{a}{e}         & \verb|\sndAc{a}{e}|         \\
-      \rcvAc{a}{e}         & \rcvAc*{a}{e}         & \verb||                     \\
-      \anyAc{e}            & \anyAc*{e}            & \verb|\rcvAc{a}{e}|         \\
-      \emitAc{e}           & \emitAc*{e}           & \verb|\emitAc{e}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+  \caption{Module Types}
+  \label{fig:mod}
+\end{figure}
 
-\section*{Polarized types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\posTy{\tau}}|                         \\
-      \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\posTy{\tau}]{v}|                      \\
-      \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'}| \\
-      \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\negTy{\tau}}|                        \\
-      \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\negTy{\tau}]{e}|                     \\
-      \forceEx{v}                                   & \forceEx*{v}              & \verb||\forceEx{v}
-    \end{array}
-  \end{displaymath}
-\end{small}
+\begin{figure}
 
-\section*{Parallel types}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \tensorTy{\tau_1}{\tau_2} & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}| \\
-      \tensorEx{v_1}{v_2}       & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx{v_1}{v_2}|       \\
-      \splitEx{v}{x_1}{x_2}{e}  & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx{v}{x_1}{x_2}{e}|  \\
-      \bothTy{\tau_1}{\tau_2}   & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|   \\
-      \bothEx{e_1}{e_2}         & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|         \\
-      \parEx{e}{x}{y}{e'}       & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \unitPr{}            & \unitPr*{}            & \verb|\unitPr{} |           \\
+        \parPr{p_1}{p_2}     & \parPr*{p_1}{p_2}     & \verb|\parPr{p_1}{p_2}|     \\[1ex]
+        \nullPr{}            & \nullPr*{}            & \verb|\nullPr{}|            \\
+        \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2}  & \verb|\choosePr{p_1}{p_2}|  \\[1ex]
+        \quePr{a}{p}         & \quePr*{a}{p}         & \verb|\quePr{a}{p}|         \\
+        \sigPr{a}{p}         & \sigPr*{a}{p}         & \verb||                     \\[1ex]
+        \rcvPr{a}{x}{p}      & \rcvPr*{a}{x}{p}      & \verb|\sigPr{a}{p}|         \\
+        \sndPr{a}{e}{p}      & \sndPr*{a}{e}{p}      & \verb|\sndPr{a}{e}{p}|      \\[1ex]
+        \asndPr{a}{e}        & \asndPr*{a}{e}        & \verb|\asndPr{a}{e}|        \\
+        \syncPr{\varepsilon} & \syncPr*{\varepsilon} & \verb|\syncPr{\varepsilon}| \\[1ex]
+        \newPr{a}{p}         & \newPr*{a}{p}         & \verb|\newPr{a}{p}|         \\[1ex]
+        \silAc               & \silAc*               & \verb|\silAc|               \\
+        \sigAc{a}            & \sigAc*{a}            & \verb|\sigAc{a}|            \\
+        \queAc{a}            & \queAc*{a}            & \verb|\queAc{a}|            \\
+        \sndAc{a}{e}         & \sndAc*{a}{e}         & \verb|\sndAc{a}{e}|         \\
+        \rcvAc{a}{e}         & \rcvAc*{a}{e}         & \verb||                     \\
+        \anyAc{e}            & \anyAc*{e}            & \verb|\rcvAc{a}{e}|         \\
+        \emitAc{e}           & \emitAc*{e}           & \verb|\emitAc{e}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-\section*{Propositions and proofs}
-\begin{small}
-  \begin{displaymath}
-    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-      \trueProp                                       & \trueProp*                       & \verb|\trueProp|                                       \\
-      \trueIPf                                        & \trueIPf*                        & \verb|\trueIPf|                                        \\[1ex]
+  \caption{Proceses}
+  \label{fig:proc}
+\end{figure}
 
-      \andProp{\phi_1}{\phi_2}                        & \andProp*{\phi_1}{\phi_2}        & \verb|\andProp{\phi_1}{\phi_2}|                        \\
-      \andIPf{\pi_1}{\pi_2}                           & \andIPf*{\pi_1}{\pi_2}           & \verb|\andIPf{\pi_1}{\pi_2}|                           \\
-      \andEPf[\phi_1][\phi_2]<i>{\pi}                 & \andEPf*<i>{\pi}                 & \verb|\andEPf[\phi_1][\phi_2]<i>{\pi}|                 \\[1ex]
+\begin{figure}
 
-      \falseProp                                      & \falseProp*                      & \verb|\falseProp|                                      \\
-      \falseIPf[\phi]{\pi}                            & \falseIPf*{\pi}                  & \verb|\falseIPf[\phi]{\pi}|                            \\
-      \falseEPf[\phi]{\pi}                            & \falseEPf*{\pi}                  & \verb|\falseEPf[\phi]{\pi}|                            \\[1ex]
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\posTy{\tau}}|                         \\
+        \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\posTy{\tau}]{v}|                      \\
+        \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'}| \\
+        \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\negTy{\tau}}|                        \\
+        \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\negTy{\tau}]{e}|                     \\
+        \forceEx{v}                                   & \forceEx*{v}              & \verb||\forceEx{v}
+      \end{array}
+    \end{displaymath}
+  \end{small}
 
-      \orProp{\phi_1}{\phi_2}                         & \orProp*{\phi_1}{\phi_2}         & \verb|\orProp{\phi_1}{\phi_2}|                         \\
-      \orIPf[\phi_1][\phi_2]<i>{\pi}                  & \orIPf*<i>{\pi}                  & \verb|\orIPf[\phi_1][\phi_2]<i>{\pi}|                  \\
-      \orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2} & \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \verb|\orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2}| \\[1ex]
+  \caption{Polarized Types}
+  \label{fig:pol}
+\end{figure}
 
-      \impProp{\phi_1}{\phi_2}                        & \impProp*{\phi_1}{\phi_2}        & \verb|\impProp{\phi_1}{\phi_2}|                        \\
-      \impIPf[\phi_1][\phi_2]{x}{\pi_2}               & \impIPf*{x}{\pi_2}               & \verb|\impIPf[\phi_1][\phi_2]{x}{\pi_2}|               \\
-      \impEPf[\phi_1][\phi_2]{\pi}{\pi_1}             & \impEPf*{\pi}{\pi_2}             & \verb|\impEPf[\phi_1][\phi_2]{\pi}{\pi_1}|             \\[1ex]
+\begin{figure}
 
-      \notProp{\phi}                                  & \notProp*{\phi}                  & \verb|\notProp{\phi}|                                  \\
-      \notIPf[\phi]{x}{\pi}                           & \notIPf*{x}{\pi}                 & \verb|\notIPf[\phi]{x}{\pi}|                           \\
-      \notEPf[\phi]{\pi}{\pi_2}                       & \notEPf*{\pi}{\pi_2}             & \verb|\notEPf[\phi]{\pi}{\pi_2}|
-    \end{array}
-  \end{displaymath}
-\end{small}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \tensorTy{\tau_1}{\tau_2} & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}| \\
+        \tensorEx{v_1}{v_2}       & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx{v_1}{v_2}|       \\
+        \splitEx{v}{x_1}{x_2}{e}  & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx{v}{x_1}{x_2}{e}|  \\
+        \bothTy{\tau_1}{\tau_2}   & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|   \\
+        \bothEx{e_1}{e_2}         & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|         \\
+        \parEx{e}{x}{y}{e'}       & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Parallel Types}
+  \label{fig:par}
+\end{figure}
+
+\begin{figure}
+  
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \trueProp                                       & \trueProp*                       & \verb|\trueProp|                                       \\
+        \trueIPf                                        & \trueIPf*                        & \verb|\trueIPf|                                        \\[1ex]
+  
+        \andProp{\phi_1}{\phi_2}                        & \andProp*{\phi_1}{\phi_2}        & \verb|\andProp{\phi_1}{\phi_2}|                        \\
+        \andIPf{\pi_1}{\pi_2}                           & \andIPf*{\pi_1}{\pi_2}           & \verb|\andIPf{\pi_1}{\pi_2}|                           \\
+        \andEPf[\phi_1][\phi_2]<i>{\pi}                 & \andEPf*<i>{\pi}                 & \verb|\andEPf[\phi_1][\phi_2]<i>{\pi}|                 \\[1ex]
+  
+        \falseProp                                      & \falseProp*                      & \verb|\falseProp|                                      \\
+        \falseIPf[\phi]{\pi}                            & \falseIPf*{\pi}                  & \verb|\falseIPf[\phi]{\pi}|                            \\
+        \falseEPf[\phi]{\pi}                            & \falseEPf*{\pi}                  & \verb|\falseEPf[\phi]{\pi}|                            \\[1ex]
+  
+        \orProp{\phi_1}{\phi_2}                         & \orProp*{\phi_1}{\phi_2}         & \verb|\orProp{\phi_1}{\phi_2}|                         \\
+        \orIPf[\phi_1][\phi_2]<i>{\pi}                  & \orIPf*<i>{\pi}                  & \verb|\orIPf[\phi_1][\phi_2]<i>{\pi}|                  \\
+        \orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2} & \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \verb|\orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2}| \\[1ex]
+  
+        \impProp{\phi_1}{\phi_2}                        & \impProp*{\phi_1}{\phi_2}        & \verb|\impProp{\phi_1}{\phi_2}|                        \\
+        \impIPf[\phi_1][\phi_2]{x}{\pi_2}               & \impIPf*{x}{\pi_2}               & \verb|\impIPf[\phi_1][\phi_2]{x}{\pi_2}|               \\
+        \impEPf[\phi_1][\phi_2]{\pi}{\pi_1}             & \impEPf*{\pi}{\pi_2}             & \verb|\impEPf[\phi_1][\phi_2]{\pi}{\pi_1}|             \\[1ex]
+  
+        \notProp{\phi}                                  & \notProp*{\phi}                  & \verb|\notProp{\phi}|                                  \\
+        \notIPf[\phi]{x}{\pi}                           & \notIPf*{x}{\pi}                 & \verb|\notIPf[\phi]{x}{\pi}|                           \\
+        \notEPf[\phi]{\pi}{\pi_2}                       & \notEPf*{\pi}{\pi_2}             & \verb|\notEPf[\phi]{\pi}{\pi_2}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Propositions and Proofs}
+  \label{fig:prop}
+\end{figure}
 
 \end{document}
 
