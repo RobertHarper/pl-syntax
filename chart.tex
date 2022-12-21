@@ -41,9 +41,9 @@
 
 \section*{Overview}
 
-Use \verb|\usepackage{pfpl-syntax}| to define syntax macros for \textsf{PFPL}.  The macros are written in camel case, writing \verb|\prodTy{\tau_1}{\tau_2}| to produce a product type, and \verb|\pairEx[\tau_1;\tau_2]{e_1;e_2}| to produce a pair.
+Write \verb|\usepackage{pfpl-syntax}| to define syntax macros for \textsf{PFPL}.  The package provides an integrated, systematic treatment of abstract and concrete syntax for a wide range of languages.
 
-\section*{General Abstract Binding Trees}
+\section*{Abstract Binding Trees}
 
 To typeset an abstract binding tree yourself, provide the package with the \verb|[abt]| option, and use the following commands:
 \begin{itemize}
@@ -71,9 +71,13 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
         produces $\Abt{\Opn{dcl}}[\tau;\rho]{e;\Abs<a>{m}}$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho]{e;\Abs<a>{m}}$.
 \end{itemize}
 
+These general forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.
+
 \section*{Language-Specific Definitions}
 
-The many languages considered in \textsf{PFPL} are formulated in a series of figures following this section.  The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).
+The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures following this section.  The command names are in camel case, writing \verb|\prodTy{\tau_1}{\tau_2}| to produce a product type, and \verb|\pairEx[\tau_1;\tau_2]{e_1;e_2}| to produce a pair.
+
+The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).  
 
 \clearpage
 
