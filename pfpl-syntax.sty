@@ -1,9 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{pfpl-syntax}[2022/12/15 1.1.0 PFPL Syntax Macros]
-\RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd,bigplustimes}
-\RequirePackage{xifthen}
+\ProvidesPackage{pfpl-syntax}[2022/12/21 1.2.0 PFPL Syntax Macros]
+\DeclareOption{abt}{
+    \NewDocumentCommand{\Abt}{}{\A@bt}
+    \NewDocumentCommand{\Abs}{}{\A@bs}
+    \NewDocumentCommand{\Opn}{}{\O@pn}
+}
+\ProcessOptions
+\RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd,bigplustimes,xifthen}
 
-\makeatletter  % internal commands have an @ sign to avoid collision
+\makeatletter
 
 \NewDocumentCommand{\@kw}{m}{\texttt{#1}}
 \NewDocumentCommand{\@sep}{}{\mathbin{;}}
