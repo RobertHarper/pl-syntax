@@ -49,26 +49,33 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
 \begin{itemize}
   \item \verb|\Opn{kwd}|: Format an operator as a keyword, or \verb|\Opn*{symbol}| for an operator whose display is in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
 
-  \item \verb|\Abt<parameters>[optional]{arguments}|: produce abstract syntax, with all arguments typeset, and the starred form to omit the optional arguments.
-        For example, the command
-        \begin{verbatim}
-            \Abt{\Opn{get}}<a>[\tau]{}
-        \end{verbatim}
-        produces $\Abt{\Opn{get}}<a>[\tau]{}$, and the command
-        \begin{verbatim}
-          \Abt{\Opn{set}}[\tau]<a>{e}
-        \end{verbatim}
-        produces $\Abt{\Opn{set}}<a>[\tau]{e}$.  The starred forms produce $\Abt*{\Opn{get}}<a>[\tau]{}$, and $\Abt*{\Opn{set}}<a>[\tau]{e}$, respectively.
+  \item \verb|\Abt<parameters>[optional]{arguments}|: produce abstract syntax, with all arguments typeset, and the starred form to omit the optional arguments.  For example, the command
+  \begin{quote}
+\begin{verbatim}
+\Abt{\Opn{get}}<a>[\tau]{}
+\end{verbatim}
+\end{quote}
+ produces $\Abt{\Opn{get}}<a>[\tau]{}$, and the command
+  \begin{quote}
+\begin{verbatim}
+\Abt{\Opn{set}}[\tau]<a>{e}
+\end{verbatim}
+  \end{quote}
+  produces $\Abt{\Opn{set}}<a>[\tau]{e}$.  The starred forms produce $\Abt*{\Opn{get}}<a>[\tau]{}$, and $\Abt*{\Opn{set}}<a>[\tau]{e}$, respectively.
 
   \item \verb|\Abs<symbols>(variables){abt}|: produce an abstractor over symbols and/or variables within an ABT.  For example, the command
-        \begin{verbatim}
-          \Abt{\Opn*{\lambda}}[\tau]{e}
-        \end{verbatim}
-        produces $\Abt{\Opn*{\lambda}}[\tau]{\Abs(x){e}}$ and the starred form produces $\Abt*{\Opn*{\lambda}}[\tau]{\Abs(x){e}}$.  Similarly, the command
-        \begin{verbatim}
-          \Abt{\Opn{dcl}}[\tau;\rho]{e}{\Abs<a>{m}}
-        \end{verbatim}
-        produces $\Abt{\Opn{dcl}}[\tau;\rho]{e;\Abs<a>{m}}$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho]{e;\Abs<a>{m}}$.
+  \begin{quote}
+\begin{verbatim}
+\Abt{\Opn*{\lambda}}[\tau]{e}
+\end{verbatim}
+  \end{quote}
+  produces $\Abt{\Opn*{\lambda}}[\tau]{\Abs(x){e}}$ and the starred form produces $\Abt*{\Opn*{\lambda}}[\tau]{\Abs(x){e}}$.  Similarly, the command
+  \begin{quote}
+\begin{verbatim}
+\Abt{\Opn{dcl}}[\tau;\rho]{e}{\Abs<a>{m}}
+\end{verbatim}
+  \end{quote}
+  produces $\Abt{\Opn{dcl}}[\tau;\rho]{e;\Abs<a>{m}}$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho]{e;\Abs<a>{m}}$.
 \end{itemize}
 
 These general forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.
