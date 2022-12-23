@@ -49,42 +49,40 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
 \begin{itemize}
   \item \verb|\Opn{kwd}|: Format an operator as a keyword, or \verb|\Opn*{symbol}| for an operator whose display is in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
 
-  \item \verb|\Abt<parameters>[optional]{arguments}|: produce abstract syntax, with all arguments typeset, and the starred form to omit the optional arguments.  For example, the command
+  \item \verb|\Abt<parameters>[optional](arguments)|: produce abstract syntax, with all arguments typeset, and the starred form to omit the optional arguments.  Omitted arguments are omitted.  For example, the command
   \begin{quote}
 \begin{verbatim}
-\Abt{\Opn{get}}<a>[\tau]{}
+\Abt{\Opn{get}}<a>[\tau]
 \end{verbatim}
 \end{quote}
- produces $\Abt{\Opn{get}}<a>[\tau]{}$, and the command
+ produces $\Abt{\Opn{get}}<a>[\tau]$, and the command
   \begin{quote}
 \begin{verbatim}
-\Abt{\Opn{set}}[\tau]<a>{e}
+\Abt{\Opn{set}}[\tau]<a>(e)
 \end{verbatim}
   \end{quote}
-  produces $\Abt{\Opn{set}}<a>[\tau]{e}$.  The starred forms produce $\Abt*{\Opn{get}}<a>[\tau]{}$, and $\Abt*{\Opn{set}}<a>[\tau]{e}$, respectively.
+  produces $\Abt{\Opn{set}}<a>[\tau](e)$.  The starred forms produce $\Abt*{\Opn{get}}<a>[\tau]$, and $\Abt*{\Opn{set}}<a>[\tau](e)$, respectively.
 
   \item \verb|\Abs<symbols>(variables){abt}|: produce an abstractor over symbols and/or variables within an ABT.  For example, the command
   \begin{quote}
 \begin{verbatim}
-\Abt{\Opn*{\lambda}}[\tau]{e}
+\Abt{\Opn*{\lambda}}[\tau](\Abs(x){e})
 \end{verbatim}
   \end{quote}
-  produces $\Abt{\Opn*{\lambda}}[\tau]{\Abs(x){e}}$ and the starred form produces $\Abt*{\Opn*{\lambda}}[\tau]{\Abs(x){e}}$.  Similarly, the command
+  produces $\Abt{\Opn*{\lambda}}[\tau](\Abs(x){e})$ and the starred form produces $\Abt*{\Opn*{\lambda}}[\tau](\Abs(x){e})$.  Similarly, the command
   \begin{quote}
 \begin{verbatim}
-\Abt{\Opn{dcl}}[\tau;\rho]{e}{\Abs<a>{m}}
+\Abt{\Opn{dcl}}[\tau;\rho](e;\Abs<a>{m})
 \end{verbatim}
   \end{quote}
-  produces $\Abt{\Opn{dcl}}[\tau;\rho]{e;\Abs<a>{m}}$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho]{e;\Abs<a>{m}}$.
+  produces $\Abt{\Opn{dcl}}[\tau;\rho](e;\Abs<a>{m})$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho](e;\Abs<a>{m})$.
 \end{itemize}
 
 These general forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.
 
 \section*{Language-Specific Definitions}
 
-The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures following this section.  The command names are in camel case, writing \verb|\prodTy{\tau_1}{\tau_2}| to produce a product type, and \verb|\pairEx[\tau_1;\tau_2]{e_1;e_2}| to produce a pair.
-
-The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).  
+The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures organized around type structure.  The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).  
 
 \clearpage
 
@@ -108,8 +106,8 @@ The tables display the abstract and concrete syntax, and the literal command use
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \unitTy{}                         & \unitTy*{}               & \verb|\unitTy{}|                              \\
-        \unitEx{}                         & \unitEx*{}               & \verb|\unitEx{}|                              \\[1ex]
+        \unitTy                         & \unitTy*               & \verb|\unitTy|                              \\
+        \unitEx                         & \unitEx*               & \verb|\unitEx|                              \\[1ex]
   
         \prodTy{\tau_1}{\tau_2}           & \prodTy*{\tau_1}{\tau_2} & \verb|\prodTy{\tau_1}{\tau_2}|                \\
         \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>{e}| \quad (i=\kw{1},\kw{2})  \\
@@ -166,14 +164,14 @@ The tables display the abstract and concrete syntax, and the literal command use
         \inEx[t][\tau]{e}                          & \inEx*{e}                       & \verb|\inEx[t][\tau]{e}|                          \\
         \recEx[t][\tau][\rho]{e}{x}{e'}            & \recEx*{e}{x}{e'}               & \small{\verb|\recEx[t][\tau][\rho]{e}{x}{e'}|}    \\[1ex]
   
-        \natTy{}                                   & \natTy*{}                       & \verb|\natTy{}|                                   \\
+        \natTy                                   & \natTy*                       & \verb|\natTy|                                   \\
         \zeroEx                                    & \zeroEx*                        & \verb|\zeroEx|                                    \\
         \succEx{e}                                 & \succEx*{e}                     & \verb|\succEx{e}|                                 \\
         \natitEx[\rho]{e}{e_0}{x}{e_1}             & \natitEx*{e}{e_0}{x}{e_1}       & \verb|\natitEx[\rho]{e}{e_0}{x}{e_1}|             \\
         \ifzEx[\rho]{e}{e_0}{x}{e_1}               & \ifzEx*{e}{e_0}{x}{e_1}         & \verb|\ifzEx[\rho]{e}{e_0}{x}{e_1}|               \\[1ex]
   
         \listTy{\tau}                              & \listTy*{\tau}                  & \verb|\listTy{\tau}|                              \\
-        \nilEx[\tau]                               & \nilEx*{}                       & \verb|\nilEx[\tau]|                               \\
+        \nilEx[\tau]                               & \nilEx*                       & \verb|\nilEx[\tau]|                               \\
         \consEx[\tau]{e_1}{e_2}                    & \consEx*{e_1}{e_2}              & \verb|\consEx[\tau]{e_1}{e_2}|                    \\
         \listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}  & \listrecEx*{e}{e_1}{x}{y}{e_2}  & \verb|\listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}|  \\
         \listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2} & \verb|\listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}| \\[1ex]
@@ -182,7 +180,7 @@ The tables display the abstract and concrete syntax, and the literal command use
         \outEx[t][\tau]{e}                         & \outEx*{e}                      & \verb|\outEx[t][\tau]{e}|                         \\
         \genEx[t][\tau][\sigma]{e}{x}{e'}          & \genEx*{e}{x}{e'}               & \verb|\genEx[t][\tau][\sigma]{e}{x}{e'}|          \\[1ex]
   
-        \conatTy{}                                 & \conatTy*{}                     & \verb|\conatTy|                                   \\
+        \conatTy                                 & \conatTy*                     & \verb|\conatTy|                                   \\
         \streamTy{\tau}                            & \streamTy*{\tau}                & \verb|\streamTy{\tau}|
       \end{array}
     \end{displaymath}
@@ -325,9 +323,9 @@ The tables display the abstract and concrete syntax, and the literal command use
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \unitPr{}            & \unitPr*{}            & \verb|\unitPr{} |           \\
+        \unitPr            & \unitPr*            & \verb|\unitPr |           \\
         \parPr{p_1}{p_2}     & \parPr*{p_1}{p_2}     & \verb|\parPr{p_1}{p_2}|     \\[1ex]
-        \nullPr{}            & \nullPr*{}            & \verb|\nullPr{}|            \\
+        \nullPr            & \nullPr*            & \verb|\nullPr|            \\
         \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2}  & \verb|\choosePr{p_1}{p_2}|  \\[1ex]
         \quePr{a}{p}         & \quePr*{a}{p}         & \verb|\quePr{a}{p}|         \\
         \sigPr{a}{p}         & \sigPr*{a}{p}         & \verb||                     \\[1ex]
