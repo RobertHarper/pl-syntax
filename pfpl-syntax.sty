@@ -194,6 +194,7 @@
 \NewDocumentCommand{\dclCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\dcl@Cst{#3}{#5}{#6}}{\dcl@Abt{#2}{#4}{#3}{\A@bs<#5>{#6}}}}
 
 % reference types
+\NewDocumentCommand{\refTy}{s m}{\IfBooleanTF{#1}{#2\,\Opn{ref}}{\A@bt{\O@pn{ref}}(#2)}}
 \NewDocumentCommand{\ref@Abt}{m}{\A@bt{\O@pn{ref}}<#1>}
 \NewDocumentCommand{\ref@Cst}{m}{\texttt{\&}\,#1}
 \NewDocumentCommand{\refEx}{s m}{\IfBooleanTF{#1}{\ref@Cst{#2}}{\ref@Abt{#2}}}
