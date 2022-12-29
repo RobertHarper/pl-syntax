@@ -302,4 +302,5 @@ TSWLatexianTemp*
 
 out
 .vscode
+.latexmkrc
 
