@@ -5,12 +5,18 @@
     \NewDocumentCommand{\Abs}{}{\A@bs}
     \NewDocumentCommand{\Opn}{}{\O@pn}
 }
+\DeclareOption{sf}{
+    \NewDocumentCommand{\@kw}{m}{\textsf{#1}}
+}
+\DeclareOption{sc}{
+    \NewDocumentCommand{\@kw}{m}{\textsc{#1}}
+}
 \ProcessOptions
 \RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd,bigplustimes,xifthen}
 
 \makeatletter
 
-\NewDocumentCommand{\@kw}{m}{\texttt{#1}}
+\ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
 \NewDocumentCommand{\@sep}{}{\mathbin{;}}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\fin@map}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\sing@map{#3}{#4_#3}\mid #3\in #2}}
@@ -138,7 +144,7 @@
 \NewDocumentCommand{\noEx}{s}{\A@bt{\O@pn{no}}}
 
 % continuation type
-\NewDocumentCommand{\contTy}{s m}{\IfBooleanTF{#1}{#2\,\kw{cont}}{\A@bt{\O@pn{cont}}(#2)}}
+\NewDocumentCommand{\contTy}{s m}{\IfBooleanTF{#1}{#2\,\@kw{cont}}{\A@bt{\O@pn{cont}}(#2)}}
 \NewDocumentCommand{\contEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{cont}}[#2](#3)}
 \NewDocumentCommand{\letccEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{letcc}}[#2](\A@bs(#3){#4})}
 \NewDocumentCommand{\throwEx}{s O{\tau} O{\rho} m m}{\Abt@{#1}{\O@pn{throw}}[#2\@sep #3](#4\@sep  #5)}
@@ -148,13 +154,13 @@
 \NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}} #5}{\A@bt{\O@pn{ext}}[#2\@sep #3](#4\@sep #5})}
 
 % universal and existential types
-\NewDocumentCommand{\AllTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\forall}{All}}(\A@bs(#2){#3})}
-\NewDocumentCommand{\LamEx}{s m O{\tau} m}{\Abt@{#1}{\Opn@{#1}{\Lambda}{Lam}}(\A@bs(#2){#4})}
-\NewDocumentCommand{\AppEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{Ap}}[\A@bs(#2){#3}](#4\@sep #5)}
+\NewDocumentCommand{\AllTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\forall}{all}}(\A@bs(#2){#3})}
+\NewDocumentCommand{\LamEx}{s m O{\tau} m}{\Abt@{#1}{\Opn@{#1}{\Lambda}{tlam}}(\A@bs(#2){#4})}
+\NewDocumentCommand{\AppEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{tap}}[\A@bs(#2){#3}](#4\@sep #5)}
 
-\NewDocumentCommand{\SomeTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\exists}{Some}}(\A@bs(#2){#3})}
-\NewDocumentCommand{\PackEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{Pack}}[\A@bs(#2){#3}](#4\@sep  #5)}
-\NewDocumentCommand{\OpenEx}{s O{t} O{\tau} m O{\rho} m m}{\Abt@{#1}{\O@pn{Open}}[\A@bs(#2){#3}\@sep #5](#4\@sep \A@bs(#2,#6){#7})}
+\NewDocumentCommand{\SomeTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\exists}{some}}(\A@bs(#2){#3})}
+\NewDocumentCommand{\PackEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{pack}}[\A@bs(#2){#3}](#4\@sep  #5)}
+\NewDocumentCommand{\OpenEx}{s O{t} O{\tau} m O{\rho} m m}{\Abt@{#1}{\O@pn{open}}[\A@bs(#2){#3}\@sep #5](#4\@sep \A@bs(#2,#6){#7})}
 
 % partial function type with recursive lambda, shares application form with total
 \NewDocumentCommand{\parr@Abt}{m m}{\A@bt{\O@pn{parr}}(#1\@sep  #2)}
@@ -236,7 +242,7 @@
 \NewDocumentCommand{\str@Abt}{m m m m m}{\A@bt{\O@pn{str}}[#1\@sep\A@bs(#2){#3}](#4\@sep #5)}
 \NewDocumentCommand{\str@Cst}{m m}{\O@pn{str} #1\mathbin{\O@pn{in}} #2}
 \NewDocumentCommand{\strMd}{s O{S_1} O{X} O{S_2} m m}{\IfBooleanTF{#1}{\str@Cst{#5}{#6}}{\str@Abt{#2}{#3}{#4}{#5}{#6}}}
-\NewDocumentCommand{\projMd}{s D<>{i} O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{#6\cdot\kw{#2}}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \A@bs(#4){#5}](#6)}}
+\NewDocumentCommand{\projMd}{s D<>{i} O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{#6\cdot\@kw{#2}}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \A@bs(#4){#5}](#6)}}
 
 \NewDocumentCommand{\staticLock}{s}{\Abt@{#1}{\O@pn{st}}}
 \NewDocumentCommand{\ext@Abt}{m m}{\A@bt{\O@pn{Ext}}(#1\@sep  #2)}
@@ -303,26 +309,26 @@
 
 % propositions
 \NewDocumentCommand{\trueProp}{s}{\Abt@{#1}{\Opn@{#1}{\top}{truth}}}
-\NewDocumentCommand{\trueIPf}{s}{\Abt@{#1}{\Opn@{#1}{\top\kw{I}}{truthI}}}
+\NewDocumentCommand{\trueIPf}{s}{\Abt@{#1}{\Opn@{#1}{\top\@kw{I}}{truthI}}}
 
 \NewDocumentCommand{\andProp}{s m m}{\IfBooleanTF{#1}{#2\wedge #3}{\A@bt{\O@pn{and}}(#2\@sep #3)}}
-\NewDocumentCommand{\andIPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\wedge\kw{I}}{andI}}[#2\@sep #3](#4\@sep #5)}
-\NewDocumentCommand{\andEPf}{s O{\phi_1} O{\phi_2} d<> m}{\Abt@{#1}{\Opn@{#1}{\wedge\kw{E}}{andE}}<#4>[#2\@sep #3](#5)}
+\NewDocumentCommand{\andIPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\wedge\@kw{I}}{andI}}[#2\@sep #3](#4\@sep #5)}
+\NewDocumentCommand{\andEPf}{s O{\phi_1} O{\phi_2} d<> m}{\Abt@{#1}{\Opn@{#1}{\wedge\@kw{E}}{andE}}<#4>[#2\@sep #3](#5)}
 
 \NewDocumentCommand{\falseProp}{s}{\Abt@{#1}{\Opn@{#1}{\bot}{falsity}}}
-\NewDocumentCommand{\falseIPf}{s O{\phi} m}{\Abt@{#1}{\Opn@{#1}{\bot\kw{I}}{falseI}}[#2](#3)}  % for use when contradiction is a judgment
-\NewDocumentCommand{\falseEPf}{s O{\phi} m}{\Abt@{#1}{\Opn@{#1}{\bot\kw{E}}{falseE}}[#2](#3)}
+\NewDocumentCommand{\falseIPf}{s O{\phi} m}{\Abt@{#1}{\Opn@{#1}{\bot\@kw{I}}{falseI}}[#2](#3)}  % for use when contradiction is a judgment
+\NewDocumentCommand{\falseEPf}{s O{\phi} m}{\Abt@{#1}{\Opn@{#1}{\bot\@kw{E}}{falseE}}[#2](#3)}
 
 \NewDocumentCommand{\orProp}{s m m}{\IfBooleanTF{#1}{#2\vee #3}{\A@bt{\O@pn{or}}(#2\@sep #3)}}
-\NewDocumentCommand{\orIPf}{s O{\phi_1} O{\phi_2} d<> m}{\Abt@{#1}{\Opn@{#1}{\vee\kw{I}}{orI}}<#4>[#2\@sep #3](#5)}
-\NewDocumentCommand{\orEPf}{s O{\phi_1} O{\phi_2} O{\rho} m m m m m}{\Abt@{#1}{\Opn@{#1}{\vee\kw{E}}{orE}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6){#7}\@sep \A@bs(#8){#9})}
+\NewDocumentCommand{\orIPf}{s O{\phi_1} O{\phi_2} d<> m}{\Abt@{#1}{\Opn@{#1}{\vee\@kw{I}}{orI}}<#4>[#2\@sep #3](#5)}
+\NewDocumentCommand{\orEPf}{s O{\phi_1} O{\phi_2} O{\rho} m m m m m}{\Abt@{#1}{\Opn@{#1}{\vee\@kw{E}}{orE}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6){#7}\@sep \A@bs(#8){#9})}
 
 \NewDocumentCommand{\impProp}{s m m}{\IfBooleanTF{#1}{#2\supset #3}{\A@bt{\O@pn{imp}}(#2\@sep #3)}}
-\NewDocumentCommand{\impIPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\kw{I}}{impI}}[#2\@sep #3](\A@bs(#4){#5})}
-\NewDocumentCommand{\impEPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\kw{E}}{impE}}[#2\@sep #3](#4\@sep #5)}
+\NewDocumentCommand{\impIPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\@kw{I}}{impI}}[#2\@sep #3](\A@bs(#4){#5})}
+\NewDocumentCommand{\impEPf}{s O{\phi_1} O{\phi_2} m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\@kw{E}}{impE}}[#2\@sep #3](#4\@sep #5)}
 
 \NewDocumentCommand{\notProp}{s m}{\IfBooleanTF{#1}{\neg #2}{\A@bt{\O@pn{not}}(#2)}}
-\NewDocumentCommand{\notIPf}{s O{\phi} m m}{\Abt@{#1}{\Opn@{#1}{\neg\kw{I}}{notI}}[#2](\A@bs(#3){#4})}
-\NewDocumentCommand{\notEPf}{s O{\phi} m m}{\Abt@{#1}{\Opn@{#1}{\neg\kw{E}}{notE}}[#2](#3\@sep #4)}
+\NewDocumentCommand{\notIPf}{s O{\phi} m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{I}}{notI}}[#2](\A@bs(#3){#4})}
+\NewDocumentCommand{\notEPf}{s O{\phi} m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{E}}{notE}}[#2](#3\@sep #4)}
 
 \makeatother

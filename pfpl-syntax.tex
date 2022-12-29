@@ -31,7 +31,6 @@
 \author{Robert Harper}
 \date{\today}
 
-\NewDocumentCommand{\kw}{m}{\texttt{#1}}
 \NewDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\finmap}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\singmap{#3}{#4_#3}\mid #3\in #2}}
 
@@ -53,8 +52,8 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
 \begin{verbatim}
 \Abt{\Opn{get}}<a>[\tau]
 \end{verbatim}
-\end{quote}
- produces $\Abt{\Opn{get}}<a>[\tau]$, and the command
+  \end{quote}
+  produces $\Abt{\Opn{get}}<a>[\tau]$, and the command
   \begin{quote}
 \begin{verbatim}
 \Abt{\Opn{set}}[\tau]<a>(e)
@@ -77,11 +76,14 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
   produces $\Abt{\Opn{dcl}}[\tau;\rho](e;\Abs<a>{m})$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho](e;\Abs<a>{m})$.
 \end{itemize}
 
-These general forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.
+The package option \verb|[sf]| indicates that operations are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.
+These forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.
 
 \section*{Language-Specific Definitions}
 
-The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures organized around type structure.  The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).  
+The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures organized around type structure.  The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).
+
+When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.
 
 \clearpage
 
@@ -109,7 +111,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \unitEx                         & \unitEx*               & \verb|\unitEx|                              \\[1ex]
   
         \prodTy{\tau_1}{\tau_2}           & \prodTy*{\tau_1}{\tau_2} & \verb|\prodTy{\tau_1}{\tau_2}|                \\
-        \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>{e}| \quad (i=\kw{1},\kw{2})  \\
+        \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>{e}| \quad (i=1,2)  \\
         \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\[1ex]
   
         \vprodTy<I><i>{\tau}              & \vprodTy*{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
@@ -118,8 +120,6 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
       \end{array}
     \end{displaymath}
   \end{small}
-
-  The notation $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.
   
   \caption{Product Types}
   \label{fig:product}
@@ -134,7 +134,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \absurdEx[\rho]{e}                & \absurdEx*{e}           & \verb|\absurdEx[\rho]{e}|                                                          \\[1ex]
   
         \sumTy{\tau_1}{\tau_2}            & \sumTy*{\tau_1}{\tau_2} & \verb|\sumTy{\tau_1}{\tau_2}|                                                      \\
-        \injEx<i>[\tau_1][\tau_2]{e}      & \injEx*<i>{e}           & (i=\kw{1},\kw{2})                            & \verb|\injEx<i>[\tau_1][\tau_2]{e}| \\
+        \injEx<i>[\tau_1][\tau_2]{e}      & \injEx*<i>{e}           & \verb|\injEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2) \\
         \caseEx[\tau][\rho]{e}{x}{e}      & \caseEx*{e}{x}{e}       & \verb|\caseEx[\tau][\rho]{e}{x}{e}|                                                \\[1ex]
   
         \boolTy                           & \boolTy*                & \verb|\boolTy|                                                                     \\
@@ -285,8 +285,6 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
     \end{displaymath}
   \end{small}
 
-  Symbols $a$ are constants of sort $\kw{loc}$.
-
   \caption{Command Types}
   \label{fig:cmd}
 \end{figure}
@@ -423,10 +421,3 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 \end{figure}
 
 \end{document}
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% fill-column: 90
-%%% auto-fill-mode: t
-%%% End:
