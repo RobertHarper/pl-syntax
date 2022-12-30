@@ -42,11 +42,13 @@
 
 Write \verb|\usepackage{pfpl-syntax}| to define syntax macros for \textsf{PFPL}.  The package provides an integrated, systematic treatment of abstract and concrete syntax for a wide range of languages.
 
+I am grateful to Kartik Singal for help with the development of this package.
+
 \section*{Abstract Binding Trees}
 
 To typeset an abstract binding tree yourself, provide the package with the \verb|[abt]| option, and use the following commands:
 \begin{itemize}
-  \item \verb|\Opn{kwd}|: Format an operator as a keyword; use starred form for an operator whose display is to be set in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
+  \item \verb|\Opn{op}|: Format an operator as a keyword; use starred form for an operator whose display is to be set in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
   \item \verb|\Abt<parameters>[optional](arguments)|: produce abstract syntax, with all arguments typeset; the starred form omits the optional arguments.  If the parnethesized arguments are empty, then no parentheses are typeset.  For example, the command
   \begin{quote}
 \begin{verbatim}
@@ -250,7 +252,11 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
         \selfTy{\tau}           & \selfTy*{\tau}           & \verb|\selfTy{\tau}|           \\
         \rollEx[\tau]{e}        & \rollEx*{e}              & \verb|\rollEx[\tau]{e}|        \\
         \selfEx[\tau]{x}{e}     & \selfEx*{x}{e}           & \verb|\selfEx[\tau]{x}{e}|     \\[1ex]
-  
+
+        \suspTy{\tau}           & \suspTy*{\tau}           & \verb|\suspTy{\tau}|           \\
+        \suspEx[\tau]{e}        & \suspEx*[\tau]{e}        & \verb|\suspEx[\tau]{e}|        \\
+        \forceEx[\tau]{e}       & \forceEx*[\tau]{e}       & \verb|\forceEx[\tau]{e}|       \\[1ex]
+        
         \ulamEx{x}{M}           & \ulamEx*{x}{M}           & \verb|\ulamEx{x}{M}|           \\
         \uapEx{M_1}{M_2}        & \uapEx*{M_1}{M_2}        & \verb|\uapEx{M_1}{M_2}|        \\
         \uIEx                   & \uIEx*                   & \verb|\uIEx|                   \\
@@ -357,7 +363,7 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
         \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'}| \\
         \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\negTy{\tau}}|                        \\
         \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\negTy{\tau}]{e}|                     \\
-        \forceEx{v}                                   & \forceEx*{v}              & \verb|\forceEx{v}|
+        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\negTy{\tau}]{v}|
       \end{array}
     \end{displaymath}
   \end{small}
