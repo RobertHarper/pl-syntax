@@ -271,14 +271,14 @@
 \NewDocumentCommand{\bndEx}{s O{\tau} m m m}{\Abt@{#1}{\O@pn{bind}}[#2](#3;\A@bs(#4){#5})}
 
 % eager product
-\NewDocumentCommand{\tensorTy}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\A@bt{\O@pn{tens}}(#2\@sep #3})}
+\NewDocumentCommand{\tensorTy}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\A@bt{\O@pn{tens}}(#2\@sep #3)}}
 \NewDocumentCommand{\tensorEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\A@bt{\O@pn{with}}[#2\@sep  #3](#4\@sep  #5)}}
 \NewDocumentCommand{\splitEx}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\@kw{split}\,{#5}\,\{\A@bs(#6,#7){#8}\}}{\A@bt{\O@pn{split}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6,#7){#8})}}
 
 % lazy, not memoized, product
 \NewDocumentCommand{\bothTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{and}}(#2\@sep #3)}}
 \NewDocumentCommand{\bothEx}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{both}}(#2\@sep #3)}}
-\NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}{#2\@sep \A@bs(#3,#4)(#5)}}
+\NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}(#2\@sep \A@bs(#3,#4){#5})}
 
 % processes
 \NewDocumentCommand{\unitPr}{s}{\Abt@{#1}{\Opn@{#1}{1}{one}}}
