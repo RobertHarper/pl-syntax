@@ -135,7 +135,7 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
   
         \sumTy{\tau_1}{\tau_2}            & \sumTy*{\tau_1}{\tau_2} & \verb|\sumTy{\tau_1}{\tau_2}|                                                      \\
         \injEx<i>[\tau_1][\tau_2]{e}      & \injEx*<i>{e}           & \verb|\injEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2) \\
-        \caseEx[\tau][\rho]{e}{x}{e}      & \caseEx*{e}{x}{e}       & \verb|\caseEx[\tau][\rho]{e}{x}{e}|                                                \\[1ex]
+        \caseEx[\tau][\rho]{e}{x}{e'}      & \caseEx*{e}{x}{e'}       & \verb|\caseEx[\tau][\rho]{e}{x}{e'}|                                                \\[1ex]
   
         \boolTy                           & \boolTy*                & \verb|\boolTy|                                                                     \\
         \trueEx                           & \trueEx*                & \verb|\trueEx|                                                                     \\
@@ -144,7 +144,7 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
   
         \vsumTy<I><i>{\tau}               & \vsumTy*<I><i>{\tau}    & \verb|\vsumTy<I><i>{\tau}|                                                         \\
         \vinjEx<I><i>[\tau]{e}            & \vinjEx*<I><i>{e}       & \verb|\vinjEx<I><i>[\tau]{e}| \quad (i\in I)                                       \\
-        \vcaseEx<I>[\rho][\tau]{e}{x}{e'} & \vcaseEx*<I>{e}{x}{e'}  & \verb|\vcaseEx<I>[\rho][\tau]{e}{x}{e'}|
+        \vcaseEx<I>[\tau][\rho]{e}{x}{e'} & \vcaseEx*<I>{e}{x}{e'}  & \verb|\vcaseEx<I>[\tau][\rho]{e}{x}{e'}|
       \end{array}
     \end{displaymath}
   \end{small}
@@ -172,8 +172,8 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
         \listTy{\tau}                              & \listTy*{\tau}                  & \verb|\listTy{\tau}|                              \\
         \nilEx[\tau]                               & \nilEx*                       & \verb|\nilEx[\tau]|                               \\
         \consEx[\tau]{e_1}{e_2}                    & \consEx*{e_1}{e_2}              & \verb|\consEx[\tau]{e_1}{e_2}|                    \\
-        \listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}  & \listrecEx*{e}{e_1}{x}{y}{e_2}  & \verb|\listrecEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}|  \\
-        \listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2} & \verb|\listcaseEx[\rho][\tau]{e}{e_1}{x}{y}{e_2}| \\[1ex]
+        \listrecEx[\rho]{e}{e_1}{x}{y}{e_2}        & \listrecEx*{e}{e_1}{x}{y}{e_2}  & \verb|\listrecEx[\rho]{e}{e_1}{x}{y}{e_2}|  \\
+        \listcaseEx[\rho]{e}{e_1}{x}{y}{e_2}       & \listcaseEx*{e}{e_1}{x}{y}{e_2} & \verb|\listcaseEx[\rho]{e}{e_1}{x}{y}{e_2}| \\[1ex]
   
         \coiTy{t}{\tau}                            & \coiTy*{t}{\tau}                & \verb|\coiTy{t}{\tau}|                            \\
         \outEx[t][\tau]{e}                         & \outEx*{e}                      & \verb|\outEx[t][\tau]{e}|                         \\
@@ -373,7 +373,7 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \tensorTy{\tau_1}{\tau_2} & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}| \\
         \tensorEx{v_1}{v_2}       & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx{v_1}{v_2}|       \\
-        \splitEx{v}{x_1}{x_2}{e}  & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx{v}{x_1}{x_2}{e}|  \\
+        \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}  & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|  \\
         \bothTy{\tau_1}{\tau_2}   & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|   \\
         \bothEx{e_1}{e_2}         & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|         \\
         \parEx{e}{x}{y}{e'}       & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}|

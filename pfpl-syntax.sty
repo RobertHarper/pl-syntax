@@ -90,7 +90,7 @@
 \NewDocumentCommand{\vinj@Abt}{m m m m}{\A@bt{\O@pn{vinj}}<#1\@sep #2>[#3_{#1}](#4)}
 \NewDocumentCommand{\vinj@Cst}{m m}{#1\cdot #2}
 \NewDocumentCommand{\vinjEx}{s D<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vinj@Cst{#3}{#5}}{\vinj@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}}<#1>[#4_#1\@sep #3](#5\@sep \fin@map*{#1}{#2}{\A@bs(#6){#7}})}
+\NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}}<#1>[#3_#1\@sep #4](#5\@sep \fin@map*{#1}{#2}{\A@bs(#6){#7}})}
 \NewDocumentCommand{\vcase@Cst}{m m m m m}{\O@pn{vcase}\, #3\,\{\,\fin@map{#1}{#2}{\A@bs(#4){#5}}\,\}}
 \NewDocumentCommand{\vcaseEx}{s D<>{I} D<>{i} O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\vcase@Cst{#2}{#3}{#6}{#7}{#8}}{\vcase@Abt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
 
@@ -109,12 +109,12 @@
 \NewDocumentCommand{\listTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{list}}{\A@bt{\O@pn{list}}(#2)}}
 \NewDocumentCommand{\nilEx}{s O{\tau}}{\Abt@{#1}{\O@pn{nil}}[#2]}
 \NewDocumentCommand{\consEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{cons}}[#2](#3\@sep #4)}
-\NewDocumentCommand{\listrec@Abt}{o o m m m m m}{\A@bt{\O@pn{listrec}}[#1\@sep #2](#3\@sep #4\@sep \A@bs(#5,#6){#7})}
+\NewDocumentCommand{\listrec@Abt}{o m m m m m}{\A@bt{\O@pn{listrec}}[#1](#2\@sep #3\@sep \A@bs(#4,#5){#6})}
 \NewDocumentCommand{\listrec@Cst}{m m m m m}{\O@pn{listrec}\,#1\,\{\,#2\mid\A@bs(#3,#4){#5}\}}
-\NewDocumentCommand{\listrecEx}{s O{\tau} O{\rho} m m m m m}{\IfBooleanTF{#1}{\listrec@Cst{#4}{#5}{#6}{#7}{#8}}{\listrec@Abt[#2][#3]{#4}{#5}{#6}{#7}{#8}}}
-\NewDocumentCommand{\listcase@Abt}{o o m m m m m}{\A@bt{\O@pn{listcase}}[#1\@sep #2](#3\@sep #4\@sep \A@bs(#5,#6){#7})}
+\NewDocumentCommand{\listrecEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\listrec@Cst{#3}{#4}{#5}{#6}{#7}}{\listrec@Abt[#2]{#3}{#4}{#5}{#6}{#7}}}
+\NewDocumentCommand{\listcase@Abt}{o m m m m m}{\A@bt{\O@pn{listcase}}[#1](#2\@sep #3\@sep \A@bs(#4,#5){#6})}
 \NewDocumentCommand{\listcase@Cst}{m m m m m}{\O@pn{listcase}\,#1\,\{\,#2\mid\A@bs(#3,#4){#5}\}}
-\NewDocumentCommand{\listcaseEx}{s O{\tau} O{\rho} m m m m m}{\IfBooleanTF{#1}{\listcase@Cst{#4}{#5}{#6}{#7}{#8}}{\listcase@Abt[#2][#3]{#4}{#5}{#6}{#7}{#8}}}
+\NewDocumentCommand{\listcaseEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\listcase@Cst{#3}{#4}{#5}{#6}{#7}}{\listcase@Abt[#2]{#3}{#4}{#5}{#6}{#7}}}
 
 % nat type
 \NewDocumentCommand{\natTy}{s}{\A@bt{\O@pn{nat}}}
