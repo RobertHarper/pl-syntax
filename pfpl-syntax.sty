@@ -151,7 +151,7 @@
 % stacks
 \NewDocumentCommand{\frmSlot}{s}{\A@bt{\O@pn*{\mathord{-}}}}
 \NewDocumentCommand{\empStk}{s O{\tau}}{\Abt@{#1}{\Opn@{#1}{\bullet}{emp}}[#2]}
-\NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}} #5}{\A@bt{\O@pn{ext}}[#2\@sep #3](#4\@sep #5})}
+\NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}} #5}{\A@bt{\O@pn{ext}}[#2\@sep #3](#4\@sep #5)}}
 
 % universal and existential types
 \NewDocumentCommand{\allTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\forall}{all}}(\A@bs(#2){#3})}
