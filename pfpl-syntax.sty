@@ -170,6 +170,7 @@
 \NewDocumentCommand{\parr@Cst}{m m}{#1\mathbin{\rightharpoonup} #2}
 \NewDocumentCommand{\parrTy}{s m m}{\IfBooleanTF{#1}{\parr@Cst{#2}{#3}}{\parr@Abt{#2}{#3}}}
 \NewDocumentCommand{\funEx}{s O{\tau_1} O{\tau_2} m m m}{\Abt@{#1}{\O@pn{fun}}[#2\@sep #3](\A@bs(#4,#5){#6})}
+\NewDocumentCommand{\papEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\O@pn{ap}}[#2\@sep #3](#4\@sep #5)}
 \NewDocumentCommand{\fixEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{fix}}[#2](\A@bs(#3){#4})}
 
 % suspensions
