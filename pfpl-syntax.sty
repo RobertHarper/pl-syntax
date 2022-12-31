@@ -291,7 +291,7 @@
 \NewDocumentCommand{\bothEx}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{both}}(#2\@sep #3)}}
 \NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}(#2\@sep \A@bs(#3,#4){#5})}
 \NewDocumentCommand{\topTy}{s}{\A@bt{\O@pn*{\top}}}
-\NewDocumentCommand{\checkEx}{s o m m}{\Abt@{#1}{\O@pn{check}}[#2]{#3\@sep #4}}
+\NewDocumentCommand{\checkEx}{s o m m}{\Abt@{#1}{\O@pn{check}}[#2](#3\@sep #4)}
 
 % processes
 \NewDocumentCommand{\unitPr}{s}{\Abt@{#1}{\Opn@{#1}{1}{one}}}
