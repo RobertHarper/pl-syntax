@@ -46,7 +46,7 @@
 
 % product types
 % nullary
-\NewDocumentCommand{\unitTy}{s}{\Abt@{#1}{\Opn@{#1}{\mathbf{1}}{unit}}}
+\NewDocumentCommand{\unitTy}{s}{\Abt@{#1}{\Opn@{#1}{1}{unit}}}
 \NewDocumentCommand{\unitEx}{s}{\Abt@{#1}{\Opn@{#1}{\langle\rangle}{null}}}
 % binary
 \NewDocumentCommand{\prod@Abt}{m m}{\A@bt{\O@pn{prod}}(#1\@sep#2)}
@@ -71,7 +71,7 @@
 
 % sum types
 % nullary
-\NewDocumentCommand{\voidTy}{s}{\Abt@{#1}{\Opn@{#1}{\mathbf{0}}{void}}}
+\NewDocumentCommand{\voidTy}{s}{\Abt@{#1}{\Opn@{#1}{0}{void}}}
 \NewDocumentCommand{\absurdEx}{s O{\rho} m}{\Abt@{#1}{\O@pn{absurd}}[#2](#3)}
 % binary
 \NewDocumentCommand{\sum@Abt}{m m}{\A@bt{\O@pn{sum}}(#1\@sep  #2)}
@@ -95,7 +95,7 @@
 \NewDocumentCommand{\vcaseEx}{s D<>{I} D<>{i} O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\vcase@Cst{#2}{#3}{#6}{#7}{#8}}{\vcase@Abt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
 
 % booleans, sum of one and one.
-\NewDocumentCommand{\boolTy}{s}{\Abt@{#1}{\Opn@{#1}{\mathbf{2}}{bool}}}
+\NewDocumentCommand{\boolTy}{s}{\Abt@{#1}{\Opn@{#1}{2}{bool}}}
 \NewDocumentCommand{\trueEx}{s}{\A@bt{\O@pn{true}}}
 \NewDocumentCommand{\falseEx}{s}{\A@bt{\O@pn{false}}}
 \NewDocumentCommand{\ifEx}{s O{\rho} m m m}{\Abt@{#1}{\O@pn{if}}[#2](#3\@sep  #4\@sep  #5)}
@@ -180,10 +180,10 @@
 % untyped
 \NewDocumentCommand{\ulamEx}{s m m}{\Abt@{#1}{\Opn@{#1}{\lambda}{lam}}(\A@bs(#2){#3})}
 \NewDocumentCommand{\uapEx}{s m m}{\IfBooleanTF{#1}{#2(#3)}{\A@bt{\O@pn{app}}(#2\@sep #3})}
-\NewDocumentCommand{\uIEx}{s}{\A@bt{\textbf{\@kw{I}}}}
-\NewDocumentCommand{\uKEx}{s}{\A@bt{\textbf{\@kw{K}}}}
-\NewDocumentCommand{\uSEx}{s}{\A@bt{\textbf{\@kw{S}}}}
-\NewDocumentCommand{\uBEx}{s}{\A@bt{\textbf{\@kw{B}}}}
+\NewDocumentCommand{\uIEx}{s}{\A@bt{\O@pn{I}}}
+\NewDocumentCommand{\uKEx}{s}{\A@bt{\O@pn{K}}}
+\NewDocumentCommand{\uSEx}{s}{\A@bt{\O@pn{S}}}
+\NewDocumentCommand{\uBEx}{s}{\A@bt{\O@pn{B}}}
 
 % commands
 \NewDocumentCommand{\cmdTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{cmd}}{\A@bt{\O@pn{cmd}}(#2)}}
