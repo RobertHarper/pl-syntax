@@ -165,14 +165,15 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
         \inEx[t][\tau]{e}                          & \inEx*{e}                       & \verb|\inEx[t][\tau]{e}|                          \\
         \recEx[t][\tau][\rho]{e}{x}{e'}            & \recEx*{e}{x}{e'}               & \small{\verb|\recEx[t][\tau][\rho]{e}{x}{e'}|}    \\[1ex]
   
-        \natTy                                   & \natTy*                       & \verb|\natTy|                                   \\
+        \natTy                                     & \natTy*                         & \verb|\natTy|                                   \\
         \zeroEx                                    & \zeroEx*                        & \verb|\zeroEx|                                    \\
         \succEx{e}                                 & \succEx*{e}                     & \verb|\succEx{e}|                                 \\
+        \natrecEx[\rho]{e}{e_0}{x}{y}{e_1}         & \natrecEx*[\rho]{e}{e_0}{x}{y}{e_1} & \verb|\natrecEx[\rho]{e}{e_0}{x}{y}{e_1}| \\
         \natitEx[\rho]{e}{e_0}{x}{e_1}             & \natitEx*{e}{e_0}{x}{e_1}       & \verb|\natitEx[\rho]{e}{e_0}{x}{e_1}|             \\
         \ifzEx[\rho]{e}{e_0}{x}{e_1}               & \ifzEx*{e}{e_0}{x}{e_1}         & \verb|\ifzEx[\rho]{e}{e_0}{x}{e_1}|               \\[1ex]
   
         \listTy{\tau}                              & \listTy*{\tau}                  & \verb|\listTy{\tau}|                              \\
-        \nilEx[\tau]                               & \nilEx*                       & \verb|\nilEx[\tau]|                               \\
+        \nilEx[\tau]                               & \nilEx*                         & \verb|\nilEx[\tau]|                               \\
         \consEx[\tau]{e_1}{e_2}                    & \consEx*{e_1}{e_2}              & \verb|\consEx[\tau]{e_1}{e_2}|                    \\
         \listrecEx[\rho]{e}{e_1}{x}{y}{e_2}        & \listrecEx*{e}{e_1}{x}{y}{e_2}  & \verb|\listrecEx[\rho]{e}{e_1}{x}{y}{e_2}|  \\
         \listcaseEx[\rho]{e}{e_1}{x}{y}{e_2}       & \listcaseEx*{e}{e_1}{x}{y}{e_2} & \verb|\listcaseEx[\rho]{e}{e_1}{x}{y}{e_2}| \\[1ex]
@@ -250,7 +251,7 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
         \unfoldEx[t][\tau]{e}   & \unfoldEx*{e}            & \verb|\unfoldEx[t][\tau]{e}|   \\[1ex]
   
         \selfTy{\tau}           & \selfTy*{\tau}           & \verb|\selfTy{\tau}|           \\
-        \rollEx[\tau]{e}        & \rollEx*{e}              & \verb|\rollEx[\tau]{e}|        \\
+        \unrollEx[\tau]{e}      & \unrollEx*{e}            & \verb|\unrollEx[\tau]{e}|      \\
         \selfEx[\tau]{x}{e}     & \selfEx*{x}{e}           & \verb|\selfEx[\tau]{x}{e}|     \\[1ex]
 
         \ulamEx{x}{M}           & \ulamEx*{x}{M}           & \verb|\ulamEx{x}{M}|           \\

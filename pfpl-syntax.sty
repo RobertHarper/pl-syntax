@@ -126,6 +126,9 @@
 \NewDocumentCommand{\ifz@Abt}{o m m m m}{\A@bt{\O@pn{ifz}}[#1](#2\@sep #3\@sep \A@bs(#4){#5})}
 \NewDocumentCommand{\ifz@Cst}{m m m m}{\O@pn{ifz}\,#1\,\{\,#2\mid\A@bs(#3){#4}\}}
 \NewDocumentCommand{\ifzEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\ifz@Cst{#3}{#4}{#5}{#6}}{\ifz@Abt[#2]{#3}{#4}{#5}{#6}}}
+\NewDocumentCommand{\natrec@Cst}{m m m m m}{\O@pn{natrec}\,#1\,\{\,#2\mid \A@bs(#3,#4){#5} \,\}}
+\NewDocumentCommand{\natrec@Abt}{o m m m m m}{\Abt{\O@pn{natrec}}[#1]{#2;#3;\A@bs(#4,#5){#6}}}
+\NewDocumentCommand{\natrecEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\natrec@Cst{#3}{#4}{#5}{#6}{#7}}{\natrec@Abt[#2]{#3}{#4}{#5}{#6}{#7}}}
 
 % coinductive type
 \NewDocumentCommand{\coiTy}{s m m}{\A@bt{\O@pn{coi}}(\A@bs(#2){#3})}
@@ -186,7 +189,7 @@
 
 % self-reference
 \NewDocumentCommand{\selfTy}{s m}{\A@bt{\O@pn{self}}(#2)}
-\NewDocumentCommand{\rollEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{roll}}[#2](#3)}
+\NewDocumentCommand{\unrollEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{unroll}}[#2](#3)}
 \NewDocumentCommand{\selfEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{self}}[#2](\A@bs(#3){#4})}
 
 % untyped
