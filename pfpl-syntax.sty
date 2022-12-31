@@ -163,7 +163,7 @@
 
 \NewDocumentCommand{\someTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\exists}{some}}(\A@bs(#2){#3})}
 \NewDocumentCommand{\packEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{pack}}[\A@bs(#2){#3}](#4\@sep  #5)}
-\NewDocumentCommand{\openEx}{s O{t} O{\tau} m O{\rho} m m}{\Abt@{#1}{\O@pn{open}}[\A@bs(#2){#3}\@sep #5](#4\@sep \A@bs(#2,#6){#7})}
+\NewDocumentCommand{\openEx}{s O{t} O{\tau} O{\rho} m m m m}{\Abt@{#1}{\O@pn{open}}[\A@bs(#2){#3}\@sep #4](#5\@sep \A@bs(#6,#7){#8})}
 
 % partial function type with recursive lambda, shares application form with total
 \NewDocumentCommand{\parr@Abt}{m m}{\A@bt{\O@pn{parr}}(#1\@sep  #2)}
