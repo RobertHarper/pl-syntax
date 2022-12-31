@@ -377,13 +377,13 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \topTy                                        & \topTy*                   & \verb|\topTy| \\
         \topEx                                        & \topEx*                   & \verb|\topEx| \\
-        \checkEx[\rho]{e}{e'}                         & \checkEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
-        \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\posTy{\tau}}|                         \\
-        \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\posTy{\tau}]{v}|                      \\
-        \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'}| \\
-        \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\negTy{\tau}}|                        \\
-        \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\negTy{\tau}]{e}|                     \\
-        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\negTy{\tau}]{v}|
+        \checkEx[\negTy{\rho}]{e}{e'}                 & \checkEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
+        \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\tau}|                         \\
+        \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\tau]{v}|                      \\
+        \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\
+        \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\tau}|                        \\
+        \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\tau]{e}|                     \\
+        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}|
       \end{array}
     \end{displaymath}
   \end{small}
