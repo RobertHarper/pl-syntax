@@ -253,10 +253,6 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
         \rollEx[\tau]{e}        & \rollEx*{e}              & \verb|\rollEx[\tau]{e}|        \\
         \selfEx[\tau]{x}{e}     & \selfEx*{x}{e}           & \verb|\selfEx[\tau]{x}{e}|     \\[1ex]
 
-        \suspTy{\tau}           & \suspTy*{\tau}           & \verb|\suspTy{\tau}|           \\
-        \suspEx[\tau]{e}        & \suspEx*[\tau]{e}        & \verb|\suspEx[\tau]{e}|        \\
-        \forceEx[\tau]{e}       & \forceEx*[\tau]{e}       & \verb|\forceEx[\tau]{e}|       \\[1ex]
-        
         \ulamEx{x}{M}           & \ulamEx*{x}{M}           & \verb|\ulamEx{x}{M}|           \\
         \uapEx{M_1}{M_2}        & \uapEx*{M_1}{M_2}        & \verb|\uapEx{M_1}{M_2}|        \\
         \uIEx                   & \uIEx*                   & \verb|\uIEx|                   \\
@@ -267,8 +263,28 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
     \end{displaymath}
   \end{small}
   
-  \caption{Recursive Types}
+  \caption{Partial and Recursive Types}
   \label{fig:recursive}
+\end{figure}
+
+\begin{figure}
+  
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \suspTy{\tau}           & \suspTy*{\tau}           & \verb|\suspTy{\tau}|           \\
+        \suspEx[\tau]{e}        & \suspEx*[\tau]{e}        & \verb|\suspEx[\tau]{e}|        \\
+        \forcesuspEx[\tau]{e}   & \forcesuspEx*[\tau]{e}   & \verb|\forcesuspEx[\tau]{e}|   \\[1ex]
+
+        \compTy{\tau}           & \compTy*{\tau}           & \verb|\compTy{\tau}|           \\
+        \retEx[\tau]{e}         & \retEx*[\tau]{e}         & \verb|\retEx[\tau]{e}|         \\
+        \bndEx[\tau]{e_1}{x}{e_2} & \bndEx*[\tau]{e_1}{x}{e_2} & \verb|\bndEx[\tau]{e_1}{x}{e_2}|
+    \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Suspension and Computation Types}
+  \label{fig:comp-susp}
 \end{figure}
 
 \begin{figure}
