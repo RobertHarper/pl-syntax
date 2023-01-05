@@ -303,4 +303,4 @@ TSWLatexianTemp*
 out
 .vscode
 .latexmkrc
-
+.DS_Store
