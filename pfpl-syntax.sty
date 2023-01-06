@@ -16,7 +16,7 @@
 
 \makeatletter
 
-\ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
+\NewDocumentCommand{\@kw}{m}{\texttt{#1}}
 \NewDocumentCommand{\@sep}{}{\mathbin{;}}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\fin@map}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\sing@map{#3}{#4_#3}\mid #3\in #2}}
@@ -36,7 +36,7 @@
 % choose starred form of \A@bt according to boolean argument
 \NewDocumentCommand{\Abt@}{m m}{\IfBooleanTF{#1}{\A@bt*{#2}}{\A@bt{#2}}}
 
-\NewDocumentCommand{\Sub}{s m m m}{\IfBooleanTF{#1}{#4[#2/#3]}{[#2/#3]#4}}  % pre- or post-fix substitution notation.
+\ProvideDocumentCommand{\Sub}{s m m m}{\IfBooleanTF{#1}{#4[#2/#3]}{[#2/#3]#4}}  % pre- or post-fix substitution notation.
 
 % total function type
 \NewDocumentCommand{\arr@Abt}{m m}{\A@bt{\O@pn{fun}}(#1\@sep #2)}
