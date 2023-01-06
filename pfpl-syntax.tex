@@ -21,6 +21,7 @@
 \usepackage{stackengine}
 \usepackage{scalerel}
 \usepackage{verbatim}
+\usepackage{geometry}
 
 \usepackage[abt]{pfpl-syntax}
 
@@ -88,6 +89,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.
 
 \clearpage
+\newgeometry{hmargin=14mm}
 
 \begin{figure}
   \begin{small}
@@ -269,7 +271,7 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
 \end{figure}
 
 \begin{figure}
-  
+
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
@@ -413,29 +415,29 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
 \end{figure}
 
 \begin{figure}
-  
+
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \trueProp                                       & \trueProp*                       & \verb|\trueProp|                                       \\
         \trueIPf                                        & \trueIPf*                        & \verb|\trueIPf|                                        \\[1ex]
-  
+
         \andProp{\phi_1}{\phi_2}                        & \andProp*{\phi_1}{\phi_2}        & \verb|\andProp{\phi_1}{\phi_2}|                        \\
         \andIPf{\pi_1}{\pi_2}                           & \andIPf*{\pi_1}{\pi_2}           & \verb|\andIPf{\pi_1}{\pi_2}|                           \\
         \andEPf[\phi_1][\phi_2]<i>{\pi}                 & \andEPf*<i>{\pi}                 & \verb|\andEPf[\phi_1][\phi_2]<i>{\pi}|                 \\[1ex]
-  
+
         \falseProp                                      & \falseProp*                      & \verb|\falseProp|                                      \\
         \falseIPf[\phi]{\pi}                            & \falseIPf*{\pi}                  & \verb|\falseIPf[\phi]{\pi}|                            \\
         \falseEPf[\phi]{\pi}                            & \falseEPf*{\pi}                  & \verb|\falseEPf[\phi]{\pi}|                            \\[1ex]
-  
+
         \orProp{\phi_1}{\phi_2}                         & \orProp*{\phi_1}{\phi_2}         & \verb|\orProp{\phi_1}{\phi_2}|                         \\
         \orIPf[\phi_1][\phi_2]<i>{\pi}                  & \orIPf*<i>{\pi}                  & \verb|\orIPf[\phi_1][\phi_2]<i>{\pi}|                  \\
         \orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2} & \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \verb|\orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2}| \\[1ex]
-  
+
         \impProp{\phi_1}{\phi_2}                        & \impProp*{\phi_1}{\phi_2}        & \verb|\impProp{\phi_1}{\phi_2}|                        \\
         \impIPf[\phi_1][\phi_2]{x}{\pi_2}               & \impIPf*{x}{\pi_2}               & \verb|\impIPf[\phi_1][\phi_2]{x}{\pi_2}|               \\
         \impEPf[\phi_1][\phi_2]{\pi}{\pi_1}             & \impEPf*{\pi}{\pi_2}             & \verb|\impEPf[\phi_1][\phi_2]{\pi}{\pi_1}|             \\[1ex]
-  
+
         \notProp{\phi}                                  & \notProp*{\phi}                  & \verb|\notProp{\phi}|                                  \\
         \notIPf[\phi]{x}{\pi}                           & \notIPf*{x}{\pi}                 & \verb|\notIPf[\phi]{x}{\pi}|                           \\
         \notEPf[\phi]{\pi}{\pi_2}                       & \notEPf*{\pi}{\pi_2}             & \verb|\notEPf[\phi]{\pi}{\pi_2}|
@@ -446,5 +448,7 @@ When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite
   \caption{Propositions and Proofs}
   \label{fig:prop}
 \end{figure}
+
+\restoregeometry
 
 \end{document}
