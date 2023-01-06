@@ -36,6 +36,8 @@
 % choose starred form of \A@bt according to boolean argument
 \NewDocumentCommand{\Abt@}{m m}{\IfBooleanTF{#1}{\A@bt*{#2}}{\A@bt{#2}}}
 
+\NewDocumentCommand{\Sub}{s m m m}{\IfBooleanTF{#1}{#4[#2/#3]}{[#2/#3]#4}}  % pre- or post-fix substitution notation.
+
 % total function type
 \NewDocumentCommand{\arr@Abt}{m m}{\A@bt{\O@pn{fun}}(#1\@sep #2)}
 \NewDocumentCommand{\arr@Cst}{m m}{#1\to #2}

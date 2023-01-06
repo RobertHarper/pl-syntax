@@ -81,6 +81,8 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
 The package option \verb|[sf]| indicates that operations are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.
 These forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.
 
+The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e}{x}{e'}| expands to $\Sub*{e}{x}{e'}$, providing pre- and post-fix notation for substitution.  It should only be used when it is defined on $\alpha$-equivalence of abt's and abs's so that it is always well-defined and avoids capture.
+
 \section*{Language-Specific Definitions}
 
 The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures organized around type structure.  The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).
