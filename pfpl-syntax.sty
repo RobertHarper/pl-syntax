@@ -6,17 +6,17 @@
     \NewDocumentCommand{\Opn}{}{\O@pn}
 }
 \DeclareOption{sf}{
-    \NewDocumentCommand{\@kw}{m}{\textsf{#1}}
+    \ProvideDocumentCommand{\@kw}{m}{\textsf{#1}}
 }
 \DeclareOption{sc}{
-    \NewDocumentCommand{\@kw}{m}{\textsc{#1}}
+    \ProvideDocumentCommand{\@kw}{m}{\textsc{#1}}
 }
 \ProcessOptions
-\RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd,bigplustimes,xifthen}
+\RequirePackage{bigplustimes,xifthen}
 
 \makeatletter
 
-\NewDocumentCommand{\@kw}{m}{\texttt{#1}}
+\ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
 \NewDocumentCommand{\@sep}{}{\mathbin{;}}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\fin@map}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\sing@map{#3}{#4_#3}\mid #3\in #2}}
