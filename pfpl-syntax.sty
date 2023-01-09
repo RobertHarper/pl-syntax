@@ -7,10 +7,10 @@
     \ProvideDocumentCommand{\kw}{}{\@kw}
 }
 \DeclareOption{sf}{
-    \ReNewDocumentCommand{\@kw}{m}{\textsf{#1}}
+    \RenewDocumentCommand{\@kw}{m}{\textsf{#1}}
 }
 \DeclareOption{sc}{
-    \ReNewDocumentCommand{\@kw}{m}{\textsc{#1}}
+    \RenewDocumentCommand{\@kw}{m}{\textsc{#1}}
 }
 \ProcessOptions
 \RequirePackage{amsmath,amssymb,amsthm,mathtools,stmaryrd,bigplustimes,xifthen}
