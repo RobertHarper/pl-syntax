@@ -4,7 +4,7 @@
     \NewDocumentCommand{\Abt}{}{\A@bt}
     \NewDocumentCommand{\Abs}{}{\A@bs}
     \NewDocumentCommand{\Opn}{}{\O@pn}
-    \NewDocumentCommand{\kw}{}{\@kw}
+    \ProvideDocumentCommand{\kw}{}{\@kw}
 }
 \DeclareOption{sf}{
     \ProvideDocumentCommand{\@kw}{m}{\textsf{#1}}
