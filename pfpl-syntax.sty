@@ -11,6 +11,9 @@
 \DeclareOption{sc}{
     \ProvideDocumentCommand{\@kw}{m}{\textsc{#1}}
 }
+\DeclareOption{oldstyle}{
+    \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{[#3]}\IfBooleanTF{#1}{}{\IfValueT{#4}{\{#4\}}}\IfValueT{#5}{(#5)}}
+}
 \ProcessOptions
 \RequirePackage{bigplustimes,xifthen}
 
@@ -31,7 +34,7 @@
 % abstract binding tree with operator, index, option, and argument
 % starred form omits the option, which is typically used for types in expressions, which can be omitted as a cheap form of concrete syntax
 % empty principle arguments are dropped entirely.
-\NewDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{\langle #3\rangle}\IfBooleanTF{#1}{}{\IfValueT{#4}{[#4]}}\IfValueT{#5}{(#5)}}
+\ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{\langle #3\rangle}\IfBooleanTF{#1}{}{\IfValueT{#4}{[#4]}}\IfValueT{#5}{(#5)}}
 
 % choose starred form of \A@bt according to boolean argument
 \NewDocumentCommand{\Abt@}{m m}{\IfBooleanTF{#1}{\A@bt*{#2}}{\A@bt{#2}}}

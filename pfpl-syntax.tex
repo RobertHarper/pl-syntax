@@ -77,7 +77,7 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
   \end{quote}
   produces $\Abt{\Opn{dcl}}[\tau;\rho](e;\Abs<a>{m})$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho](e;\Abs<a>{m})$.
 \end{itemize}
-The package option \verb|[sf]| indicates that operations are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.  These forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.
+The package option \verb|[sf]| indicates that operations are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.  These forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.  The package option \verb|[oldstyle]| uses the notational conventions from the second edition in which symbol parameters to operators are typeset in square brackets, and their minor arguments are typeset in curly braces.
 
 The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e}{x}{e'}| expands to $\Sub*{e}{x}{e'}$, providing pre- and post-fix notation for substitution.  It should only be used when it is defined on $\alpha$-equivalence of abt's and abs's so that it is always well-defined and avoids capture.
 
