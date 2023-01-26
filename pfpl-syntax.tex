@@ -50,7 +50,7 @@ Write \verb|\usepackage{pfpl-syntax}| to define syntax macros for \textsf{PFPL}.
 To typeset an abstract binding tree yourself, provide the package with the \verb|[abt]| option, and use the following commands:
 \begin{itemize}
   \item \verb|\Opn{op}|: Format an operator as a keyword; use starred form for an operator whose display is to be set in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
-  \item \verb|\Abt<parameters>[optional](arguments)|: produce abstract syntax, with all arguments typeset; the starred form omits the optional arguments.  If the parnethesized arguments are empty, then no parentheses are typeset.  For example, the command
+  \item \verb|\Abt<parameters>[optional](arguments)|: produce abstract syntax, with all arguments typeset; the starred form omits the optional arguments.  If the parenthesized arguments are empty, then no parentheses are typeset.  For example, the command
   \begin{quote}
 \begin{verbatim}
 \Abt{\Opn{get}}<a>[\tau]
@@ -84,7 +84,7 @@ The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e
 
 \section*{Language-Specific Definitions}
 
-The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures organized around type structure.  The tables display the abstract and concrete syntax, and the literal command used to create them (with starred forms for the concrete syntax).
+The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures organized around type structure.  The tables display the abstract and concrete syntax and the literal command used to create them (with starred forms for the concrete syntax).
 
 When $I$ is a finite set of indices, the notation $\tau_I$ stands for the finite map $\finmap{I}{i}{\tau}$ and $e_I$ stands for $\finmap{I}{i}{e}$.
 
