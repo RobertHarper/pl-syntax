@@ -21,6 +21,7 @@
 \NewDocumentCommand{\isOfKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{{:}{:}} #3}
 
 \NewDocumentCommand{\isOf}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{:} #3}
+\NewDocumentCommand{\ofTp}{s m m}{\IfBooleanTF{#1}{\isOf*{#2}{#3}}{\isOf{#2}{#3}}}
 
 \NewDocumentCommand{\retsTp}{m m}{#1\alt@div #2}
 \NewDocumentCommand{\hasTp}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{\sim} #3}
