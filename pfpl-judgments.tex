@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[color=yellow,textwidth=1.0in]{todonotes}
+\setlength{\marginparwidth}{1.25in}
+\usepackage{amsmath,amssymb,amsthm,mathtools,stmaryrd}
+\usepackage{url}
+
+\usepackage{pfpl-judgments}
+
+\begin{document}
+
+\section*{Overview}
+
+Include the declaration \verb|\usepackage{pfpl-judgments}| to define macros for the judgment forms that are typically used when defining programming languages.
+
+\section*{Basic Judgments}
+
+Figures~\ref{fig:statics} and~\ref{fig:dynamics} define basic judgments for the statics and dynamics of a language, respectively.
+
+\section*{Hypothetical Judgments}
+
+The hypothetical/general judgments have the form $\Gamma\entails J$ or $\Gamma\entails[\Sigma] J$, where $J$ is a basic judgment, $\Gamma$ is variable context, and $\Sigma$ is a signature.
+
+Variable contexts typically arises in conjunction with typing judgments, and are written $\isOf*{x_1}{\tau_1},\dots,\isOf*{x_n}{\tau_n}$ for some $n\geq 0$.
+
+Signatures arise in connection with symbols of various sorts, and are written $\hasTp*{c_1}{\tau_1},\dots,\hasTp*{c_n}{\tau_n}$ for some $n\geq 0$.
+
+\begin{figure}[tp]
+    \begin{displaymath}
+        \begin{array}{l@{\qquad} l}
+            \isTp{\tau}            & \tau\ \text{is a type} \\
+            \isOf{e}{\tau}         & e\ \text{has type}\ \tau \\\\
+            \isKd{\kappa}          & \kappa\ \text{is a kind} \\
+            \isOfKd{\mu}{\kappa}   & \mu\ \text{has kind}\ \kappa \\\\
+            \retsTp{m}{\tau}       & m\ \text{returns type}\ \tau \\
+            \hasTp{a}{\tau}        & a\ \text{has type}\ \tau
+        \end{array}
+    \end{displaymath}
+
+    \caption{Judgments for Statics}
+    \label{fig:statics}
+\end{figure}
+
+\begin{figure}[tp]
+    \begin{displaymath}
+        \begin{array}{l@{\qquad}l}
+            \isVal{e}            &  e\ \text{is a value} \\
+            \isVal[\Sigma]{e}    & e\ \text{is a value}\ (\text{rel.}\ \Sigma) \\\\
+            \isIni{s}            & s\ \text{is initial} \\
+            \isFin{s}            & s\ \text{is final} \\\\
+            s\stepsTo s'         & s\ \text{steps to}\ s' \\
+            s\stepsTo[\Sigma] s' & s\ \text{steps to}\ s'\ (\text{rel.}\ \Sigma)\\
+            s\stepsTo(\ast) s' & s\ \text{multisteps to}\ s' \\
+            s\stepsTo[\Sigma](\ast) s' & s\ \text{multisteps to}\ s'\ (\text{rel.}\ \Sigma) \\\\
+            s\stepsTo<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha \\
+            s\stepsTo[\Sigma]<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha\ (\text{rel.}\ \Sigma) \\\\
+            e\evalsTo v          & e\ \text{evaluates to}\ v \\
+            e\evalsTo[\Sigma] v  & e\ \text{evaluates to}\ v\ (\text{rel.}\ \Sigma) \\
+            e\evalsTo(c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c \\\\
+            e\raises v           & e\ \text{raises}\ v \\
+            e\raises(c) v        & e\ \text{raises}\ v\ \text{with cost}\ c \\\\
+            e\evalsorraises v    & e\ \text{evaluates or raises}\ v \\
+            e\evalsorraises(c) v    & e\ \text{evaluates or raises}\ v\ \text{with cost}\ c
+        \end{array}
+    \end{displaymath}
+
+    \caption{Judgments for Dynamics}
+    \label{fig:dynamics}
+\end{figure}
+
+\end{document}
+
