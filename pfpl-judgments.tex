@@ -13,7 +13,7 @@
 
 \section*{Overview}
 
-Include the declaration \verb|\usepackage{pfpl-judgments}| to define macros for the judgment forms that are typically used when defining programming languages.
+Include the declaration \verb|\usepackage{pfpl-judgments}| to define macros for the judgment forms that are typically used when defining programming languages.  See the source code for this summary for the names of the macros and their use.
 
 \section*{Basic Judgments}
 
@@ -24,8 +24,13 @@ Figures~\ref{fig:statics} and~\ref{fig:dynamics} define basic judgments for the 
 The hypothetical/general judgments have the form $\Gamma\entails J$ or $\Gamma\entails[\Sigma] J$, where $J$ is a basic judgment, $\Gamma$ is variable context, and $\Sigma$ is a signature.
 
 Variable contexts typically arises in conjunction with typing judgments, and are written $\isOf*{x_1}{\tau_1},\dots,\isOf*{x_n}{\tau_n}$ for some $n\geq 0$.
+It is generally preferable to use juxtaposition for concatenation of contexts, written $\Gamma\,\Gamma'$, and to use semicolon to separate distinct contexts, as in $\Delta;\Gamma$.
+
+Contexts are related by general (structural) substitutions, and entailment is defined to respect them.  Consequently, weakening, contraction, and permutation are implicitly validated.  Reflexivity (hypothesis) is typically specified in any inductive definition of hypothetical judgment, and transitivity (substitution) is typically proved to be admissible.
 
 Signatures arise in connection with symbols of various sorts, and are written $\hasTp*{c_1}{\tau_1},\dots,\hasTp*{c_n}{\tau_n}$ for some $n\geq 0$.
+
+Signatures are usually considered to index a family of entailment relations linked by injective renamings (only!) so as to preserve disequality of constants.  Thus the signature admits permutation and perhaps weakening, but certainly not contraction or more general forms of substitution.
 
 \begin{figure}[tp]
     \begin{displaymath}
@@ -33,7 +38,7 @@ Signatures arise in connection with symbols of various sorts, and are written $\
             \isTp{\tau}            & \tau\ \text{is a type} \\
             \isOf{e}{\tau}         & e\ \text{has type}\ \tau \\\\
             \isKd{\kappa}          & \kappa\ \text{is a kind} \\
-            \isOfKd{\mu}{\kappa}   & \mu\ \text{has kind}\ \kappa \\\\
+            \isOfKd{c}{\kappa}   & c\ \text{has kind}\ \kappa \\\\
             \retsTp{m}{\tau}       & m\ \text{returns type}\ \tau \\
             \hasTp{a}{\tau}        & a\ \text{has type}\ \tau
         \end{array}
@@ -48,8 +53,8 @@ Signatures arise in connection with symbols of various sorts, and are written $\
         \begin{array}{l@{\qquad}l}
             \isVal{e}            &  e\ \text{is a value} \\
             \isVal[\Sigma]{e}    & e\ \text{is a value}\ (\text{rel.}\ \Sigma) \\\\
-            \isIni{s}            & s\ \text{is initial} \\
-            \isFin{s}            & s\ \text{is final} \\\\
+            \isIni[\Sigma]{s}            & s\ \text{is initial}\ (\text{rel.} \Sigma) \\
+            \isFin[\Sigma]{s}            & s\ \text{is final}\ (\text{rel.} \Sigma) \\\\
             s\stepsTo s'         & s\ \text{steps to}\ s' \\
             s\stepsTo[\Sigma] s' & s\ \text{steps to}\ s'\ (\text{rel.}\ \Sigma)\\
             s\stepsTo(\ast) s' & s\ \text{multisteps to}\ s' \\
@@ -57,7 +62,6 @@ Signatures arise in connection with symbols of various sorts, and are written $\
             s\stepsTo<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha \\
             s\stepsTo[\Sigma]<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha\ (\text{rel.}\ \Sigma) \\\\
             e\evalsTo v          & e\ \text{evaluates to}\ v \\
-            e\evalsTo[\Sigma] v  & e\ \text{evaluates to}\ v\ (\text{rel.}\ \Sigma) \\
             e\evalsTo(c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c \\\\
             e\raises v           & e\ \text{raises}\ v \\
             e\raises(c) v        & e\ \text{raises}\ v\ \text{with cost}\ c \\\\
