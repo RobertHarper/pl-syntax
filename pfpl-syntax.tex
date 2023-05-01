@@ -83,8 +83,8 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
-        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx{x}{e}|           \\
-        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx{e_1}{e_2}|
+        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
+        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}|
       \end{array}
     \end{displaymath}
   \end{small}
@@ -103,11 +103,11 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \unitEx                           & \unitEx*                 & \verb|\unitEx|                                \\[1ex]
 
         \prodTy{\tau_1}{\tau_2}           & \prodTy*{\tau_1}{\tau_2} & \verb|\prodTy{\tau_1}{\tau_2}|                \\
-        \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>{e}| \quad (i=1,2)            \\
+        \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2)            \\
         \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\[1ex]
 
         \vprodTy<I><i>{\tau}              & \vprodTy*{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
-        \vtupleEx<I>[\tau]{e}             & \vtupleEx*<I>{e}         & \verb|\vtupleEx<I>[\tau]{e}|                  \\
+        \vtupleEx<I>[\tau]{e}             & \vtupleEx*<I>{e}         & \verb|\vtupleEx<I><i>[\tau]{e}|                  \\
         \vprojEx<I><i>[\tau]{e}           & \vprojEx*<i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I)
       \end{array}
     \end{displaymath}
@@ -137,7 +137,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
         \vsumTy<I><i>{\tau}               & \vsumTy*<I><i>{\tau}    & \verb|\vsumTy<I><i>{\tau}|                        \\
         \vinjEx<I><i>[\tau]{e}            & \vinjEx*<I><i>{e}       & \verb|\vinjEx<I><i>[\tau]{e}| \quad (i\in I)      \\
-        \vcaseEx<I>[\tau][\rho]{e}{x}{e'} & \vcaseEx*<I>{e}{x}{e'}  & \verb|\vcaseEx<I>[\tau][\rho]{e}{x}{e'}|
+        \vcaseEx<I><i>[\tau][\rho]{e}{x}{e'} & \vcaseEx*<I><i>{e}{x}{e'}  & \verb|\vcaseEx<I><i>[\tau][\rho]{e}{x}{e'}|
       \end{array}
     \end{displaymath}
   \end{small}
@@ -172,7 +172,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
         \coiTy{t}{\tau}                      & \coiTy*{t}{\tau}                    & \verb|\coiTy{t}{\tau}|                         \\
         \outEx[t][\tau]{e}                   & \outEx*{e}                          & \verb|\outEx[t][\tau]{e}|                      \\
-        \genEx[t][\tau][\rho]{e}{x}{e'}    & \genEx*{e}{x}{e'}                   & \verb|\genEx[t][\tau][\rho]{e}{x}{e'}|       \\[1ex]
+        \genEx[t][\tau][\sigma]{e}{x}{e'}    & \genEx*{e}{x}{e'}                   & \verb|\genEx[t][\tau][\sigma]{e}{x}{e'}|       \\[1ex]
 
         \conatTy                             & \conatTy*                           & \verb|\conatTy|                                \\
         \streamTy{\tau}                      & \streamTy*{\tau}                    & \verb|\streamTy{\tau}|
@@ -215,7 +215,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \noEx                          & \noEx*              & \verb|\noEx|                          \\[1ex]
 
         \contTy{\tau}                  & \contTy*{\tau}      & \verb|\contTy{\tau}|                  \\
-        \contEx{k}                     & \contEx*{k}         & \verb|\contEx{k} |                    \\
+        \contEx[\tau]{k}                     & \contEx*{k}         & \verb|\contEx[\tau]{k} |                    \\
         \letccEx[\tau]{x}{e}           & \letccEx*{x}{e}     & \verb|\letccEx[\tau]{x}{e}|           \\
         \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} & \verb|\throwEx[\tau][\rho]{e_1}{e_2}| \\[1ex]
 
@@ -400,7 +400,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \tensorTy{\tau_1}{\tau_2}                      & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}|                      \\
-        \tensorEx{v_1}{v_2}                            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx{v_1}{v_2}|                            \\
+        \tensorEx[\tau_1][\tau_2]{v_1}{v_2}                            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx[\tau_1][\tau_2]{v_1}{v_2}|                            \\
         \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}| \\
         \bothTy{\tau_1}{\tau_2}                        & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|                        \\
         \bothEx{e_1}{e_2}                              & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|                              \\
@@ -423,7 +423,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \trueIPf                                        & \trueIPf*                        & \verb|\trueIPf|                                        \\[1ex]
 
         \andProp{\phi_1}{\phi_2}                        & \andProp*{\phi_1}{\phi_2}        & \verb|\andProp{\phi_1}{\phi_2}|                        \\
-        \andIPf{\pi_1}{\pi_2}                           & \andIPf*{\pi_1}{\pi_2}           & \verb|\andIPf{\pi_1}{\pi_2}|                           \\
+        \andIPf[\phi_1][\phi_2]{\pi_1}{\pi_2}                           & \andIPf*{\pi_1}{\pi_2}           & \verb|\andIPf[\phi_1][\phi_2]{\pi_1}{\pi_2}|                           \\
         \andEPf[\phi_1][\phi_2]<i>{\pi}                 & \andEPf*<i>{\pi}                 & \verb|\andEPf[\phi_1][\phi_2]<i>{\pi}|                 \\[1ex]
 
         \falseProp                                      & \falseProp*                      & \verb|\falseProp|                                      \\
@@ -432,7 +432,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
         \orProp{\phi_1}{\phi_2}                         & \orProp*{\phi_1}{\phi_2}         & \verb|\orProp{\phi_1}{\phi_2}|                         \\
         \orIPf[\phi_1][\phi_2]<i>{\pi}                  & \orIPf*<i>{\pi}                  & \verb|\orIPf[\phi_1][\phi_2]<i>{\pi}|                  \\
-        \orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2} & \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \verb|\orEPf[\phi_1][\phi_2]{\pi}{x}{\pi_1}{x}{\pi_2}| \\[1ex]
+        \orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2} & \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \verb|\orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2}| \\[1ex]
 
         \impProp{\phi_1}{\phi_2}                        & \impProp*{\phi_1}{\phi_2}        & \verb|\impProp{\phi_1}{\phi_2}|                        \\
         \impIPf[\phi_1][\phi_2]{x}{\pi_2}               & \impIPf*{x}{\pi_2}               & \verb|\impIPf[\phi_1][\phi_2]{x}{\pi_2}|               \\
