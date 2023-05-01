@@ -7,3 +7,6 @@ Thus, \prodty{A_1}{A_2} typesets the abstract syntax for the product type, and \
 
 See the included guide for a summary of how the macros are invoked and what they produce.  The package option abt is used to provide external forms of the \Abt, \Abs, and \Opn macros for use in user-defined syntax.  The option \texttt{oldstyle} uses PFPL2 conventions for bracketing arguments.  The options \texttt{sf} and \texttt{sc} specify that keywords are to be typeset in sans serif or small caps, respectively.
 
+PFPL judgment macros.
+
+See the documentation file for summary and usage.  Defines integrated judgments for the statics and dynamics of languages as used in PFPL.
