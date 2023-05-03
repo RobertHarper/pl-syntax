@@ -20,7 +20,7 @@
 \makeatletter
 
 \ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
-\NewDocumentCommand{\@sep}{}{\mathbin{;}}
+\NewDocumentCommand{\@sep}{}{\mathbin{\@kw{;}}}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\fin@map}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\sing@map{#3}{#4_#3}\mid #3\in #2}}
 
@@ -216,6 +216,9 @@
 \NewDocumentCommand{\bnd@Abt}{m m m m m}{\A@bt{\O@pn{bnd}}[#1\@sep  #2](#3\@sep  \A@bs(#4){#5})}
 \NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\mathbin{\@kw{;}}#3}
 \NewDocumentCommand{\bndCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bnd@Cst{#3}{#5}{#6}}{\bnd@Abt{#2}{#4}{#3}{#5}{#6}}}
+\NewDocumentCommand{\seq@Abt}{m m m m}{\A@bt{\O@pn{seq}}[#1\@sep #2](#3\@sep #4)}
+\NewDocumentCommand{\seq@Cst}{m m}{#1\@kw{;} #2}
+\NewDocumentCommand{\seqCmd}{s O{\rho_1} m O{\rho_2} m}{\IfBooleanTF{#1}{\seq@Cst{#3}{#5}}{\seq@Abt{#2}{#4}{#3}{#5}}}
 
 \NewDocumentCommand{\dcl@Abt}{m m m m}{\A@bt{\O@pn{dcl}}[#1\@sep  #2](#3\@sep  #4)}
 \NewDocumentCommand{\dcl@Cst}{m m m}{\O@pn{dcl}\,#2\mathbin{\@kw{:=}}#1\,\@kw{;}\,#3}
