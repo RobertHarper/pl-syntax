@@ -106,9 +106,9 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2)            \\
         \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\[1ex]
 
-        \vprodTy<I><i>{\tau}              & \vprodTy*{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
+        \vprodTy<I><i>{\tau}              & \vprodTy*<I><i>{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
         \vtupleEx<I>[\tau]{e}             & \vtupleEx*<I>{e}         & \verb|\vtupleEx<I><i>[\tau]{e}|                  \\
-        \vprojEx<I><i>[\tau]{e}           & \vprojEx*<i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I)
+        \vprojEx<I><i>[\tau]{e}           & \vprojEx*<I><i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I)
       \end{array}
     \end{displaymath}
   \end{small}
@@ -140,7 +140,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \vcaseEx<I><i>[\tau][\rho]{e}{x}{e'} & \vcaseEx*<I><i>{e}{x}{e'}  & \verb|\vcaseEx<I><i>[\tau][\rho]{e}{x}{e'}|
       \end{array}
     \end{displaymath}
-  \end{small}
+  \end{small} 
 
   \caption{Sum Types}
   \label{fig:sums}
@@ -296,12 +296,12 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \retCmd[\tau]{e}           & \retCmd*{e}                 & \verb|\retCmd[\tau]{e}|           \\
         \bndCmd[\tau]{e}[\rho]{x}{m}           & \bndCmd*{e}{x}{m}           & \verb|\bndCmd[\tau]{e}[\rho]{x}{m}|           \\
         \seqCmd[\rho_1]{m_1}[\rho_2]{m_2}      & \seqCmd*{m_1}{m_2}          & \verb|\seqCmd[\rho_1]{m_1}[\rho_2]{m_2}| \\
-        \dclCmd[\tau]{e}[\rho]{a}{m}           & \dclCmd*{e}{a}{m}           & \verb|\dclCmd[\tau]{e}[\rho]{a}{m}|           \\[1ex]
+        \dclCmd[\tau]{e}[\rho]<a>{m}           & \dclCmd*{e}<a>{m}           & \verb|\dclCmd[\tau]{e}[\rho]<a>{m}|           \\[1ex]
         \refTy{\tau}               & \refTy*{\tau}               & \verb|\refTy{\tau}| \\
-        \refEx{a}                  & \refEx*{a}                  & \verb|\refEx{a}|                  \\[1ex]
-        \getCmd{a}                 & \getCmd*{a}                 & \verb|\getCmd{a}|                 \\
+        \refEx<a>                  & \refEx*<a>                 & \verb|\refEx<a>|                  \\[1ex]
+        \getCmd<a>                 & \getCmd*<a>                 & \verb|\getCmd<a>|                 \\
         \getrefCmd[\tau]{e}        & \getrefCmd*{e}              & \verb|\getrefCmd[\tau]{e}|        \\
-        \setCmd{a}{e}              & \setCmd*{a}{e}              & \verb|\setCmd{a}{e}|              \\
+        \setCmd<a>{e}              & \setCmd*<a>{e}              & \verb|\setCmd<a>{e}|              \\
         \setrefCmd[\tau]{e_1}{e_2} & \setrefCmd*[\tau]{e_1}{e_2} & \verb|\setrefCmd[\tau]{e_1}{e_2}|
       \end{array}
     \end{displaymath}
