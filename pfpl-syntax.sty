@@ -221,7 +221,7 @@
 \NewDocumentCommand{\seqCmd}{s O{\rho_1} m O{\rho_2} m}{\IfBooleanTF{#1}{\seq@Cst{#3}{#5}}{\seq@Abt{#2}{#4}{#3}{#5}}}
 
 \NewDocumentCommand{\dcl@Abt}{m m m m}{\A@bt{\O@pn{dcl}}[#1\@sep  #2](#3\@sep  #4)}
-\NewDocumentCommand{\dcl@Cst}{m m m}{\O@pn{dcl}\,#2\mathbin{\@kw{:=}}#1\,\@kw{;}\,#3}
+\NewDocumentCommand{\dcl@Cst}{m m m}{\O@pn{dcl}\,#2\mathbin{\@kw{:=}}#1\,\@kw{in}\,#3}
 \NewDocumentCommand{\dclCmd}{s O{\tau} m O{\rho} r<> m}{\IfBooleanTF{#1}{\dcl@Cst{#3}{#5}{#6}}{\dcl@Abt{#2}{#4}{#3}{\A@bs<#5>{#6}}}}
 
 % reference types
