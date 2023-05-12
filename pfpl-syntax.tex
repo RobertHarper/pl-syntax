@@ -68,7 +68,7 @@ The package option \verb|[sf]| indicates that operations are to be set in sans s
 
 The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e}{x}{e'}| expands to $\Sub*{e}{x}{e'}$, providing pre- and post-fix notation for substitution.  It is total and well-defined on $\alpha$-equivalence classes of abt's.
 
-The $n$-ary forms of abstract syntax, of which there are relatively few, make use of finite families of syntactic objects, generally written $\finmap{I}{i}{o}$, where $I$ is a finite set of indices, and for each $i\in I$, the object $o_i$ is the $i$th element of this family.
+The $n$-ary forms of abstract syntax, of which there are relatively few, make use of finite families of syntactic objects, generally written $(\finmap{I}{i}{o})$, where $I$ is a finite set of indices, and for each $i\in I$, the object $o_i$ is the $i$th element of this family.
 
 \section*{Language-Specific Definitions}
 
@@ -76,22 +76,6 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
 \clearpage
 \newgeometry{hmargin=14mm}
-
-\begin{figure}
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
-        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
-        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}|
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{Function Types}
-  \label{fig:function}
-\end{figure}
 
 \begin{figure}
 
@@ -182,6 +166,22 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
   \caption{Inductive and Coinductive Types}
   \label{fig:icoi}
+\end{figure}
+
+\begin{figure}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
+        \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
+        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
+        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{(Total) Function Types}
+  \label{fig:function}
 \end{figure}
 
 \begin{figure}

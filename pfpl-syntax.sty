@@ -41,14 +41,6 @@
 
 \ProvideDocumentCommand{\Sub}{s m m m}{\IfBooleanTF{#1}{#4[#2/#3]}{[#2/#3]#4}}  % pre- or post-fix substitution notation.
 
-% total function type
-\NewDocumentCommand{\arr@Abt}{m m}{\A@bt{\O@pn{fun}}(#1\@sep #2)}
-\NewDocumentCommand{\arr@Cst}{m m}{#1\to #2}
-\NewDocumentCommand{\arrTy}{s m m}{\IfBooleanTF{#1}{\arr@Cst{#2}{#3}}{\arr@Abt{#2}{#3}}}
-\NewDocumentCommand{\funTy}{s m m}{\IfBooleanTF{#1}{\arr@Cst{#2}{#3}}{\arr@Abt{#2}{#3}}}
-\NewDocumentCommand{\lamEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\Opn@{#1}{\lambda}{lam}}[#2\@sep #3](\A@bs(#4){#5})}
-\NewDocumentCommand{\appEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\O@pn{ap}}[#2\@sep #3](#4\@sep #5)}
-
 % product types
 % nullary
 \NewDocumentCommand{\unitTy}{s}{\Abt@{#1}{\Opn@{#1}{1}{unit}}}
@@ -160,6 +152,14 @@
 \NewDocumentCommand{\frmSlot}{s}{\A@bt{\O@pn*{\mathord{-}}}}
 \NewDocumentCommand{\empStk}{s O{\tau}}{\Abt@{#1}{\Opn@{#1}{\bullet}{emp}}[#2]}
 \NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}} #5}{\A@bt{\O@pn{ext}}[#2\@sep #3](#4\@sep #5)}}
+
+% total function type
+\NewDocumentCommand{\arr@Abt}{m m}{\A@bt{\O@pn{fun}}(#1\@sep #2)}
+\NewDocumentCommand{\arr@Cst}{m m}{#1\to #2}
+\NewDocumentCommand{\arrTy}{s m m}{\IfBooleanTF{#1}{\arr@Cst{#2}{#3}}{\arr@Abt{#2}{#3}}}
+\NewDocumentCommand{\funTy}{s m m}{\IfBooleanTF{#1}{\arr@Cst{#2}{#3}}{\arr@Abt{#2}{#3}}}
+\NewDocumentCommand{\lamEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\Opn@{#1}{\lambda}{lam}}[#2\@sep #3](\A@bs(#4){#5})}
+\NewDocumentCommand{\appEx}{s O{\tau_1} O{\tau_2} m m}{\Abt@{#1}{\O@pn{ap}}[#2\@sep #3](#4\@sep #5)}
 
 % universal and existential types
 \NewDocumentCommand{\allTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\forall}{all}}(\A@bs(#2){#3})}
