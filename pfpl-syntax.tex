@@ -92,21 +92,8 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
         \vprodTy<I><i>{\tau}              & \vprodTy*<I><i>{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
         \vtupleEx<I>[\tau]{e}             & \vtupleEx*<I>{e}         & \verb|\vtupleEx<I><i>[\tau]{e}|                  \\
-        \vprojEx<I><i>[\tau]{e}           & \vprojEx*<I><i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I)
-      \end{array}
-    \end{displaymath}
-  \end{small}
+        \vprojEx<I><i>[\tau]{e}           & \vprojEx*<I><i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I) \\[1ex]
 
-  \caption{Product Types}
-  \label{fig:product}
-\end{figure}
-
-\begin{figure}
-
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \voidTy                           & \voidTy*                & \verb|\voidTy|                                    \\
         \absurdEx[\rho]{e}                & \absurdEx*{e}           & \verb|\absurdEx[\rho]{e}|                         \\[1ex]
 
@@ -126,10 +113,31 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
     \end{displaymath}
   \end{small} 
 
-  \caption{Sum Types}
+  \caption{Product and Sum Types}
   \label{fig:sums}
 \end{figure}
 
+\begin{figure}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
+        \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
+        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
+        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}| \\[1ex]
+        \allTy{t}{\tau}                     & \allTy*{t}{\tau}                     & \verb|\allTy{t}{\tau}|                     \\
+        \tlamEx{t}[\tau]{e}                 & \tlamEx*{t}{e}                       & \verb|\tlamEx{t}[\tau]{e}|                 \\
+        \tapEx[t][\tau]{e}{\rho}          & \tapEx*{e}{\rho}                   & \verb|\tapEx[t][\tau]{e}{\rho}|          \\[1ex]
+        \someTy{t}{\tau}                    & \someTy*{t}{\tau}                    & \verb|\someTy{t}{\tau}|                    \\
+        \packEx[t][\tau]{\rho}{e}           & \packEx*{\rho}{e}                    & \verb|\packEx[t][\tau]{\rho}{e}|           \\
+        \openEx[t][\tau][\rho]{e}{t}{x}{e'} & \openEx*[t][\tau][\rho]{e}{t}{x}{e'} & \verb|\openEx[t][\tau][\rho]{e}{t}{x}{e'}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Function, Universal, and Existential Types}
+  \label{fig:poly}
+\end{figure}
 
 \begin{figure}
 
@@ -169,64 +177,23 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 \end{figure}
 
 \begin{figure}
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
-        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
-        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}|
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{(Total) Function Types}
-  \label{fig:function}
-\end{figure}
-
-\begin{figure}
 
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \allTy{t}{\tau}                     & \allTy*{t}{\tau}                     & \verb|\allTy{t}{\tau}|                     \\
-        \tlamEx{t}[\tau]{e}                 & \tlamEx*{t}{e}                       & \verb|\tlamEx{t}[\tau]{e}|                 \\
-        \tapEx[t][\tau]{e}{\rho}          & \tapEx*{e}{\rho}                   & \verb|\tapEx[t][\tau]{e}{\rho}|          \\[1ex]
-        \someTy{t}{\tau}                    & \someTy*{t}{\tau}                    & \verb|\someTy{t}{\tau}|                    \\
-        \packEx[t][\tau]{\rho}{e}           & \packEx*{\rho}{e}                    & \verb|\packEx[t][\tau]{\rho}{e}|           \\
-        \openEx[t][\tau][\rho]{e}{t}{x}{e'} & \openEx*[t][\tau][\rho]{e}{t}{x}{e'} & \verb|\openEx[t][\tau][\rho]{e}{t}{x}{e'}|
+        \tensorTy{\tau_1}{\tau_2}                      & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}|                      \\
+        \tensorEx[\tau_1][\tau_2]{v_1}{v_2}                            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx[\tau_1][\tau_2]{v_1}{v_2}|                            \\
+        \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}| \\
+        \bothTy{\tau_1}{\tau_2}                        & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|                        \\
+        \bothEx{e_1}{e_2}                              & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|                              \\
+        \parEx{e}{x}{y}{e'}                            & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}|
       \end{array}
     \end{displaymath}
   \end{small}
 
-  \caption{Polymorphic Types}
-  \label{fig:poly}
-\end{figure}
-
-\begin{figure}
-
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \ansTy                         & \ansTy*             & \verb|\ansTy|                         \\
-        \yesEx                         & \yesEx*             & \verb|\yesEx|                         \\
-        \noEx                          & \noEx*              & \verb|\noEx|                          \\[1ex]
-
-        \contTy{\tau}                  & \contTy*{\tau}      & \verb|\contTy{\tau}|                  \\
-        \contEx[\tau]{k}                     & \contEx*{k}         & \verb|\contEx[\tau]{k} |                    \\
-        \letccEx[\tau]{x}{e}           & \letccEx*{x}{e}     & \verb|\letccEx[\tau]{x}{e}|           \\
-        \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} & \verb|\throwEx[\tau][\rho]{e_1}{e_2}| \\[1ex]
-
-        \empStk[\tau]                  & \empStk*[\tau]      & \verb|\empStk[\tau]|                  \\
-        \extStk[\tau_1][\tau_2]{k}{f}  & \extStk*{k}{f}      & \verb|\extStk[\tau_1][\tau_2]{k}{f}|
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{Continuation Types}
-  \label{fig:cont}
+  \caption{Parallel Types}
+  \label{fig:par}
 \end{figure}
 
 \begin{figure}
@@ -269,6 +236,31 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
+        \ansTy                         & \ansTy*             & \verb|\ansTy|                         \\
+        \yesEx                         & \yesEx*             & \verb|\yesEx|                         \\
+        \noEx                          & \noEx*              & \verb|\noEx|                          \\[1ex]
+
+        \contTy{\tau}                  & \contTy*{\tau}      & \verb|\contTy{\tau}|                  \\
+        \contEx[\tau]{k}                     & \contEx*{k}         & \verb|\contEx[\tau]{k} |                    \\
+        \letccEx[\tau]{x}{e}           & \letccEx*{x}{e}     & \verb|\letccEx[\tau]{x}{e}|           \\
+        \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} & \verb|\throwEx[\tau][\rho]{e_1}{e_2}| \\[1ex]
+
+        \empStk[\tau]                  & \empStk*[\tau]      & \verb|\empStk[\tau]|                  \\
+        \extStk[\tau_1][\tau_2]{k}{f}  & \extStk*{k}{f}      & \verb|\extStk[\tau_1][\tau_2]{k}{f}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Continuation Types}
+  \label{fig:cont}
+\end{figure}
+
+\begin{figure}
+
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \suspTy{\tau}           & \suspTy*{\tau}           & \verb|\suspTy{\tau}|           \\
         \suspEx[\tau]{e}        & \suspEx*[\tau]{e}        & \verb|\suspEx[\tau]{e}|        \\
         \forcesuspEx[\tau]{e}   & \forcesuspEx*[\tau]{e}   & \verb|\forcesuspEx[\tau]{e}|   \\[1ex]
@@ -283,6 +275,29 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
   \caption{Suspension and Computation Types}
   \label{fig:comp-susp}
+\end{figure}
+
+\begin{figure}
+
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
+        \topTy                                        & \topTy*                   & \verb|\topTy| \\
+        \topEx                                        & \topEx*                   & \verb|\topEx| \\
+        \checkEx[\negTy{\rho}]{e}{e'}                 & \checkEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
+        \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\tau}|                         \\
+        \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\tau]{v}|                      \\
+        \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\
+        \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\tau}|                        \\
+        \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\tau]{e}|                     \\
+        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Polarized Types}
+  \label{fig:pol}
 \end{figure}
 
 \begin{figure}
@@ -345,81 +360,6 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \unitPr            & \unitPr*            & \verb|\unitPr |           \\
-        \parPr{p_1}{p_2}     & \parPr*{p_1}{p_2}     & \verb|\parPr{p_1}{p_2}|     \\[1ex]
-        \nullPr            & \nullPr*            & \verb|\nullPr|            \\
-        \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2}  & \verb|\choosePr{p_1}{p_2}|  \\[1ex]
-        \quePr{a}{p}         & \quePr*{a}{p}         & \verb|\quePr{a}{p}|         \\
-        \sigPr{a}{p}         & \sigPr*{a}{p}         & \verb|\sigPr{a}{p}|                     \\[1ex]
-        \rcvPr{a}{x}{p}      & \rcvPr*{a}{x}{p}      & \verb|\rcvPr{a}{x}{p}|         \\
-        \sndPr{a}{e}{p}      & \sndPr*{a}{e}{p}      & \verb|\sndPr{a}{e}{p}|      \\[1ex]
-        \asndPr{a}{e}        & \asndPr*{a}{e}        & \verb|\asndPr{a}{e}|        \\
-        \syncPr{e}          & \syncPr*{e} & \verb|\syncPr{e}| \\[1ex]
-        \newPr[\tau]{a}{p}         & \newPr*{a}{p}         & \verb|\newPr[\tau]{a}{p}|         \\[1ex]
-        \silAc               & \silAc*               & \verb|\silAc|               \\
-        \sigAc{a}            & \sigAc*{a}            & \verb|\sigAc{a}|            \\
-        \queAc{a}            & \queAc*{a}            & \verb|\queAc{a}|            \\
-        \sndAc{a}{e}         & \sndAc*{a}{e}         & \verb|\sndAc{a}{e}|         \\
-        \rcvAc{a}{e}         & \rcvAc*{a}{e}         & \verb|\rcvAc{a}{e}|         \\
-        \anyAc{e}            & \anyAc*{e}            & \verb|\anyAc{e}|         \\
-        \emitAc{e}           & \emitAc*{e}           & \verb|\emitAc{e}|
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{Processes}
-  \label{fig:proc}
-\end{figure}
-
-\begin{figure}
-
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \topTy                                        & \topTy*                   & \verb|\topTy| \\
-        \topEx                                        & \topEx*                   & \verb|\topEx| \\
-        \checkEx[\negTy{\rho}]{e}{e'}                 & \checkEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
-        \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\tau}|                         \\
-        \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\tau]{v}|                      \\
-        \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\
-        \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\tau}|                        \\
-        \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\tau]{e}|                     \\
-        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}|
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{Polarized Types}
-  \label{fig:pol}
-\end{figure}
-
-\begin{figure}
-
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \tensorTy{\tau_1}{\tau_2}                      & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}|                      \\
-        \tensorEx[\tau_1][\tau_2]{v_1}{v_2}                            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx[\tau_1][\tau_2]{v_1}{v_2}|                            \\
-        \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}| \\
-        \bothTy{\tau_1}{\tau_2}                        & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|                        \\
-        \bothEx{e_1}{e_2}                              & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|                              \\
-        \parEx{e}{x}{y}{e'}                            & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}|
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{Parallel Types}
-  \label{fig:par}
-\end{figure}
-
-\begin{figure}
-
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \trueProp                                       & \trueProp*                       & \verb|\trueProp|                                       \\
         \trueIPf                                        & \trueIPf*                        & \verb|\trueIPf|                                        \\[1ex]
 
@@ -448,6 +388,38 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
   \caption{Propositions and Proofs}
   \label{fig:prop}
+\end{figure}
+
+\begin{figure}
+
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
+        \unitPr            & \unitPr*            & \verb|\unitPr |           \\
+        \parPr{p_1}{p_2}     & \parPr*{p_1}{p_2}     & \verb|\parPr{p_1}{p_2}|     \\[1ex]
+        \nullPr            & \nullPr*            & \verb|\nullPr|            \\
+        \choosePr{p_1}{p_2}  & \choosePr*{p_1}{p_2}  & \verb|\choosePr{p_1}{p_2}|  \\[1ex]
+        \quePr{a}{p}         & \quePr*{a}{p}         & \verb|\quePr{a}{p}|         \\
+        \sigPr{a}{p}         & \sigPr*{a}{p}         & \verb|\sigPr{a}{p}|                     \\[1ex]
+        \rcvPr{a}{x}{p}      & \rcvPr*{a}{x}{p}      & \verb|\rcvPr{a}{x}{p}|         \\
+        \sndPr{a}{e}{p}      & \sndPr*{a}{e}{p}      & \verb|\sndPr{a}{e}{p}|      \\[1ex]
+        \asndPr{a}{e}        & \asndPr*{a}{e}        & \verb|\asndPr{a}{e}|        \\
+        \syncPr{e}          & \syncPr*{e} & \verb|\syncPr{e}| \\[1ex]
+        \newPr[\tau]{a}{p}         & \newPr*{a}{p}         & \verb|\newPr[\tau]{a}{p}|         \\[1ex]
+        \silAc               & \silAc*               & \verb|\silAc|               \\
+        \sigAc{a}            & \sigAc*{a}            & \verb|\sigAc{a}|            \\
+        \queAc{a}            & \queAc*{a}            & \verb|\queAc{a}|            \\
+        \sndAc{a}{e}         & \sndAc*{a}{e}         & \verb|\sndAc{a}{e}|         \\
+        \rcvAc{a}{e}         & \rcvAc*{a}{e}         & \verb|\rcvAc{a}{e}|         \\
+        \anyAc{e}            & \anyAc*{e}            & \verb|\anyAc{e}|         \\
+        \emitAc{e}           & \emitAc*{e}           & \verb|\emitAc{e}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Processes}
+  \label{fig:proc}
 \end{figure}
 
 \restoregeometry
