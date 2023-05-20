@@ -77,8 +77,8 @@
 \NewDocumentCommand{\inj@Abt}{r<> m m m}{\A@bt{\O@pn{inj}}<#1>[#2\@sep #3](#4)}
 \NewDocumentCommand{\inj@Cst}{r<> m}{#1\cdot #2}
 \NewDocumentCommand{\injEx}{s R<>{i} O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\inj@Cst<#2>{#5}}{\inj@Abt<#2>{#3}{#4}{#5}}}
-\NewDocumentCommand{\case@Abt}{m m m m m}{\A@bt{\O@pn{case}}[#1_1\@sep  #1_2\@sep  #2](#3\@sep  \A@bs(#4){#5_1}\@sep  \A@bs(#4){#5_2})}
-\NewDocumentCommand{\case@Cst}{m m m}{\O@pn{case}\, #1\,\{\,\A@bs(#2){#3_1} \mid \A@bs(#2){#3_2}\,\}}
+\NewDocumentCommand{\case@Abt}{m m m m m}{\A@bt{\O@pn{case}}[#1_1\@sep  #1_2\@sep #2](#3\@sep \A@bs(#4_1){#5_1}\@sep  \A@bs(#4_2){#5_2})}
+\NewDocumentCommand{\case@Cst}{m m m}{\O@pn{case}\, #1\,\{\,\A@bs(#2_1){#3_1} \mid \A@bs(#2_2){#3_2}\,\}}
 \NewDocumentCommand{\caseEx}{s O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\case@Cst{#4}{#5}{#6}}{\case@Abt{#2}{#3}{#4}{#5}{#6}}}
 % n-ary
 \NewDocumentCommand{\vsum@Abt}{m m m}{\A@bt{\O@pn{vsum}}<#1>(\fin@map*{#1}{#2}{#3})}
