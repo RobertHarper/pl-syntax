@@ -21,8 +21,10 @@
 
 \ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
 \NewDocumentCommand{\@sep}{}{\mathbin{\@kw{;}}}
+\NewDocumentCommand{\emp@map}{}{\emptyset}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
-\NewDocumentCommand{\fin@map}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\sing@map{#3}{#4_#3}\mid #3\in #2}}
+\NewDocumentCommand{\fin@map}{m m m}{\sing@map{#2}{#3_#2}\mid #2\in #1}
+\NewDocumentCommand{\ext@map}{m m m}{#1,\sing@map{#2}{#3}}
 
 % starred for math name, non-starred for verbatim name, optional index
 \NewDocumentCommand{\O@pn}{s m}{\mathop{\IfBooleanTF{#1}{#2}{\@kw{#2}}}\nolimits}
@@ -39,7 +41,11 @@
 % choose starred form of \A@bt according to boolean argument
 \NewDocumentCommand{\Abt@}{m m}{\IfBooleanTF{#1}{\A@bt*{#2}}{\A@bt{#2}}}
 
-\ProvideDocumentCommand{\Sub}{s m m m}{\IfBooleanTF{#1}{#4[#2/#3]}{[#2/#3]#4}}  % pre- or post-fix substitution notation.
+% pre- or post-fix substitution notation
+\ProvideDocumentCommand{\Sub}{s m m m}{\IfBooleanTF{#1}{#4[#2/#3]}{[#2/#3]#4}}
+% substitution maps
+\ProvideDocumentCommand{\empSub}{}{\emp@map}
+\ProvideDocumentCommand{\extSub}{m m m}{\ext@map{#1}{#2}{#3}}
 
 % product types
 % nullary
@@ -56,11 +62,11 @@
 \NewDocumentCommand{\proj@Cst}{m m}{#2\cdot #1}
 \NewDocumentCommand{\projEx}{s R<>{i} O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\proj@Cst{#2}{#5}}{\proj@Abt{#2}{#3}{#4}{#5}}}
 % n-ary
-\NewDocumentCommand{\vprod@Abt}{m m m}{\A@bt{\O@pn{vprod}}<#1>(\fin@map*{#1}{#2}{#3})}
+\NewDocumentCommand{\vprod@Abt}{m m m}{\A@bt{\O@pn{vprod}}<#1>({#3}_{#1})}
 \NewDocumentCommand{\vprod@Cst}{m m m}{\bigtimes_{#2\in #1}(\sing@map{#2}{{#3}_{#2}})}
 \NewDocumentCommand{\vprodTy}{s R<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vprod@Cst{#2}{#3}{#4}}{\vprod@Abt{#2}{#3}{#4}}}
-\NewDocumentCommand{\vtuple@Abt}{m m m m}{\A@bt{\O@pn{vtuple}}<#1>[#3_#1](\fin@map*{#1}{#2}{#4})}
-\NewDocumentCommand{\vtuple@Cst}{m m m}{\langle \sing@map{#2}{#3_{#2}}\mid #2\in #1\rangle}
+\NewDocumentCommand{\vtuple@Abt}{m m m m}{\A@bt{\O@pn{vtuple}}<#1>[#3_#1]({#4}_{#1})}
+\NewDocumentCommand{\vtuple@Cst}{m m m}{\langle \fin@map{#1}{#2}{#3} \rangle}
 \NewDocumentCommand{\vtupleEx}{s R<>{I} D<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vtuple@Cst{#2}{#3}{#5}}{\vtuple@Abt{#2}{#3}{#4}{#5}}}
 \NewDocumentCommand{\vproj@Abt}{m m m m}{\A@bt{\O@pn{vproj}}<#1\@sep #2>[#3_{#1}](#4)}
 \NewDocumentCommand{\vproj@Cst}{m m}{#2\cdot #1}
@@ -81,14 +87,14 @@
 \NewDocumentCommand{\case@Cst}{m m m}{\O@pn{case}\, #1\,\{\,\A@bs(#2_1){#3_1} \mid \A@bs(#2_2){#3_2}\,\}}
 \NewDocumentCommand{\caseEx}{s O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\case@Cst{#4}{#5}{#6}}{\case@Abt{#2}{#3}{#4}{#5}{#6}}}
 % n-ary
-\NewDocumentCommand{\vsum@Abt}{m m m}{\A@bt{\O@pn{vsum}}<#1>(\fin@map*{#1}{#2}{#3})}
+\NewDocumentCommand{\vsum@Abt}{m m m}{\A@bt{\O@pn{vsum}}<#1>({#3}_{#1})}
 \NewDocumentCommand{\vsum@Cst}{m m m}{\bigplus_{#2\in #1}(\sing@map{#2}{{#3}_{#2}})}
 \NewDocumentCommand{\vsumTy}{s R<>{I} D<>{i} m}{\IfBooleanTF{#1}{\vsum@Cst{#2}{#3}{#4}}{\vsum@Abt{#2}{#3}{#4}}}
 \NewDocumentCommand{\vinj@Abt}{m m m m}{\A@bt{\O@pn{vinj}}<#1\@sep #2>[#3_{#1}](#4)}
 \NewDocumentCommand{\vinj@Cst}{m m}{#1\cdot #2}
 \NewDocumentCommand{\vinjEx}{s R<>{I} R<>{i} O{\tau} m}{\IfBooleanTF{#1}{\vinj@Cst{#3}{#5}}{\vinj@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}}<#1>[#3_#1\@sep #4](#5\@sep \fin@map*{#1}{#2}{\A@bs(#6){#7}})}
-\NewDocumentCommand{\vcase@Cst}{m m m m m}{\O@pn{vcase}\, #3\,\{\,\fin@map{#1}{#2}{\A@bs(#4){#5}}\,\}}
+\NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}}<#1>[#3_#1\@sep #4](#5\@sep (\A@bs(#6){#7})_{#1})}
+\NewDocumentCommand{\vcase@Cst}{m m m m m}{\O@pn{vcase}\, #3\,\{\,\fin@map{#1}{#2}{(\A@bs(#4){#5})}\,\}}
 \NewDocumentCommand{\vcaseEx}{s R<>{I} D<>{i} O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\vcase@Cst{#2}{#3}{#6}{#7}{#8}}{\vcase@Abt{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
 
 % booleans, sum of one and one.

@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{pfpl-judgments}[2023/05/01 1.0.0 PFPL Judgment Forms]
-\RequirePackage{stackengine,scalerel,amsmath,mathtools}
+\RequirePackage{pfpl-syntax,stackengine,scalerel,amsmath,mathtools}
 
 \makeatletter
 
@@ -30,6 +30,15 @@
 
 \NewDocumentCommand{\okSt}{m}{#1\,\textsf{ok}}
 
+% contexts
+
+\NewDocumentCommand{\empCtx}{}{\bullet}
+\NewDocumentCommand{\extCtx}{m m m}{#1,#2\mathbin{:}#3}
+
+% hypothetical/general judgment
+
+\NewDocumentCommand{\entails}{O{}}{\mathrel{\vdash}_{#1}}
+
 % equality
 
 \NewDocumentCommand{\eqTp}{m m}{#1\mathrel{\eqdot}#2\,\textsf{type}}
@@ -50,9 +59,5 @@
 \NewDocumentCommand{\evalsTo}{O{} D(){}}{\mathrel{\Downarrow}_{#1}^{#2}}
 \NewDocumentCommand{\raises}{O{} D(){}}{\mathrel{\Uparrow}_{#1}^{#2}}
 \NewDocumentCommand{\evalsorraises}{O{} D(){}}{\mathrel{\Updownarrow}_{#1}^{#2}}
-
-% entailment
-
-\NewDocumentCommand{\entails}{O{}}{\mathrel{\vdash}_{#1}}
 
 \makeatother

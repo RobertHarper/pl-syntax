@@ -18,8 +18,8 @@
 \author{Robert Harper}
 \date{\today}
 
-\NewDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
-\NewDocumentCommand{\finmap}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\singmap{#3}{#4_#3}\mid #3\in #2}}
+\ProvideDocumentCommand{\singmap}{m m}{#1\hookrightarrow #2}
+\ProvideDocumentCommand{\finmap}{s m m m}{\IfBooleanTF{#1}{#4_{#2}}{\singmap{#3}{#4_#3}\mid #3\in #2}}
 
 \begin{document}
 
@@ -68,7 +68,6 @@ The package option \verb|[sf]| indicates that operations are to be set in sans s
 
 The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e}{x}{e'}| expands to $\Sub*{e}{x}{e'}$, providing pre- and post-fix notation for substitution.  It is total and well-defined on $\alpha$-equivalence classes of abt's.
 
-The $n$-ary forms of abstract syntax, of which there are relatively few, make use of finite families of syntactic objects, generally written $(\finmap{I}{i}{o})$, where $I$ is a finite set of indices, and for each $i\in I$, the object $o_i$ is the $i$th element of this family.
 
 \section*{Language-Specific Definitions}
 
