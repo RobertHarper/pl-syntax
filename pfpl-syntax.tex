@@ -83,8 +83,9 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \unitTy                           & \unitTy*                 & \verb|\unitTy|                                \\
-        \unitEx                           & \unitEx*                 & \verb|\unitEx|                                \\[1ex]
-
+        \unitEx                           & \unitEx*                 & \verb|\unitEx|                                \\
+        \checkEx[\rho]{e_1}{e_2}          & \checkEx*{e_1}{e_2}       & \verb|\checkEx[\rho]{e_1}{e_2|                \\[1ex]
+        
         \prodTy{\tau_1}{\tau_2}           & \prodTy*{\tau_1}{\tau_2} & \verb|\prodTy{\tau_1}{\tau_2}|                \\
         \projEx<i>{e}                     & \projEx*<i>{e}           & \verb|\projEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2)            \\
         \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\[1ex]
@@ -284,7 +285,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \topTy                                        & \topTy*                   & \verb|\topTy| \\
         \topEx                                        & \topEx*                   & \verb|\topEx| \\
-        \checkEx[\negTy{\rho}]{e}{e'}                 & \checkEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
+        \chckEx[\negTy{\rho}]{e}{e'}                 & \chckEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
         \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\tau}|                         \\
         \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\tau]{v}|                      \\
         \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\

@@ -51,6 +51,9 @@
 % nullary
 \NewDocumentCommand{\unitTy}{s}{\Abt@{#1}{\Opn@{#1}{1}{unit}}}
 \NewDocumentCommand{\unitEx}{s}{\Abt@{#1}{\Opn@{#1}{\langle\rangle}{null}}}
+\NewDocumentCommand{\check@Cst}{m m}{\O@pn{check}\,#1\,\{\,#2\,\}}
+\NewDocumentCommand{\check@Abt}{m m m}{\A@bt{\O@pn{check}}[#1](#2\@sep #3)}
+\NewDocumentCommand{\checkEx}{s O{\rho} m m}{\IfBooleanTF{#1}{\check@Cst{#3}{#4}}{\check@Abt{#2}{#3}{#4}}}
 % binary
 \NewDocumentCommand{\prod@Abt}{m m}{\A@bt{\O@pn{prod}}(#1\@sep#2)}
 \NewDocumentCommand{\prod@Cst}{m m}{#1\times #2}
@@ -307,7 +310,7 @@
 \NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}(#2\@sep \A@bs(#3,#4){#5})}
 \NewDocumentCommand{\topTy}{s}{\A@bt{\O@pn*{\top}}}
 \NewDocumentCommand{\topEx}{s}{\A@bt{\O@pn*{\star}}}
-\NewDocumentCommand{\checkEx}{s o m m}{\Abt@{#1}{\O@pn{check}}[#2](#3\@sep #4)}
+\NewDocumentCommand{\chckEx}{s o m m}{\Abt@{#1}{\O@pn{check}}[#2](#3\@sep #4)}
 
 % processes
 \NewDocumentCommand{\unitPr}{s}{\Abt@{#1}{\Opn@{#1}{1}{one}}}
