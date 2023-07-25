@@ -133,7 +133,7 @@
 \NewDocumentCommand{\ifz@Cst}{m m m m}{\O@pn{ifz}\,#1\,\{\,#2\mid\A@bs(#3){#4}\}}
 \NewDocumentCommand{\ifzEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\ifz@Cst{#3}{#4}{#5}{#6}}{\ifz@Abt[#2]{#3}{#4}{#5}{#6}}}
 \NewDocumentCommand{\natrec@Cst}{m m m m m}{\O@pn{natrec}\,#1\,\{\,#2\mid \A@bs(#3,#4){#5} \,\}}
-\NewDocumentCommand{\natrec@Abt}{o m m m m m}{\Abt{\O@pn{natrec}}[#1]{#2;#3;\A@bs(#4,#5){#6}}}
+\NewDocumentCommand{\natrec@Abt}{o m m m m m}{\Abt{\O@pn{natrec}}[#1]{#2\@sep 3\@sep \A@bs(#4,#5){#6}}}
 \NewDocumentCommand{\natrecEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\natrec@Cst{#3}{#4}{#5}{#6}{#7}}{\natrec@Abt[#2]{#3}{#4}{#5}{#6}{#7}}}
 
 % coinductive type
@@ -160,7 +160,7 @@
 % stacks
 \NewDocumentCommand{\frmSlot}{s}{\A@bt{\O@pn*{\mathord{-}}}}
 \NewDocumentCommand{\empStk}{s O{\tau}}{\Abt@{#1}{\Opn@{#1}{\bullet}{emp}}[#2]}
-\NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\mathbin{\@kw{;}} #5}{\A@bt{\O@pn{ext}}[#2\@sep #3](#4\@sep #5)}}
+\NewDocumentCommand{\extStk}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{#4\@sep #5}{\A@bt{\O@pn{ext}}[#2\@sep #3](#4\@sep #5)}}
 
 % total function type
 \NewDocumentCommand{\arr@Abt}{m m}{\A@bt{\O@pn{fun}}(#1\@sep #2)}
@@ -196,7 +196,7 @@
 \NewDocumentCommand{\compTy}{s m}{\Abt@{#1}{\O@pn{comp}}(#2)}
 \NewDocumentCommand{\compEx}{s m}{\Abt@{#1}{\O@pn{comp}}(#2)}
 \NewDocumentCommand{\retEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{ret}}[#2](#3)}
-\NewDocumentCommand{\bndEx}{s O{\tau} m m m}{\Abt@{#1}{\O@pn{bind}}[#2](#3;\A@bs(#4){#5})}
+\NewDocumentCommand{\bndEx}{s O{\tau} m m m}{\Abt@{#1}{\O@pn{bind}}[#2](#3\@sep \A@bs(#4){#5})}
 
 % recursive type
 \NewDocumentCommand{\recTy}{s m m}{\A@bt{\O@pn{rec}}(\A@bs(#2){#3})}
@@ -223,10 +223,10 @@
 \NewDocumentCommand{\retCmd}{s O{\tau} m}{\Abt@{#1}{\O@pn{ret}}[#2](#3)}
 
 \NewDocumentCommand{\bnd@Abt}{m m m m m}{\A@bt{\O@pn{bnd}}[#1\@sep  #2](#3\@sep  \A@bs(#4){#5})}
-\NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\mathbin{\@kw{;}}#3}
+\NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep #3}
 \NewDocumentCommand{\bndCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bnd@Cst{#3}{#5}{#6}}{\bnd@Abt{#2}{#4}{#3}{#5}{#6}}}
 \NewDocumentCommand{\seq@Abt}{m m m m}{\A@bt{\O@pn{seq}}[#1\@sep #2](#3\@sep #4)}
-\NewDocumentCommand{\seq@Cst}{m m}{#1\@kw{;} #2}
+\NewDocumentCommand{\seq@Cst}{m m}{#1\@sep #2}
 \NewDocumentCommand{\seqCmd}{s O{\rho_1} m O{\rho_2} m}{\IfBooleanTF{#1}{\seq@Cst{#3}{#5}}{\seq@Abt{#2}{#4}{#3}{#5}}}
 
 \NewDocumentCommand{\dcl@Abt}{m m m m}{\A@bt{\O@pn{dcl}}[#1\@sep  #2](#3\@sep  #4)}

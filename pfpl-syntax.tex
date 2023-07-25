@@ -7,6 +7,7 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools,stmaryrd}
 \usepackage{url}
 \usepackage{geometry}
+\usepackage{fancyvrb}
 
 \usepackage[abt]{pfpl-syntax}
 \usepackage{pfpl-judgments}
@@ -354,6 +355,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
   \label{fig:mod}
 \end{figure}
 
+\SaveVerb{orelverb}|\orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2}|
 \begin{figure}
 
   \begin{small}
@@ -374,7 +376,8 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \orProp{\phi_1}{\phi_2}                         & \orProp*{\phi_1}{\phi_2}         & \verb|\orProp{\phi_1}{\phi_2}|                         \\
         \orIPf[\phi_1][\phi_2]<i>{\pi}                  & \orIPf*<i>{\pi}                  & \verb|\orIPf[\phi_1][\phi_2]<i>{\pi}|                 \\
         \orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2} &
-        \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \verb|\orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2}| \\[1ex]
+        \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \\
+        \multicolumn{3}{r}{\UseVerb{orelverb}} \\[1ex]
 
         \impProp{\phi_1}{\phi_2}                        & \impProp*{\phi_1}{\phi_2}        & \verb|\impProp{\phi_1}{\phi_2}|                        \\
         \impIPf[\phi_1][\phi_2]{x}{\pi_2}               & \impIPf*{x}{\pi_2}               & \verb|\impIPf[\phi_1][\phi_2]{x}{\pi_2}|               \\
