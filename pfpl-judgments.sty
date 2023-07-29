@@ -32,8 +32,14 @@
 
 % contexts
 
-\NewDocumentCommand{\empCtx}{}{\bullet}
-\NewDocumentCommand{\extCtx}{m m m}{#1,#2\mathbin{:}#3}
+\NewDocumentCommand{\empCtx}{}{\varepsilon}
+\NewDocumentCommand{\extCtx}{m m}{#1,#2}
+\NewDocumentCommand{\appCtx}{m m}{#1\,#2}
+\NewDocumentCommand{\sepCtx}{m m}{#1\mathbin{;}#2}
+
+\NewDocumentCommand{\empSig}{}{\varepsilon}
+\NewDocumentCommand{\extSig}{m m}{#1,#2}
+\NewDocumentCommand{\appSig}{m m}{#1\,#2}
 
 % hypothetical/general judgment
 
