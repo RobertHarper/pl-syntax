@@ -66,6 +66,8 @@ When effects are permitted, commands are classified by types, but there are no v
 \]
 where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  Signature concatenation is written $\appSig{\Sigma_1}{\Sigma_2}$.  As with contexts, the empty signature is usually left implicit.  The statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.  Thus, the signature governs the usage of symbols within expressions and commands.
 
+\smallskip
+
 The entailment notation for hypothetical judgments is reserved for situations in which it expresses a \emph{structural consequence relation}, one that admits reflexivity (assumptions entail themselves) and transitivity aka substitution for variables, and is closed under weakening (addition of unused variables).  Symbols, being distinct from variables, enjoy no such properties, though usually signatures are treated so as to ignore any extra symbols beyond what is required in a given situation.
 
 \begin{figure}[p]
