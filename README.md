@@ -9,4 +9,4 @@ See the included guide for a summary of how the macros are invoked and what they
 
 PFPL judgment macros.
 
-See the documentation file for summary and usage.  Defines integrated judgments for the statics and dynamics of languages as used in PFPL.
+See the documentation file for summary and usage.  This style defines  judgments for the statics and dynamics of languages as used in PFPL.
