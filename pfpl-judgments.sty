@@ -45,12 +45,16 @@
 
 \NewDocumentCommand{\entails}{O{}}{\mathrel{\vdash}_{#1}}
 
-% equality
+% equality, subkinding
 
-\NewDocumentCommand{\eqTp}{m m}{#1\mathrel{\eqdot}#2\,\textsf{type}}
-\NewDocumentCommand{\eqOfKd}{m m m}{#1\mathrel{\eqdot}#2\mathrel{{:}{:}}#3}
+\NewDocumentCommand{\eqKd}{m m}{#1\mathrel{\equiv} #2}
+\NewDocumentCommand{\subKd}{m m}{#1\mathrel{{<}{:}{:}} #2}
 
-\NewDocumentCommand{\eqOf}{m m m}{#1\mathrel{\eqdot}#2\mathrel{:}#3}
+\NewDocumentCommand{\eqTp}{m m}{#1\mathrel{\equiv}#2\,\textsf{type}}
+\NewDocumentCommand{\subTp}{m m}{#1\mathrel{{<}{:}} #2}
+\NewDocumentCommand{\eqOfKd}{m m m}{#1\mathrel{\equiv}#2\mathrel{{:}{:}}#3}
+
+\NewDocumentCommand{\eqOf}{m m m}{#1\mathrel{\doteq}#2\mathrel{:}#3}
 \NewDocumentCommand{\eqOfTp}{m m m}{\eqOf{#1}{#2}{#3}}
 
 % dynamics
