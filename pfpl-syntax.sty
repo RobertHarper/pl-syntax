@@ -172,7 +172,7 @@
 
 % universal and existential types
 \NewDocumentCommand{\allTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\forall}{all}}(\A@bs(#2){#3})}
-\NewDocumentCommand{\tlamEx}{s m O{\tau} m}{\Abt@{#1}{\Opn@{#1}{\Lambda}{tlam}}(\A@bs(#2){#4})}
+\NewDocumentCommand{\tlamEx}{s O{t} O{\tau} m}{\Abt@{#1}{\Opn@{#1}{\Lambda}{tlam}}(\A@bs(#2){#4})}
 \NewDocumentCommand{\tapEx}{s O{t} O{\tau} m m}{\Abt@{#1}{\O@pn{tap}}[\A@bs(#2){#3}](#4\@sep #5)}
 
 \NewDocumentCommand{\someTy}{s m m}{\Abt@{#1}{\Opn@{#1}{\exists}{some}}(\A@bs(#2){#3})}
