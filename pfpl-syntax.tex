@@ -37,7 +37,7 @@ Use the declaration \verb|\usepackage{pfpl-syntax}| to define syntax macros for 
 To typeset an abstract binding tree yourself, provide the package with the \verb|[abt]| option, and use the following commands:
 \begin{itemize}
   \item \verb|\Opn{op}|: Format an operator as a keyword; use starred form for an operator whose display is to be set in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
-  \item \verb|\Abt<parameters>[optional](arguments)|: produce abstract syntax, with all arguments typeset; the starred form omits the optional arguments.  If the parenthesized arguments are empty, then no parentheses are typeset.  For example, the command
+  \item \verb|\Abt{operator}<parameters>[optional](arguments)|: produce abstract syntax, with all arguments typeset; the starred form omits the optional arguments.  If the parenthesized arguments are empty, then no parentheses are typeset.  For example, the command
   \begin{quote}
 \begin{verbatim}
 \Abt{\Opn{get}}<a>[\tau]
