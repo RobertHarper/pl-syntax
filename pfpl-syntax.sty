@@ -302,7 +302,9 @@
 \NewDocumentCommand{\thunkEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{thunk}}[#2](#3)}
 \NewDocumentCommand{\forceEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
 \NewDocumentCommand{\powTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\ltimes} #3}{\Abt@{#1}{\O@pn{pow}}(#2;#3)}}
-\NewDocumentCommand{\ppairEx}{s O{\posTy{\tau_1}} O{\negTy{\tau_2}} m m}{\IfBooleanTF{#1}{#4\mathbin{\ltimes} #5}{\Abt@{#1}{\O@pn{ppair}}[#2\@sep #3](#4;#5)}}
+\NewDocumentCommand{\ppair@Abt}{m m m m}{\A@bt{\O@pn{ppair}}[#1\@sep #2](#3\@sep #4)}
+\NewDocumentCommand{\ppair@Cst}{m m}{\langle #1, #2\rangle}
+\NewDocumentCommand{\ppairEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{\ppair@Cst{#4}{#5}}{\ppair@Abt{#2}{#3}{#4}{#5}}}
 \NewDocumentCommand{\pletEx}{s O{\posTy{\tau_1}} O{\negTy{\tau_2}} O{\negTy{\rho}} m m m m}{\Abt@{#1}{\O@pn{plet}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6,#7){#8})}
 
 % eager product
