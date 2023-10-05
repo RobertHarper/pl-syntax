@@ -262,6 +262,7 @@
 \NewDocumentCommand{\pi@Abt}{m m m}{\A@bt{\O@pn{Pi}}(#1\@sep \A@bs(#2){#3})}
 \NewDocumentCommand{\pi@Cst}{m m m}{#2{\mathbin{:}}#1\to #3}
 \NewDocumentCommand{\piSg}{s m m m}{\IfBooleanTF{#1}{\pi@Cst{#2}{#3}{#4}}{\pi@Abt{#2}{#3}{#4}}}
+\NewDocumentCommand{\piTy}{s m o m}{\IfBooleanTF{#1}{\IfNoValueTF{#3}{\funTy*{#2}{#4}}{\pi@Cst{#2}{#3}{#4}}}{\IfNoValueTF{#3}{\pi@Abt{#2}{\_}{#4}}{\pi@Abt{#2}{#3}{#4}}}}
 
 \NewDocumentCommand{\fun@Abt}{m m m}{\A@bt{\O@pn{fun}}[#1](\A@bs(#2){#3})}
 \NewDocumentCommand{\fun@Cst}{m m m}{\O@pn{fun} #2\mathbin{:}#1\mathbin{\O@pn{in}}#3}
@@ -273,6 +274,8 @@
 \NewDocumentCommand{\sig@Abt}{m m m}{\A@bt{\O@pn{Sig}}(#1\@sep \A@bs(#2){#3})}
 \NewDocumentCommand{\sig@Cst}{m m m}{#2{\mathbin{:}}#1\times #3}
 \NewDocumentCommand{\sigSg}{s m m m}{\IfBooleanTF{#1}{\sig@Cst{#2}{#3}{#4}}{\sig@Abt{#2}{#3}{#4}}}
+\NewDocumentCommand{\sigTy}{s m o m}{\IfBooleanTF{#1}{\IfNoValueTF{#3}{\prodTy*{#2}{#4}}{\sig@Cst{#2}{#3}{#4}}}{\IfNoValueTF{#3}{\sig@Abt{#2}{\_}{#4}}{\sig@Abt{#2}{#3}{#4}}}}
+
 \NewDocumentCommand{\str@Abt}{m m m m m}{\A@bt{\O@pn{str}}[#1\@sep\A@bs(#2){#3}](#4\@sep #5)}
 \NewDocumentCommand{\str@Cst}{m m}{\O@pn{str} #1\mathbin{\O@pn{in}} #2}
 \NewDocumentCommand{\strMd}{s O{S_1} O{X} O{S_2} m m}{\IfBooleanTF{#1}{\str@Cst{#5}{#6}}{\str@Abt{#2}{#3}{#4}{#5}{#6}}}
@@ -298,6 +301,7 @@
 \NewDocumentCommand{\thunkTy}{s m}{\Abt@{#1}{\Opn@{#1}{\downarrow}{U}}(#2)}
 \NewDocumentCommand{\thunkEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{thunk}}[#2](#3)}
 \NewDocumentCommand{\forceEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
+\NewDocumentCommand{\mixTy}{s m m}{\IfBooleanTF{#1}{#2\ltimes #3}{\Abt@{#1}{\O@pn{mix}}(#2;#3)}}
 
 % eager product
 \NewDocumentCommand{\tensorTy}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\A@bt{\O@pn{tens}}(#2\@sep #3)}}
