@@ -292,7 +292,10 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\
         \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\tau}|                        \\
         \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\tau]{e}|                     \\
-        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}|
+        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}| \\
+        \powTy{\posTy{\tau}}{\negTy{\tau}}            & \powTy*{\posTy{\tau}}{\negTy{\tau}}             & \verb|\powTy{\tau}{\rho}| \\
+        \ppairEx{v}{e}                                & \ppairEx*{v}{e}           & \verb|\ppairEx{v}{e}| \\
+        \pletEx{v}{x_1}{x_2}{e}                       & \pletEx*{v}{x_1}{x_2}{e}  & \verb|\pletEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
       \end{array}
     \end{displaymath}
   \end{small}
