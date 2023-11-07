@@ -28,9 +28,9 @@
 
 \NewDocumentCommand{\accsTp}{m m}{#1\div #2}
 
-\NewDocumentCommand{\okSt}{m}{#1\,\textsf{ok}}
+\NewDocumentCommand{\okSt}{O{} m}{#2\,\textsf{ok}_{#1}}
 
-% contexts
+% contexts and signatures
 
 \NewDocumentCommand{\empCtx}{}{\varepsilon}
 \NewDocumentCommand{\extCtx}{m m}{#1,#2}
@@ -43,7 +43,7 @@
 
 % hypothetical/general judgment
 
-\NewDocumentCommand{\entailsJ}{O{}}{\mathrel{\vdash}_{#1}}
+\NewDocumentCommand{\hypJdg}{O{}}{\mathrel{\vdash}_{#1}}
 
 % equality, subkinding
 
@@ -61,13 +61,15 @@
 
 \NewDocumentCommand{\isVal}{o m}{#2\,\textsf{val}\IfValueT{#1}{_{#1}}}
 
-\NewDocumentCommand{\isIni}{O{} m}{#2\,\textsf{ini}_{#1}}
-\NewDocumentCommand{\isFin}{O{} m}{#2\,\textsf{fin}_{#1}}
+\NewDocumentCommand{\evalsJdg}{O{} D(){}}{\mathrel{\Downarrow}_{#1}^{#2}}
+\NewDocumentCommand{\raisesJdg}{O{} D(){}}{\mathrel{\Uparrow}_{#1}^{#2}}
+\NewDocumentCommand{\evalorraiseJdg}{O{} D(){}}{\mathrel{\Updownarrow}_{#1}^{#2}}
 
-\NewDocumentCommand{\stepsTo}{O{\hspace{.5pc}} D<>{\hspace{.5pc}} D(){}}{\mathrel{\xmapsto[\hspace{.25pc}#1\hspace{.25pc}]{\hspace{.25pc}#2\hspace{.25pc}}}^{#3}}
 
-\NewDocumentCommand{\evalsToJ}{O{} D(){}}{\mathrel{\Downarrow}_{#1}^{#2}}
-\NewDocumentCommand{\raisesJ}{O{} D(){}}{\mathrel{\Uparrow}_{#1}^{#2}}
-\NewDocumentCommand{\evalsorraisesJ}{O{} D(){}}{\mathrel{\Updownarrow}_{#1}^{#2}}
+\NewDocumentCommand{\iniJdg}{O{} m}{#2\,\textsf{initial}_{#1}}
+\NewDocumentCommand{\finJdg}{O{} m}{#2\,\textsf{final}_{#1}}
+
+\NewDocumentCommand{\stepsJdg}{O{\hspace{.5pc}} D<>{\hspace{.5pc}} D(){}}{\mathrel{\xmapsto[\hspace{.25pc}#1\hspace{.25pc}]{\hspace{.25pc}#2\hspace{.25pc}}}^{#3}}
+\NewDocumentCommand{\stepsTo}{}{\stepsJdg}
 
 \makeatother
