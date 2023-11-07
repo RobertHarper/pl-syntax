@@ -218,7 +218,7 @@
 \NewDocumentCommand{\uBEx}{s}{\A@bt{\O@pn{B}}}
 
 % symbols
-\NewDocumentCommand{\newCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\@kw{new} #3\mathbin{\sim} #2\mathbin{\@kw{in}} #4}{\A@bt{\O@pn{new}}[#2](\Abs<#3>{#4})}}
+\NewDocumentCommand{\newCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\@kw{new} #3\mathbin{\sim} #2\mathbin{\@kw{in}} #4}{\A@bt{\O@pn{new}}[#2](\A@bs<#3>{#4})}}
 \NewDocumentCommand{\symTy}{s m}{\IfBooleanTF{#1}{#2\,\@kw{sym}}{\A@bt{\O@pn{sym}}(#2)}}
 \NewDocumentCommand{\quoteEx}{s m}{\IfBooleanTF{#1}{\@kw{'}#2}{\A@bt{\O@pn{quote}}<#2>}}
 \NewDocumentCommand{\ifisCmd}{s d<> O{t} O{\rho} m m m}{\IfBooleanTF{#1}{\A@bt*}{\A@bt}{\O@pn{is}}<#2>[\A@bs(#3){#4}](#5\@sep #6\@sep #7)}
