@@ -263,7 +263,7 @@
 \NewDocumentCommand{\setref@Cst}{m m}{#1\mathbin{\@kw{*{=}}} #2}
 \NewDocumentCommand{\setrefCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setref@Cst{#3}{#4}}{\setref@Abt{#2}{#3}{#4}}}
 
-\NewDocumentCommand{\doCmd}{s O{} d<> d()}{\IfBooleanTF{#1}{\kw{do}_{#2}\,#3\,(#4)}{\Abt{\Opn{do}}<#3>[#2](#4)}}
+\NewDocumentCommand{\doCmd}{s O{} d<> d()}{\IfBooleanTF{#1}{\kw{do}_{#2}\,#3\,\IfValueT{#4}{(#4)}}{\Abt{\Opn{do}}<#3>[#2](#4)}}
 
 % module types
 \NewDocumentCommand{\univSg}{s}{\A@bt{\O@pn{type}}}
