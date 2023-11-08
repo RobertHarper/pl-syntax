@@ -305,6 +305,23 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 \end{figure}
 
 \begin{figure}
+  
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \symTy{\tau}               & \symTy*{\tau}              & \verb|\symTy{\tau}|                \\
+        \quoteEx<a>                & \quoteEx*<a>               & \verb|\quoteEx<a>|                 \\
+        \ifisCmd<a>[t][\tau]{e}{m_1}{m_2} & \ifisCmd*<a>{e}{m_1}{m_2}  & \verb|\ifisCmd<a>[t][\tau]{e}{m_1}{m_2}| \\
+        \ifeqCmd[t][\tau]{e_1}{e_2}{m_1}{m_2} & \ifeqCmd*{e_1}{e_2}{m_1}{m_2} & \verb|\ifeqCmd[t][\tau]{e_1}{e_2}{m_1}{m_2}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Symbols}
+  \label{fig:sym}
+\end{figure}
+
+\begin{figure}
 
   \begin{small}
     \begin{displaymath}
@@ -329,24 +346,6 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
   \caption{Command Types}
   \label{fig:cmd}
 \end{figure}
-
-\begin{figure}
-  
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \symTy{\tau}               & \symTy*{\tau}              & \verb|\symTy{\tau}|                \\
-        \quoteEx{a}                & \quoteEx*{a}               & \verb|\quoteEx{a}|                 \\
-        \ifisCmd<a>[t][\tau]{e}{m_1}{m_2} & \ifisCmd*<a>{e}{m_1}{m_2}  & \verb|\ifisCmd<a>[t][\tau]{e}{m_1}{m_2}| \\
-        \ifeqCmd[t][\tau]{e_1}{e_2}{m_1}{m_2} & \ifeqCmd*{e_1}{e_2}{m_1}{m_2} & \verb|\ifeqCmd[t][\tau]{e_1}{e_2}{m_1}{m_2}|
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{Symbols}
-  \label{fig:sym}
-\end{figure}
-
 
 \begin{figure}
 
