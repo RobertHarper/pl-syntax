@@ -14,10 +14,13 @@
   {\generic@form{-1.4pt}{-0.8pt}}%
 }}}
 
+% how to typeset judgment forms; could have options to change
+\NewDocumentCommand{\jdg@Syn}{m}{\textsf{#1}}
+
 % statics
 
-\NewDocumentCommand{\isTp}{m}{#1\,\textsf{type}}
-\NewDocumentCommand{\isKd}{m}{#1\,\textsf{kind}}
+\NewDocumentCommand{\isTp}{m}{#1\,\jdg@Syn{type}}
+\NewDocumentCommand{\isKd}{m}{#1\,\jdg@Syn{kind}}
 \NewDocumentCommand{\isOfKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{{:}{:}} #3}
 
 \NewDocumentCommand{\isOf}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{:} #3}
@@ -33,7 +36,7 @@
 \NewDocumentCommand{\eqKd}{m m}{#1\mathrel{\equiv} #2}
 \NewDocumentCommand{\subKd}{m m}{#1\mathrel{{<}{:}{:}} #2}
 
-\NewDocumentCommand{\eqTp}{m m}{#1\mathrel{\equiv}#2\,\textsf{type}}
+\NewDocumentCommand{\eqTp}{m m}{#1\mathrel{\equiv}#2\,\jdg@Syn{type}}
 \NewDocumentCommand{\subTp}{m m}{#1\mathrel{{<}{:}} #2}
 \NewDocumentCommand{\eqOfKd}{m m m}{#1\mathrel{\equiv}#2\mathrel{{:}{:}}#3}
 
@@ -57,18 +60,18 @@
 
 % generic state validity
 
-\NewDocumentCommand{\okSt}{O{} m}{#2\,\textsf{ok}_{#1}}
+\NewDocumentCommand{\okSt}{O{} m}{#2\,\jdg@Syn{ok}_{#1}}
 
 % dynamics
 
-\NewDocumentCommand{\isVal}{o m}{#2\,\textsf{val}\IfValueT{#1}{_{#1}}}
+\NewDocumentCommand{\isVal}{o m}{#2\,\jdg@Syn{val}\IfValueT{#1}{_{#1}}}
 
 \NewDocumentCommand{\evalsTo}{O{} D(){}}{\mathrel{\Downarrow}_{#1}^{#2}}
 \NewDocumentCommand{\raisesUp}{O{} D(){}}{\mathrel{\Uparrow}_{#1}^{#2}}
 \NewDocumentCommand{\hasResult}{O{} D(){}}{\mathrel{\Updownarrow}_{#1}^{#2}}
 
-\NewDocumentCommand{\iniSt}{O{} m}{#2\,\textsf{initial}_{#1}}
-\NewDocumentCommand{\finSt}{O{} m}{#2\,\textsf{final}_{#1}}
+\NewDocumentCommand{\iniSt}{O{} m}{#2\,\jdg@Syn{initial}_{#1}}
+\NewDocumentCommand{\finSt}{O{} m}{#2\,\jdg@Syn{final}_{#1}}
 
 \NewDocumentCommand{\stepsJdg}{O{\hspace{.5pc}} D<>{\hspace{.5pc}} D(){}}{\mathrel{\xmapsto[\hspace{.25pc}#1\hspace{.25pc}]{\hspace{.25pc}#2\hspace{.25pc}}}^{#3}}
 \ProvideDocumentCommand{\stepsTo}{}{\stepsJdg}
