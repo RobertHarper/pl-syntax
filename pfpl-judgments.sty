@@ -65,11 +65,11 @@
 \NewDocumentCommand{\raisesJdg}{O{} D(){}}{\mathrel{\Uparrow}_{#1}^{#2}}
 \NewDocumentCommand{\evalorraiseJdg}{O{} D(){}}{\mathrel{\Updownarrow}_{#1}^{#2}}
 
-
-\NewDocumentCommand{\iniJdg}{O{} m}{#2\,\textsf{initial}_{#1}}
-\NewDocumentCommand{\finJdg}{O{} m}{#2\,\textsf{final}_{#1}}
+\NewDocumentCommand{\iniSt}{O{} m}{#2\,\textsf{initial}_{#1}}
+\NewDocumentCommand{\finSt}{O{} m}{#2\,\textsf{final}_{#1}}
 
 \NewDocumentCommand{\stepsJdg}{O{\hspace{.5pc}} D<>{\hspace{.5pc}} D(){}}{\mathrel{\xmapsto[\hspace{.25pc}#1\hspace{.25pc}]{\hspace{.25pc}#2\hspace{.25pc}}}^{#3}}
 \NewDocumentCommand{\stepsTo}{}{\stepsJdg}
+\NewDocumentCommand{\stepsSt}{}{\stepsJdg}
 
 \makeatother
