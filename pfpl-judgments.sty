@@ -28,23 +28,6 @@
 
 \NewDocumentCommand{\accsTp}{m m}{#1\div #2}
 
-\NewDocumentCommand{\okSt}{O{} m}{#2\,\textsf{ok}_{#1}}
-
-% contexts and signatures
-
-\NewDocumentCommand{\empCtx}{}{\varepsilon}
-\NewDocumentCommand{\extCtx}{m m}{#1,#2}
-\NewDocumentCommand{\appCtx}{m m}{#1\,#2}
-\NewDocumentCommand{\sepCtx}{m m}{#1\mathbin{;}#2}
-
-\NewDocumentCommand{\empSig}{}{\varepsilon}
-\NewDocumentCommand{\extSig}{m m}{#1,#2}
-\NewDocumentCommand{\appSig}{m m}{#1\,#2}
-
-% hypothetical/general judgment
-
-\NewDocumentCommand{\hypJdg}{O{}}{\mathrel{\vdash}_{#1}}
-
 % equality, subkinding
 
 \NewDocumentCommand{\eqKd}{m m}{#1\mathrel{\equiv} #2}
@@ -57,19 +40,38 @@
 \NewDocumentCommand{\eqOf}{m m m}{#1\mathrel{\doteq}#2\mathrel{:}#3}
 \NewDocumentCommand{\eqOfTp}{m m m}{\eqOf{#1}{#2}{#3}}
 
+% typing contexts and signatures
+
+\NewDocumentCommand{\empCtx}{}{\varepsilon}
+\NewDocumentCommand{\extCtx}{m m}{#1,#2}
+\NewDocumentCommand{\appCtx}{m m}{#1\,#2}
+\NewDocumentCommand{\sepCtx}{m m}{#1\mathbin{;}#2}
+
+\NewDocumentCommand{\empSig}{}{\varepsilon}
+\NewDocumentCommand{\extSig}{m m}{#1,#2}
+\NewDocumentCommand{\appSig}{m m}{#1\,#2}
+
+% hypothetical/general judgment
+
+\ProvideDocumentCommand{\entails}{O{}}{\mathrel{\vdash}_{#1}}
+
+% generic state validity
+
+\NewDocumentCommand{\okSt}{O{} m}{#2\,\textsf{ok}_{#1}}
+
 % dynamics
 
 \NewDocumentCommand{\isVal}{o m}{#2\,\textsf{val}\IfValueT{#1}{_{#1}}}
 
-\NewDocumentCommand{\evalsJdg}{O{} D(){}}{\mathrel{\Downarrow}_{#1}^{#2}}
-\NewDocumentCommand{\raisesJdg}{O{} D(){}}{\mathrel{\Uparrow}_{#1}^{#2}}
-\NewDocumentCommand{\evalorraiseJdg}{O{} D(){}}{\mathrel{\Updownarrow}_{#1}^{#2}}
+\NewDocumentCommand{\evalsTo}{O{} D(){}}{\mathrel{\Downarrow}_{#1}^{#2}}
+\NewDocumentCommand{\raisesUp}{O{} D(){}}{\mathrel{\Uparrow}_{#1}^{#2}}
+\NewDocumentCommand{\hasResult}{O{} D(){}}{\mathrel{\Updownarrow}_{#1}^{#2}}
 
 \NewDocumentCommand{\iniSt}{O{} m}{#2\,\textsf{initial}_{#1}}
 \NewDocumentCommand{\finSt}{O{} m}{#2\,\textsf{final}_{#1}}
 
 \NewDocumentCommand{\stepsJdg}{O{\hspace{.5pc}} D<>{\hspace{.5pc}} D(){}}{\mathrel{\xmapsto[\hspace{.25pc}#1\hspace{.25pc}]{\hspace{.25pc}#2\hspace{.25pc}}}^{#3}}
-\NewDocumentCommand{\stepsTo}{}{\stepsJdg}
+\ProvideDocumentCommand{\stepsTo}{}{\stepsJdg}
 \NewDocumentCommand{\stepsSt}{}{\stepsJdg}
 
 \makeatother

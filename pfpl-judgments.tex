@@ -38,7 +38,7 @@ The basic judgment forms corresponding to this architecture are summarized in Fi
 
 \subsection*{Hypothetical/General Judgments}
 
-The combined hypothetical-general judgment, written $\Gamma\hypJdg J$ or $\Delta\hypJdg J$, expresses assumptions the variables that may be involved in the principal judgment, $J$.  In keeping with the phase distinction there are two classes of variables, the static variables, which range over types and constructors, and the dynamic variables, which range over a type.  In the presence of partiality (undefined expressions) variables may range over either unevaluated expressions or over values, with the latter being the dominant form throughout.  Conventionally, static variables, which range over a kind, are declared in a context written $\Delta$, and dynamic variables, which range over a type, are declared in a context $\Gamma$.  When both forms of context are involved, the notation $\sepCtx{\Delta}{\Gamma}\hypJdg J$ is used.
+The combined hypothetical-general judgment, written $\Gamma\entails J$ or $\Delta\entails J$, expresses assumptions the variables that may be involved in the principal judgment, $J$.  In keeping with the phase distinction there are two classes of variables, the static variables, which range over types and constructors, and the dynamic variables, which range over a type.  In the presence of partiality (undefined expressions) variables may range over either unevaluated expressions or over values, with the latter being the dominant form throughout.  Conventionally, static variables, which range over a kind, are declared in a context written $\Delta$, and dynamic variables, which range over a type, are declared in a context $\Gamma$.  When both forms of context are involved, the notation $\sepCtx{\Delta}{\Gamma}\entails J$ is used.
 
 Because variables are given meaning by substitution, the assumptions governing them must always be of the same form as those governing that which is substituted.  Although there are always variables ranging over a type, there may or may not be variables ranging over a kind.  The phase separation demands that the formation of kinds does not depend on variables of a type.  In general contexts have the form
 \[
@@ -46,7 +46,7 @@ Because variables are given meaning by substitution, the assumptions governing t
 \]
 where $n\geq 0$ and the $j_i$'s are variable declarations.  Here $\empCtx$ is the empty context, which is usually omitted, except occasionally for emphasis.
 
-Thus, the type formation judgment, $\isTp{\tau}$, may be extended to the hypothetical form $\Delta\hypJdg\isTp{\tau}$, where $\Delta$ is a context of the form
+Thus, the type formation judgment, $\isTp{\tau}$, may be extended to the hypothetical form $\Delta\entails\isTp{\tau}$, where $\Delta$ is a context of the form
 \[
     \extCtx{\isTp{t_1}\dots}{\isTp{t_n}}
 \]
@@ -54,17 +54,17 @@ declaring that the $t_i$'s are type variables.  When kinds are involved, such a 
 \[
     \extCtx{\isOfKd*{u_1}{\kappa_1}\dots}{\isOfKd{u_n}{\kappa_n}}.
 \]
-Similarly, the expression typing judgment may be extended to the hypothetical form $\Gamma\hypJdg \isOf{e}{\tau}$, where $\Gamma$ is a context of the form
+Similarly, the expression typing judgment may be extended to the hypothetical form $\Gamma\entails \isOf{e}{\tau}$, where $\Gamma$ is a context of the form
 \[
     \extCtx{\isOf*{x_1}{\tau_1}\dots}{\isOf*{x_n}{\tau_n}}
 \]
-where the $x_i$'s are expression variables, and the $\tau_i$'s are types.  When both forms of variable are involved in an expression typing, the hypothetical form $\sepCtx{\Delta}{\Gamma}\hypJdg \isOf{e}{\tau}$ is used.
+where the $x_i$'s are expression variables, and the $\tau_i$'s are types.  When both forms of variable are involved in an expression typing, the hypothetical form $\sepCtx{\Delta}{\Gamma}\entails \isOf{e}{\tau}$ is used.
 
 When effects are permitted, commands are classified by types, but there are no variables ranging over commands.  There are, however, \emph{symbols}, such as the names of assignables, to which a type is \emph{associated}.  These are declared using \emph{signatures}, $\Sigma$, of the form
 \[
     \extSig{\extSig{\empSig}{\hasTp{a_1}{\tau_1}}\dots}{\hasTp{a_n}{\tau_n}}
 \]
-where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  Signature concatenation is written $\appSig{\Sigma_1}{\Sigma_2}$.  As with contexts, the empty signature is usually left implicit.  The statics of commands is then given by hypothetical judgments of the form $\Gamma\hypJdg[\Sigma] \isOf{e}{\tau}$ and $\Gamma\hypJdg[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.  Thus, the signature governs the usage of symbols within expressions and commands.
+where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  Signature concatenation is written $\appSig{\Sigma_1}{\Sigma_2}$.  As with contexts, the empty signature is usually left implicit.  The statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.  Thus, the signature governs the usage of symbols within expressions and commands.
 
 \smallskip
 
@@ -118,12 +118,12 @@ Hypothetical judgment forms for dynamics do not arise in \textsf{PFPL}, and so a
             s\stepsTo[\Sigma]<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha\ (\text{rel.}\ \Sigma) \\\\
             \isVal{e}            &  e\ \text{is a value} \\
             \isVal[\Sigma]{e}    & e\ \text{is a value}\ (\text{rel.}\ \Sigma) \\\\
-            e\evalsJdg v          & e\ \text{evaluates to}\ v \\
-            e\evalsJdg(c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c \\\\
-            e\raisesJdg v           & e\ \text{raises}\ v \\
-            e\raisesJdg(c) v        & e\ \text{raises}\ v\ \text{with cost}\ c \\\\
-            e\evalorraiseJdg v    & e\ \text{evaluates or raises}\ v \\
-            e\evalorraiseJdg(c) v    & e\ \text{evaluates or raises}\ v\ \text{with cost}\ c
+            e\evalsTo v          & e\ \text{evaluates to}\ v \\
+            e\evalsTo(c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c \\\\
+            e\raisesUp v           & e\ \text{raises}\ v \\
+            e\raisesUp(c) v        & e\ \text{raises}\ v\ \text{with cost}\ c \\\\
+            e\hasResult v    & e\ \text{evaluates or raises}\ v \\
+            e\hasResult(c) v    & e\ \text{evaluates or raises}\ v\ \text{with cost}\ c
         \end{array}
     \end{displaymath}
 
