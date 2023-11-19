@@ -223,6 +223,7 @@
 \NewDocumentCommand{\quoteEx}{s d<>}{\IfBooleanTF{#1}{\@kw{'}#2}{\A@bt{\O@pn{quote}}<#2>}}
 \NewDocumentCommand{\ifisCmd}{s d<> O{t} O{\rho} m m m}{\IfBooleanTF{#1}{\A@bt*}{\A@bt}{\O@pn{is}}<#2>[\A@bs(#3){#4}](#5\@sep #6\@sep #7)}
 \NewDocumentCommand{\ifeqCmd}{s O{t} O{\rho} m m m m}{\IfBooleanTF{#1}{\A@bt*}{\A@bt}{\O@pn{eq}}[\A@bs(#2){#3}](#4\@sep #5\@sep #6\@sep #7)}
+\NewDocumentCommand{\newsymCmd}{s O{\tau}}{\A@bt{\O@pn{newsym}}[#2]}
 
 % commands
 \NewDocumentCommand{\cmdTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{cmd}}{\A@bt{\O@pn{cmd}}(#2)}}
