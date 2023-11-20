@@ -239,6 +239,8 @@
 \NewDocumentCommand{\seq@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{\leftarrow}}#1\@sep #3}
 \NewDocumentCommand{\seqCmd}{s m o m}{\IfBooleanTF{#1}{\IfValueTF{#3}{\seq@Cst{#2}[#3]{#4}}{\seq@Cst{#2}{#4}}}{\IfValueTF{#3}{\seq@Abt{#2}{#3}{#4}}{\seq@Abt{#2}{\_}{#4}}}}
 
+\NewDocumentCommand{\ifCmd}{s O{\rho} m m m}{\IfBooleanTF{#1}{\ifEx*{#3}{#4}{#5}}{\ifEx[#2]{#3}{#4}{#5}}}
+
 \NewDocumentCommand{\bndow@Abt}{m m m m m m}{\Abt{\Opn{bndow}}[#1](#2\@sep \Abs(#3){#4}\@sep \Abs(#5){#6})}
 \NewDocumentCommand{\bndow@Cst}{m m m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep #3\,\mathbin{\@kw{ow}}\,#4\mathbin{\rightarrow}\,#5}
 \NewDocumentCommand{\bndowCmd}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\bndow@Cst{#3}{#4}{#5}{#6}{#7}}{\bndow@Abt{#2}{#3}{#4}{#5}{#6}{#7}}}
@@ -271,7 +273,8 @@
 
 \NewDocumentCommand{\newrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\kw{newref}(#3)}{\Abt{\Opn{newref}}[#2](#3)}}
 
-\NewDocumentCommand{\doCmd}{s d<> d()}{\IfBooleanTF{#1}{\kw{do}\,#2\IfValueT{#3}{(#3)}}{\Abt{\Opn{do}}<#2>(#3)}}
+% effect handlers
+\NewDocumentCommand{\doCmd}{s d<> d() o}{\IfBooleanTF{#1}{\kw{do}\,#2\IfValueT{#3}{(#3)}\IfValueT{#4}{(#4)}}{\Abt{\Opn{do}}<#2>(#3)\IfValueT{#4}{(#4)}}}
 \NewDocumentCommand{\hdl@Cst}{r<> m m m m m m}{\kw{hdl}\,#2\,\{\,\kw{ret}(#3)\mathbin{\hookrightarrow} #4\mathbin{|}#1(#5,#6) \mathbin{\hookrightarrow}#7\,\}}
 \NewDocumentCommand{\hdl@Abt}{r<> m m m m m m m}{\Abt{\Opn{hdl}}<#1>[#2](#3\@sep \Abs(#4){#5} \@sep \Abs(#6,#7){#8})}
 \NewDocumentCommand{\hdlCmd}{s r<> O{\tau} m m m m m m}{\IfBooleanTF{#1}{\hdl@Cst<#2>{#4}{#5}{#6}{#7}{#8}{#9}}{\hdl@Abt<#2>{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
