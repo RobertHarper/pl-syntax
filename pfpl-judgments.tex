@@ -72,18 +72,19 @@ The entailment notation for hypothetical judgments is reserved for situations in
 
 \begin{figure}[p]
     \begin{displaymath}
-        \begin{array}{l@{\qquad} l}
-            \isTp{\tau}            & \tau\ \text{is a type} \\
-            \eqTp{\tau}{\tau'}     & \tau\ \text{and}\ \tau'\ \text{are equal types} \\
-            \subTp{\tau}{\tau'}    & \tau\ \text{is a subtype of}\ \tau' \\\\
-            \isKd{\kappa}          & \kappa\ \text{is a kind} \\
-            \eqKd{\kappa}{\kappa'} & \kappa\ \text{and}\ \kappa'\ \text{are equal kinds} \\
-            \subKd{\kappa}{\kappa'} & \kappa\ \text{is a subkind of}\ \kappa' \\\\
-            \isOfKd{c}{\kappa}   & c\ \text{has kind}\ \kappa \\
-            \eqOfKd{c}{c'}{\kappa} & c\ \text{and}\ c'\ \text{are equal at kind}\ \kappa \\\\
-            \isOf{e}{\tau}         & e\ \text{has type}\ \tau \\
-            \retsTp{m}{\tau}       & m\ \text{returns type}\ \tau \\
-            \accsTp{k}{\tau}       & k\ \text{accepts type}\ \tau 
+        \begin{array}{l@{\qquad} l@{\qquad}l}
+            \text{Judgment}   & \text{Meaning}  & \text{Invocation} \\
+            \isTp{\tau}            & \tau\ \text{is a type} & \verb|\isTp{\tau}| \\
+            \eqTp{\tau}{\tau'}     & \tau\ \text{and}\ \tau'\ \text{are equal types} & \verb|\eqTp{\tau}{\tau'}| \\
+            \subTp{\tau}{\tau'}    & \tau\ \text{is a subtype of}\ \tau' & \verb|\subTp{\tau}{\tau'}| \\\\
+            \isKd{\kappa}          & \kappa\ \text{is a kind} & \verb|\isKd{\kappa}| \\
+            \eqKd{\kappa}{\kappa'} & \kappa\ \text{and}\ \kappa'\ \text{are equal kinds} & \verb|\eqKd{\kappa}{\kappa'}| \\
+            \subKd{\kappa}{\kappa'} & \kappa\ \text{is a subkind of}\ \kappa' & \verb|\subKd{\kappa}{\kappa'}| \\\\
+            \isOfKd{c}{\kappa}   & c\ \text{has kind}\ \kappa & \verb|\isOfKd{c}{\kappa}| \\
+            \eqOfKd{c}{c'}{\kappa} & c\ \text{and}\ c'\ \text{are equal at kind}\ \kappa & \verb|\eqOfKd{c}{c'}{\kappa}| \\\\
+            \isOfTp{e}{\tau}         & e\ \text{has type}\ \tau & \verb|\isOfTp{e}{\tau}| \\
+            \retsTp{m}{\tau}       & m\ \text{returns type}\ \tau & \verb|\retsTp{m}{\tau}| \\
+            \accsTp{k}{\tau}       & k\ \text{accepts type}\ \tau  & \verb|\accsTp{k}{\tau}|
         \end{array}
     \end{displaymath}
 
@@ -107,23 +108,26 @@ Hypothetical judgment forms for dynamics do not arise in \textsf{PFPL}, and so a
 
 \begin{figure}[p]
     \begin{displaymath}
-        \begin{array}{l@{\qquad}l}
-            \iniSt[\Sigma]{s}            & s\ \text{is initial}\ (\text{rel.} \Sigma) \\
-            \finSt[\Sigma]{s}            & s\ \text{is final}\ (\text{rel.} \Sigma) \\\\
-            s\stepsTo s'         & s\ \text{steps to}\ s' \\
-            s\stepsTo[\Sigma] s' & s\ \text{steps to}\ s'\ (\text{rel.}\ \Sigma)\\\\
-            s\stepsTo(\ast) s' & s\ \text{multisteps to}\ s' \\
-            s\stepsTo[\Sigma](\ast) s' & s\ \text{multisteps to}\ s'\ (\text{rel.}\ \Sigma) \\\\
-            % s\stepsTo<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha \\
-            s\stepsTo[\Sigma]<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha\ (\text{rel.}\ \Sigma) \\\\
-            \isVal{e}            &  e\ \text{is a value} \\
-            \isVal[\Sigma]{e}    & e\ \text{is a value}\ (\text{rel.}\ \Sigma) \\\\
-            e\evalsTo v          & e\ \text{evaluates to}\ v \\
-            e\evalsTo(c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c \\\\
-            e\raisesUp v           & e\ \text{raises}\ v \\
-            e\raisesUp(c) v        & e\ \text{raises}\ v\ \text{with cost}\ c \\\\
-            e\hasResult v    & e\ \text{evaluates or raises}\ v \\
-            e\hasResult(c) v    & e\ \text{evaluates or raises}\ v\ \text{with cost}\ c
+        \begin{array}{l@{\qquad}l@{\qquad}l}
+            \text{Judgment} & \text{Meaning} & \text{Invocation} \\
+            \okSt[\Sigma]{s}       & s\ \text{is an ok state} & \verb|\okSt[\Sigma]{s}| \\
+            \iniSt[\Sigma]{s}            & s\ \text{is initial}\ (\text{rel.} \Sigma) & \verb|\iniSt[\Sigma]{s}| \\
+            \finSt[\Sigma]{s}            & s\ \text{is final}\ (\text{rel.} \Sigma) & \verb|\finSt[\Sigma]{s}| \\\\
+            %
+            s\stepsTo[\Sigma] s' & s\ \text{steps to}\ s'\ (\text{rel.}\ \Sigma) & \verb|s\stepsTo[\Sigma] s'| \\
+            s\stepsTo[\Sigma](\ast) s' & s\ \text{multisteps to}\ s'\ (\text{rel.}\ \Sigma) & \verb|s\stepsTo[\Sigma](\ast)| \\\\
+            %
+            s\stepsTo[\Sigma]<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha\ (\text{rel.}\ \Sigma) & \verb|s\stepsTo[\Sigma]<\alpha> s'| \\\\
+            %
+            \isVal[\Sigma]{e}    & e\ \text{is a value}\ (\text{rel.}\ \Sigma) & \verb|\isVal[\Sigma]{e}| \\\\
+            e\evalsTo v          & e\ \text{evaluates to}\ v & \verb|e\evalsTo v| \\
+            e\evalsTo(c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c & \verb|e\evalsTo(c) v| \\\\
+            %
+            e\raisesUp v           & e\ \text{raises}\ v & \verb|e\raisesUp v| \\
+            e\raisesUp(c) v        & e\ \text{raises}\ v\ \text{with cost}\ c & \verb|e\raisesUp(c) v| \\\\
+            %
+            e\hasResult v    & e\ \text{evaluates or raises}\ v & \verb|e\hasResult v| \\
+            e\hasResult(c) v    & e\ \text{evaluates or raises}\ v\ \text{with cost}\ c  & \verb|e\hasResult(c) v|
         \end{array}
     \end{displaymath}
 
