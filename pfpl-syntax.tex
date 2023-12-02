@@ -178,17 +178,18 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 \end{figure}
 
 \begin{figure}
-
+  \SaveVerb{splitExVrb}|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \tensorTy{\tau_1}{\tau_2}                      & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}|                      \\
-        \tensorEx[\tau_1][\tau_2]{v_1}{v_2}                            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx[\tau_1][\tau_2]{v_1}{v_2}|                            \\
-        \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e}  & \verb|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}| \\
+        \tensorEx[\tau_1][\tau_2]{v_1}{v_2}            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx[\tau_1][\tau_2]{v_1}{v_2}|                            \\
+        \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e}  & \\
+        \multicolumn{3}{r}{\UseVerb{splitExVrb}} \\
         \bothTy{\tau_1}{\tau_2}                        & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|                        \\
         \bothEx{e_1}{e_2}                              & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|                              \\
-        \parEx{e}{x}{y}{e'}                            & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}|
+        \parEx{e}{x}{y}{e'}                            & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}| 
       \end{array}
     \end{displaymath}
   \end{small}
@@ -280,6 +281,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
 \begin{figure}
 
+  \SaveVerb{pletExVrb}|\pletEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
@@ -295,7 +297,8 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}| \\
         \powTy{\posTy{\tau_1}}{\negTy{\tau_2}}            & \powTy*{\posTy{\tau_1}}{\negTy{\tau_2}}             & \verb|\powTy{\tau_1}{\tau_2}| \\
         \ppairEx[\posTy{\tau_1}][\negTy{\tau_2}]{v_1}{e_2}                                & \ppairEx*{v_1}{e_2}           & \verb|\ppairEx[\tau_1][\tau_2]{v_1}{e_2}| \\
-        \pletEx{v}{x_1}{x_2}{e}                       & \pletEx*{v}{x_1}{x_2}{e}  & \verb|\pletEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
+        \pletEx{v}{x_1}{x_2}{e}                       & \pletEx*{v}{x_1}{x_2}{e}  & \\
+          \multicolumn{3}{r}{\UseVerb{pletExVrb}}
       \end{array}
     \end{displaymath}
   \end{small}
@@ -380,7 +383,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
   \label{fig:mod}
 \end{figure}
 
-\SaveVerb{orelverb}|\orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2}|
+\SaveVerb{orelVrb}|\orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2}|
 \begin{figure}
 
   \begin{small}
@@ -402,7 +405,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \orIPf[\phi_1][\phi_2]<i>{\pi}                  & \orIPf*<i>{\pi}                  & \verb|\orIPf[\phi_1][\phi_2]<i>{\pi}|                 \\
         \orEPf[\phi_1][\phi_2][\rho]{\pi}{x}{\pi_1}{x}{\pi_2} &
         \orEPf*{\pi}{x}{\pi_1}{x}{\pi_2} & \\
-        \multicolumn{3}{r}{\UseVerb{orelverb}} \\[1ex]
+        \multicolumn{3}{r}{\UseVerb{orelVrb}} \\[1ex]
 
         \impProp{\phi_1}{\phi_2}                        & \impProp*{\phi_1}{\phi_2}        & \verb|\impProp{\phi_1}{\phi_2}|                        \\
         \impIPf[\phi_1][\phi_2]{x}{\pi_2}               & \impIPf*{x}{\pi_2}               & \verb|\impIPf[\phi_1][\phi_2]{x}{\pi_2}|               \\

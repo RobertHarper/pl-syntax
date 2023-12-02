@@ -301,7 +301,7 @@
 \NewDocumentCommand{\sigTy}{s m o m}{\IfBooleanTF{#1}{\IfNoValueTF{#3}{\prodTy*{#2}{#4}}{\sig@Cst{#2}{#3}{#4}}}{\IfNoValueTF{#3}{\sig@Abt{#2}{\_}{#4}}{\sig@Abt{#2}{#3}{#4}}}}
 
 \NewDocumentCommand{\str@Abt}{m m m m m}{\A@bt{\O@pn{struct}}[#1\@sep\A@bs(#2){#3}](#4\@sep #5)}
-\NewDocumentCommand{\str@Cst}{m m}{\O@pn{struct} #1\mathbin{\O@pn{in}} #2}
+\NewDocumentCommand{\str@Cst}{m m}{\O@pn{struct} #1\mathbin{\O@pn*{;}} #2}
 \NewDocumentCommand{\strMd}{s O{S_1} O{X} O{S_2} m m}{\IfBooleanTF{#1}{\str@Cst{#5}{#6}}{\str@Abt{#2}{#3}{#4}{#5}{#6}}}
 \NewDocumentCommand{\projMd}{s R<>{i} O{S_1} O{X} O{S_2} m}{\IfBooleanTF{#1}{#6\cdot\@kw{#2}}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \A@bs(#4){#5}](#6)}}
 
