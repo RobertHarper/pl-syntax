@@ -48,6 +48,9 @@
 \ProvideDocumentCommand{\empSub}{}{\emp@map}
 \ProvideDocumentCommand{\extSub}{m m m}{\ext@map{#1}{#2}{#3}}
 
+%%% probably variable arguments should be systematically in parentheses, and hence optional.
+%%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
+
 % product types
 % nullary
 \NewDocumentCommand{\unitTy}{s}{\Abt@{#1}{\Opn@{#1}{1}{unit}}}
@@ -283,22 +286,32 @@
 \NewDocumentCommand{\univSg}{s}{\A@bt{\O@pn{type}}}
 \NewDocumentCommand{\valSg}{s m}{\A@bt{\O@pn{val}}(#2)}
 
-\NewDocumentCommand{\pi@Abt}{m m m}{\A@bt{\O@pn{Pi}}(#1\@sep \A@bs(#2){#3})}
-\NewDocumentCommand{\pi@Cst}{m m m}{#2{\mathbin{:}}#1\to #3}
-\NewDocumentCommand{\piSg}{s m m m}{\IfBooleanTF{#1}{\pi@Cst{#2}{#3}{#4}}{\pi@Abt{#2}{#3}{#4}}}
-\NewDocumentCommand{\piTy}{s m o m}{\IfBooleanTF{#1}{\IfNoValueTF{#3}{\funTy*{#2}{#4}}{\pi@Cst{#2}{#3}{#4}}}{\IfNoValueTF{#3}{\pi@Abt{#2}{\_}{#4}}{\pi@Abt{#2}{#3}{#4}}}}
+% \NewDocumentCommand{\pi@Abt}{m m m}{\A@bt{\O@pn{Pi}}(#1\@sep \A@bs(#2){#3})}
+% \NewDocumentCommand{\pi@Cst}{m m m}{#2{\mathbin{:}}#1\to #3}
+% \NewDocumentCommand{\piSg}{s m m m}{\IfBooleanTF{#1}{\pi@Cst{#2}{#3}{#4}}{\pi@Abt{#2}{#3}{#4}}}
+% \NewDocumentCommand{\piTy}{s m o m}{\IfBooleanTF{#1}{\IfNoValueTF{#3}{\funTy*{#2}{#4}}{\pi@Cst{#2}{#3}{#4}}}{\IfNoValueTF{#3}{\pi@Abt{#2}{\_}{#4}}{\pi@Abt{#2}{#3}{#4}}}}
 
-\NewDocumentCommand{\fun@Abt}{m m m}{\A@bt{\O@pn{funct}}[#1](\A@bs(#2){#3})}
-\NewDocumentCommand{\fun@Cst}{m m m}{\O@pn{funct} #2\mathbin{:}#1\mathbin{\O@pn{in}}#3}
+\NewDocumentCommand{\pi@Abt}{m D(){\_} m}{\A@bt{\O@pn{Pi}}(#1\@sep\A@bs(#2){#3})}
+\NewDocumentCommand{\pi@Cst}{m d() m}{\IfValueT{#2}{#2\mathbin{:}}#1\to #3}
+\NewDocumentCommand{\piSg}{s m d() m}{\IfBooleanTF{#1}{\pi@Cst{#2}(#3){#4}}{\pi@Abt{#2}(#3){#4}}}
+\NewDocumentCommand{\piTy}{s m d() m}{\IfBooleanTF{#1}{\pi@Cst{#2}(#3){#4}}{\pi@Abt{#2}(#3){#4}}}
+
+\NewDocumentCommand{\fun@Abt}{m m m}{\A@bt{\O@pn{func}}[#1](\A@bs(#2){#3})}
+\NewDocumentCommand{\fun@Cst}{m m m}{\O@pn{func} #2\mathbin{:}#1\mathbin{\O@pn{in}}#3}
 \NewDocumentCommand{\funMd}{s m m m}{\IfBooleanTF{#1}{\fun@Cst{#2}{#3}{#4}}{\fun@Abt{#2}{#3}{#4}}}
 \NewDocumentCommand{\inst@Abt}{m m m m m}{\A@bt{\O@pn{inst}}[#1\@sep \A@bs(#2){#3}](#4\@sep #5)}
 \NewDocumentCommand{\inst@Cst}{m m}{#1(#2)}
 \NewDocumentCommand{\instMd}{s O{S_1} O{X} O{S_2} m m}{\IfBooleanTF{#1}{\inst@Cst{#5}{#6}}{\inst@Abt{#2}{#3}{#4}{#5}{#6}}}
 
-\NewDocumentCommand{\sig@Abt}{m m m}{\A@bt{\O@pn{Sig}}(#1\@sep \A@bs(#2){#3})}
-\NewDocumentCommand{\sig@Cst}{m m m}{#2{\mathbin{:}}#1\times #3}
-\NewDocumentCommand{\sigSg}{s m m m}{\IfBooleanTF{#1}{\sig@Cst{#2}{#3}{#4}}{\sig@Abt{#2}{#3}{#4}}}
-\NewDocumentCommand{\sigTy}{s m o m}{\IfBooleanTF{#1}{\IfNoValueTF{#3}{\prodTy*{#2}{#4}}{\sig@Cst{#2}{#3}{#4}}}{\IfNoValueTF{#3}{\sig@Abt{#2}{\_}{#4}}{\sig@Abt{#2}{#3}{#4}}}}
+% \NewDocumentCommand{\sig@Abt}{m m m}{\A@bt{\O@pn{Sig}}(#1\@sep \A@bs(#2){#3})}
+% \NewDocumentCommand{\sig@Cst}{m m m}{#2{\mathbin{:}}#1\times #3}
+% \NewDocumentCommand{\sigSg}{s m m m}{\IfBooleanTF{#1}{\sig@Cst{#2}{#3}{#4}}{\sig@Abt{#2}{#3}{#4}}}
+% \NewDocumentCommand{\sigTy}{s m o m}{\IfBooleanTF{#1}{\IfNoValueTF{#3}{\prodTy*{#2}{#4}}{\sig@Cst{#2}{#3}{#4}}}{\IfNoValueTF{#3}{\sig@Abt{#2}{\_}{#4}}{\sig@Abt{#2}{#3}{#4}}}}
+
+\NewDocumentCommand{\sig@Abt}{m D(){\_} m}{\A@bt{\O@pn{Sig}}(#1\@sep\A@bs(#2){#3})}
+\NewDocumentCommand{\sig@Cst}{m d() m}{\IfValueT{#2}{#2\mathbin{:}}#1\times #3}
+\NewDocumentCommand{\sigSg}{s m d() m}{\IfBooleanTF{#1}{\sig@Cst{#2}(#3){#4}}{\sig@Abt{#2}(#3){#4}}}
+\NewDocumentCommand{\sigTy}{s m d() m}{\IfBooleanTF{#1}{\sig@Cst{#2}(#3){#4}}{\sig@Abt{#2}(#3){#4}}}
 
 \NewDocumentCommand{\str@Abt}{m m m m m}{\A@bt{\O@pn{struct}}[#1\@sep\A@bs(#2){#3}](#4\@sep #5)}
 \NewDocumentCommand{\str@Cst}{m m}{\O@pn{struct} #1\mathbin{\O@pn*{;}} #2}

@@ -127,7 +127,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
         \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}| \\[1ex]
         \allTy{t}{\tau}                     & \allTy*{t}{\tau}                     & \verb|\allTy{t}{\tau}|                     \\
-        \tlamEx{t}[\tau]{e}                 & \tlamEx*{t}[\tau]{e}                       & \verb|\tlamEx{t}[\tau]{e}|                 \\
+        \tlamEx{t}[\tau]{e}                 & \tlamEx*{t}[\tau]{e}                 & \verb|\tlamEx{t}[\tau]{e}|                 \\
         \tapEx[t][\tau]{e}{\rho}          & \tapEx*{e}{\rho}                   & \verb|\tapEx[t][\tau]{e}{\rho}|          \\[1ex]
         \someTy{t}{\tau}                    & \someTy*{t}{\tau}                    & \verb|\someTy{t}{\tau}|                    \\
         \packEx[t][\tau]{\rho}{e}           & \packEx*{\rho}{e}                    & \verb|\packEx[t][\tau]{\rho}{e}|           \\
@@ -369,10 +369,12 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \inMd[S][M]{M'}                & \inMd*{M'}           & \verb|\inMd[S][M]{M'}|                          \\
         \outMd[S][M]{M'}               & \outMd*{M'}          & \verb|\outMd[S][M]{M'}|                         \\[1ex]
         \compSg{S}                     & \compSg*{S}          & \verb|\compSg{S}|                               \\[1ex]
-        \piSg{S_1}{X}{S_2}             & \piSg*{S_1}{X}{S_2}  & \verb|\piSg{S_1}{X}{S_2}|                       \\
+        \piSg{S_1}(X){S_2}             & \piSg*{S_1}(X){S_2}  & \verb|\piSg{S_1}(X){S_2}|                       \\
+        \piSg{S_1}{S_2}                & \piSg*{S_1}{S_2}     & \verb|\piSg{S_1}{S_2}| \\
         \funMd{S_1}{X}{M_2}            & \funMd*{S_1}{X}{M_2} & \verb|\funMd{S_1}{X}{M_2}|                      \\
         \instMd[S_1][X][S_2]{M_1}{M_2} & \instMd*{M_1}{M_2}   & \verb|\instMd[S_1][X][S_2]{M_1}{M_2}|           \\[1ex]
-        \sigSg{S_1}{X}{S_2}            & \sigSg*{S_1}{X}{S_2} & \verb|\sigSg{S_1}{X}{S_2}|                      \\
+        \sigSg{S_1}(X){S_2}            & \sigSg*{S_1}(X){S_2} & \verb|\sigSg{S_1}(X){S_2}|                      \\
+        \sigSg{S_1}{S_2}               & \sigSg*{S_1}{S_2}    & \verb|\sigSg{S_1}{S_2}| \\
         \strMd[S_1][X][S_2]{M_1}{M_2}  & \strMd*{M_1}{M_2}    & \verb|\strMd[S_1][X][S_2]{M_1}{M_2}|            \\
         \projMd<i>[S_1][X][S_2]{M}     & \projMd*<i>{M}       & \verb|\projMd<i>[S_1][X][S_2]{M}| \quad (i=1,2)
       \end{array}
@@ -453,6 +455,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
   \caption{Processes}
   \label{fig:proc}
 \end{figure}
+
 
 \restoregeometry
 
