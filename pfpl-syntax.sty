@@ -350,7 +350,7 @@
 \NewDocumentCommand{\splitEx}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\@kw{split}\,{#5}\,\{\A@bs(#6,#7){#8}\}}{\A@bt{\O@pn{split}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6,#7){#8})}}
 
 % lazy, not memoized, product
-\NewDocumentCommand{\bothTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{and}}(#2\@sep #3)}}
+\NewDocumentCommand{\bothTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{both}}(#2\@sep #3)}}
 \NewDocumentCommand{\bothEx}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{both}}(#2\@sep #3)}}
 \NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}(#2\@sep \A@bs(#3,#4){#5})}
 \NewDocumentCommand{\topTy}{s}{\A@bt{\O@pn*{\top}}}
