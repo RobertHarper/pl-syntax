@@ -239,13 +239,13 @@
 \NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep #3}
 \NewDocumentCommand{\bndCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bnd@Cst{#3}{#5}{#6}}{\bnd@Abt{#2}{#4}{#3}{#5}{#6}}}
 
-\NewDocumentCommand{\seq@Abt}{m m m}{\A@bt{\O@pn{seq}}(#1\@sep \Abs(#2){#3})}
+\NewDocumentCommand{\seq@Abt}{m m m}{\A@bt{\O@pn{seq}}(#1\@sep \A@bs(#2){#3})}
 \NewDocumentCommand{\seq@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{\leftarrow}}#1\@sep #3}
 \NewDocumentCommand{\seqCmd}{s m o m}{\IfBooleanTF{#1}{\IfValueTF{#3}{\seq@Cst{#2}[#3]{#4}}{\seq@Cst{#2}{#4}}}{\IfValueTF{#3}{\seq@Abt{#2}{#3}{#4}}{\seq@Abt{#2}{\_}{#4}}}}
 
 \NewDocumentCommand{\ifCmd}{s O{\rho} m m m}{\IfBooleanTF{#1}{\ifEx*{#3}{#4}{#5}}{\ifEx[#2]{#3}{#4}{#5}}}
 
-\NewDocumentCommand{\bndow@Abt}{m m m m m m}{\Abt{\Opn{bndow}}[#1](#2\@sep \Abs(#3){#4}\@sep \Abs(#5){#6})}
+\NewDocumentCommand{\bndow@Abt}{m m m m m m}{\A@bt{\O@pn{bndow}}[#1](#2\@sep \A@bs(#3){#4}\@sep \A@bs(#5){#6})}
 \NewDocumentCommand{\bndow@Cst}{m m m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep #3\,\mathbin{\@kw{ow}}\,#4\mathbin{\rightarrow}\,#5}
 \NewDocumentCommand{\bndowCmd}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\bndow@Cst{#3}{#4}{#5}{#6}{#7}}{\bndow@Abt{#2}{#3}{#4}{#5}{#6}{#7}}}
 
@@ -275,12 +275,12 @@
 \NewDocumentCommand{\setref@Cst}{m m}{#1\mathbin{\@kw{*{=}}} #2}
 \NewDocumentCommand{\setrefCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setref@Cst{#3}{#4}}{\setref@Abt{#2}{#3}{#4}}}
 
-\NewDocumentCommand{\newrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\kw{newref}(#3)}{\Abt{\Opn{newref}}[#2](#3)}}
+\NewDocumentCommand{\newrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\kw{newref}(#3)}{\A@bt{\O@pn{newref}}[#2](#3)}}
 
 % effect handlers
-\NewDocumentCommand{\doCmd}{s d<> d() o}{\IfBooleanTF{#1}{\kw{do}\,#2\IfValueT{#3}{(#3)}\IfValueT{#4}{(#4)}}{\Abt{\Opn{do}}<#2>(#3)\IfValueT{#4}{(#4)}}}
+\NewDocumentCommand{\doCmd}{s d<> d() o}{\IfBooleanTF{#1}{\kw{do}\,#2\IfValueT{#3}{(#3)}\IfValueT{#4}{(#4)}}{\A@bt{\O@pn{do}}<#2>(#3)\IfValueT{#4}{(#4)}}}
 \NewDocumentCommand{\hdl@Cst}{r<> m m m m m m}{\kw{hdl}\,#2\,\{\,\kw{ret}(#3)\mathbin{\hookrightarrow} #4\mathbin{|}#1(#5,#6) \mathbin{\hookrightarrow}#7\,\}}
-\NewDocumentCommand{\hdl@Abt}{r<> m m m m m m m}{\Abt{\Opn{hdl}}<#1>[#2](#3\@sep \Abs(#4){#5} \@sep \Abs(#6,#7){#8})}
+\NewDocumentCommand{\hdl@Abt}{r<> m m m m m m m}{\A@bt{\O@pn{hdl}}<#1>[#2](#3\@sep \A@bs(#4){#5} \@sep \A@bs(#6,#7){#8})}
 \NewDocumentCommand{\hdlCmd}{s r<> O{\tau} m m m m m m}{\IfBooleanTF{#1}{\hdl@Cst<#2>{#4}{#5}{#6}{#7}{#8}{#9}}{\hdl@Abt<#2>{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
 
 % module types
@@ -370,7 +370,7 @@
 \NewDocumentCommand{\asndPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{asnd}}<#2>(#3)}
 \NewDocumentCommand{\syncPr}{s m}{\Abt@{#1}{\O@pn{sync}}(#2)}
 \NewDocumentCommand{\newPr}{s O{\tau} m m}{\Abt@{#1}{\Opn@{#1}{\nu}{new}}[#2](\A@bs(#3){#4})}
-\NewDocumentCommand{\runPr}{s r<> m}{\Abt{\Opn{run}}<#2>(#3)}
+\NewDocumentCommand{\runPr}{s r<> m}{\A@bt{\O@pn{run}}<#2>(#3)}
 
 % actions
 \NewDocumentCommand{\silAc}{s}{\Abt@{#1}{\Opn@{#1}{\epsilon}{sil}}}
@@ -381,15 +381,18 @@
 \NewDocumentCommand{\anyAc}{s m}{\IfBooleanTF{#1}{#2\O@pn*{?}}{\A@bt{\O@pn{any}}(#2)}}
 \NewDocumentCommand{\emitAc}{s m}{\IfBooleanTF{#1}{#2\O@pn*{!}}{\A@bt{\O@pn{emit}}(#2)}}
 
-% events
+% concurrent algol
 \NewDocumentCommand{\nullEv}{s}{\Abt@{#1}{\Opn@{#1}{0}{null}}}
-\NewDocumentCommand{\orEv}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}(#2\@sep #3})}
-\NewDocumentCommand{\rcvEv}{s r<>}{\Abt@{#1}{\Opn{rcv}}<#2>}
-\NewDocumentCommand{\sndEv}{s r<> m}{\Abt@{#1}{\Opn{snd}}<#2>(#3)}
-% TO DO : sndrefEv, rcvrefEv
-
-% Concurrent Algol
-
+\NewDocumentCommand{\orEv}{s O{\tau} m m}{\IfBooleanTF{#1}{#3\oplus #4}{\A@bt{\O@pn{or}}[#2](#3\@sep #4)}}
+\NewDocumentCommand{\rcvEv}{s r<>}{\Abt@{#1}{\O@pn{rcv}}<#2>}
+\NewDocumentCommand{\sndEv}{s r<> m}{\Abt@{#1}{\O@pn{snd}}<#2>(#3)}
+\NewDocumentCommand{\wrapEv}{s O{\tau} m m m}{\A@bt{\O@pn{wrap}}[#2](#3\@sep\Abs(#4){#5})}
+\NewDocumentCommand{\emitCmd}{s O{\tau} m}{\A@bt{\O@pn{emit}}\IfBooleanF{#1}{[#2]}(#3)}
+\NewDocumentCommand{\syncCmd}{s O{\tau} m}{\A@bt{\O@pn{sync}}\IfBooleanF{#1}{[#2]}(#3)}
+\NewDocumentCommand{\spawnCmd}{s O{\tau} m}{\A@bt{\O@pn{spawn}}\IfBooleanF{#1}{[#2]}(#3)}
+\NewDocumentCommand{\newchCmd}{s m}{\IfBooleanTF{#1}{\O@pn{newch}_{#2}}{\A@bt{\O@pn{newch}}[#2]}}
+\NewDocumentCommand{\sndCmd}{s r<> m}{\A@bt{\O@pn{send}}<#2>(#3)}
+\NewDocumentCommand{\rcvCmd}{s r<> m m}{\A@bt{\O@pn{recv}}<#2>(\A@bs(#3){#4})}
 
 % propositions
 \NewDocumentCommand{\trueProp}{s}{\Abt@{#1}{\Opn@{#1}{\top}{truth}}}

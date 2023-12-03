@@ -457,6 +457,25 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
   \label{fig:proc}
 \end{figure}
 
+\begin{figure}
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \emitCmd[\tau]{e}     & \emitCmd*{e}        & \verb|\emitCmd[\tau]{e}| \\
+        \syncCmd[\tau]{e}     & \syncCmd*{e}        & \verb|\syncCmd[\tau]{e}| \\
+        \spawnCmd[\tau]{e}    & \spawnCmd*{e}       & \verb|\spawnCmd[\tau]{e}| \\
+        \newchCmd{\tau}       & \newchCmd*{\tau}    & \verb|\newchCmd{\tau}| \\
+        \sndCmd<a>{e}         & \sndCmd*<a>{e}      & \verb|\sndCmd<a>{e}| \\
+        \rcvCmd<a>{x}{e}      & \rcvCmd*<a>{x}{e} & \verb|\rcvCmd<a>{x}{e}| \\[1ex]
+        \rcvEv<a>             & \rcvEv*<a>          & \verb|\rcvEv<a>| \\
+        \sndEv<a>{v}          & \sndEv*<a>{v}       & \verb|\sndEv<a>| \\        \orEv[\tau]{e_1}{e_2}       & \orEv*{e_1}{e_2}    & \verb|\orEv[\tau]{e_1}{e_2}| \\
+        \wrapEv[\tau]{e_1}{x}{e_2}  & \wrapEv*{e_1}{x}{e_2} & \verb|\wrapEv[\tau]{e_1}{x}{e_2}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+  \caption{Concurrent Algol}
+  \label{fig:conc}
+\end{figure}
 
 \restoregeometry
 
