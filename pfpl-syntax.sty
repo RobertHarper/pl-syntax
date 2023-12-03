@@ -384,8 +384,8 @@
 % events
 \NewDocumentCommand{\nullEv}{s}{\Abt@{#1}{\Opn@{#1}{0}{null}}}
 \NewDocumentCommand{\orEv}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}(#2\@sep #3})}
-\NewDocumentCommand{\rcvEv}{s m m m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>(\A@bs(#3){#4})}
-\NewDocumentCommand{\sndEv}{s m m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>(#3\@sep #4)}
+\NewDocumentCommand{\rcvEv}{s m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>}
+\NewDocumentCommand{\sndEv}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>(#3)}
 % TO DO : sndrefEv, rcvrefEv
 
 % Concurrent Algol
