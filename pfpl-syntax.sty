@@ -370,7 +370,7 @@
 \NewDocumentCommand{\asndPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{asnd}}<#2>(#3)}
 \NewDocumentCommand{\syncPr}{s m}{\Abt@{#1}{\O@pn{sync}}(#2)}
 \NewDocumentCommand{\newPr}{s O{\tau} m m}{\Abt@{#1}{\Opn@{#1}{\nu}{new}}[#2](\A@bs(#3){#4})}
-% TO DO : sndrefPr, rcvrefPr
+\NewDocumentCommand{\runPr}{s r<> m}{\Abt{\Opn{run}}<#2>(#3)}
 
 % actions
 \NewDocumentCommand{\silAc}{s}{\Abt@{#1}{\Opn@{#1}{\epsilon}{sil}}}
@@ -384,8 +384,8 @@
 % events
 \NewDocumentCommand{\nullEv}{s}{\Abt@{#1}{\Opn@{#1}{0}{null}}}
 \NewDocumentCommand{\orEv}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}(#2\@sep #3})}
-\NewDocumentCommand{\rcvEv}{s m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>}
-\NewDocumentCommand{\sndEv}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>(#3)}
+\NewDocumentCommand{\rcvEv}{s r<>}{\Abt@{#1}{\Opn{rcv}}<#2>}
+\NewDocumentCommand{\sndEv}{s r<> m}{\Abt@{#1}{\Opn{snd}}<#2>(#3)}
 % TO DO : sndrefEv, rcvrefEv
 
 % Concurrent Algol
