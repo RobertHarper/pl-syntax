@@ -388,6 +388,7 @@
 \NewDocumentCommand{\sndEv}{s r<> m}{\Abt@{#1}{\O@pn{snd}}<#2>(#3)}
 \NewDocumentCommand{\wrapEv}{s O{\tau} m m m}{\A@bt{\O@pn{wrap}}[#2](#3\@sep\Abs(#4){#5})}
 \NewDocumentCommand{\emitCmd}{s O{\tau} m}{\A@bt{\O@pn{emit}}\IfBooleanF{#1}{[#2]}(#3)}
+\NewDocumentCommand{\accCmd}{s O{\tau}}{\A@bt{\O@pn{acc}}\IfBooleanF{#1}{[#2]}}
 \NewDocumentCommand{\syncCmd}{s O{\tau} m}{\A@bt{\O@pn{sync}}\IfBooleanF{#1}{[#2]}(#3)}
 \NewDocumentCommand{\spawnCmd}{s O{\tau} m}{\A@bt{\O@pn{spawn}}\IfBooleanF{#1}{[#2]}(#3)}
 \NewDocumentCommand{\newchCmd}{s m}{\IfBooleanTF{#1}{\O@pn{newch}_{#2}}{\A@bt{\O@pn{newch}}[#2]}}
