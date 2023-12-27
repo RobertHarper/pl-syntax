@@ -281,7 +281,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
 \begin{figure}
 
-  \SaveVerb{pletExVrb}|\pletEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
+  \SaveVerb{copletExVrb}|\copletEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
@@ -294,11 +294,11 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\
         \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\tau}|                        \\
         \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\tau]{e}|                     \\
-        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}| \\
-        \powTy{\posTy{\tau_1}}{\negTy{\tau_2}}            & \powTy*{\posTy{\tau_1}}{\negTy{\tau_2}}             & \verb|\powTy{\tau_1}{\tau_2}| \\
-        \ppairEx[\posTy{\tau_1}][\negTy{\tau_2}]{v_1}{e_2}                                & \ppairEx*{v_1}{e_2}           & \verb|\ppairEx[\tau_1][\tau_2]{v_1}{e_2}| \\
-        \pletEx{v}{x_1}{x_2}{e}                       & \pletEx*{v}{x_1}{x_2}{e}  & \\
-          \multicolumn{3}{r}{\UseVerb{pletExVrb}}
+        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}| %\\
+        % \copTy{\posTy{\tau_1}}{\negTy{\tau_2}}            & \copTy*{\posTy{\tau_1}}{\negTy{\tau_2}}             & \verb|\copTy{\tau_1}{\tau_2}| \\
+        % \copEx[\posTy{\tau_1}][\negTy{\tau_2}]{v_1}{e_2}                          & \copEx*{v_1}{e_2}           & \verb|\copEx[\tau_1][\tau_2]{v_1}{e_2}| \\
+        % \copletEx{v}{x_1}{x_2}{e}                       & \copletEx*{v}{x_1}{x_2}{e}  & \\
+        %   \multicolumn{3}{r}{\UseVerb{copletExVrb}}
       \end{array}
     \end{displaymath}
   \end{small}
