@@ -90,9 +90,12 @@
 \NewDocumentCommand{\inj@Abt}{r<> m m m}{\A@bt{\O@pn{inj}}<#1>[#2\@sep #3](#4)}
 \NewDocumentCommand{\inj@Cst}{r<> m}{#1\cdot #2}
 \NewDocumentCommand{\injEx}{s R<>{i} O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\inj@Cst<#2>{#5}}{\inj@Abt<#2>{#3}{#4}{#5}}}
-\NewDocumentCommand{\case@Abt}{m m m m m}{\A@bt{\O@pn{case}}[#1_1\@sep  #1_2\@sep #2](#3\@sep \A@bs(#4_1){#5_1}\@sep  \A@bs(#4_2){#5_2})}
-\NewDocumentCommand{\case@Cst}{m m m}{\O@pn{case}\, #1\,\{\,\A@bs(#2_1){#3_1} \mid \A@bs(#2_2){#3_2}\,\}}
-\NewDocumentCommand{\caseEx}{s O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\case@Cst{#4}{#5}{#6}}{\case@Abt{#2}{#3}{#4}{#5}{#6}}}
+% explicit cases
+\NewDocumentCommand{\xcase@Abt}{m m m m m m m m}{\A@bt{\O@pn{case}}[#1\@sep #2\@sep #3](#4\@sep \A@bs(#5){#6}\@sep \A@bs(#7){#8})}
+\NewDocumentCommand{\xcase@Cst}{m m m m m}{\O@pn{case}\,#1\,\{\,\A@bs(#2){#3} \mid \A@bs(#4){#5} \,\}}
+\NewDocumentCommand{\xcaseEx}{s O{\tau_1} O{\tau_2} O{\rho} m m m m m}{\IfBooleanTF{#1}{\xcase@Cst{#5}{#6}{#7}{#8}{#9}}{\xcase@Abt{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
+% generated cases
+\NewDocumentCommand{\caseEx}{s O{\tau} O{\rho} m m m}{\IfBooleanTF{#1}{\xcase@Cst{#4}{#5_1}{#6_1}{#5_2}{#6_2}}{\xcase@Abt{#2_1}{#2_2}{#3}{#4}{#5_1}{#6_1}{#5_2}{#6_2}}}
 % n-ary
 \NewDocumentCommand{\vsum@Abt}{m m m}{\A@bt{\O@pn{vsum}}<#1>({#3}_{#1})}
 \NewDocumentCommand{\vsum@Cst}{m m m}{\bigplus_{#2\in #1}(\sing@map{#2}{{#3}_{#2}})}
@@ -275,11 +278,11 @@
 \NewDocumentCommand{\setref@Cst}{m m}{#1\mathbin{\@kw{*{=}}} #2}
 \NewDocumentCommand{\setrefCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setref@Cst{#3}{#4}}{\setref@Abt{#2}{#3}{#4}}}
 
-\NewDocumentCommand{\newrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\kw{newref}(#3)}{\A@bt{\O@pn{newref}}[#2](#3)}}
+\NewDocumentCommand{\newrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\@kw{newref}(#3)}{\A@bt{\O@pn{newref}}[#2](#3)}}
 
 % effect handlers
-\NewDocumentCommand{\doCmd}{s d<> d() o}{\IfBooleanTF{#1}{\kw{do}\,#2\IfValueT{#3}{(#3)}\IfValueT{#4}{(#4)}}{\A@bt{\O@pn{do}}<#2>(#3)\IfValueT{#4}{(#4)}}}
-\NewDocumentCommand{\hdl@Cst}{r<> m m m m m m}{\kw{hdl}\,#2\,\{\,\kw{ret}(#3)\mathbin{\hookrightarrow} #4\mathrel{|}#1(#5,#6) \mathbin{\hookrightarrow}#7\,\}}
+\NewDocumentCommand{\doCmd}{s d<> d() o}{\IfBooleanTF{#1}{\@kw{do}\,#2\IfValueT{#3}{(#3)}\IfValueT{#4}{(#4)}}{\A@bt{\O@pn{do}}<#2>(#3)\IfValueT{#4}{(#4)}}}
+\NewDocumentCommand{\hdl@Cst}{r<> m m m m m m}{\@kw{hdl}\,#2\,\{\,\@kw{ret}(#3)\mathbin{\hookrightarrow} #4\mathrel{|}#1(#5,#6) \mathbin{\hookrightarrow}#7\,\}}
 \NewDocumentCommand{\hdl@Abt}{r<> m m m m m m m}{\A@bt{\O@pn{hdl}}<#1>[#2](#3\@sep \A@bs(#4){#5} \@sep \A@bs(#6,#7){#8})}
 \NewDocumentCommand{\hdlCmd}{s r<> O{\tau} m m m m m m}{\IfBooleanTF{#1}{\hdl@Cst<#2>{#4}{#5}{#6}{#7}{#8}{#9}}{\hdl@Abt<#2>{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
 
@@ -335,7 +338,7 @@
 \NewDocumentCommand{\negTy}{m}{#1^{\@kw{-}}}
 \NewDocumentCommand{\freeTy}{s m}{\Abt@{#1}{\Opn@{#1}{\uparrow}{F}}(#2)}
 \NewDocumentCommand{\freeEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{ret}}[#2](#3)}
-\NewDocumentCommand{\fletEx}{s O{\negTy{\tau}} O{\negTy{\rho}} m m m}{\Abt@{#1}{\O@pn{flet}}[#2\@sep #3](#4\@sep \A@bs(#5){#6})}
+\NewDocumentCommand{\fletEx}{s O{\negTy{\tau}} O{\negTy{\rho}} m m m}{\IfBooleanTF{#1}{\@kw{bind}\,#5\leftarrow #4\mathbin{;} #6}{\Abt@{#1}{\O@pn{bind}}[#2\@sep #3](#4\@sep \A@bs(#5){#6})}}
 \NewDocumentCommand{\thunkTy}{s m}{\Abt@{#1}{\Opn@{#1}{\downarrow}{U}}(#2)}
 \NewDocumentCommand{\thunkEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{thunk}}[#2](#3)}
 \NewDocumentCommand{\forceEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
@@ -344,12 +347,12 @@
 \NewDocumentCommand{\coppair@Abt}{m m m m}{\A@bt{\O@pn{copow}}[#1\@sep #2](#3\@sep #4)}
 \NewDocumentCommand{\coppair@Cst}{m m}{#1\mathbin{\ltimes} #2}
 \NewDocumentCommand{\copEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{\coppair@Cst{#4}{#5}}{\coppair@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\copletEx}{s O{\posTy{\tau_1}} O{\negTy{\tau_2}} O{\negTy{\rho}} m m m m}{\Abt@{#1}{\O@pn{coplet}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6,#7){#8})}
+\NewDocumentCommand{\cosplitEx}{s O{\posTy{\tau_1}} O{\negTy{\tau_2}} O{\negTy{\rho}} m m m m}{\IfBooleanTF{#1}{\@kw{cosplit}\,#5\,\{\,\A@bs(#6,#7){#8}\,\}}{\A@bt{\O@pn{cosplit}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6,#7){#8})}}
 
 % eager product
 \NewDocumentCommand{\tensorTy}{s m m}{\IfBooleanTF{#1}{{#2}\otimes{#3}}{\A@bt{\O@pn{tens}}(#2\@sep #3)}}
 \NewDocumentCommand{\tensorEx}{s O{\tau_1} O{\tau_2} m m}{\IfBooleanTF{#1}{{#4}\otimes{#5}}{\A@bt{\O@pn{with}}[#2\@sep  #3](#4\@sep  #5)}}
-\NewDocumentCommand{\splitEx}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\@kw{split}\,{#5}\,\{\A@bs(#6,#7){#8}\}}{\A@bt{\O@pn{split}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6,#7){#8})}}
+\NewDocumentCommand{\splitEx}{s O{\tau_1} O{\tau_2} O{\rho} m m m m}{\IfBooleanTF{#1}{\@kw{split}\,{#5}\,\{\,\A@bs(#6,#7){#8}\,\}}{\A@bt{\O@pn{split}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6,#7){#8})}}
 
 % lazy, not memoized, product
 \NewDocumentCommand{\bothTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\&} #3}{\A@bt{\O@pn{both}}(#2\@sep #3)}}
@@ -357,7 +360,7 @@
 \NewDocumentCommand{\parEx}{s m m m m}{\A@bt{\O@pn{par}}(#2\@sep \A@bs(#3,#4){#5})}
 \NewDocumentCommand{\topTy}{s}{\A@bt{\O@pn*{\top}}}
 \NewDocumentCommand{\topEx}{s}{\A@bt{\O@pn*{\star}}}
-\NewDocumentCommand{\chckEx}{s o m m}{\Abt@{#1}{\O@pn{check}}[#2](#3\@sep #4)}
+\NewDocumentCommand{\chckEx}{s O{\rho} m m}{\IfBooleanTF{#1}{\@kw{split}\,#3\,\{#4\}}{\A@bt{\O@pn{check}}[#2](#3\@sep #4)}}
 
 % processes
 \NewDocumentCommand{\unitPr}{s}{\Abt@{#1}{\Opn@{#1}{1}{one}}}
