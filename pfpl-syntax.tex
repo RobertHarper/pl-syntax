@@ -100,7 +100,8 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
 
         \sumTy{\tau_1}{\tau_2}            & \sumTy*{\tau_1}{\tau_2} & \verb|\sumTy{\tau_1}{\tau_2}|                     \\
         \injEx<i>[\tau_1][\tau_2]{e}      & \injEx*<i>{e}           & \verb|\injEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2) \\
-        \caseEx[\tau][\rho]{e}{x}{e'}     & \caseEx*{e}{x}{e'}      & \verb|\caseEx[\tau][\rho]{e}{x}{e'}|              \\[1ex]
+        \caseEx[\tau][\rho]{e}{x}{e}     & \caseEx*{e}{x}{e}      & \verb|\caseEx[\tau][\rho]{e}{x}{e}|              \\
+        \xcaseEx[\tau_1][\tau_2][\rho]{e}{x_1}{e_1}{x_2}{e_2} & \xcaseEx*{e}{x_1}{e_1}{x_2}{e_2} & \verb|\xcaseEx[\tau_1][\tau_2][\rho]{e}{x_1}{e_1}{x_2}{e_2}| & \\[1ex]
 
         \boolTy                           & \boolTy*                & \verb|\boolTy|                                    \\
         \trueEx                           & \trueEx*                & \verb|\trueEx|                                    \\
