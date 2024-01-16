@@ -197,6 +197,7 @@
 % suspensions
 \NewDocumentCommand{\suspTy}{s m}{\A@bt{\O@pn{susp}}(#2)}
 \NewDocumentCommand{\suspEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{susp}}[#2](#3)}
+\NewDocumentCommand{\recsuspEx}{s d<> O{\tau} m m}{\Abt@{#1}{\O@pn{susp}}[#3]{\Abt(#4){#5}}}
 \NewDocumentCommand{\forcesuspEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
 
 % generic computations
