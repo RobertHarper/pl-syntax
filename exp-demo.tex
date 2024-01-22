@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage[abt]{pfpl-syntax}
+
+\NewDocumentCommand{\plusEx}{s m m}{\IfBooleanTF{#1}{#2+#3}{\Abt{\Opn{plus}}(#2;#3)}}
+\NewDocumentCommand{\letEx}{s m m m}{\IfBooleanTF{#1}{\kw{let}\,#3\,\kw{be}\,#2\,\kw{in}\,#4}{\Abt{\Opn{let}}(#2;\Abs(#3){#4})}}
+
+\begin{document}
+
+\begin{displaymath}
+    \letEx{\plusEx{x}{y}}{x}{\plusEx{z}{z}}
+\end{displaymath}
+
+\begin{displaymath}
+    \letEx*{\plusEx*{x}{y}}{z}{\plusEx*{z}{z}}
+\end{displaymath}
+
+\end{document}
