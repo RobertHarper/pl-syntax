@@ -22,6 +22,7 @@
 \NewDocumentCommand{\isTp}{m}{#1\,\jdg@Syn{type}}
 \NewDocumentCommand{\isKd}{m}{#1\,\jdg@Syn{kind}}
 \NewDocumentCommand{\isOfKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{::} #3}
+\NewDocumentCommand{\ofKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{::} #3}
 
 \NewDocumentCommand{\isOf}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{:} #3}
 \NewDocumentCommand{\ofTp}{s m m}{\IfBooleanTF{#1}{\isOf*{#2}{#3}}{\isOf{#2}{#3}}}

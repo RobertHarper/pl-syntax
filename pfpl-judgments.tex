@@ -44,7 +44,7 @@ Because variables are given meaning by substitution, the assumptions governing t
 \[
     \extCtx{\extCtx{\empCtx}{j_1}\dots}{j_n}
 \]
-where $n\geq 0$ and the $j_i$'s are variable declarations.  Here $\empCtx$ is the empty context, which is usually omitted, except occasionally for emphasis.
+where $n\geq 0$ and the $j_i$'s are variable declarations.  Here $\empCtx$ is the empty context, which is usually omitted, except occasionally for emphasis.  The empty context is written \verb|\empCtx|, context extension is written \verb|\extCtx{\Gamma}{x}{\tau}|, and context concatentation is written \verb|\appCtx{\Gamma_1}{\Gamma_2}| to obtain $\appCtx{\Gamma_1}{\Gamma_2}$.
 
 Thus, the type formation judgment, $\isTp{\tau}$, may be extended to the hypothetical form $\Delta\entails\isTp{\tau}$, where $\Delta$ is a context of the form
 \[
@@ -52,7 +52,7 @@ Thus, the type formation judgment, $\isTp{\tau}$, may be extended to the hypothe
 \]
 declaring that the $t_i$'s are type variables.  When kinds are involved, such a context has the form
 \[
-    \extCtx{\isOfKd*{u_1}{\kappa_1}\dots}{\isOfKd{u_n}{\kappa_n}}.
+    \extCtx{\isOfKd*{u_1}{\kappa_1}\dots}{\isOfKd*{u_n}{\kappa_n}}.
 \]
 Similarly, the expression typing judgment may be extended to the hypothetical form $\Gamma\entails \isOf{e}{\tau}$, where $\Gamma$ is a context of the form
 \[
@@ -62,13 +62,15 @@ where the $x_i$'s are expression variables, and the $\tau_i$'s are types.  When 
 
 When effects are permitted, commands are classified by types, but there are no variables ranging over commands.  There are, however, \emph{symbols}, such as the names of assignables, to which a type is \emph{associated}.  These are declared using \emph{signatures}, $\Sigma$, of the form
 \[
-    \extSig{\extSig{\empSig}{\hasTp{a_1}{\tau_1}}\dots}{\hasTp{a_n}{\tau_n}}
+    \extSig{\extSig{\empSig}{\hasTp*{a_1}{\tau_1}}\dots}{\hasTp*{a_n}{\tau_n}}
 \]
-where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  Signature concatenation is written $\appSig{\Sigma_1}{\Sigma_2}$.  As with contexts, the empty signature is usually left implicit.  The statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.  Thus, the signature governs the usage of symbols within expressions and commands.
+where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  As with contexts, the empty signature, \verb|\empSig|, is usually left implicit; signature extension and concatenation are given by \verb|\extSig| and \verb|\catSig|, respectively.
+
+The statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.  Thus, the signature governs the usage of symbols within expressions and commands.
 
 \smallskip
 
-The entailment notation for hypothetical judgments is reserved for situations in which it expresses a \emph{structural consequence relation}, one that admits reflexivity (assumptions entail themselves) and transitivity aka substitution for variables, and is closed under weakening (addition of unused variables).  Symbols, being distinct from variables, enjoy no such properties, though usually signatures are treated so as to ignore any extra symbols beyond what is required in a given situation.
+A collection of formation and membership judgments is given in Figure~\ref{fig:statics}.  The binary classification judgments have ``starred'' forms for declaring variables for which the membership symbol is typeset slightly tighter (as a binary operation, rather than as a relation) for use in a context or signature.  Those that admit a starred form are marked as such in the usage column; the star should be omitted when used relationally.
 
 \begin{figure}[p]
     \begin{displaymath}
@@ -80,9 +82,10 @@ The entailment notation for hypothetical judgments is reserved for situations in
             \isKd{\kappa}          & \kappa\ \text{is a kind} & \verb|\isKd{\kappa}| \\
             \eqKd{\kappa}{\kappa'} & \kappa\ \text{and}\ \kappa'\ \text{are equal kinds} & \verb|\eqKd{\kappa}{\kappa'}| \\
             \subKd{\kappa}{\kappa'} & \kappa\ \text{is a subkind of}\ \kappa' & \verb|\subKd{\kappa}{\kappa'}| \\\\
-            \isOfKd{c}{\kappa}   & c\ \text{has kind}\ \kappa & \verb|\isOfKd{c}{\kappa}| \\
+            \isOfKd{c}{\kappa}   & c\ \text{has kind}\ \kappa & \verb|\isOfKd*{c}{\kappa}|, \verb|\ofKd*{c}{\kappa}| \\
             \eqOfKd{c}{c'}{\kappa} & c\ \text{and}\ c'\ \text{are equal at kind}\ \kappa & \verb|\eqOfKd{c}{c'}{\kappa}| \\\\
-            \isOfTp{e}{\tau}         & e\ \text{has type}\ \tau & \verb|\isOfTp{e}{\tau}|, \verb|\isOf{e}{\tau}| \\
+            \isOfTp{e}{\tau}         & e\ \text{has type}\ \tau & \verb|\isOfTp*{e}{\tau}|, \\
+            & & \verb|\isOf*{e}{\tau}|, \verb|\ofTp*{e}{\tau}| \\
             \retsTp{m}{\tau}       & m\ \text{returns type}\ \tau & \verb|\retsTp{m}{\tau}| \\
             \accsTp{k}{\tau}       & k\ \text{accepts type}\ \tau  & \verb|\accsTp{k}{\tau}| \\\\
             \isCtx{\Gamma}         & \Gamma\ \text{is a valid context} & \verb|\isCtx{\Gamma}| \\
@@ -103,10 +106,6 @@ There are, invariably, unlabelled forms of transition that may, or may not, be i
 \smallskip
 
 Occasionally it is helpful to introduce evaluation relations for expressions and execution relations for commands that consolidate multiple individual steps of execution to a final state.  These are also specified, for expressions, in Figure~\ref{fig:dynamics}.  Technically speaking, these relations are strictly secondary to the transition systems that define execution, and are used as summaries of the individual steps.  For example, in the context of an imperative language, evaluation is used for expressions in the definition of transition for commands.
-
-\smallskip
-
-Hypothetical judgment forms for dynamics do not arise in \textsf{PFPL}, and so are not considered here.
 
 \begin{figure}[p]
     \begin{displaymath}
