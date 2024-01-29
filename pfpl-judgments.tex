@@ -44,7 +44,21 @@ Because variables are given meaning by substitution, the assumptions governing t
 \[
     \extCtx{\extCtx{\empCtx}{j_1}\dots}{j_n}
 \]
-where $n\geq 0$ and the $j_i$'s are variable declarations.  Here $\empCtx$ is the empty context, which is usually omitted, except occasionally for emphasis.  The empty context is written \verb|\empCtx|, context extension is written \verb|\extCtx{\Gamma}{x}{\tau}|, and context concatentation is written \verb|\appCtx{\Gamma_1}{\Gamma_2}| to obtain $\appCtx{\Gamma_1}{\Gamma_2}$.
+where $n\geq 0$ and the $j_i$'s are variable declarations.  Here $\empCtx$ is the empty context, which is often omitted.
+
+The empty context is written \verb|\empCtx| to obtain $\empCtx$, and context extension is written 
+\begin{verbatim}
+    \extCtx{\Gamma}{\isOf*{x}{\tau}}
+\end{verbatim}
+to obtain $\extCtx{\Gamma}{\isOf*{x}{\tau}}$.  Context concatentation is written 
+\begin{verbatim}
+    \appCtx{\Gamma_1}{\Gamma_2}
+\end{verbatim}
+to obtain $\appCtx{\Gamma_1}{\Gamma_2}$.  When multiple contexts are considered they are separated using 
+\begin{verbatim}
+    \sepCtx{\Gamma}{\Delta}
+\end{verbatim}
+to obtain $\sepCtx{\Gamma}{\Delta}$.
 
 Thus, the type formation judgment, $\isTp{\tau}$, may be extended to the hypothetical form $\Delta\entails\isTp{\tau}$, where $\Delta$ is a context of the form
 \[
@@ -64,9 +78,7 @@ When effects are permitted, commands are classified by types, but there are no v
 \[
     \extSig{\extSig{\empSig}{\hasTp*{a_1}{\tau_1}}\dots}{\hasTp*{a_n}{\tau_n}}
 \]
-where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  As with contexts, the empty signature, \verb|\empSig|, is usually left implicit; signature extension and concatenation are given by \verb|\extSig| and \verb|\catSig|, respectively.
-
-The statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.  Thus, the signature governs the usage of symbols within expressions and commands.
+where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  As with contexts, the empty signature, \verb|\empSig|, is usually left implicit; signature extension and concatenation are given by \verb|\extSig| and \verb|\catSig|, respectively.  Thus, the statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.
 
 \smallskip
 
@@ -116,19 +128,20 @@ Occasionally it is helpful to introduce evaluation relations for expressions and
             \finSt[\Sigma]{s}            & s\ \text{is final}\ (\text{rel.} \Sigma) & \verb|\finSt[\Sigma]{s}|, \verb|\isFin[\Sigma]{s}| \\\\
             %
             s\stepsTo[\Sigma] s' & s\ \text{steps to}\ s'\ (\text{rel.}\ \Sigma) & \verb|s\stepsTo[\Sigma] s'| \\
-            s\stepsTo[\Sigma](\ast) s' & s\ \text{multisteps to}\ s'\ (\text{rel.}\ \Sigma) & \verb|s\stepsTo[\Sigma](\ast)| \\\\
+            s\stepsTo[\Sigma](k) s' & s\ \text{steps to}\ s'\ \text{in}\ k\ \text{steps} & \verb|s\stepsTo[\Sigma](k) s'| \\
+            s\stepsTo[\Sigma](\ast) s' & s\ \text{steps to}\ s'\ \text{in zero or more steps} & \verb|s\stepsTo[\Sigma](\ast)| \\\\
             %
             s\stepsTo[\Sigma]<\alpha> s' & s\ \text{steps to}\ s'\ \text{with action}\ \alpha\ (\text{rel.}\ \Sigma) & \verb|s\stepsTo[\Sigma]<\alpha> s'| \\\\
             %
             \isVal[\Sigma]{e}    & e\ \text{is a value}\ (\text{rel.}\ \Sigma) & \verb|\isVal[\Sigma]{e}| \\\\
-            e\evalsTo v          & e\ \text{evaluates to}\ v & \verb|e\evalsTo v| \\
-            e\evalsTo(c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c & \verb|e\evalsTo(c) v| \\\\
+            e\evalsTo[\Sigma] v          & e\ \text{evaluates to}\ v\ (\text{rel.}\ \Sigma) & \verb|e\evalsTo[\Sigma] v| \\
+            e\evalsTo[\Sigma](c) v       & e\ \text{evaluates to}\ v\ \text{with cost}\ c & \verb|e\evalsTo[\Sigma](c) v| \\\\
             %
-            e\raisesUp v           & e\ \text{raises}\ v & \verb|e\raisesUp v| \\
-            e\raisesUp(c) v        & e\ \text{raises}\ v\ \text{with cost}\ c & \verb|e\raisesUp(c) v| \\\\
+            e\raisesUp[\Sigma] v           & e\ \text{raises}\ v & \verb|e\raisesUp[\Sigma] v| \\
+            e\raisesUp[\Sigma](c) v        & e\ \text{raises}\ v\ \text{with cost}\ c & \verb|e\raisesUp[\Sigma](c) v| \\\\
             %
-            e\hasResult v    & e\ \text{evaluates or raises}\ v & \verb|e\hasResult v| \\
-            e\hasResult(c) v    & e\ \text{evaluates or raises}\ v\ \text{with cost}\ c  & \verb|e\hasResult(c) v|
+            e\hasResult[\Sigma] v    & e\ \text{evaluates or raises}\ v & \verb|e\hasResult[\Sigma] v| \\
+            e\hasResult[\Sigma](c) v    & e\ \text{evaluates or raises}\ v\ \text{with cost}\ c  & \verb|e\hasResult[\Sigma](c) v|
         \end{array}
     \end{displaymath}
 
