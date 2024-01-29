@@ -51,6 +51,9 @@
 %%% probably variable arguments should be systematically in parentheses, and hence optional.
 %%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
 
+%%% probably the defaults for optional arguments (types) are a bad idea, too tied to pfpl itself.
+%%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
+
 % product types
 % nullary
 \NewDocumentCommand{\unitTy}{s}{\Abt@{#1}{\Opn@{#1}{1}{unit}}}
