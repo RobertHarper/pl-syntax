@@ -18,6 +18,13 @@
 \ProcessOptions
 \RequirePackage{bigplustimes,xifthen}
 
+%%% add an option for type-theoretic defaults A, C rather than \tau, \rho, or for no defaults, but what about default type families, which are provided as {t}{\tau}, rather than as an abstractor.
+%%% add an option to omit bracketed arguments from abt's (but then it's global).  or make abt's omit omitted arguments?
+%%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
+
+%%% probably variable arguments should be systematically in parentheses, and hence optional.
+%%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
+
 \makeatletter
 
 \ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
@@ -32,7 +39,7 @@
 % choose between concrete and abstract operation name
 \NewDocumentCommand{\Opn@}{m m m}{\IfBooleanTF{#1}{\O@pn*{#2}}{\O@pn{#3}}}
 
-% abstractor of symbols in <>'s and variables in ()'s in an abt
+% abstractor of symbols in <>'s and variables in ()'s in an abs
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
 % abstract binding tree with operator, index, option, and argument
 % starred form omits the option, provding a cheap form of concrete syntax
@@ -47,12 +54,6 @@
 % substitution maps
 \ProvideDocumentCommand{\empSub}{}{\emp@map}
 \ProvideDocumentCommand{\extSub}{m m m}{\ext@map{#1}{#2}{#3}}
-
-%%% probably variable arguments should be systematically in parentheses, and hence optional.
-%%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
-
-%%% probably the defaults for optional arguments (types) are a bad idea, too tied to pfpl itself.
-%%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
 
 % product types
 % nullary
@@ -125,26 +126,26 @@
 \NewDocumentCommand{\listTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{list}}{\A@bt{\O@pn{list}}(#2)}}
 \NewDocumentCommand{\nilEx}{s O{\tau}}{\Abt@{#1}{\O@pn{nil}}[#2]}
 \NewDocumentCommand{\consEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{cons}}[#2](#3\@sep #4)}
-\NewDocumentCommand{\listrec@Abt}{o m m m m m}{\A@bt{\O@pn{listrec}}[#1](#2\@sep #3\@sep \A@bs(#4,#5){#6})}
+\NewDocumentCommand{\listrec@Abt}{m m m m m m}{\A@bt{\O@pn{listrec}}[#1](#2\@sep #3\@sep \A@bs(#4,#5){#6})}
 \NewDocumentCommand{\listrec@Cst}{m m m m m}{\O@pn{listrec}\,#1\,\{\,#2\mid\A@bs(#3,#4){#5}\}}
-\NewDocumentCommand{\listrecEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\listrec@Cst{#3}{#4}{#5}{#6}{#7}}{\listrec@Abt[#2]{#3}{#4}{#5}{#6}{#7}}}
-\NewDocumentCommand{\listcase@Abt}{o m m m m m}{\A@bt{\O@pn{listcase}}[#1](#2\@sep #3\@sep \A@bs(#4,#5){#6})}
+\NewDocumentCommand{\listrecEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\listrec@Cst{#3}{#4}{#5}{#6}{#7}}{\listrec@Abt{#2}{#3}{#4}{#5}{#6}{#7}}}
+\NewDocumentCommand{\listcase@Abt}{m m m m m m}{\A@bt{\O@pn{listcase}}[#1](#2\@sep #3\@sep \A@bs(#4,#5){#6})}
 \NewDocumentCommand{\listcase@Cst}{m m m m m}{\O@pn{listcase}\,#1\,\{\,#2\mid\A@bs(#3,#4){#5}\}}
-\NewDocumentCommand{\listcaseEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\listcase@Cst{#3}{#4}{#5}{#6}{#7}}{\listcase@Abt[#2]{#3}{#4}{#5}{#6}{#7}}}
+\NewDocumentCommand{\listcaseEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\listcase@Cst{#3}{#4}{#5}{#6}{#7}}{\listcase@Abt{#2}{#3}{#4}{#5}{#6}{#7}}}
 
 % nat type
 \NewDocumentCommand{\natTy}{s}{\A@bt{\O@pn{nat}}}
 \NewDocumentCommand{\zeroEx}{s}{\A@bt{\O@pn{zero}}}
 \NewDocumentCommand{\succEx}{s m}{\A@bt{\O@pn{succ}}(#2)}
-\NewDocumentCommand{\natit@Abt}{o m m m m}{\A@bt{\O@pn{natit}}[#1](#2\@sep #3\@sep \A@bs(#4){#5})}
+\NewDocumentCommand{\natit@Abt}{m m m m m}{\A@bt{\O@pn{natit}}[#1](#2\@sep #3\@sep \A@bs(#4){#5})}
 \NewDocumentCommand{\natit@Cst}{m m m m}{\O@pn{natit}\,#1\,\{\,#2\mid\A@bs(#3){#4}\}}
-\NewDocumentCommand{\natitEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\natit@Cst{#3}{#4}{#5}{#6}}{\natit@Abt[#2]{#3}{#4}{#5}{#6}}}
-\NewDocumentCommand{\ifz@Abt}{o m m m m}{\A@bt{\O@pn{ifz}}[#1](#2\@sep #3\@sep \A@bs(#4){#5})}
+\NewDocumentCommand{\natitEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\natit@Cst{#3}{#4}{#5}{#6}}{\natit@Abt{#2}{#3}{#4}{#5}{#6}}}
+\NewDocumentCommand{\ifz@Abt}{m m m m m}{\A@bt{\O@pn{ifz}}[#1](#2\@sep #3\@sep \A@bs(#4){#5})}
 \NewDocumentCommand{\ifz@Cst}{m m m m}{\O@pn{ifz}\,#1\,\{\,#2\mid\A@bs(#3){#4}\}}
-\NewDocumentCommand{\ifzEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\ifz@Cst{#3}{#4}{#5}{#6}}{\ifz@Abt[#2]{#3}{#4}{#5}{#6}}}
+\NewDocumentCommand{\ifzEx}{s O{\rho} m m m m}{\IfBooleanTF{#1}{\ifz@Cst{#3}{#4}{#5}{#6}}{\ifz@Abt{#2}{#3}{#4}{#5}{#6}}}
 \NewDocumentCommand{\natrec@Cst}{m m m m m}{\O@pn{natrec}\,#1\,\{\,#2\mid \A@bs(#3,#4){#5} \,\}}
-\NewDocumentCommand{\natrec@Abt}{o m m m m m}{\A@bt{\O@pn{natrec}}[#1]{#2\@sep 3\@sep \A@bs(#4,#5){#6}}}
-\NewDocumentCommand{\natrecEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\natrec@Cst{#3}{#4}{#5}{#6}{#7}}{\natrec@Abt[#2]{#3}{#4}{#5}{#6}{#7}}}
+\NewDocumentCommand{\natrec@Abt}{m m m m m m}{\A@bt{\O@pn{natrec}}[#1](#2\@sep #3\@sep \A@bs(#4,#5){#6})}
+\NewDocumentCommand{\natrecEx}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\natrec@Cst{#3}{#4}{#5}{#6}{#7}}{\natrec@Abt{#2}{#3}{#4}{#5}{#6}{#7}}}
 
 % coinductive type
 \NewDocumentCommand{\coiTy}{s m m}{\A@bt{\O@pn{coi}}(\A@bs(#2){#3})}
