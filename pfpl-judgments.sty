@@ -19,8 +19,8 @@
 
 % statics
 
-\NewDocumentCommand{\isTp}{m}{#1\,\jdg@Syn{type}}
-\NewDocumentCommand{\isKd}{m}{#1\,\jdg@Syn{kind}}
+\NewDocumentCommand{\isTp}{s m}{#1\,\jdg@Syn{type}}
+\NewDocumentCommand{\isKd}{s m}{#1\,\jdg@Syn{kind}}
 \NewDocumentCommand{\isOfKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{::} #3}
 \NewDocumentCommand{\ofKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{::} #3}
 
@@ -28,10 +28,10 @@
 \NewDocumentCommand{\ofTp}{s m m}{\IfBooleanTF{#1}{\isOf*{#2}{#3}}{\isOf{#2}{#3}}}
 \NewDocumentCommand{\isOfTp}{s m m}{\IfBooleanTF{#1}{\isOf*{#2}{#3}}{\isOf{#2}{#3}}}
 
-\NewDocumentCommand{\retsTp}{m m}{#1\alt@div #2}
+\NewDocumentCommand{\retsTp}{s m m}{#1\alt@div #2}
 \NewDocumentCommand{\hasTp}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{\sim} #3}
 
-\NewDocumentCommand{\accsTp}{m m}{#1\div #2}
+\NewDocumentCommand{\accsTp}{s m m}{#1\div #2}
 
 \NewDocumentCommand{\isCtx}{m}{#1\,\jdg@Syn{ctx}}
 \NewDocumentCommand{\isSig}{m}{#1\,\jdg@Syn{sig}}
