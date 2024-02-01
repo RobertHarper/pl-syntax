@@ -14,6 +14,8 @@
   {\generic@form{-1.4pt}{-0.8pt}}%
 }}}
 
+\NewDocumentCommand{\altdiv}{}{\mathrel{\alt@div}}
+
 % how to typeset judgment forms; could have options to change
 \NewDocumentCommand{\jdg@Syn}{m}{\textsf{#1}}
 
@@ -47,6 +49,7 @@
 
 \NewDocumentCommand{\eqOf}{m m m}{#1\mathrel{\doteq}#2\mathrel{:}#3}
 \NewDocumentCommand{\eqOfTp}{m m m}{\eqOf{#1}{#2}{#3}}
+\NewDocumentCommand{\eqRets}{m m m}{#1\mathrel{\doteq}#2\mathrel{\aldiv} #3}
 
 % typing contexts and signatures
 
