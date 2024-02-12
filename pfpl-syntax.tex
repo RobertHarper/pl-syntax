@@ -266,7 +266,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \suspTy{\tau}           & \suspTy*{\tau}           & \verb|\suspTy{\tau}|           \\
         \suspEx[\tau]{e}        & \suspEx*[\tau]{e}        & \verb|\suspEx[\tau]{e}|        \\
-        \forcesuspEx[\tau]{e}   & \forcesuspEx*[\tau]{e}   & \verb|\forcesuspEx[\tau]{e}|   \\[1ex]
+        \forceEx[\tau]{e}   & \forceEx*[\tau]{e}   & \verb|\forceEx[\tau]{e}|   \\[1ex]
 
         \compTy{\tau}           & \compTy*{\tau}           & \verb|\compTy{\tau}|           \\
         \compEx{m}              & \compEx*{m}              & \verb|\compEx{m}|              \\
@@ -287,18 +287,18 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \topTy                                        & \topTy*                   & \verb|\topTy| \\
-        \topEx                                        & \topEx*                   & \verb|\topEx| \\
-        \chckEx[\negTy{\rho}]{e}{e'}                 & \chckEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
-        \freeTy{\posTy{\tau}}                         & \freeTy*{\posTy{\tau}}    & \verb|\freeTy{\tau}|                         \\
-        \freeEx[\posTy{\tau}]{v}                      & \freeEx*[\posTy{\tau}]{v} & \verb|\freeEx[\tau]{v}|                      \\
-        \fletEx[\negTy{\tau}][\negTy{\rho}]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\
-        \thunkTy{\negTy{\tau}}                        & \thunkTy*{\negTy{\tau}}   & \verb|\thunkTy{\tau}|                        \\
-        \thunkEx[\negTy{\tau}]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\tau]{e}|                     \\
-        \recthunkEx[\tau]{x}{e}                       & \recthunkEx*[\tau]{x}{e}  & \verb|\recthunkEx[\tau]{x}{e}|   \\
-        \forceEx[\negTy{\tau}]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}| %\\
-        % \copTy{\posTy{\tau_1}}{\negTy{\tau_2}}            & \copTy*{\posTy{\tau_1}}{\negTy{\tau_2}}             & \verb|\copTy{\tau_1}{\tau_2}| \\
-        % \copEx[\posTy{\tau_1}][\negTy{\tau_2}]{v_1}{e_2}                          & \copEx*{v_1}{e_2}           & \verb|\copEx[\tau_1][\tau_2]{v_1}{e_2}| \\
+        \topTy                                & \topTy*                   & \verb|\topTy| \\
+        \topEx                                & \topEx*                   & \verb|\topEx| \\
+        \chckEx[\rho]{e}{e'}                  & \chckEx*{e}{e'}          & \verb|\checkEx[\rho]{e}{e'}| \\
+        \freeTy{\tau}                         & \freeTy*{\tau}    & \verb|\freeTy{\tau}|                         \\
+        \freeEx[\tau]{v}                      & \freeEx*[\tau]{v} & \verb|\freeEx[\tau]{v}|                      \\
+        \fletEx[\tau][\rho]{e}{x}{e'} & \fletEx*{e}{x}{e'}        & \verb|\fletEx[\tau][\rho]{e}{x}{e'}| \\
+        \thunkTy{\tau}                        & \thunkTy*{\tau}   & \verb|\thunkTy{\tau}|                        \\
+        \thunkEx[\tau]{e}                     & \thunkEx*{e}              & \verb|\thunkEx[\tau]{e}|                     \\
+        \recthunkEx<k>[\tau]{x}{e}                    & \recthunkEx*<k>[\tau]{x}{e}  & \verb|\recthunkEx<k>[\tau]{x}{e}|   \\
+        \forceEx[\tau]{v}                     & \forceEx*{v}              & \verb|\forceEx[\tau]{v}| %\\
+        % \copTy{\tau_1}{\rho_2}            & \copTy*{\tau_1}{\tau_2}     & \verb|\copTy{\tau_1}{\tau_2}| \\
+        % \copEx[\tau_1][\tau_2]{v_1}{e_2} & \copEx*{v_1}{e_2}           & \verb|\copEx[\tau_1][\tau_2]{v_1}{e_2}| \\
         % \copletEx{v}{x_1}{x_2}{e}                       & \copletEx*{v}{x_1}{x_2}{e}  & \\
         %   \multicolumn{3}{r}{\UseVerb{copletExVrb}}
       \end{array}

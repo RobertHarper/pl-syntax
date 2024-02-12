@@ -201,7 +201,7 @@
 % suspensions
 \NewDocumentCommand{\suspTy}{s m}{\A@bt{\O@pn{susp}}(#2)}
 \NewDocumentCommand{\suspEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{susp}}[#2](#3)}
-\NewDocumentCommand{\forcesuspEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
+\NewDocumentCommand{\forceEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
 
 % generic computations
 \NewDocumentCommand{\compTy}{s m}{\Abt@{#1}{\O@pn{comp}}(#2)}
@@ -345,9 +345,9 @@
 \NewDocumentCommand{\freeEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{ret}}[#2](#3)}
 \NewDocumentCommand{\fletEx}{s O{\negTy{\tau}} O{\negTy{\rho}} m m m}{\IfBooleanTF{#1}{\@kw{bind}\,#5\leftarrow #4\mathbin{;} #6}{\Abt@{#1}{\O@pn{bind}}[#2\@sep #3](#4\@sep \A@bs(#5){#6})}}
 \NewDocumentCommand{\thunkTy}{s m}{\Abt@{#1}{\Opn@{#1}{\downarrow}{U}}(#2)}
-\NewDocumentCommand{\thunkEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{thunk}}[#2](#3)}
-\NewDocumentCommand{\recthunkEx}{s d<> O{\negTy{\tau}} m m}{\Abt@{#1}{\O@pn{thunk}}<#2>[#3](\Abs(#4){#5})}
-\NewDocumentCommand{\forceEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
+\NewDocumentCommand{\thunkEx}{s O{\negTy{\tau}} m}{\Abt@{#1}{\O@pn{susp}}[#2](#3)}
+\NewDocumentCommand{\recthunkEx}{s d<> O{\negTy{\tau}} m m}{\Abt@{#1}{\O@pn{susp}}<#2>[#3](\Abs(#4){#5})}
+%\NewDocumentCommand{\forceEx}{s o m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
 % copower needs linearity, not suitable for cbpv.
 \NewDocumentCommand{\copTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\ltimes} #3}{\Abt@{#1}{\O@pn{copow}}(#2;#3)}}
 \NewDocumentCommand{\coppair@Abt}{m m m m}{\A@bt{\O@pn{copow}}[#1\@sep #2](#3\@sep #4)}
