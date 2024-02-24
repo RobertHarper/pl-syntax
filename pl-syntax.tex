@@ -14,7 +14,7 @@
 
 \allowdisplaybreaks[1]       %mildly permissible to break up displayed equations
 
-\title{\textsf{PFPL} Syntax Package%
+\title{\texttt{pl-syntax} Package%
 \footnote{\copyright{} \the\year{} Robert Harper.  All Rights Reserved.}}
 \author{Robert Harper}
 \date{\today}
@@ -28,7 +28,7 @@
 
 \section*{Overview\footnotemark}
 
-Use the declaration \verb|\usepackage{pfpl-syntax}| to define syntax macros for \textsf{PFPL}.  The package provides an integrated, systematic treatment of abstract and concrete syntax for a wide range of languages.
+Use the declaration \verb|\usepackage{pfpl-syntax}| to define syntax macros for programming languages inspired by the author's textbook \textit{Practical Foundations for Programming Languages}.  The package provides an integrated, systematic treatment of abstract and concrete syntax for a wide range of languages.
 
 \footnotetext{I am grateful to Kartik Singal for help with testing and improving this package.}
 
@@ -37,7 +37,7 @@ Use the declaration \verb|\usepackage{pfpl-syntax}| to define syntax macros for 
 To typeset an abstract binding tree yourself, provide the package with the \verb|[abt]| option, and use the following commands:
 \begin{itemize}
   \item \verb|\Opn{op}|: Format an operator as a keyword; use starred form for an operator that is to be set in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
-  \item \verb|\Abt{operator}<parameters>[optional](arguments)|: produce abstract syntax, with all arguments typeset.  In typical usage the parameters are symbols that index certain operators; the optional arguments are types that would appear in full abstract syntax; and the arguments are abt's or abstractors constituting the components of a compound abt.  The starred form provides a ``default'' concrete syntax that omits the optional arguments.  If the parenthesized arguments are empty, then no parentheses are typeset.  For example, the command
+  \item \verb|\Abt{operator}<parameters>[minor](major)|: produce an abt, with all arguments typeset.  In typical usage the parameters are symbols that index certain forms of abt's; the minor arguments are types that would appear in full abstract syntax; and the major arguments are abt's or abstractors constituting the components of a compound abt.  The starred form provides a ``default'' concrete syntax that omits the minor arguments.  If the parenthesized arguments are empty, then no parentheses are typeset.  For example, the command
   \begin{quote}
 \begin{verbatim}
 \Abt{\Opn{get}}<a>[\tau]
@@ -65,7 +65,7 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
   \end{quote}
   produces $\Abt{\Opn{dcl}}[\tau;\rho](e;\Abs<a>{m})$ and the starred form produces $\Abt*{\Opn{dcl}}[\tau\,\rho](e;\Abs<a>{m})$.
 \end{itemize}
-The package option \verb|[sf]| indicates that operations are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.  These forms are not ordinarily used directly, they are rather for authors to define their own syntax macros, as illustrated for \textsf{PFPL} in the next section.  The package option \verb|[oldstyle]| uses the notational conventions from the second edition in which symbol parameters to operators are typeset in square brackets, and their minor arguments are typeset in curly braces.
+The package option \verb|[sf]| indicates that operations are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.  The package option \verb|[oldstyle]|, aka \verb|[book]|, uses the notational conventions from the second edition in which symbol parameters to operators are typeset in square brackets, and their minor arguments are typeset in curly braces.  \emph{Warning: this option only works in typical cases in which there are at most one each of parameter, minor, and major arguments!  Otherwise you must define your own version of the macro to get the book-style formatting.}
 
 \smallskip
 
@@ -73,7 +73,7 @@ The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e
 
 \section*{Language-Specific Definitions}
 
-The commands for formatting the many languages considered in \textsf{PFPL} are formulated in a series of figures organized around type structure.  The tables display the abstract and concrete syntax and the \LaTeX{} command used to create them.  The optional arguments are generally required for the abstract syntax, but may be omitted for the concrete syntax.\footnote{In some cases defaults for the optional arguments are provided, but they are denigrated and should be be relied upon.}
+The commands for typesetting the many language constructs in \textsf{PFPL}, plus some others, are organized into a collection of tables grouped roughly according to type structure.  The tables display the abstract and concrete syntax for a language construct, and give the \LaTeX{} command used to create them.  The minor arguments are generally required for the abstract syntax, but may be omitted for the concrete syntax.\footnote{In some cases defaults for the minor arguments are provided, but they are hereby denigrated and should not be relied upon.}  For the variadic forms in Figures~\ref{fig:prod-sum}, the notation $\tau_I$, for $I$ an index set, stands for the finite map $(\finmap{I}{i}{\tau})$; the notation $e_I$ is defined analogously.
 
 \clearpage
 \newgeometry{hmargin=14mm}
@@ -117,7 +117,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
   \end{small} 
 
   \caption{Product and Sum Types}
-  \label{fig:sums}
+  \label{fig:prod-sum}
 \end{figure}
 
 \begin{figure}
@@ -139,7 +139,7 @@ The commands for formatting the many languages considered in \textsf{PFPL} are f
   \end{small}
 
   \caption{Function, Universal, and Existential Types}
-  \label{fig:poly}
+  \label{fig:fun-poly}
 \end{figure}
 
 \begin{figure}

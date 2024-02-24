@@ -15,6 +15,9 @@
 \DeclareOption{oldstyle}{
     \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{[#3]}\IfBooleanTF{#1}{}{\IfValueT{#4}{\{#4\}}}\IfValueT{#5}{(#5)}}
 }
+\DeclareOption{book}{
+    \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{[#3]}\IfBooleanTF{#1}{}{\IfValueT{#4}{\{#4\}}}\IfValueT{#5}{(#5)}}
+}
 \ProcessOptions
 \RequirePackage{bigplustimes,xifthen}
 
