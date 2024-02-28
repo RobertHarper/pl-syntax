@@ -5,6 +5,11 @@
     \NewDocumentCommand{\Abs}{}{\A@bs}
     \NewDocumentCommand{\Opn}{}{\O@pn}
     \ProvideDocumentCommand{\kw}{}{\@kw}
+    \ProvideDocumentCommand{\sep}{m}{\@sep}
+    \ProvideDocumentCommand{\empMap}{}{\emp@map}
+    \ProvideDocumentCommand{\singMap}{}{\sing@map}
+    \ProvideDocumentCommand{\finMap}{}{\fin@map}
+    \ProvideDocumentCommand{\extMap}{}{\ext@map}
 }
 \DeclareOption{sf}{
     \ProvideDocumentCommand{\@kw}{m}{\textsf{#1}}
@@ -13,10 +18,14 @@
     \ProvideDocumentCommand{\@kw}{m}{\textsc{#1}}
 }
 \DeclareOption{oldstyle}{
-    \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{[#3]}\IfBooleanTF{#1}{}{\IfValueT{#4}{\{#4\}}}\IfValueT{#5}{(#5)}}
+    \ProvideDocumentCommand{\param@bracks}{m}{[#1]}
+    \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
+    \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
 \DeclareOption{pfpl}{
-    \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{[#3]}\IfBooleanTF{#1}{}{\IfValueT{#4}{\{#4\}}}\IfValueT{#5}{(#5)}}
+    \ProvideDocumentCommand{\param@bracks}{m}{[#1]}
+    \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
+    \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
 \ProcessOptions
 \RequirePackage{bigplustimes,xifthen}
@@ -28,7 +37,12 @@
 
 \makeatletter
 
+\ProvideDocumentCommand{\param@bracks}{m}{\langle #1\rangle}
+\ProvideDocumentCommand{\minor@bracks}{m}{[#1]}
+\ProvideDocumentCommand{\major@bracks}{m}{(#1)}
+
 \ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
+
 \NewDocumentCommand{\@sep}{}{\mathbin{\@kw{;}}}
 \NewDocumentCommand{\emp@map}{}{\emptyset}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
@@ -42,10 +56,10 @@
 
 % abstractor of symbols in <>'s and variables in ()'s in an abs
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
-% abstract binding tree with operator, index, option, and argument
-% starred form omits the option, provding a cheap form of concrete syntax
-% empty principle arguments are dropped entirely from output.
-\ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{\langle #3\rangle}\IfBooleanTF{#1}{}{\IfValueT{#4}{[#4]}}\IfValueT{#5}{(#5)}}
+% abstract binding tree with operator, parameter, minor, and major arguments
+% starred form omits the minor arguments, provding a cheap form of concrete syntax
+% empty minor and major arguments are dropped entirely from output; should not use empty parameters (just omit)
+\ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{\param@bracks{#3}}\IfBooleanTF{#1}{}{\IfValueT{#4}{\minor@bracks{#4}}}\IfValueT{#5}{\major@bracks{#5}}}
 
 % choose starred form of \A@bt according to boolean argument
 \NewDocumentCommand{\Abt@}{m m}{\IfBooleanTF{#1}{\A@bt*{#2}}{\A@bt{#2}}}
