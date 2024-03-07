@@ -23,9 +23,10 @@
 Include the declaration \verb|\usepackage{pl-judgments}| to define macros for the judgment forms that are typically used when defining programming languages.\footnote{The former package name, \texttt{pfpl-judgments}, is denigrated, but may still be used.}  See the source code for this document for the names of the macros and their use.
 
 \section*{Statics}
-
+\label{sec:statics}
 
 \subsection*{Basic Judgments}
+\label{sec:statics-basic}
 
 Languages with a phase separation distinguish types, which classify values, from expressions, which evaluate to values.  Languages with effects have a \emph{modal separation} between expressions and commands, the latter of which are classified by the types of their returned values.  Languages with \emph{explicit control} classify contexts aka continuations by the type of value that they accept.
 
@@ -34,6 +35,7 @@ In richer languages there are non-trivial notions of equality of types, and corr
 The basic judgment forms corresponding to this architecture are summarized in Figure~\ref{fig:statics}.
 
 \subsection*{Hypothetical/General Judgments}
+\label{sec:statics-hypgen}
 
 The combined hypothetical-general judgment, written $\Gamma\entails J$ or $\Delta\entails J$, expresses assumptions the variables that may be involved in the principal judgment, $J$.  In keeping with the phase distinction there are two classes of variables, the static variables, which range over types and constructors, and the dynamic variables, which range over a type.  In the presence of partiality (undefined expressions) variables may range over either unevaluated expressions or over values, with the latter being the dominant form throughout.  Conventionally, static variables, which range over a kind, are declared in a context written $\Delta$, and dynamic variables, which range over a type, are declared in a context $\Gamma$.  When both forms of context are involved, the notation $\sepCtx{\Delta}{\Gamma}\entails J$ is used.
 
@@ -107,14 +109,13 @@ A collection of formation and membership judgments is given in Figure~\ref{fig:s
 \end{figure}
 
 \section*{Dynamics}
+\label{sec:dynamics}
 
 Often the dynamics of languages is formulated using \emph{state transition systems}, which define a class of execution states, some of which are deemed initial, some of which are deemed final, and a relation between states that expresses ``one step'' of execution.  In principle a state can be anything at all, but in practice states are constructed from (closed, well-formed) pieces of syntax, perhaps involving symbols, and sometimes involving auxiliary data structures such as memories.  These considerations lead to the judgment forms given in Figure~\ref{fig:dynamics}.
 
-There are, invariably, unlabelled forms of transition that may, or may not, be indexed by a signature defining the symbols that are available within the state.  Labelled forms are further indexed by an \emph{action} that specifies the effect of a step of execution.  Generally speaking, such transitions are not execution steps \textit{per se}, but are rather potential steps that may be taken in conjunction with another, complementary, transition.
+There are, invariably, unlabelled forms of transition that may, or may not, be indexed by a signature defining the symbols that are available within the state.  In some cases labelled forms of transition are further indexed by an \emph{action} that specifies the effect of a step of execution.  Generally speaking, such transitions are not execution steps \textit{per se}, but are rather potential steps that may be taken in conjunction with another transition undertaking the \emph{complementary} action.
 
-\smallskip
-
-Occasionally it is helpful to introduce evaluation relations for expressions and execution relations for commands that consolidate multiple individual steps of execution to a final state.  These are also specified, for expressions, in Figure~\ref{fig:dynamics}.  Technically speaking, these relations are strictly secondary to the transition systems that define execution, and are used as summaries of the individual steps.  For example, in the context of an imperative language, evaluation is used for expressions in the definition of transition for commands.
+Occasionally it is helpful to introduce evaluation relations for expressions and execution relations for commands that consolidate multiple individual steps of execution to a final state.  These are also specified in Figure~\ref{fig:dynamics}.  In most situations these relations are secondary to the transition systems that define a dynamics, but in some situations they may be defined directly, without or without reference to a transition system.
 
 \begin{figure}[p]
     \begin{displaymath}
@@ -145,6 +146,15 @@ Occasionally it is helpful to introduce evaluation relations for expressions and
     \caption{Judgments for Dynamics}
     \label{fig:dynamics}
 \end{figure}
+
+% \section*{Equality}
+% \label{sec:equality}
+
+% \subsection*{Formal Equality}
+% \label{sec:equality-formal}
+
+% \subsection*{Semantic Equality}
+% \label{sec:equality-semantic}
 
 \end{document}
 

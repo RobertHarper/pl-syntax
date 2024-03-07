@@ -30,11 +30,6 @@
 \ProcessOptions
 \RequirePackage{bigplustimes,xifthen}
 
-%%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
-
-%%% probably variable arguments should be systematically in parentheses, and hence optional.
-%%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
-
 \makeatletter
 
 \ProvideDocumentCommand{\param@bracks}{m}{\langle #1\rangle}
@@ -69,6 +64,11 @@
 % substitution maps
 \ProvideDocumentCommand{\empSub}{}{\emp@map}
 \ProvideDocumentCommand{\extSub}{m m m}{\ext@map{#1}{#2}{#3}}
+
+%%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
+
+%%% probably variable arguments should be systematically in parentheses, and hence optional.
+%%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
 
 % product types
 % nullary
