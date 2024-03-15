@@ -17,7 +17,7 @@
 \DeclareOption{sc}{
     \ProvideDocumentCommand{\@kw}{m}{\textsc{#1}}
 }
-\DeclareOption{oldstyle}{
+\DeclareOption{oldstyle}{   % denigrated
     \ProvideDocumentCommand{\param@bracks}{m}{[#1]}
     \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
@@ -28,7 +28,8 @@
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
 \ProcessOptions
-\RequirePackage{bigplustimes,xifthen}
+\RequirePackage{xifthen}
+\ifdefined\bigplus\else\usepackage{bigplustimes}\fi  % ensure that \big lus and \bigtimes are available
 
 \makeatletter
 
