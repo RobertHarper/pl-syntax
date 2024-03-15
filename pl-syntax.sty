@@ -30,8 +30,8 @@
 \ProcessOptions
 
 \RequirePackage{xifthen,scalerel}
-\DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}
-\DeclareMathOperator*{\bigtimes}{\scalerel*{\times}{\prod}}
+\ifdefined\bigplus\else\DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}\fi
+\ifdefined\bigtimes\else\DeclareMathOperator*{\bigtimes}{\scalerel*{\times}{\prod}}\fi
 
 \makeatletter
 
