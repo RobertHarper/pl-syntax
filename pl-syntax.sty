@@ -28,8 +28,10 @@
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
 \ProcessOptions
-\RequirePackage{xifthen}
-\ifdefined\bigplus\else\usepackage{bigplustimes}\fi  % ensure that \big lus and \bigtimes are available
+
+\RequirePackage{xifthen,scalerel}
+\DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}
+\DeclareMathOperator*{\bigtimes}{\scalerel*{\times}{\prod}}
 
 \makeatletter
 
