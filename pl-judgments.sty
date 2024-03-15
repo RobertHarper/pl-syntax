@@ -13,8 +13,7 @@
   {\generic@form{-2.0pt}{-1.1pt}}%
   {\generic@form{-1.4pt}{-0.8pt}}%
 }}}
-\NewDocumentCommand{\wavyDiv}{}{\mathrel{\wavy@div}}
-\ProvideDocumentCommand{\wavydiv}{}{\mathrel{\wavy@div}}
+\ProvideDocumentCommand{\wavydiv}{}{\mathrel{\wavy@div}}  % stix provides a proper one, prefer that, but allow this
 
 % how to typeset judgment forms; could have options to change
 \NewDocumentCommand{\jdg@Syn}{m}{\textsf{#1}}
@@ -30,7 +29,7 @@
 \NewDocumentCommand{\ofTp}{s m m}{\IfBooleanTF{#1}{\isOf*{#2}{#3}}{\isOf{#2}{#3}}}
 \NewDocumentCommand{\isOfTp}{s m m}{\IfBooleanTF{#1}{\isOf*{#2}{#3}}{\isOf{#2}{#3}}}
 
-\NewDocumentCommand{\retsTp}{s m m}{#2\wavy@div #3}
+\NewDocumentCommand{\retsTp}{s m m}{#2\wavydiv #3}
 \NewDocumentCommand{\hasTp}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{\sim} #3}
 
 \NewDocumentCommand{\accsTp}{s m m}{#2\div #3}
@@ -49,7 +48,7 @@
 
 \NewDocumentCommand{\eqOf}{m m m}{#1\mathrel{\doteq}#2\mathrel{:}#3}
 \NewDocumentCommand{\eqOfTp}{m m m}{\eqOf{#1}{#2}{#3}}
-\NewDocumentCommand{\eqRets}{m m m}{#1\mathrel{\doteq}#2\mathrel{\wavy@div} #3}
+\NewDocumentCommand{\eqRets}{m m m}{#1\mathrel{\doteq}#2\mathrel{\wavydiv} #3}
 
 % typing contexts and signatures
 
