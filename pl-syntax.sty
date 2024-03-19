@@ -17,7 +17,8 @@
 \DeclareOption{sc}{
     \ProvideDocumentCommand{\@kw}{m}{\textsc{#1}}
 }
-\DeclareOption{oldstyle}{   % denigrated
+\DeclareOption{oldstyle}{ % denigrated
+    \typeout{Please use [pfpl] option rather than [oldstyle].}
     \ProvideDocumentCommand{\param@bracks}{m}{[#1]}
     \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
