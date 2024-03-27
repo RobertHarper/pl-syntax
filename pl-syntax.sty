@@ -54,7 +54,7 @@
 \NewDocumentCommand{\Opn@}{m m m}{\IfBooleanTF{#1}{\O@pn*{#2}}{\O@pn{#3}}}
 
 % abstractor of symbols in <>'s and variables in ()'s in an abs
-\NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathbin{.}}\IfValueT{#2}{#2\mathbin{.}} #3}
+\NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathord{.}}\IfValueT{#2}{#2\mathord{.}} #3}
 % abstract binding tree with operator, parameter, minor, and major arguments
 % starred form omits the minor arguments, provding a cheap form of concrete syntax
 % empty minor and major arguments are dropped entirely from output; should not use empty parameters (just omit)
