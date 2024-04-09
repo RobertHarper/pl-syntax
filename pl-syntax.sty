@@ -46,7 +46,7 @@
 \NewDocumentCommand{\emp@map}{}{\emptyset}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\fin@map}{m m m}{\sing@map{#2}{#3_#2}\mid #2\in #1}
-\NewDocumentCommand{\ext@map}{m m m}{#1,\sing@map{#2}{#3}}
+\NewDocumentCommand{\ext@map}{s m m m}{\IfBooleanF{#1}{#2,\,}\sing@map{#3}{#4}{\IfBooleanT{#1}{\,, #2}}}
 
 % starred for math name, non-starred for verbatim name, optional index
 \NewDocumentCommand{\O@pn}{s m}{\mathop{\IfBooleanTF{#1}{#2}{\@kw{#2}}}\nolimits}
@@ -67,7 +67,7 @@
 \ProvideDocumentCommand{\Sub}{s m m m}{\IfBooleanTF{#1}{#4[#2/#3]}{[#2/#3]#4}}
 % substitution maps
 \ProvideDocumentCommand{\empSub}{}{\emp@map}
-\ProvideDocumentCommand{\extSub}{m m m}{\ext@map{#1}{#2}{#3}}
+\ProvideDocumentCommand{\extSub}{s m m m}{\IfBooleanTF{#1}{\ext@map*{#2}{#3}{#4}}{\ext@map{#2}{#3}{#4}}}
 
 %%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
 
