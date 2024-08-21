@@ -42,7 +42,7 @@
 
 \ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
 
-\NewDocumentCommand{\@sep}{}{\mathbin{\@kw{;}}}
+\NewDocumentCommand{\@sep}{s}{\IfBooleanTF{#1}{\mathbin}{\mathord}{\@kw{;}}}
 \NewDocumentCommand{\emp@map}{}{\emptyset}
 \NewDocumentCommand{\sing@map}{m m}{#1\hookrightarrow #2}
 \NewDocumentCommand{\fin@map}{m m m}{\sing@map{#2}{#3_#2}\mid #2\in #1}
@@ -139,7 +139,7 @@
 % inductive type
 \NewDocumentCommand{\indTy}{s m m}{\A@bt{\O@pn{ind}}(\A@bs(#2){#3})}
 \NewDocumentCommand{\inEx}{s O{t} O{\tau} m}{\Abt@{#1}{\O@pn{in}}[\A@bs(#2){#3}](#4)}
-\NewDocumentCommand{\recEx}{s O{t} O{\tau} O{\rho} m m m}{\Abt@{#1}{\O@pn{rec}}[\A@bs(#2){#3}\@sep  #4](#5\@sep \A@bs(#6){#7})}
+\NewDocumentCommand{\recEx}{s O{t} O{\tau} O{\rho} m m m}{\Abt@{#1}{\O@pn{rec}}[\A@bs(#2){#3}\@sep #4](#5\@sep \A@bs(#6){#7})}
 
 % list type
 \NewDocumentCommand{\listTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{list}}{\A@bt{\O@pn{list}}(#2)}}
@@ -264,18 +264,18 @@
 \NewDocumentCommand{\raiseCmd}{s O{\rho} m}{\Abt@{#1}{\O@pn{raise}}[#2](#3)}
 
 \NewDocumentCommand{\bnd@Abt}{m m m m m}{\A@bt{\O@pn{bnd}}[#1\@sep  #2](#3\@sep \A@bs(#4){#5})}
-\NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep #3}
+\NewDocumentCommand{\bnd@Cst}{m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep* #3}
 % \NewDocumentCommand{\bnd@Cst}{m m m}{\A@bt{\O@pn{bnd}}(#1\@sep \A@bs(#2){#3})}
 \NewDocumentCommand{\bndCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bnd@Cst{#3}{#5}{#6}}{\bnd@Abt{#2}{#4}{#3}{#5}{#6}}}
 
 \NewDocumentCommand{\seq@Abt}{m O{\_} m}{\A@bt{\O@pn{seq}}(#1\@sep \A@bs(#2){#3})}
-\NewDocumentCommand{\seq@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{\leftarrow}}#1\@sep #3}
+\NewDocumentCommand{\seq@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{\leftarrow}}#1\@sep* #3}
 \NewDocumentCommand{\seqCmd}{s m o m}{\IfBooleanTF{#1}{\seq@Cst{#2}[#3]{#4}}{\seq@Abt{#2}[#3]{#4}}}
 
 \NewDocumentCommand{\ifCmd}{s O{\rho} m m m}{\IfBooleanTF{#1}{\ifEx*{#3}{#4}{#5}}{\ifEx[#2]{#3}{#4}{#5}}}
 
 \NewDocumentCommand{\bndow@Abt}{m m m m m m}{\A@bt{\O@pn{bndow}}[#1](#2\@sep \A@bs(#3){#4}\@sep \A@bs(#5){#6})}
-\NewDocumentCommand{\bndow@Cst}{m m m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep #3\mathbin{\@kw{ow}}#4\mathbin{\rightarrow}\,#5}
+\NewDocumentCommand{\bndow@Cst}{m m m m m}{\O@pn{bnd}\,#2\mathbin{\leftarrow}#1\@sep* #3\mathbin{\@kw{ow}}#4\mathbin{\rightarrow}\,#5}
 \NewDocumentCommand{\bndowCmd}{s O{\rho} m m m m m}{\IfBooleanTF{#1}{\bndow@Cst{#3}{#4}{#5}{#6}{#7}}{\bndow@Abt{#2}{#3}{#4}{#5}{#6}{#7}}}
 
 \NewDocumentCommand{\dcl@Abt}{m m m m}{\A@bt{\O@pn{dcl}}[#1\@sep  #2](#3\@sep  #4)}
@@ -344,7 +344,7 @@
 \NewDocumentCommand{\sigTy}{s m o m}{\IfBooleanTF{#1}{\sig@Cst{#2}[#3]{#4}}{\sig@Abt{#2}[#3]{#4}}}
 
 \NewDocumentCommand{\str@Abt}{m m m m m}{\A@bt{\O@pn{struct}}[#1\@sep\A@bs(#2){#3}](#4\@sep #5)}
-\NewDocumentCommand{\str@Cst}{m m}{\O@pn{struct} #1\mathbin{\O@pn*{;}} #2}
+\NewDocumentCommand{\str@Cst}{m m}{\O@pn{struct} #1\@sep #2}
 \NewDocumentCommand{\strMd}{s o O{\_} o m m}{\IfBooleanTF{#1}{\str@Cst{#5}{#6}}{\str@Abt{#2}{#3}{#4}{#5}{#6}}}
 \NewDocumentCommand{\projMd}{s r<> o O{\_} o m}{\IfBooleanTF{#1}{#6\cdot\@kw{#2}}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \A@bs(#4){#5}](#6)}}
 
@@ -362,14 +362,14 @@
 % cbpv / polarization
 \NewDocumentCommand{\freeTy}{s m}{\Abt@{#1}{\Opn@{#1}{\downarrow}{F}}(#2)}
 \NewDocumentCommand{\freeEx}{s o m}{\Abt@{#1}{\O@pn{ret}}[#2](#3)}
-\NewDocumentCommand{\fletEx}{s o o m m m}{\IfBooleanTF{#1}{\@kw{bind}\,#5\leftarrow #4\mathbin{;} #6}{\Abt@{#1}{\O@pn{bind}}[#2\@sep #3](#4\@sep \A@bs(#5){#6})}}
+\NewDocumentCommand{\fletEx}{s o o m m m}{\IfBooleanTF{#1}{\@kw{bind}\,#5\leftarrow #4\@sep* #6}{\Abt@{#1}{\O@pn{bind}}[#2\@sep #3](#4\@sep \A@bs(#5){#6})}}
 \NewDocumentCommand{\thunkTy}{s m}{\Abt@{#1}{\Opn@{#1}{\uparrow}{U}}(#2)}
 \NewDocumentCommand{\thunkEx}{s o m}{\Abt@{#1}{\O@pn{susp}}[#2](#3)}
 %\NewDocumentCommand{\recthunkEx}{s d<> o m m}{\Abt@{#1}{\O@pn{susp}}<#2>[#3](\Abs(#4){#5})}
 \NewDocumentCommand{\recthunkEx}{s d<> o m m}{\IfBooleanTF{#1}{\O@pn{susp}\IfValueT{#2}{^{(#2)}}(\Abs(#4){#5})}{\A@bt{\O@pn{susp}}<#2>[#3](\Abs(#4){#5})}}
 %\NewDocumentCommand{\forceEx}{s o m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
 % copower needs linearity, not suitable for cbpv.
-\NewDocumentCommand{\copTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\ltimes} #3}{\Abt@{#1}{\O@pn{copow}}(#2;#3)}}
+\NewDocumentCommand{\copTy}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\ltimes} #3}{\Abt@{#1}{\O@pn{copow}}(#2\@sep #3)}}
 \NewDocumentCommand{\coppair@Abt}{m m m m}{\A@bt{\O@pn{copow}}[#1\@sep #2](#3\@sep #4)}
 \NewDocumentCommand{\coppair@Cst}{m m}{#1\mathbin{\ltimes} #2}
 \NewDocumentCommand{\copEx}{s o o m m}{\IfBooleanTF{#1}{\coppair@Cst{#4}{#5}}{\coppair@Abt{#2}{#3}{#4}{#5}}}
