@@ -107,9 +107,9 @@
 \NewDocumentCommand{\voidTy}{s}{\Abt@{#1}{\Opn@{#1}{0}{void}}}
 \NewDocumentCommand{\absurdEx}{s O{\rho} m}{\Abt@{#1}{\O@pn{absurd}}[#2](#3)}
 % binary
-\NewDocumentCommand{\sum@Abt}{m m}{\A@bt{\O@pn{sum}}(#1\@sep  #2)}
-\NewDocumentCommand{\sum@Cst}{m m}{#1+#2}
-\NewDocumentCommand{\sumTy}{s m m}{\IfBooleanTF{#1}{\sum@Cst{#2}{#3}}{\sum@Abt{#2}{#3}}}
+\NewDocumentCommand{\sum@Abt}{d<> m m}{\IfValueTF{#1}{\A@bt{\O@pn{sum}}<#1>(#2\@sep #3)}{\A@bt{\O@pn{sum}}(#2\@sep  #3)}}
+\NewDocumentCommand{\sum@Cst}{D<>{} m m}{#2+_{#1}#3}
+\NewDocumentCommand{\sumTy}{s d<> m m}{\IfBooleanTF{#1}{\IfValueTF{#2}{\sum@Cst<#2>{#3}{#4}}{\sum@Cst{#3}{#4}}}{\IfValueTF{#2}{\sum@Abt<#2>{#3}{#4}}{\sum@Abt{#3}{#4}}}}
 \NewDocumentCommand{\inj@Abt}{r<> m m m}{\A@bt{\O@pn{inj}}<#1>[#2\@sep #3](#4)}
 \NewDocumentCommand{\inj@Cst}{r<> m}{#1\cdot #2}
 \NewDocumentCommand{\injEx}{s r<> O{\tau_1} O{\tau_2} m}{\IfBooleanTF{#1}{\inj@Cst<#2>{#5}}{\inj@Abt<#2>{#3}{#4}{#5}}}
