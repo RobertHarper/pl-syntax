@@ -100,10 +100,15 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \caseEx[\tau][\rho]{e}{x}{e}     & \caseEx*{e}{x}{e}      & \verb|\caseEx[\tau][\rho]{e}{x}{e}|              \\
         \xcaseEx[\tau_1][\tau_2][\rho]{e}{x_1}{e_1}{x_2}{e_2} & \xcaseEx*{e}{x_1}{e_1}{x_2}{e_2} & \\
         \multicolumn{3}{r}{\UseVerb{xcaseExVrb}} \\[1ex]
+
         \boolTy                           & \boolTy*                & \verb|\boolTy|                                    \\
         \trueEx                           & \trueEx*                & \verb|\trueEx|                                    \\
         \falseEx                          & \falseEx*               & \verb|\falseEx|                                   \\
         \ifEx[\rho]{e}{e_1}{e_2}          & \ifEx*{e}{e_1}{e_2}     & \verb|\ifEx[\rho]{e}{e_1}{e_2}|                   \\[1ex]
+
+        \optTy{\tau}                      & \optTy*{\tau}           & \verb|\optTy{\tau}| \\
+        \nothingEx                        & \nothingEx*             & \verb|\nothingEx| \\
+        \justEx{e}                        & \justEx*{e}             & \verb|\justEx{e}| \\[2ex]
 
         \vsumTy<I><i>{\tau}               & \vsumTy*<I><i>{\tau}    & \verb|\vsumTy<I><i>{\tau}|                        \\
         \vinjEx<I><i>[\tau]{e}            & \vinjEx*<I><i>{e}       & \verb|\vinjEx<I><i>[\tau]{e}| \quad (i\in I)      \\
