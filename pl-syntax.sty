@@ -136,6 +136,11 @@
 \NewDocumentCommand{\falseEx}{s}{\A@bt{\O@pn{false}}}
 \NewDocumentCommand{\ifEx}{s O{\rho} m m m}{\Abt@{#1}{\O@pn{if}}[#2](#3\@sep  #4\@sep  #5)}
 
+% options
+\NewDocumentCommand{\optTy}{s m}{\Abt{\kw{opt}}(#1)}
+\NewDocumentCommand{\nothingEx}{s}{\Abt{\kw{Nothing}}}
+\NewDocumentCommand{\justEx}{s m}{\Abt{\kw{Just}}(#2)}
+
 % inductive type
 \NewDocumentCommand{\indTy}{s m m}{\A@bt{\O@pn{ind}}(\A@bs(#2){#3})}
 \NewDocumentCommand{\inEx}{s O{t} O{\tau} m}{\Abt@{#1}{\O@pn{in}}[\A@bs(#2){#3}](#4)}
