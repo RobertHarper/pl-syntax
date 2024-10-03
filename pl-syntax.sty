@@ -137,7 +137,7 @@
 \NewDocumentCommand{\ifEx}{s O{\rho} m m m}{\Abt@{#1}{\O@pn{if}}[#2](#3\@sep  #4\@sep  #5)}
 
 % options
-\NewDocumentCommand{\optTy}{s m}{\A@bt{\O@pn{opt}}(#2)}
+\NewDocumentCommand{\optTy}{s m}{\IfBooleanTF{#1}{#2\,\O@pn{opt}}{\A@bt{\O@pn{opt}}(#2)}}
 \NewDocumentCommand{\nothingEx}{s}{\A@bt{\O@pn{Nothing}}}
 \NewDocumentCommand{\justEx}{s m}{\A@bt{\O@pn{Just}}(#2)}
 
