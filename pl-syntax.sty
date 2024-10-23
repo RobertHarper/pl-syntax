@@ -315,8 +315,8 @@
 
 \NewDocumentCommand{\preincCmd}{s r<>}{\IfBooleanTF{#1}{\@kw{++}#2}{\A@bt{\O@pn{inc}}<#2>}}
 \NewDocumentCommand{\postincCmd}{s r<>}{\IfBooleanTF{#1}{#2\@kw{++}}{\A@bt{\O@pn{cni}}<#2>}}
-\NewDocumentCommand{\postdecCmd}{s r<>}{}
-\NewDocumentCommand{\predecCmd}{s r<>}{}
+\NewDocumentCommand{\predecCmd}{s r<>}{\IfBooleanTF{#1}{\@kw{{-}{-}}#2}{\A@bt{\O@pn{dec}}<#2>}}
+\NewDocumentCommand{\postdecCmd}{s r<>}{\IfBooleanTF{#1}{#2\@kw{{-}{-}}}{\A@bt{\O@pn{ced}}<#2>}}
 
 % effect handlers
 % \NewDocumentCommand{\doCmd}{s r<> d() o}{\IfBooleanTF{#1}{\@kw{do}\,#2\IfValueT{#3}{(#3)}\IfValueT{#4}{(#4)}}{\A@bt{\O@pn{do}}<#2>(#3)\IfValueT{#4}{(#4)}}}
