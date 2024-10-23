@@ -273,6 +273,8 @@
 % \NewDocumentCommand{\bnd@Cst}{m m m}{\A@bt{\O@pn{bnd}}(#1\@sep \A@bs(#2){#3})}
 \NewDocumentCommand{\bndCmd}{s O{\tau} m O{\rho} m m}{\IfBooleanTF{#1}{\bnd@Cst{#3}{#5}{#6}}{\bnd@Abt{#2}{#4}{#3}{#5}{#6}}}
 
+\NewDocumentCommand{\retunitCmd}{s}{\O@pn{ret}}
+\NewDocumentCommand{\doCmd}{s o m}{\Abt@{#1}{\O@pn{do}}[#2](#3)}
 \NewDocumentCommand{\seq@Abt}{m O{\_} m}{\A@bt{\O@pn{seq}}(#1\@sep \A@bs(#2){#3})}
 \NewDocumentCommand{\seq@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{\leftarrow}}#1\@sep* #3}
 \NewDocumentCommand{\seqCmd}{s m o m}{\IfBooleanTF{#1}{\seq@Cst{#2}[#3]{#4}}{\seq@Abt{#2}[#3]{#4}}}
@@ -310,6 +312,11 @@
 \NewDocumentCommand{\setrefCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\setref@Cst{#3}{#4}}{\setref@Abt{#2}{#3}{#4}}}
 
 \NewDocumentCommand{\newrefCmd}{s O{\tau} m}{\IfBooleanTF{#1}{\@kw{newref}(#3)}{\A@bt{\O@pn{newref}}[#2](#3)}}
+
+\NewDocumentCommand{\preincCmd}{s r<>}{\IfBooleanTF{#1}{\@kw{++}#2}{\A@bt{\O@pn{inc}}<#2>}}
+\NewDocumentCommand{\postincCmd}{s r<>}{\IfBooleanTF{#1}{#2\@kw{++}}{\A@bt{\O@pn{cni}}<#2>}}
+\NewDocumentCommand{\postdecCmd}{s r<>}{}
+\NewDocumentCommand{\predecCmd}{s r<>}{}
 
 % effect handlers
 % \NewDocumentCommand{\doCmd}{s r<> d() o}{\IfBooleanTF{#1}{\@kw{do}\,#2\IfValueT{#3}{(#3)}\IfValueT{#4}{(#4)}}{\A@bt{\O@pn{do}}<#2>(#3)\IfValueT{#4}{(#4)}}}

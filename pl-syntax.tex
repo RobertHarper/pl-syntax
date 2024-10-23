@@ -313,15 +313,21 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \bndCmd[\tau]{e}[\rho]{x}{m}           & \bndCmd*{e}{x}{m}           & \verb|\bndCmd[\tau]{e}[\rho]{x}{m}|           \\
         \bndowCmd[\tau]{e}{x}{m_1}{x}{m_2}     & \bndowCmd*{e}{x}{m_1}{x}{m_2}  & \verb|\bndowCmd[\tau]{e}{x}{m_1}{x}{m_2}| \\
         \dclCmd[\tau]{e}[\rho]<a>{m}           & \dclCmd*{e}<a>{m}           & \verb|\dclCmd[\tau]{e}[\rho]<a>{m}|           \\[1ex]
-        \seqCmd{m_1}[x]{m_2}       & \seqCmd*{m_1}[x]{m_2}          & \verb|\seqCmd{m_1}[x]{m_2}| \\
+        \retunitCmd{}              & \retunitCmd*{}              & \verb|\retunitCmd| \\
+        \doCmd[\tau]{m}            & \doCmd*{m}                  & \verb|\doCmd[\tau]{m}| \\
+        \seqCmd{m_1}[x]{m_2}       & \seqCmd*{m_1}[x]{m_2}       & \verb|\seqCmd{m_1}[x]{m_2}| \\
         \seqCmd{m_1}{m_2}          & \seqCmd*{m_1}{m_2}          & \verb|\seqCmd{m_1}{m_2}| \\[1ex]
         \refTy{\tau}               & \refTy*{\tau}               & \verb|\refTy{\tau}| \\
-        \refEx<a>                  & \refEx*<a>                 & \verb|\refEx<a>|                  \\[1ex]
+        \refEx<a>                  & \refEx*<a>                  & \verb|\refEx<a>|                  \\[1ex]
         \getCmd<a>                 & \getCmd*<a>                 & \verb|\getCmd<a>|                 \\
         \getrefCmd[\tau]{e}        & \getrefCmd*{e}              & \verb|\getrefCmd[\tau]{e}|        \\
         \setCmd<a>{e}              & \setCmd*<a>{e}              & \verb|\setCmd<a>{e}|              \\
         \setrefCmd[\tau]{e_1}{e_2} & \setrefCmd*[\tau]{e_1}{e_2} & \verb|\setrefCmd[\tau]{e_1}{e_2}|  \\[1ex]
-        \newrefCmd[\tau]{e}        & \newrefCmd*{e}              & \verb|\newrefCmd[\tau]{e}|
+        \newrefCmd[\tau]{e}        & \newrefCmd*{e}              & \verb|\newrefCmd[\tau]{e}| \\[1ex]
+        \preincCmd<a>              & \preincCmd*<a>              & \verb|\preincCmd<a>| \\
+        \postincCmd<a>             & \postincCmd*<a>             & \verb|\postincCmd<a>| \\
+        \predecCmd<a>              & \predecCmd*<a>              & \verb|\predecCmd<a>| \\
+        \postdecCmd<a>             & \postdecCmd*<a>             & \verb|\postdecCmd<a>|
       \end{array}
     \end{displaymath}
   \end{small}
