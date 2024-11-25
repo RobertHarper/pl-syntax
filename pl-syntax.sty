@@ -262,7 +262,7 @@
 \NewDocumentCommand{\newsymCmd}{s O{\tau}}{\A@bt{\O@pn{gensym}}[#2]}
 
 % dynamic classification
-\NewDocumentCommand{\newclsCmd}{s O{\tau} m m}{\IfBooleanTF{#1}{\@kw{newcls}\,#3\mathbin{\sim}#2\mathbin{\@kw{in}} #4}{\A@bt{\O@pn{newcls}}[#2](\A@bs<#3>{#4})}}
+\NewDocumentCommand{\newclsCmd}{s O{\tau}}{\A@bt{\O@pn{newcls}}[#2]}
 \NewDocumentCommand{\clsfdTy}{s}{\Abt{\Opn{clsfd}}}
 \NewDocumentCommand{\clsinEx}{s r<> m}{\Abt{\Opn{in}}<#2>(#3)}
 \NewDocumentCommand{\clsoutEx}{s r<> m}{\Abt{\Opn{out}}<#2>(#3)}
