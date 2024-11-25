@@ -305,6 +305,26 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \clsfdTy                      & \clsfdTy*             & \verb|\clsfdTy| \\
+        \clsinEx<c>{e}                & \clsinEx*<c>{e}       & \verb|\clsinEx<c>{e}| \\
+        \clsoutEx<c>{e}               & \clsoutEx*<c>{e}      & \verb|\clsoutEx<c>{e}| \\
+        \clsrefTy{\tau}               & \clsrefTy*{\tau}      & \verb|\clsrefTy{\tau}| \\
+        \clsrefEx{e}                  & \clsrefEx*{e}         & \verb|\clsrefEx{\tau}| \\
+        \clsinrefEx{e_1}{e_2}         & \clsinrefEx*{e_1}{e_2} & \verb|\clsinrefEx{e_1}{e_2}| \\
+        \clsoutrefEx{e_1}{e_2}        & \clsoutrefEx*{e_1}{e_2} & \verb|\clsoutrefEx{e_1}{e_2}|
+      \end{array}
+    \end{displaymath}
+  \end{small}
+
+  \caption{Dynamic Classification}
+  \label{fig:clsfd}
+\end{figure}
+
+\begin{figure}
+
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \cmdTy{\tau}               & \cmdTy*{\tau}               & \verb|\cmdTy{\tau}|               \\
         \cmdEx[\tau]{m}            & \cmdEx*{m}                  & \verb|\cmdEx[\tau]{m}|            \\[1ex]
