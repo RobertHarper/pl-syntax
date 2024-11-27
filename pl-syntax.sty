@@ -56,8 +56,8 @@
 % abstractor of symbols in <>'s and variables in ()'s in an abs
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathord{.}}\IfValueT{#2}{#2\mathord{.}} #3}
 % abstract binding tree with operator, parameter, minor, and major arguments
-% starred form omits the minor arguments, provding a cheap form of concrete syntax
-% empty minor and major arguments are dropped entirely from output; should not use empty parameters (just omit)
+% starred form omits the minor arguments, a cheap form of concrete syntax
+% omitted minor and major arguments are dropped entirely from output
 \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{\param@bracks{#3}}\IfBooleanTF{#1}{}{\IfValueT{#4}{\minor@bracks{#4}}}\IfValueT{#5}{\major@bracks{#5}}}
 
 % choose starred form of \A@bt according to boolean argument
@@ -71,8 +71,8 @@
 
 %%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
 
-%%% probably variable arguments should be systematically in parentheses, and hence optional.
-%%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
+%%% variable arguments should be in parentheses, and hence optional.
+%%% the option could default to \_, and omitted in concrete form.
 
 % product types
 % nullary
