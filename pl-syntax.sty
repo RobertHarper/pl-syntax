@@ -419,13 +419,13 @@
 \NewDocumentCommand{\choosePr}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}(#2\@sep #3)}}
 %\NewDocumentCommand{\quePr}{s m m}{\Abt@{#1}{\Opn@{#1}{?}{que}}<#2>(#3)}
 %\NewDocumentCommand{\sigPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{sig}}<#2>(#3)}
-\NewDocumentCommand{\sigPr}{s m m}{\IfBooleanTF{#1}{\mathop{!}\,#2\,(#3)}{\A@bt{\O@pn{sig}}<#2>(#3)}}
-\NewDocumentCommand{\quePr}{s m m}{\IfBooleanTF{#1}{\mathop{?}\,#2\,(#3)}{\A@bt{\O@pn{que}}<#2>(#3)}}
+\NewDocumentCommand{\sigPr}{s m m}{\IfBooleanTF{#1}{\mathop{!}#2\,(#3)}{\A@bt{\O@pn{sig}}<#2>(#3)}}
+\NewDocumentCommand{\quePr}{s m m}{\IfBooleanTF{#1}{\mathop{?}#2\,(#3)}{\A@bt{\O@pn{que}}<#2>(#3)}}
 % \NewDocumentCommand{\rcvPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>(\A@bs(#3){#4})}
 %\NewDocumentCommand{\sndPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>(#3\@sep #4)}
-\NewDocumentCommand{\rcvPr}{s m m m}{\IfBooleanTF{#1}{\mathop{?}\,#2(\A@bs(#3){#4})}{\A@bt{\O@pn{rcv}}<#2>(\A@bs(#3){#4})}}
-\NewDocumentCommand{\sndPr}{s m m m}{\IfBooleanTF{#1}{\mathop{!}\,#2(#3\@sep #4)}{\A@bt{\O@pn{snd}}<#2>(#3\@sep #4)}}
-\NewDocumentCommand{\asndPr}{s m m}{\IfBooleanTF{#1}{\mathop{!}\,#2\,(#3)}{\A@bt{\O@pn{asnd}}<#2>(#3)}}
+\NewDocumentCommand{\rcvPr}{s m m m}{\IfBooleanTF{#1}{\mathop{?}#2\,(\A@bs(#3){#4})}{\A@bt{\O@pn{rcv}}<#2>(\A@bs(#3){#4})}}
+\NewDocumentCommand{\sndPr}{s m m m}{\IfBooleanTF{#1}{\mathop{!}#2\,(#3\@sep #4)}{\A@bt{\O@pn{snd}}<#2>(#3\@sep #4)}}
+\NewDocumentCommand{\asndPr}{s m m}{\IfBooleanTF{#1}{\mathop{!}#2\,(#3)}{\A@bt{\O@pn{asnd}}<#2>(#3)}}
 %\NewDocumentCommand{\asndPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{asnd}}<#2>(#3)}
 \NewDocumentCommand{\syncPr}{s m}{\Abt@{#1}{\O@pn{sync}}(#2)}
 \NewDocumentCommand{\newPr}{s O{\tau} m m}{\Abt@{#1}{\Opn@{#1}{\nu}{new}}[#2](\A@bs(#3){#4})}
