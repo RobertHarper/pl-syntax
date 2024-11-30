@@ -56,8 +56,8 @@
 % abstractor of symbols in <>'s and variables in ()'s in an abs
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathord{.}}\IfValueT{#2}{#2\mathord{.}} #3}
 % abstract binding tree with operator, parameter, minor, and major arguments
-% starred form omits the minor arguments, provding a cheap form of concrete syntax
-% empty minor and major arguments are dropped entirely from output; should not use empty parameters (just omit)
+% starred form omits the minor arguments, a cheap form of concrete syntax
+% omitted minor and major arguments are dropped entirely from output
 \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{\param@bracks{#3}}\IfBooleanTF{#1}{}{\IfValueT{#4}{\minor@bracks{#4}}}\IfValueT{#5}{\major@bracks{#5}}}
 
 % choose starred form of \A@bt according to boolean argument
@@ -71,8 +71,8 @@
 
 %%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
 
-%%% probably variable arguments should be systematically in parentheses, and hence optional.
-%%% the option could default to \_, or be explicitly omitted as in dep types and sequencing commands.
+%%% variable arguments should be in parentheses, and hence optional.
+%%% the option could default to \_, and omitted in concrete form.
 
 % product types
 % nullary
@@ -414,14 +414,19 @@
 
 % processes
 \NewDocumentCommand{\unitPr}{s}{\Abt@{#1}{\Opn@{#1}{1}{one}}}
-\NewDocumentCommand{\parPr}{s m m}{\IfBooleanTF{#1}{#2\otimes #3}{\A@bt{\O@pn{par}}(#2\@sep #3)}}
+\NewDocumentCommand{\parPr}{s m m}{\IfBooleanTF{#1}{#2 \otimes #3}{\A@bt{\O@pn{par}}(#2\@sep #3)}}
 \NewDocumentCommand{\nullPr}{s}{\Abt@{#1}{\Opn@{#1}{0}{null}}}
 \NewDocumentCommand{\choosePr}{s m m}{\IfBooleanTF{#1}{#2\oplus #3}{\A@bt{\O@pn{or}}(#2\@sep #3)}}
-\NewDocumentCommand{\quePr}{s m m}{\Abt@{#1}{\Opn@{#1}{?}{que}}<#2>(#3)}
-\NewDocumentCommand{\sigPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{sig}}<#2>(#3)}
-\NewDocumentCommand{\rcvPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>(\A@bs(#3){#4})}
-\NewDocumentCommand{\sndPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>(#3\@sep #4)}
-\NewDocumentCommand{\asndPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{asnd}}<#2>(#3)}
+%\NewDocumentCommand{\quePr}{s m m}{\Abt@{#1}{\Opn@{#1}{?}{que}}<#2>(#3)}
+%\NewDocumentCommand{\sigPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{sig}}<#2>(#3)}
+\NewDocumentCommand{\sigPr}{s m m}{\IfBooleanTF{#1}{\mathop{!}\,#2\,(#3)}{\A@bt{\O@pn{sig}}<#2>(#3)}}
+\NewDocumentCommand{\quePr}{s m m}{\IfBooleanTF{#1}{\mathop{?}\,#2\,(#3)}{\A@bt{\O@pn{que}}<#2>(#3)}}
+% \NewDocumentCommand{\rcvPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{?}{rcv}}<#2>(\A@bs(#3){#4})}
+%\NewDocumentCommand{\sndPr}{s m m m}{\Abt@{#1}{\Opn@{#1}{!}{snd}}<#2>(#3\@sep #4)}
+\NewDocumentCommand{\rcvPr}{s m m m}{\IfBooleanTF{#1}{\mathop{?}\,#2(\A@bs(#3){#4})}{\A@bt{\O@pn{rcv}}<#2>(\A@bs(#3){#4})}}
+\NewDocumentCommand{\sndPr}{s m m m}{\IfBooleanTF{#1}{\mathop{!}\,#2(#3\@sep #4)}{\A@bt{\O@pn{snd}}<#2>(#3\@sep #4)}}
+\NewDocumentCommand{\asndPr}{s m m}{\IfBooleanTF{#1}{\mathop{!}\,#2\,(#3)}{\A@bt{\O@pn{asnd}}<#2>(#3)}}
+%\NewDocumentCommand{\asndPr}{s m m}{\Abt@{#1}{\Opn@{#1}{!}{asnd}}<#2>(#3)}
 \NewDocumentCommand{\syncPr}{s m}{\Abt@{#1}{\O@pn{sync}}(#2)}
 \NewDocumentCommand{\newPr}{s O{\tau} m m}{\Abt@{#1}{\Opn@{#1}{\nu}{new}}[#2](\A@bs(#3){#4})}
 \NewDocumentCommand{\runPr}{s r<> m}{\A@bt{\O@pn{run}}<#2>(#3)}
