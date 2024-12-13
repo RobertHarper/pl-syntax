@@ -17,18 +17,13 @@
 \DeclareOption{sc}{
     \ProvideDocumentCommand{\@kw}{m}{\textsc{#1}}
 }
-\DeclareOption{oldstyle}{ % denigrated
-    \typeout{Please use [pfpl] option rather than [oldstyle].}
-    \ProvideDocumentCommand{\param@bracks}{m}{[#1]}
-    \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
-    \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
-}
 \DeclareOption{pfpl}{
     \ProvideDocumentCommand{\param@bracks}{m}{[#1]}
     \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
-\ProcessOptions
+\DeclareOption*{\PackageWarning{oldstyle}{Use option [pfpl] instead.}}
+\ProcessOptions\relax
 
 \RequirePackage{xifthen,scalerel}
 \ifdefined\bigplus\else\DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}\fi
