@@ -22,7 +22,7 @@
     \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
-\DeclareOption*{\PackageWarning{oldstyle}{Use option [pfpl] instead.}}
+\DeclareOption*{\PackageWarning{pl-syntax}{Unrecognized option `\CurrentOption'.}}
 \ProcessOptions\relax
 
 \RequirePackage{xifthen,scalerel}
@@ -34,7 +34,6 @@
 \ProvideDocumentCommand{\param@bracks}{m}{\langle #1\rangle}
 \ProvideDocumentCommand{\minor@bracks}{m}{[#1]}
 \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
-
 \ProvideDocumentCommand{\@kw}{m}{\texttt{#1}}
 
 \NewDocumentCommand{\@sep}{s}{\IfBooleanTF{#1}{\mathbin}{\mathord}{\@kw{;}}}
