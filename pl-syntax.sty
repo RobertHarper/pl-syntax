@@ -22,6 +22,9 @@
     \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
+\DeclareOption{nosyn}{
+    \NewDocumentCommand{\no@syn}{}{}
+}
 \DeclareOption*{\PackageWarning{pl-syntax}{Unrecognized option `\CurrentOption'.}}
 \ProcessOptions\relax
 
@@ -62,6 +65,8 @@
 % substitution maps
 \ProvideDocumentCommand{\empSub}{}{\emp@map}
 \ProvideDocumentCommand{\extSub}{s m m m}{\IfBooleanTF{#1}{\ext@map*{#2}{#3}{#4}}{\ext@map{#2}{#3}{#4}}}
+
+\ifdefined\no@syn\else
 
 %%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
 
@@ -471,5 +476,7 @@
 \NewDocumentCommand{\notProp}{s m}{\IfBooleanTF{#1}{\neg #2}{\A@bt{\O@pn{not}}(#2)}}
 \NewDocumentCommand{\notIPf}{s o m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{I}}{notI}}[#2](\A@bs(#3){#4})}
 \NewDocumentCommand{\notEPf}{s o m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{E}}{notE}}[#2](#3\@sep #4)}
+
+\fi % no@syn
 
 \makeatother
