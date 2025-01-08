@@ -65,6 +65,8 @@
 % substitution maps
 \ProvideDocumentCommand{\empSub}{}{\emp@map}
 \ProvideDocumentCommand{\extSub}{s m m m}{\IfBooleanTF{#1}{\ext@map*{#2}{#3}{#4}}{\ext@map{#2}{#3}{#4}}}
+% apply a substitution to an abt, \gamma^\ast(a), or \hat{\gamma}(a)
+\ProvideDocumentCommand{\appSub}{s m m}{\IfBooleanTF{#1}{{#2}^{\ast}(#3)}{\widehat{#2}(#3)}}
 
 \ifdefined\no@syn\else
 
