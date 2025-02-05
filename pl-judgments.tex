@@ -35,29 +35,13 @@ The basic judgment forms corresponding to this architecture are summarized in Fi
 \subsection*{Hypothetical/General Judgments}
 \label{sec:statics-hypgen}
 
-The combined hypothetical-general judgment, written $\Gamma\entails J$ or $\Delta\entails J$, expresses assumptions the variables that may be involved in the principal judgment, $J$.  In keeping with the phase distinction there are two classes of variables, the static variables, which range over types and constructors, and the dynamic variables, which range over a type.  In the presence of partiality (undefined expressions) variables may range over either unevaluated expressions or over values, with the latter being the dominant form throughout.  Conventionally, static variables, which range over a kind, are declared in a context written $\Delta$, and dynamic variables, which range over a type, are declared in a context $\Gamma$.  When both forms of context are involved, the notation $\sepCtx{\Delta}{\Gamma}\entails J$ is used.
-
-Because variables are given meaning by substitution, the assumptions governing them must always be of the same form as those governing that which is substituted.  Although there are always variables ranging over a type, there may or may not be variables ranging over a kind.  The phase separation demands that the formation of kinds does not depend on variables of a type.  In general contexts have the form
+Hypothetical/general judgments have the form $\Gamma\entails J$, which is written \verb|\Gamma\entails J|, where $J$ is a basic judgment, and $\Gamma$ is a context of the form
 \[
     \extCtx{\extCtx{\empCtx}{j_1}\dots}{j_n}
 \]
-where $n\geq 0$ and the $j_i$'s are variable declarations.  Here $\empCtx$ is the empty context, which is often omitted.
+where $n\geq 0$ and the $j_i$'s are variable declarations whose form depends on the situation (summarized below).\footnote{Here $\empCtx$ is the empty context, which is usually suppressed, except when $n=0$.}  Contexts are inductively generated from the empty context, written \verb|\empCtx| by context extension, written \verb|\extCtx{\Gamma}{j}|, to obtain $\extCtx{\Gamma}{j}$.  The concatenation of two contexts is written \verb|\appCtx{\Gamma_1}{\Gamma_2}| to obtain $\appCtx{\Gamma_1}{\Gamma_2}$, and is defined in the evident way.
 
-The empty context is written \verb|\empCtx| to obtain $\empCtx$, and context extension is written 
-\begin{verbatim}
-    \extCtx{\Gamma}{\isOf*{x}{\tau}}
-\end{verbatim}
-to obtain $\extCtx{\Gamma}{\isOf*{x}{\tau}}$.  Context concatentation is written 
-\begin{verbatim}
-    \appCtx{\Gamma_1}{\Gamma_2}
-\end{verbatim}
-to obtain $\appCtx{\Gamma_1}{\Gamma_2}$.  When multiple contexts are considered they are separated using 
-\begin{verbatim}
-    \sepCtx{\Gamma}{\Delta}
-\end{verbatim}
-to obtain $\sepCtx{\Gamma}{\Delta}$.
-
-Thus, the type formation judgment, $\isTp{\tau}$, may be extended to the hypothetical form $\Delta\entails\isTp{\tau}$, where $\Delta$ is a context of the form
+In practice the type formation judgment, $\isTp{\tau}$, may be extended to the hypothetical form $\Delta\entails\isTp{\tau}$, where $\Delta$ is a context of the form
 \[
     \extCtx{\isTp{t_1}\dots}{\isTp{t_n}}
 \]
@@ -69,13 +53,13 @@ Similarly, the expression typing judgment may be extended to the hypothetical fo
 \[
     \extCtx{\isOf*{x_1}{\tau_1}\dots}{\isOf*{x_n}{\tau_n}}
 \]
-where the $x_i$'s are expression variables, and the $\tau_i$'s are types.  When both forms of variable are involved in an expression typing, the hypothetical form $\sepCtx{\Delta}{\Gamma}\entails \isOf{e}{\tau}$ is used.
+where the $x_i$'s are expression variables, and the $\tau_i$'s are types.  When both forms of variable are involved in an expression typing, the combined hypothetical form is written $\sepCtx{\Delta}{\Gamma}\entails J$, emphasizing that $\Delta$ is prior to $\Gamma$.
 
 When effects are permitted, commands are classified by types, but there are no variables ranging over commands.  There are, however, \emph{symbols}, such as the names of assignables, to which a type is \emph{associated}.  These are declared using \emph{signatures}, $\Sigma$, of the form
 \[
     \extSig{\extSig{\empSig}{\hasTp*{a_1}{\tau_1}}\dots}{\hasTp*{a_n}{\tau_n}}
 \]
-where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  As with contexts, the empty signature, \verb|\empSig|, is usually left implicit; signature extension and concatenation are given by \verb|\extSig| and \verb|\catSig|, respectively.  Thus, the statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.
+where the $a_i$'s are distinct symbols, which stand only for themselves and which may be compared for equality and disequality.  As with contexts, the empty signature, \verb|\empSig|, is usually left implicit; signature extension and concatenation are given by \verb|\extSig| and \verb|\appSig|, respectively.  Thus, the statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.
 
 \smallskip
 
