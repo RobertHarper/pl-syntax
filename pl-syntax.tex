@@ -29,7 +29,7 @@ Use the declaration \verb|\usepackage{pl-syntax}| to define syntax macros for pr
 To typeset an abstract binding tree yourself, provide the package with the \verb|[abt]| option, and use the following commands:
 \begin{itemize}
   \item \verb|\Opn{op}|: Format an operator as a keyword; use starred form for an operator that is to be set in math mode.  For example, \verb|\Opn{fun}| produces $\Opn{fun}$ and \verb|\Opn*{\lambda}| produces $\Opn*{\lambda}$.
-  \item \verb|\Abt{operator}<parameters>[minor](major)|: produce an abt, with all arguments typeset.  In typical usage the parameters are symbols that index certain forms of abt's; the minor arguments are types that would appear in full abstract syntax; and the major arguments are abt's or abstractors constituting the components of a compound abt.  The starred form provides a ``default'' concrete syntax that omits the minor arguments.  If the parenthesized arguments are empty, then no parentheses are typeset.  For example, the command
+  \item \verb|\Abt{operator}<parameters>[minor](major)|: produce an abt, with all arguments typeset.  In typical usage the parameters are symbols that index certain forms of abt's; the minor arguments are types that would appear in full abstract syntax; and the major arguments are abt's or abstractors constituting the components of a compound abt.  If the major arguments are omitted, no parentheses are typeset on the output to avoid needless clutter.  The starred form provides a ``default'' concrete syntax that omits the minor arguments.  For example, the command
   \begin{quote}
 \begin{verbatim}
 \Abt{\Opn{get}}<a>[\tau]
