@@ -376,6 +376,8 @@
 \NewDocumentCommand{\projMd}{s r<> o O{\_} o m}{\IfBooleanTF{#1}{#6\cdot\@kw{#2}}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \A@bs(#4){#5}](#6)}}
 
 \NewDocumentCommand{\staticLock}{s}{\Abt@{#1}{\O@pn{st}}}
+\NewDocumentCommand{\starEx}{s}{\ast}
+\NewDocumentCommand{\starMd}{s}{\star}
 \NewDocumentCommand{\ext@Abt}{m m}{\A@bt{\O@pn{Ext}}(#1\@sep  #2)}
 \NewDocumentCommand{\ext@Cst}{m m}{\{#1\mid #2\}}
 \NewDocumentCommand{\extSg}{s m m}{\IfBooleanTF{#1}{\ext@Cst{#2}{#3}}{\ext@Abt{#2}{#3}}}
