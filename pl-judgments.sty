@@ -60,10 +60,10 @@
 \NewDocumentCommand{\empSig}{}{\varepsilon}
 \NewDocumentCommand{\extSig}{m m}{#1,#2}
 \NewDocumentCommand{\appSig}{m m}{#1\,#2}
+\NewDocumentCommand{\sepSig}{m m}{#1\mathbin{;}#2}
 
-% hypothetical/general judgment
-
-\ProvideDocumentCommand{\entails}{O{} D<>{}}{\mathrel{\vdash_{#1}^{#2}}}
+% syntactic/semantic entailment
+\ProvideDocumentCommand{\entails}{s O{} D<>{}}{\IfBooleanTF{#1}{\mathrel{\gg_{#2}^{#3}}}{\mathrel{\vdash_{#2}^{#3}}}}
 
 % generic state validity
 
