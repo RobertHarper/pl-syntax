@@ -50,17 +50,17 @@
 \NewDocumentCommand{\eqOfTp}{m m m}{\eqOf{#1}{#2}{#3}}
 \NewDocumentCommand{\eqRets}{m m m}{#1\mathrel{\doteq}#2\mathrel{\wavydiv} #3}
 
-% typing contexts and signatures
+% typing contexts and signatures; starred form for abstract syntax
 
-\NewDocumentCommand{\empCtx}{}{\varepsilon}
-\NewDocumentCommand{\extCtx}{m m}{#1,#2}
-\NewDocumentCommand{\appCtx}{m m}{#1\,#2}
-\NewDocumentCommand{\sepCtx}{m m}{#1\mathbin{;}#2}
+\NewDocumentCommand{\empCtx}{s}{\IfBooleanTF{#1}{\Abt{\Opn{emp}}}{\varepsilon}}
+\NewDocumentCommand{\extCtx}{s m m}{\IfBooleanTF{#1}{\Abt{\Opn{extd}}(#2\@sep #3)}{#2,#3}}
+\NewDocumentCommand{\appCtx}{s m m}{\IfBooleanTF{#1}{\Abt{\Opn{appd}}(#2\@sep #3)}{#2\,#3}}
+\NewDocumentCommand{\sepCtx}{s m m}{#2\mathbin{;}#3}
 
-\NewDocumentCommand{\empSig}{}{\varepsilon}
-\NewDocumentCommand{\extSig}{m m}{#1,#2}
-\NewDocumentCommand{\appSig}{m m}{#1\,#2}
-\NewDocumentCommand{\sepSig}{m m}{#1\mathbin{;}#2}
+\NewDocumentCommand{\empSig}{s}{\IfBooleanTF{#1}{\Abt{\Opn{emp}}}{\varepsilon}}
+\NewDocumentCommand{\extSig}{s m m}{\IfBooleanTF{#1}{\Abt{\Opn{extd}}(#2\@sep #3)}{#2,#3}}
+\NewDocumentCommand{\appSig}{s m m}{\IfBooleanTF{#1}{\Abt{\Opn{appd}}(#2\@sep #3)}{#2\,#3}}
+\NewDocumentCommand{\sepSig}{s m m}{#2\mathbin{;}#3}
 
 % syntactic/semantic entailment
 \ProvideDocumentCommand{\entails}{s O{} D<>{}}{\IfBooleanTF{#1}{\mathrel{\gg_{#2}^{#3}}}{\mathrel{\vdash_{#2}^{#3}}}}
