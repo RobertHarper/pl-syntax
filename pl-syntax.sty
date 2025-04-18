@@ -393,7 +393,7 @@
 \NewDocumentCommand{\funMd@Cst}{m m m}{\O@pn{func} #2\mathbin{:}#1\mathbin{\O@pn{in}}#3}
 \NewDocumentCommand{\funMd}{s m m m m}{\IfBooleanTF{#1}{\funMd@Cst{#2}{#3}{#5}}{\funMd@Abt{#2}{#3}{#4}{#5}}}
 \NewDocumentCommand{\instMd@Abt}{m m m m m}{\A@bt{\O@pn{inst}}[#1\@sep \A@bs(#2){#3}](#4\@sep #5)}
-\NewDocumentCommand{\instMd@Cst}{m m}{#1(#2)}
+\NewDocumentCommand{\instMd@Cst}{m m}{\A@bt{\O@pn{inst}}(#1\@sep #2)}
 \NewDocumentCommand{\instMd}{s o o o m m}{\IfBooleanTF{#1}{\instMd@Cst{#5}{#6}}{\instMd@Abt{#2}{#3}{#4}{#5}{#6}}}
 
 % cbpv / polarization
