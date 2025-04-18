@@ -387,7 +387,7 @@
 \NewDocumentCommand{\piTy}{s m o m}{\IfBooleanTF{#1}{\piSg@Cst{#2}[#3]{#4}}{\piSg@Abt{#2}[#3]{#4}}}
 \NewDocumentCommand{\funSg@Abt}{m O{\_} m}{\A@bt{\O@pn{Fun}}(#1\@sep\A@bs(#2){#3})}
 \NewDocumentCommand{\funSg@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{:}}#1\to #3}
-\NewDocumentCommand{\funSg}{s m o m}{\IfBooleanTD{#1}{\funSg@Cst{#2}[#3]{#4}}{\funSg@Abt{#2}[#3]{#4}}}
+\NewDocumentCommand{\funSg}{s m o m}{\IfBooleanTF{#1}{\funSg@Cst{#2}[#3]{#4}}{\funSg@Abt{#2}[#3]{#4}}}
 
 \NewDocumentCommand{\funMd@Abt}{m m m m}{\A@bt{\O@pn{func}}[#1\@sep \A@bs(#2){#3}](\A@bs(#2){#4})}
 \NewDocumentCommand{\funMd@Cst}{m m m}{\O@pn{func} #2\mathbin{:}#1\mathbin{\O@pn{in}}#3}
