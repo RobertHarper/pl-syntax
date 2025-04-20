@@ -350,7 +350,7 @@
 \NewDocumentCommand{\starEx}{s}{\ast}
 \NewDocumentCommand{\starMd}{s}{\star}
 \NewDocumentCommand{\ext@Abt}{m m}{\A@bt{\O@pn{Ext}}(#1\@sep  #2)}
-\NewDocumentCommand{\ext@Cst}{m m}{\{#1\mid #2\}}
+\NewDocumentCommand{\ext@Cst}{m m}{\{#1\mid \staticLock\hookrightarrow #2\}}
 \NewDocumentCommand{\extSg}{s m m}{\IfBooleanTF{#1}{\ext@Cst{#2}{#3}}{\ext@Abt{#2}{#3}}}
 \NewDocumentCommand{\inMd}{s o m m}{\Abt@{#1}{\O@pn{in}}[#2](#3\@sep #4)}
 \NewDocumentCommand{\outMd}{s o o m}{\Abt@{#1}{\O@pn{out}}[#2\@sep #3](#4)}
