@@ -23,6 +23,32 @@ Include the declaration \verb|\usepackage{pl-judgments}| to define macros for th
 \section*{Statics}
 \label{sec:statics}
 
+\begin{figure}[tp]
+    \begin{displaymath}
+        \begin{array}{l@{\qquad} l@{\qquad}l}
+            \text{Judgment}   & \text{Meaning}  & \text{Invocation} \\
+            \isTp{\tau}            & \tau\ \text{is a type} & \verb|\isTp{\tau}| \\
+            \eqTp{\tau}{\tau'}     & \tau\ \text{and}\ \tau'\ \text{are equal types} & \verb|\eqTp{\tau}{\tau'}| \\
+            \subTp{\tau}{\tau'}    & \tau\ \text{is a subtype of}\ \tau' & \verb|\subTp{\tau}{\tau'}| \\\\
+            \isKd{\kappa}          & \kappa\ \text{is a kind} & \verb|\isKd{\kappa}| \\
+            \eqKd{\kappa}{\kappa'} & \kappa\ \text{and}\ \kappa'\ \text{are equal kinds} & \verb|\eqKd{\kappa}{\kappa'}| \\
+            \subKd{\kappa}{\kappa'} & \kappa\ \text{is a subkind of}\ \kappa' & \verb|\subKd{\kappa}{\kappa'}| \\\\
+            \isOfKd{c}{\kappa}   & c\ \text{has kind}\ \kappa & \verb|\isOfKd*{c}{\kappa}|, \verb|\ofKd*{c}{\kappa}| \\
+            \eqOfKd{c}{c'}{\kappa} & c\ \text{and}\ c'\ \text{are equal at kind}\ \kappa & \verb|\eqOfKd{c}{c'}{\kappa}| \\\\
+            \isOfTp{e}{\tau}         & e\ \text{has type}\ \tau & \verb|\isOfTp*{e}{\tau}|, \\
+            & & \verb|\isOf*{e}{\tau}|, \verb|\ofTp*{e}{\tau}| \\
+            \retsTp{m}{\tau}       & m\ \text{returns type}\ \tau & \verb|\retsTp{m}{\tau}| \\
+            \accsTp{k}{\tau}       & k\ \text{accepts type}\ \tau  & \verb|\accsTp{k}{\tau}| \\\\
+            \hasTp{a}{\tau}        & a\ \text{has associated type}\ \tau & \verb|\hasTp{a}{\tau}| \\\\
+            \isCtx{\Gamma}         & \Gamma\ \text{is a valid context} & \verb|\isCtx{\Gamma}| \\
+            \isSig{\Sigma}         & \Sigma\ \text{is a valid signature} & \verb|\isSig{\Sigma}|
+        \end{array}
+    \end{displaymath}
+
+    \caption{Judgments for Statics}
+    \label{fig:statics}
+\end{figure}
+
 \subsection*{Basic Judgments}
 \label{sec:statics-basic}
 
@@ -63,46 +89,12 @@ where $n\geq 0$, and the $a_i$'s are distinct symbols, which stand only for them
 
 % Thus, the statics of commands is then given by hypothetical judgments of the form $\Gamma\entails[\Sigma] \isOf{e}{\tau}$ and $\Gamma\entails[\Sigma] \hasTp{m}{\tau}$, where $m$ is a command.
 
-\smallskip
-
 A collection of formation and membership judgments is given in Figure~\ref{fig:statics}.  The binary classification judgments have ``starred'' forms for declaring variables for which the membership symbol is typeset slightly tighter (as a binary operation, rather than as a relation) for use in a context or signature.  Those that admit a starred form are marked as such in the usage column; the star should be omitted when used relationally.
-
-\begin{figure}[p]
-    \begin{displaymath}
-        \begin{array}{l@{\qquad} l@{\qquad}l}
-            \text{Judgment}   & \text{Meaning}  & \text{Invocation} \\
-            \isTp{\tau}            & \tau\ \text{is a type} & \verb|\isTp{\tau}| \\
-            \eqTp{\tau}{\tau'}     & \tau\ \text{and}\ \tau'\ \text{are equal types} & \verb|\eqTp{\tau}{\tau'}| \\
-            \subTp{\tau}{\tau'}    & \tau\ \text{is a subtype of}\ \tau' & \verb|\subTp{\tau}{\tau'}| \\\\
-            \isKd{\kappa}          & \kappa\ \text{is a kind} & \verb|\isKd{\kappa}| \\
-            \eqKd{\kappa}{\kappa'} & \kappa\ \text{and}\ \kappa'\ \text{are equal kinds} & \verb|\eqKd{\kappa}{\kappa'}| \\
-            \subKd{\kappa}{\kappa'} & \kappa\ \text{is a subkind of}\ \kappa' & \verb|\subKd{\kappa}{\kappa'}| \\\\
-            \isOfKd{c}{\kappa}   & c\ \text{has kind}\ \kappa & \verb|\isOfKd*{c}{\kappa}|, \verb|\ofKd*{c}{\kappa}| \\
-            \eqOfKd{c}{c'}{\kappa} & c\ \text{and}\ c'\ \text{are equal at kind}\ \kappa & \verb|\eqOfKd{c}{c'}{\kappa}| \\\\
-            \isOfTp{e}{\tau}         & e\ \text{has type}\ \tau & \verb|\isOfTp*{e}{\tau}|, \\
-            & & \verb|\isOf*{e}{\tau}|, \verb|\ofTp*{e}{\tau}| \\
-            \retsTp{m}{\tau}       & m\ \text{returns type}\ \tau & \verb|\retsTp{m}{\tau}| \\
-            \accsTp{k}{\tau}       & k\ \text{accepts type}\ \tau  & \verb|\accsTp{k}{\tau}| \\\\
-            \hasTp{a}{\tau}        & a\ \text{has associated type}\ \tau & \verb|\hasTp{a}{\tau}| \\\\
-            \isCtx{\Gamma}         & \Gamma\ \text{is a valid context} & \verb|\isCtx{\Gamma}| \\
-            \isSig{\Sigma}         & \Sigma\ \text{is a valid signature} & \verb|\isSig{\Sigma}|
-        \end{array}
-    \end{displaymath}
-
-    \caption{Judgments for Statics}
-    \label{fig:statics}
-\end{figure}
 
 \section*{Dynamics}
 \label{sec:dynamics}
 
-Often the dynamics of languages is formulated using \emph{state transition systems}, which define a class of execution states, some of which are deemed initial, some of which are deemed final, and a relation between states that expresses ``one step'' of execution.  In principle a state can be anything at all, but in practice states are constructed from (closed, well-formed) pieces of syntax, perhaps involving symbols, and sometimes involving auxiliary data structures such as memories.  These considerations lead to the judgment forms given in Figure~\ref{fig:dynamics}.
-
-There are, invariably, unlabelled forms of transition that may, or may not, be indexed by a signature defining the symbols that are available within the state.  In some cases labelled forms of transition are further indexed by an \emph{action} that specifies the effect of a step of execution.  Generally speaking, such transitions are not execution steps \textit{per se}, but are rather potential steps that may be taken in conjunction with another transition undertaking the \emph{complementary} action.
-
-Occasionally it is helpful to introduce evaluation relations for expressions and execution relations for commands that consolidate multiple individual steps of execution to a final state.  These are also specified in Figure~\ref{fig:dynamics}.  In most situations these relations are secondary to the transition systems that define a dynamics, but in some situations they may be defined directly, without or without reference to a transition system.
-
-\begin{figure}[p]
+\begin{figure}[tp]
     \begin{displaymath}
         \begin{array}{l@{\qquad}l@{\qquad}l}
             \text{Judgment} & \text{Meaning} & \text{Invocation} \\
@@ -131,6 +123,13 @@ Occasionally it is helpful to introduce evaluation relations for expressions and
     \caption{Judgments for Dynamics}
     \label{fig:dynamics}
 \end{figure}
+
+Often the dynamics of languages is formulated using \emph{state transition systems}, which define a class of execution states, some of which are deemed initial, some of which are deemed final, and a relation between states that expresses ``one step'' of execution.  In principle a state can be anything at all, but in practice states are constructed from (closed, well-formed) pieces of syntax, perhaps involving symbols, and sometimes involving auxiliary data structures such as memories.  These considerations lead to the judgment forms given in Figure~\ref{fig:dynamics}.
+
+There are, invariably, unlabelled forms of transition that may, or may not, be indexed by a signature defining the symbols that are available within the state.  In some cases labelled forms of transition are further indexed by an \emph{action} that specifies the effect of a step of execution.  Generally speaking, such transitions are not execution steps \textit{per se}, but are rather potential steps that may be taken in conjunction with another transition undertaking the \emph{complementary} action.
+
+Occasionally it is helpful to introduce evaluation relations for expressions and execution relations for commands that consolidate multiple individual steps of execution to a final state.  These are also specified in Figure~\ref{fig:dynamics}.  In most situations these relations are secondary to the transition systems that define a dynamics, but in some situations they may be defined directly, without or without reference to a transition system.
+
 
 % \section*{Equality}
 % \label{sec:equality}
