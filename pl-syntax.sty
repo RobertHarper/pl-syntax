@@ -371,8 +371,8 @@
 \NewDocumentCommand{\strSg@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{:}}#1\times #3}
 \NewDocumentCommand{\strSg}{s m o m}{\IfBooleanTF{#1}{\strSg@Cst{#2}[#3]{#4}}{\strSg@Abt{#2}[#3]{#4}}}
 
-\NewDocumentCommand{\strMd@Abt}{m m m m m}{\A@bt{\O@pn{struct}}[#1\@sep\A@bs(#2){#3}](#4\@sep #5)}
-\NewDocumentCommand{\strMd@Cst}{m m}{\O@pn{struct} #1\@sep #2}
+\NewDocumentCommand{\strMd@Abt}{m m m m m}{\A@bt{\O@pn{str}}[#1\@sep\A@bs(#2){#3}](#4\@sep #5)}
+\NewDocumentCommand{\strMd@Cst}{m m}{\O@pn{str} #1\@sep #2}
 \NewDocumentCommand{\strMd}{s o O{\_} o m m}{\IfBooleanTF{#1}{\strMd@Cst{#5}{#6}}{\strMd@Abt{#2}{#3}{#4}{#5}{#6}}}
 \NewDocumentCommand{\projMd}{s r<> o O{\_} o m}{\IfBooleanTF{#1}{#6\cdot\@kw{#2}}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \A@bs(#4){#5}](#6)}}
 
@@ -389,11 +389,11 @@
 \NewDocumentCommand{\funSg@Cst}{m o m}{\IfValueT{#2}{#2\mathbin{:}}#1\to #3}
 \NewDocumentCommand{\funSg}{s m o m}{\IfBooleanTF{#1}{\funSg@Cst{#2}[#3]{#4}}{\funSg@Abt{#2}[#3]{#4}}}
 
-\NewDocumentCommand{\funMd@Abt}{m m m m}{\A@bt{\O@pn{func}}[#1\@sep \A@bs(#2){#3}](\A@bs(#2){#4})}
-\NewDocumentCommand{\funMd@Cst}{m m m}{\O@pn{func}(\Abs(#2){#3})}  % no type label?
+\NewDocumentCommand{\funMd@Abt}{m m m m}{\A@bt{\O@pn{fun}}[#1\@sep \A@bs(#2){#3}](\A@bs(#2){#4})}
+\NewDocumentCommand{\funMd@Cst}{m m m}{\O@pn{fun}(\Abs(#2){#3})}  % no type label?
 \NewDocumentCommand{\funMd}{s m m o m}{\IfBooleanTF{#1}{\funMd@Cst{#2}{#3}{#5}}{\funMd@Abt{#2}{#3}{#4}{#5}}}
 \NewDocumentCommand{\instMd@Abt}{m m m m m}{\A@bt{\O@pn{inst}}[#1\@sep \A@bs(#2){#3}](#4\@sep #5)}
-\NewDocumentCommand{\instMd@Cst}{m m}{\A@bt{\O@pn{inst}}(#1\@sep #2)}
+\NewDocumentCommand{\instMd@Cst}{m m}{#1(#2)}
 \NewDocumentCommand{\instMd}{s o o o m m}{\IfBooleanTF{#1}{\instMd@Cst{#5}{#6}}{\instMd@Abt{#2}{#3}{#4}{#5}{#6}}}
 
 % cbpv / polarization
