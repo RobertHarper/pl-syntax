@@ -28,7 +28,7 @@
 \DeclareOption*{\PackageWarning{pl-syntax}{Unrecognized option `\CurrentOption'.}}
 \ProcessOptions\relax
 
-\RequirePackage{xifthen,scalerel}
+\RequirePackage{xifthen,scalerel,bbm}
 \ifdefined\bigplus\else\DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}\fi
 \ifdefined\bigtimes\else\DeclareMathOperator*{\bigtimes}{\scalerel*{\times}{\prod}}\fi
 
@@ -490,6 +490,13 @@
 \NewDocumentCommand{\notProp}{s m}{\IfBooleanTF{#1}{\neg #2}{\A@bt{\O@pn{not}}(#2)}}
 \NewDocumentCommand{\notIPf}{s o m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{I}}{notI}}[#2](\A@bs(#3){#4})}
 \NewDocumentCommand{\notEPf}{s o m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{E}}{notE}}[#2](#3\@sep #4)}
+
+% kinds and constructors
+\NewDocumentCommand{\unitKd}{s}{\IfBooleanTF{#1}{\mathbbm{1}}{\A@bt{\O@pn{One}}}}
+\NewDocumentCommand{\tyKd}{s}{\IfBooleanTF{#1}{\mathbbm{T}}{\A@bt{\O@pn{Ty}}}}
+\NewDocumentCommand{\funKd}{s m m}{\IfBooleanTF{#1}{#2\Rightarrow #3}{\A@bt{\O@pn{Fun}}(#2\@sep #3)}}
+\NewDocumentCommand{\prodKd}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\#} #3}{\A@bt{\O@pn{Prod}}(#2\@sep #3)}}
+\NewDocumentCommand{\singKd}{s m}{\IfBooleanTF{#1}{\mathop{\mathbbm{S}}(#2)}{\A@bt{\O@pn{Eqv}}(#2)}}
 
 \fi % no@syn
 
