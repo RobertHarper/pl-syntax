@@ -263,6 +263,26 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
 
 \begin{figure}
 
+  \begin{displaymath}
+    \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
+        \unitKd                  & \unitKd*               & \verb|\unitKd| \\
+%        \unitCn                  & \unitCn*               & \verb|\unitCn| \\
+        \tyKd                    & \tyKd*                 & \verb|\tyKd| \\
+        \singtyKd{\tau}          & \singtyKd*{\tau}       & \verb|\singtyKd{\tau}| \\
+%        \eqvtyCn{\tau}           & \eqvtyCn*{\tau}        & \verb|\eqvtyCn{\tau}| \\
+%        \thustyCn{\tau}          & \thustyCn*{\tau}       & \verb|\thustyCn{\tau}| \\
+        \funKd{\kappa_1}[u]{\kappa_2} & \funKd*{\kappa_1}[u]{\kappa_2} & \verb|\funKd{\kappa_1}[u]{\kappa_2}| \\
+        \prodKd{\kappa_1}[u]{\kappa_2} & \prodKd*{\kappa_1}[u]{\kappa_2} & \verb|\prodKd{\kappa_1}[u]{\kappa_2}|
+      \end{array}
+  \end{displaymath}
+
+  \caption{(Dependent) Kinds}
+  \label{fig:con-knd}
+\end{figure}
+
+\begin{figure}
+
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}

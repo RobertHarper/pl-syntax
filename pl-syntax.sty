@@ -493,10 +493,21 @@
 
 % kinds and constructors
 \NewDocumentCommand{\unitKd}{s}{\IfBooleanTF{#1}{\mathbbm{1}}{\A@bt{\O@pn{One}}}}
+\NewDocumentCommand{\unitCn}{s}{\IfBooleanTF{#1}{\unitEx*}{\A@bt{\O@pn{triv}}}}
 \NewDocumentCommand{\tyKd}{s}{\IfBooleanTF{#1}{\mathbbm{T}}{\A@bt{\O@pn{Ty}}}}
-\NewDocumentCommand{\funKd}{s m m}{\IfBooleanTF{#1}{#2\Rightarrow #3}{\A@bt{\O@pn{Fun}}(#2\@sep #3)}}
-\NewDocumentCommand{\prodKd}{s m m}{\IfBooleanTF{#1}{#2\mathbin{\#} #3}{\A@bt{\O@pn{Prod}}(#2\@sep #3)}}
-\NewDocumentCommand{\singKd}{s m}{\IfBooleanTF{#1}{\mathop{\mathbbm{S}}(#2)}{\A@bt{\O@pn{Eqv}}(#2)}}
+% \NewDocumentCommand{\unittyCn}{s}{\IfBooleanTF{#1}{\unitTy*}{\unitTy}}
+% \NewDocumentCommand{\nattyCn}{s}{\IfBooleanTF{#1}{\natTy*}{\natTy}}
+% \NewDocumentCommand{\arrtyCn}{s m m}{\IfBooleanTF{#1}{\arrTy*{#2}{#3}}{\arrTy{#2}{#3}}}
+% \NewDocumentCommand{\prodtyCn}{s m m}{\IfBooleanTF{#1}{\prodTy*{#2}{#3}}{\prodTy{#2}{#3}}}
+\NewDocumentCommand{\singtyKd}{s m}{\IfBooleanTF{#1}{\mathop{\mathbbm{S}}(#2)}{\A@bt{\O@pn{Eqv}}(#2)}}
+\NewDocumentCommand{\eqvtyCn}{s m}{\Abt@{#1}{\O@pn{eqv}}(#2)}
+\NewDocumentCommand{\thustyCn}{s m}{\Abt@{#1}{\O@pn{thus}}(#2)}
+\NewDocumentCommand{\funKd}{s m o m}{\IfBooleanTF{#1}{\IfValueT{#3}{#3\mathbin{:}}#2\Rightarrow #4}{\A@bt{\O@pn{Fun}}(#2\@sep \IfValueT{#3}{\A@bs(#3)}{#4})}}
+\NewDocumentCommand{\lamCn}{s o o m m}{\IfBooleanTF{#1}{\A@bt{\O@pn*{\lambda}}(\A@bs(#4){#5})}{\A@bt{\O@pn{fun}}}[#2\@sep #3](\A@bs(#4){#5})}
+\NewDocumentCommand{\appCn}{s o o m m}{\IfBooleanTF{#1}{#4\parens{#5}}{\A@bt{\O@pn{ap}}[#2\@sep #3](#4\@sep #5)}}
+\NewDocumentCommand{\prodKd}{s m o m}{\IfBooleanTF{#1}{\IfValueT{#3}{#3\mathbin{:}}#2\mathbin{\#} #4}{\A@bt{\O@pn{Prod}}(#2\@sep \IfValueT{#3}{\A@bs(#3)}{#4})}}
+\NewDocumentCommand{\pairCn}{s o o m m}{\Abt@{#1}{\O@pn{pair}}[#2\@sep #3](#4\@sep #5)}
+\NewDocumentCommand{\projCn}{s d<> o o m}{\IfBooleanTF{#1}{#5\cdot #2}{\A@bt{\O@pn{proj}}<#2>[#3\@sep #4](#5)}}
 
 \fi % no@syn
 
