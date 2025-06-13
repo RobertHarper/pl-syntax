@@ -22,8 +22,8 @@
 
 \NewDocumentCommand{\isTp}{s m}{#2\,\jdg@Syn{type}}
 \NewDocumentCommand{\isKd}{s m}{#2\,\jdg@Syn{kind}}
-\NewDocumentCommand{\isOfKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{::} #3}
-\NewDocumentCommand{\ofKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{::} #3}
+\NewDocumentCommand{\isOfKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{\mathord{:}\mathord{:}} #3}
+\NewDocumentCommand{\ofKd}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{\mathord{:}\mathord{:}} #3}
 
 \NewDocumentCommand{\isOf}{s m m}{#2\IfBooleanTF{#1}{\mathbin}{\mathrel}{:} #3}
 \NewDocumentCommand{\ofTp}{s m m}{\IfBooleanTF{#1}{\isOf*{#2}{#3}}{\isOf{#2}{#3}}}
@@ -44,7 +44,7 @@
 
 \NewDocumentCommand{\eqTp}{m m}{#1\mathrel{\equiv}#2\,\jdg@Syn{type}}
 \NewDocumentCommand{\subTp}{m m}{#1\mathrel{{<}{:}} #2}
-\NewDocumentCommand{\eqOfKd}{m m m}{#1\mathrel{\equiv}#2\mathrel{{:}{:}}#3}
+\NewDocumentCommand{\eqOfKd}{m m m}{#1\mathrel{\equiv}#2\mathrel{\mathord{:}\mathord{:}}#3}
 
 \NewDocumentCommand{\eqOf}{m m m}{#1\mathrel{\doteq}#2\mathrel{:}#3}
 \NewDocumentCommand{\eqOfTp}{m m m}{\eqOf{#1}{#2}{#3}}
