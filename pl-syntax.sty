@@ -46,7 +46,7 @@
 \NewDocumentCommand{\ext@map}{s m m m}{\IfBooleanF{#1}{#2,\,}\sing@map{#3}{#4}{\IfBooleanT{#1}{\,, #2}}}
 
 % starred for math name, non-starred for verbatim name, optional index
-\NewDocumentCommand{\O@pn}{s m}{\mathop{\IfBooleanTF{#1}{#2}{\@kw{#2}}}\nolimits}
+\NewDocumentCommand{\O@pn}{s m}{\mathop{\IfBooleanTF{#1}{#2}{\textnormal{\@kw{#2}}}}\nolimits}
 % choose between concrete and abstract operation name
 \NewDocumentCommand{\Opn@}{m m m}{\IfBooleanTF{#1}{\O@pn*{#2}}{\O@pn{#3}}}
 
