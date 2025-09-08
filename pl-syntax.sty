@@ -338,9 +338,9 @@
 % \NewDocumentCommand{\hdlCmd}{s r<> O{\tau} m m m m m m}{\IfBooleanTF{#1}{\hdl@Cst<#2>{#4}{#5}{#6}{#7}{#8}{#9}}{\hdl@Abt<#2>{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
 
 % module types
-\NewDocumentCommand{\univSg}{s}{\A@bt{\O@pn{type}}}
+\NewDocumentCommand{\univSg}{s}{\A@bt{\O@pn{Type}}}
 \NewDocumentCommand{\typSg}{s}{\univSg}
-\NewDocumentCommand{\valSg}{s m}{\A@bt{\O@pn{val}}(#2)}
+\NewDocumentCommand{\valSg}{s m}{\A@bt{\O@pn{Val}}(#2)}
 
 \NewDocumentCommand{\comp@Abt}{m}{\A@bt{\O@pn{Comp}}(#1)}
 \NewDocumentCommand{\comp@Cst}{m}{\A@bt{\O@pn{Comp}}(#1)}
