@@ -226,12 +226,12 @@
 \NewDocumentCommand{\fixEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{fix}}[#2](\A@bs(#3){#4})}
 
 % suspensions
-\NewDocumentCommand{\suspTy}{s m}{\A@bt{\O@pn{susp}}(#2)}     % concrete form should be postfix?
+\NewDocumentCommand{\suspTy}{s m}{\IfBooleanTF{#1}{#2\,\@kw{susp}}{\A@bt{\O@pn{susp}}(#2)}}
 \NewDocumentCommand{\suspEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{susp}}[#2](#3)}
 \NewDocumentCommand{\forceEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{force}}[#2](#3)}
 
 % generic computations
-\NewDocumentCommand{\compTy}{s m}{\Abt@{#1}{\O@pn{comp}}(#2)}   % concrete form should be postfix?
+\NewDocumentCommand{\compTy}{s m}{\IfBooleanTF{#1}{#2\,\@kw{comp}}{\Abt@{#1}{\O@pn{comp}}(#2)}}
 \NewDocumentCommand{\compEx}{s m}{\Abt@{#1}{\O@pn{comp}}(#2)}
 \NewDocumentCommand{\retEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{ret}}[#2](#3)}
 \NewDocumentCommand{\bndEx}{s O{\tau} m m m}{\Abt@{#1}{\O@pn{bind}}[#2](#3\@sep \A@bs(#4){#5})}
@@ -242,7 +242,7 @@
 \NewDocumentCommand{\unfoldEx}{s O{t} O{\tau} m}{\Abt@{#1}{\O@pn{unfold}}[\A@bs(#2){#3}](#4)}
 
 % self-reference
-\NewDocumentCommand{\selfTy}{s m}{\A@bt{\O@pn{self}}(#2)}   % concrete form should be postfix?
+\NewDocumentCommand{\selfTy}{s m}{\IfBooleanTF{#1}{#2\,\@kw{self}}{\A@bt{\O@pn{self}}(#2)}}
 \NewDocumentCommand{\unrollEx}{s O{\tau} m}{\Abt@{#1}{\O@pn{unroll}}[#2](#3)}
 \NewDocumentCommand{\selfEx}{s O{\tau} m m}{\Abt@{#1}{\O@pn{self}}[#2](\A@bs(#3){#4})}
 
