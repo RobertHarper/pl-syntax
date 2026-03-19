@@ -501,7 +501,7 @@
 \NewDocumentCommand{\arrtyCn}{s}{\O@pn*{\to}}
 \NewDocumentCommand{\funKd}{s m o m}{\IfBooleanTF{#1}{\IfValueT{#3}{#3\mathbin{:}}#2\Rightarrow #4}{\A@bt{\O@pn{Fun}}(#2\@sep \IfValueT{#3}{\A@bs(#3)}{#4})}}
 \NewDocumentCommand{\lamCn}{s o o o m m}{\Abt@{#1}{\Opn@{#1}{\lambda}{lam}}[#2;\A@bs(#3){#4}](\A@bs(#5){#6})}
-\NewDocumentCommand{\appCn}{s o o o m m}{\IfBooleanTF{#1}{#5\parens #6}{\A@bt{\O@pn{ap}}[#2\@sep \Abs(#3){#4}](#5\@sep #6)}}
+\NewDocumentCommand{\appCn}{s o o o m m}{\IfBooleanTF{#1}{#5(#6)}{\A@bt{\O@pn{ap}}[#2\@sep \Abs(#3){#4}](#5\@sep #6)}}
 \NewDocumentCommand{\prodKd}{s m o m}{\IfBooleanTF{#1}{\IfValueT{#3}{#3\mathbin{:}}#2\mathbin{\#} #4}{\A@bt{\O@pn{Prod}}(#2\@sep \IfValueT{#3}{\A@bs(#3)}{#4})}}
 \NewDocumentCommand{\pairCn}{s o o o m m}{\IfBooleanTF{#1}{\langle #5\@sep #6\rangle}{\A@bt{\O@pn{pair}}[#2\@sep \Abs(#3){#4}](#5\@sep #6)}}
 \NewDocumentCommand{\projCn}{s d<> o o o m}{\IfBooleanTF{#1}{#6\cdot #2}{\A@bt{\O@pn{proj}}<#2>[#3\@sep \Abs(#4){#5}](#6)}}

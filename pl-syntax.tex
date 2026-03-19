@@ -265,19 +265,23 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
 
   \begin{displaymath}
     \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \unitKd                  & \unitKd*               & \verb|\unitKd| \\
-%        \unitCn                  & \unitCn*               & \verb|\unitCn| \\
-        \tyKd                    & \tyKd*                 & \verb|\tyKd| \\
-        \singtyKd{\tau}          & \singtyKd*{\tau}       & \verb|\singtyKd{\tau}| \\
-%        \eqvtyCn{\tau}           & \eqvtyCn*{\tau}        & \verb|\eqvtyCn{\tau}| \\
-%        \thustyCn{\tau}          & \thustyCn*{\tau}       & \verb|\thustyCn{\tau}| \\
-        \funKd{\kappa_1}[u]{\kappa_2} & \funKd*{\kappa_1}[u]{\kappa_2} & \verb|\funKd{\kappa_1}[u]{\kappa_2}| \\
-        \prodKd{\kappa_1}[u]{\kappa_2} & \prodKd*{\kappa_1}[u]{\kappa_2} & \verb|\prodKd{\kappa_1}[u]{\kappa_2}|
+      \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
+      \unitKd                  & \unitKd*               & \verb|\unitKd| \\
+      \unitCn                  & \unitCn*               & \verb|\unitCn| \\
+      \tyKd                    & \tyKd*                 & \verb|\tyKd| \\
+      \singtyKd{\tau}          & \singtyKd*{\tau}       & \verb|\singtyKd{\tau}| \\
+      \eqvtyCn{\tau}           & \eqvtyCn*{\tau}        & \verb|\eqvtyCn{\tau}| \\
+      \thustyCn{\tau}          & \thustyCn*{\tau}       & \verb|\thustyCn{\tau}| \\
+      \funKd{\kappa_1}[u]{\kappa_2} & \funKd*{\kappa_1}[u]{\kappa_2} & \verb|\funKd{\kappa_1}[u]{\kappa_2}| \\
+      \lamCn[\kappa_1][u][\kappa_2]{u}{c} & \lamCn*{u}{c} & \verb|\lamCn{u}{c}| \\
+      \appCn[\kappa_1][u][\kappa_2]{c}{c_1} & \appCn*[x][x][x]{c}{c_1} & \verb|\appCn{c}{c_1}| \\
+      \prodKd{\kappa_1}[u]{\kappa_2} & \prodKd*{\kappa_1}[u]{\kappa_2} & \verb|\prodKd{\kappa_1}[u]{\kappa_2}| \\
+      \pairCn[\kappa_1][u][\kappa_2]{c_1}{c_2} & \pairCn*{c_1}{c_2} & \verb|\pairCn{c_1}{c_2}| \\
+      \projCn<i>[\kappa_1][u][\kappa_2]{c} & \projCn*<i>{c} & \verb|\projCn<i>{c}|
       \end{array}
   \end{displaymath}
 
-  \caption{(Dependent) Kinds}
+  \caption{Kinds and Constructors}
   \label{fig:con-knd}
 \end{figure}
 
