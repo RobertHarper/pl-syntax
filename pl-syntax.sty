@@ -352,8 +352,8 @@
 \NewDocumentCommand{\ext@Abt}{m m}{\A@bt{\O@pn{Ext}}(#1\@sep  #2)}
 \NewDocumentCommand{\ext@Cst}{m m}{\{#1\mid \staticLock\hookrightarrow #2\}}
 \NewDocumentCommand{\extSg}{s m m}{\IfBooleanTF{#1}{\ext@Cst{#2}{#3}}{\ext@Abt{#2}{#3}}}
-\NewDocumentCommand{\inMd}{s o m m}{\Abt@{#1}{\O@pn{in}}[#2](#3\@sep #4)}
-\NewDocumentCommand{\outMd}{s o o m}{\Abt@{#1}{\O@pn{out}}[#2\@sep #3](#4)}
+\NewDocumentCommand{\isMd}{s o o m}{\Abt@{#1}{\O@pn{is}}[#2\@sep #3](#4)}
+\NewDocumentCommand{\asMd}{s o o m}{\Abt@{#1}{\O@pn{as}}[#2\@sep #3](#4)}
 
 % \NewDocumentCommand{\sig@Abt}{m m m}{\A@bt{\O@pn{Sig}}(#1\@sep \A@bs(#2){#3})}
 % \NewDocumentCommand{\sig@Cst}{m m m}{#2{\mathbin{:}}#1\times #3}
@@ -396,7 +396,7 @@
 \NewDocumentCommand{\funMd@Cst}{m m m}{\O@pn{func}(\Abs(#2){#3})}  % no type label?
 \NewDocumentCommand{\funMd}{s m m o m}{\IfBooleanTF{#1}{\funMd@Cst{#2}{#3}{#5}}{\funMd@Abt{#2}{#3}{#4}{#5}}}
 \NewDocumentCommand{\instMd@Abt}{m m m m m}{\A@bt{\O@pn{inst}}[#1\@sep \A@bs(#2){#3}](#4\@sep #5)}
-\NewDocumentCommand{\instMd@Cst}{m m}{#1(#2)}
+\NewDocumentCommand{\instMd@Cst}{m m}{\O@pn{inst}(#1\@sep #2)}
 \NewDocumentCommand{\instMd}{s o o o m m}{\IfBooleanTF{#1}{\instMd@Cst{#5}{#6}}{\instMd@Abt{#2}{#3}{#4}{#5}{#6}}}
 
 % cbpv / polarization
