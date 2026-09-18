@@ -45,13 +45,9 @@
 \NewDocumentCommand{\fin@map}{m m m}{\sing@map{#2}{#3_#2}\mid #2\in #1}
 \NewDocumentCommand{\ext@map}{s m m m}{\IfBooleanF{#1}{#2,\,}\sing@map{#3}{#4}{\IfBooleanT{#1}{\,, #2}}}
 
-% in fact, angle bracket arguments belong to the operator, and should be treated as such!
-% from a defined macro viewpoint, nothing will change, but internally such arguments are meant for the operator
-% then, in the case of i\in I, the I can be attached to the operator, even in concrete syntax.
-
-% starred for math name, non-starred for verbatim name, optional index
-\NewDocumentCommand{\O@pn}{s m}{\mathop{\IfBooleanTF{#1}{#2}{\textnormal{\@kw{#2}}}}\nolimits}
-% choose between concrete and abstract operation name
+% starred for symbolic name, non-starred for keyword name, optional index typeset in parameter brackets
+\NewDocumentCommand{\O@pn}{s m d<>}{\mathop{\IfBooleanTF{#1}{#2}{\textnormal{\@kw{#2}}}}\nolimits\IfValueT{#3}{\param@bracks{#3}}}
+% choose between symbolic or keyword operation name
 \NewDocumentCommand{\Opn@}{m m m}{\IfBooleanTF{#1}{\O@pn*{#2}}{\O@pn{#3}}}
 
 % abstractor of symbols in <>'s and variables in ()'s in an abs
@@ -103,7 +99,7 @@
 \NewDocumentCommand{\vtuple@Abt}{m m m m}{\A@bt{\O@pn{vtuple}}<#1>[{#3}]({#4})}  % was {#3}_{#1}, {#4}_{#1}
 \NewDocumentCommand{\vtuple@Cst}{m m m}{\langle \fin@map{#1}{#2}{#3} \rangle}
 \NewDocumentCommand{\vtupleEx}{s r<> r<> O{\tau} m}{\IfBooleanTF{#1}{\vtuple@Cst{#2}{#3}{#5}}{\vtuple@Abt{#2}{#3}{#4}{#5}}}
-\NewDocumentCommand{\vproj@Abt}{m m m m}{\A@bt{\O@pn{vproj}}<#1;#2>[{#3}](#4)}   % was {#3}_{#1}
+\NewDocumentCommand{\vproj@Abt}{m m m m}{\A@bt{\O@pn{vproj}<#1>}<#2>[{#3}](#4)}   % was {#3}_{#1}
 \NewDocumentCommand{\vproj@Cst}{m m}{#2\cdot #1}
 \NewDocumentCommand{\vprojEx}{s r<> r<> O{\tau} m}{\IfBooleanTF{#1}{\vproj@Cst{#3}{#5}}{\vproj@Abt{#2}{#3}{#4}{#5}}}
 
@@ -128,7 +124,7 @@
 \NewDocumentCommand{\vsum@Abt}{m m m}{\A@bt{\O@pn{vsum}}<#1>({#3})}   % was {#3}_{#1}
 \NewDocumentCommand{\vsum@Cst}{m m m}{\bigplus_{#2\in #1}(\sing@map{#2}{{#3}_{#2}})}
 \NewDocumentCommand{\vsumTy}{s r<> r<> m}{\IfBooleanTF{#1}{\vsum@Cst{#2}{#3}{#4}}{\vsum@Abt{#2}{#3}{#4}}}
-\NewDocumentCommand{\vinj@Abt}{m m m m}{\A@bt{\O@pn{vinj}}<#1;#2>[#3](#4)}  % was {#3}_{#1}
+\NewDocumentCommand{\vinj@Abt}{m m m m}{\A@bt{\O@pn{vinj}<#1>}<#2>[#3](#4)}  % was {#3}_{#1}
 \NewDocumentCommand{\vinj@Cst}{m m}{#1\cdot #2}
 \NewDocumentCommand{\vinjEx}{s r<> r<> O{\tau} m}{\IfBooleanTF{#1}{\vinj@Cst{#3}{#5}}{\vinj@Abt{#2}{#3}{#4}{#5}}}
 \NewDocumentCommand{\vcase@Abt}{m m m m m m m}{\A@bt{\O@pn{vcase}}<#1>[{#3}\@sep #4](#5\@sep \A@bs(#6){#7})}  % was {#3}_{#1}, {#7}_{#1}
@@ -476,27 +472,27 @@
 
 % propositions
 \NewDocumentCommand{\trueProp}{s}{\Abt@{#1}{\Opn@{#1}{\top}{truth}}}
-\NewDocumentCommand{\trueIPf}{s}{\Abt@{#1}{\Opn@{#1}{\top\@kw{I}}{truthI}}}
+\NewDocumentCommand{\trueIPf}{s}{\A@bt{\O@pn{trI}}} %{\A@bt{\Opn@{#1}{\top\@kw{I}}{truthI}}}
 
 \NewDocumentCommand{\andProp}{s m m}{\IfBooleanTF{#1}{#2\wedge #3}{\A@bt{\O@pn{and}}(#2\@sep #3)}}
-\NewDocumentCommand{\andIPf}{s o o m m}{\Abt@{#1}{\Opn@{#1}{\wedge\@kw{I}}{andI}}[#2\@sep #3](#4\@sep #5)}
-\NewDocumentCommand{\andEPf}{s o o r<> m}{\Abt@{#1}{\Opn@{#1}{\wedge\@kw{E}}{andE}}<#4>[#2\@sep #3](#5)}  % change to O@pn form
+\NewDocumentCommand{\andIPf}{s o o m m}{\Abt@{#1}{\O@pn{andI}}[#2\@sep #3](#4\@sep #5)}
+\NewDocumentCommand{\andEPf}{s o o r<> m}{\Abt@{#1}{\O@pn{andE}}<#4>[#2\@sep #3](#5)}
 
 \NewDocumentCommand{\falseProp}{s}{\Abt@{#1}{\Opn@{#1}{\bot}{falsity}}}
-\NewDocumentCommand{\falseIPf}{s o m}{\Abt@{#1}{\Opn@{#1}{\bot\@kw{I}}{falseI}}[#2](#3)}  % for use when contradiction is a judgment
-\NewDocumentCommand{\falseEPf}{s o m}{\Abt@{#1}{\Opn@{#1}{\bot\@kw{E}}{falseE}}[#2](#3)}
+\NewDocumentCommand{\falseIPf}{s o m}{\Abt@{#1}{\O@pn{faI}}[#2](#3)}
+\NewDocumentCommand{\falseEPf}{s o m}{\Abt@{#1}{\O@pn{faE}}[#2](#3)}
 
 \NewDocumentCommand{\orProp}{s m m}{\IfBooleanTF{#1}{#2\vee #3}{\A@bt{\O@pn{or}}(#2\@sep #3)}}
-\NewDocumentCommand{\orIPf}{s o o r<> m}{\Abt@{#1}{\Opn@{#1}{\vee\@kw{I}}{orI}}<#4>[#2\@sep #3](#5)} % change to O@pn form
-\NewDocumentCommand{\orEPf}{s o o o m m m m m}{\Abt@{#1}{\Opn@{#1}{\vee\@kw{E}}{orE}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6){#7}\@sep \A@bs(#8){#9})}
+\NewDocumentCommand{\orIPf}{s o o r<> m}{\Abt@{#1}{\O@pn{orI}}<#4>[#2\@sep #3](#5)} 
+\NewDocumentCommand{\orEPf}{s o o o m m m m m}{\Abt@{#1}{\O@pn{orE}}[#2\@sep #3\@sep #4](#5\@sep \A@bs(#6){#7}\@sep \A@bs(#8){#9})}
 
 \NewDocumentCommand{\impProp}{s m m}{\IfBooleanTF{#1}{#2\supset #3}{\A@bt{\O@pn{imp}}(#2\@sep #3)}}
-\NewDocumentCommand{\impIPf}{s o o m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\@kw{I}}{impI}}[#2\@sep #3](\A@bs(#4){#5})}
-\NewDocumentCommand{\impEPf}{s o o m m}{\Abt@{#1}{\Opn@{#1}{\mathord{\supset}\@kw{E}}{impE}}[#2\@sep #3](#4\@sep #5)}
+\NewDocumentCommand{\impIPf}{s o o m m}{\Abt@{#1}{\O@pn{impI}}[#2\@sep #3](\A@bs(#4){#5})}
+\NewDocumentCommand{\impEPf}{s o o m m}{\Abt@{#1}{\O@pn{impE}}[#2\@sep #3](#4\@sep #5)}
 
 \NewDocumentCommand{\notProp}{s m}{\IfBooleanTF{#1}{\neg #2}{\A@bt{\O@pn{not}}(#2)}}
-\NewDocumentCommand{\notIPf}{s o m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{I}}{notI}}[#2](\A@bs(#3){#4})}
-\NewDocumentCommand{\notEPf}{s o m m}{\Abt@{#1}{\Opn@{#1}{\neg\@kw{E}}{notE}}[#2](#3\@sep #4)}
+\NewDocumentCommand{\notIPf}{s o m m}{\Abt@{#1}{\O@pn{notI}}[#2](\A@bs(#3){#4})}
+\NewDocumentCommand{\notEPf}{s o m m}{\Abt@{#1}{\O@pn{notE}}[#2](#3\@sep #4)}
 
 % kinds and constructors
 \NewDocumentCommand{\unitKd}{s}{\IfBooleanTF{#1}{\mathbbm{1}}{\A@bt{\O@pn{One}}}}
