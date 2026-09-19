@@ -60,7 +60,7 @@ To typeset an abstract binding tree yourself, provide the package with the \verb
   \item \verb|\kw{abc}| sets its argument as a keyword, \verb|\sep| typesets the argument separator, and the operations \verb|\empMap| ($\empMap$), \verb|\singMap{i}{x}| ($\singMap{i}{x}$), \verb|\extMap{f}{i}{x}| ($\extMap{f}{i}{x}$), and \verb|\finMap{I}{i}{x}| ($\finMap{I}{i}{x}$) typeset finite maps as indicated.
 \end{itemize}
 
-The package option \verb|[sf]| indicates that keywords are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.  The package option \verb|[pfpl]| uses the notational conventions from \textsf{PFPL} in which symbol parameters to operators are typeset in square brackets, and their minor arguments are typeset in curly braces.  Finally, the package option \verb|[nosyn]| omits the collection of syntax macros described below.
+The package option \verb|[sf]| indicates that keywords are to be set in sans serif font, and the package option \verb|[sc]| indicates that they are to be set in small capitals.  The package option \verb|[pfpl]| uses the notational conventions from \textsf{PFPL} in which symbol parameters to operators are typeset in square brackets, and their minor arguments are typeset in curly braces.  The package option \verb|[nominor]| suppresses minor arguments to abt's in abstract syntax; the concrete forms are not affected by this option.  Finally, the package option \verb|[nosyn]| omits the collection of syntax macros described below.
 
 \smallskip
 
@@ -69,7 +69,7 @@ The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e
 \section*{Language-Specific Definitions}
 \label{sec:lang-defns}
 
-The commands for typesetting the many language constructs in \textsf{PFPL}, plus some others, are organized into a collection of tables grouped according to type structure.  The tables display the abstract and concrete syntax for a language construct, and give the \LaTeX{} command used to create them.  The minor arguments are generally required for the abstract syntax, but may be omitted for the concrete syntax.  For the variadic forms in Figures~\ref{fig:prod-sum}, the notation $\tau_I$, for $I$ an index set, stands for the finite map $(\finMap{I}{i}{\tau})$; the notation $e_I$ is defined analogously.
+The commands for typesetting the many language constructs in \textsf{PFPL}, plus some others, are organized into a collection of tables grouped according to type structure.  The tables display the abstract and concrete syntax for a language construct, and give the \LaTeX{} command used to create them.  The minor arguments are generally required for the abstract syntax (but are suppressed when the package option \verb|[nominor]| is in effect), but may be omitted in the concrete syntax (starred form), which is more free-wheeling.  For the variadic forms in Figures~\ref{fig:prod-sum}, the notation $\tau_I$, for $I$ an index set, stands for the finite map $(\finMap{I}{i}{\tau})$; the notation $e_I$ is defined analogously.
 
 \clearpage
 \newgeometry{hmargin=14mm}

@@ -22,11 +22,11 @@
     \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
+\DeclareOption{nominor}{   % this should come after pfpl, because there minor arguments should not be suppressed
+    \ProvideDocumentCommand{\minor@bracks}{m}{}
+}
 \DeclareOption{nosyn}{
     \NewDocumentCommand{\no@syn}{}{}
-}
-\DeclareOption{nominor}{
-    \ProvideDocumentCommand{\minor@bracks}{m}{}
 }
 \DeclareOption*{\PackageWarning{pl-syntax}{Unrecognized option `\CurrentOption'.}}
 \ProcessOptions\relax
