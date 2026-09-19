@@ -98,7 +98,7 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \sumTy{\tau_1}{\tau_2}            & \sumTy*{\tau_1}{\tau_2} & \verb|\sumTy{\tau_1}{\tau_2}|                     \\
         \sumTy<i>{\tau_1}{\tau_2}         & \sumTy*<i>{\tau_1}{\tau_2} & \verb|\sumTy<i>{\tau_1}{\tau_2}| \quad (i=1,2) \\
         \injEx<i>[\tau_1][\tau_2]{e}      & \injEx*<i>{e}           & \verb|\injEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2) \\
-        \caseEx[\tau][\rho]{e}{x}{e}     & \caseEx*{e}{x}{e}      & \verb|\caseEx[\tau][\rho]{e}{x}{e}|              \\
+        \caseEx[\tau][\rho]{e}{x}{e}     & \caseEx*{e}{x}{e}        & \verb|\caseEx[\tau][\rho]{e}{x}{e}|              \\
         \xcaseEx[\tau_1][\tau_2][\rho]{e}{x_1}{e_1}{x_2}{e_2} & \xcaseEx*{e}{x_1}{e_1}{x_2}{e_2} & \\
         \multicolumn{3}{r}{\UseVerb{xcaseExVrb}} \\[1ex]
 
@@ -127,14 +127,14 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \arrTy{\tau_1}{\tau_2} & \arrTy*{\tau_1}{\tau_2} & \verb|\arrTy{\tau_1}{\tau_2}| \\
-        \lamEx{x}{e}           & \lamEx*{x}{e}           & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
-        \appEx{e_1}{e_2}       & \appEx*{e_1}{e_2}       & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}| \\[1ex]
-        \allTy{t}{\tau}                     & \allTy*{t}{\tau}                     & \verb|\allTy{t}{\tau}|                     \\
-        \tlamEx{t}[\tau]{e}                 & \tlamEx*{t}[\tau]{e}                 & \verb|\tlamEx{t}[\tau]{e}|                 \\
-        \tapEx[t][\tau]{e}{\rho}          & \tapEx*{e}{\rho}                   & \verb|\tapEx[t][\tau]{e}{\rho}|          \\[1ex]
-        \someTy{t}{\tau}                    & \someTy*{t}{\tau}                    & \verb|\someTy{t}{\tau}|                    \\
-        \packEx[t][\tau]{\rho}{e}           & \packEx*{\rho}{e}                    & \verb|\packEx[t][\tau]{\rho}{e}|           \\
+        \arrTy{\tau_1}{\tau_2}              & \arrTy*{\tau_1}{\tau_2}     & \verb|\arrTy{\tau_1}{\tau_2}| \\
+        \lamEx[\tau_1][\tau_2]{x}{e}        & \lamEx*{x}{e}               & \verb|\lamEx[\tau_1][\tau_2]{x}{e}|           \\
+        \appEx[\tau_1][\tau_2]{e_1}{e_2}    & \appEx*{e_1}{e_2}           & \verb|\appEx[\tau_1][\tau_2]{e_1}{e_2}| \\[1ex]
+        \allTy{t}{\tau}                     & \allTy*{t}{\tau}            & \verb|\allTy{t}{\tau}|                     \\
+        \tlamEx{t}[\tau]{e}                 & \tlamEx*{t}[\tau]{e}        & \verb|\tlamEx{t}[\tau]{e}|                 \\
+        \tapEx[t][\tau]{e}{\rho}            & \tapEx*{e}{\rho}            & \verb|\tapEx[t][\tau]{e}{\rho}|          \\[1ex]
+        \someTy{t}{\tau}                    & \someTy*{t}{\tau}           & \verb|\someTy{t}{\tau}|                    \\
+        \packEx[t][\tau]{\rho}{e}           & \packEx*{\rho}{e}           & \verb|\packEx[t][\tau]{\rho}{e}|           \\
         \openEx[t][\tau][\rho]{e}{t}{x}{e'} & \openEx*[t][\tau][\rho]{e}{t}{x}{e'} & \verb|\openEx[t][\tau][\rho]{e}{t}{x}{e'}|
       \end{array}
     \end{displaymath}
@@ -210,7 +210,7 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \parrTy{\tau_1}{\tau_2}         & \parrTy*{\tau_1}{\tau_2} & \verb|\parrTy{\tau_1}{\tau_2}|          \\
         \funEx[\tau_1][\tau_2]{f}{x}{e} & \funEx*{f}{x}{e}         & \verb|\funEx[\tau_1][\tau_2]{f}{x}{e}|  \\
-        \papEx{e_1}{e_2}                & \papEx*{e_1}{e_2}        & \verb|\papEx[\tau_1][\tau_2]{e_1}{e_2}| \\[1ex]
+        \papEx[\tau_1][\tau_2]{e_1}{e_2} & \papEx*{e_1}{e_2}        & \verb|\papEx[\tau_1][\tau_2]{e_1}{e_2}| \\[1ex]
 
         \fixEx[\tau]{x}{e}              & \fixEx*[\tau]{x}{e}      & \verb|\fixEx[\tau]{x}{e}|               \\[1ex]
 
@@ -247,7 +247,7 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \noEx                          & \noEx*              & \verb|\noEx|                          \\[1ex]
 
         \contTy{\tau}                  & \contTy*{\tau}      & \verb|\contTy{\tau}|                  \\
-        \contEx[\tau]{k}                     & \contEx*{k}         & \verb|\contEx[\tau]{k} |                    \\
+        \contEx[\tau]{k}               & \contEx*{k}         & \verb|\contEx[\tau]{k} |                    \\
         \letccEx[\tau]{x}{e}           & \letccEx*{x}{e}     & \verb|\letccEx[\tau]{x}{e}|           \\
         \throwEx[\tau][\rho]{e_1}{e_2} & \throwEx*{e_1}{e_2} & \verb|\throwEx[\tau][\rho]{e_1}{e_2}| \\[1ex]
 
@@ -273,11 +273,11 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
       \eqvtyCn{\tau}           & \eqvtyCn*{\tau}        & \verb|\eqvtyCn{\tau}| \\
       \thustyCn{\tau}          & \thustyCn*{\tau}       & \verb|\thustyCn{\tau}| \\
       \funKd{\kappa_1}[u]{\kappa_2} & \funKd*{\kappa_1}[u]{\kappa_2} & \verb|\funKd{\kappa_1}[u]{\kappa_2}| \\
-      \lamCn[\kappa_1][u][\kappa_2]{u}{c} & \lamCn*{u}{c} & \verb|\lamCn{u}{c}| \\
-      \appCn[\kappa_1][u][\kappa_2]{c}{c_1} & \appCn*[x][x][x]{c}{c_1} & \verb|\appCn{c}{c_1}| \\
+      \lamCn[\kappa_1][u][\kappa_2]{u}{c} & \lamCn*{u}{c} & \verb|\lamCn[\kappa_1][u][\kappa_2]{u}{c}| \\
+      \appCn[\kappa_1][u][\kappa_2]{c}{c_1} & \appCn*[x][x][x]{c}{c_1} & \verb|\appCn[\kappa_1][u][\kappa_2]{c}{c_1}| \\
       \prodKd{\kappa_1}[u]{\kappa_2} & \prodKd*{\kappa_1}[u]{\kappa_2} & \verb|\prodKd{\kappa_1}[u]{\kappa_2}| \\
-      \pairCn[\kappa_1][u][\kappa_2]{c_1}{c_2} & \pairCn*{c_1}{c_2} & \verb|\pairCn{c_1}{c_2}| \\
-      \projCn<i>[\kappa_1][u][\kappa_2]{c} & \projCn*<i>{c} & \verb|\projCn<i>{c}|
+      \pairCn[\kappa_1][u][\kappa_2]{c_1}{c_2} & \pairCn*{c_1}{c_2} & \verb|\pairCn[\kappa_1][u][\kappa_2]{c_1}{c_2}| \\
+      \projCn<i>[\kappa_1][u][\kappa_2]{c} & \projCn*<i>{c} & \verb|\projCn<i>[\kappa_1][u][\kappa_2]{c}|
       \end{array}
   \end{displaymath}
 
@@ -292,8 +292,8 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
         \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \suspTy{\tau}           & \suspTy*{\tau}           & \verb|\suspTy{\tau}|           \\
-        \suspEx[\tau]{e}        & \suspEx*[\tau]{e}        & \verb|\suspEx[\tau]{e}|        \\
-        \forceEx[\tau]{e}   & \forceEx*[\tau]{e}   & \verb|\forceEx[\tau]{e}|   \\[1ex]
+        \suspEx[\tau]{e}        & \suspEx*{e}        & \verb|\suspEx[\tau]{e}|        \\
+        \forceEx[\tau]{e}       & \forceEx*{e}       & \verb|\forceEx[\tau]{e}|   \\[1ex]
 
         \compTy{\tau}           & \compTy*{\tau}           & \verb|\compTy{\tau}|           \\
         \compEx{m}              & \compEx*{m}              & \verb|\compEx{m}|              \\
@@ -315,7 +315,7 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \symTy{\tau}               & \symTy*{\tau}              & \verb|\symTy{\tau}|                \\
         \quoteEx<a>                & \quoteEx*<a>               & \verb|\quoteEx<a>|                 \\
         \ifisCmd<a>[t][\tau]{e}{m_1}{m_2} & \ifisCmd*<a>{e}{m_1}{m_2}  & \verb|\ifisCmd<a>[t][\tau]{e}{m_1}{m_2}| \\
-        \newsymCmd[\tau]  & \newsymCmd*[\tau] & \verb|\newsymCmd[\tau]| \\
+        \newsymCmd[\tau]           & \newsymCmd*[\tau]          & \verb|\newsymCmd[\tau]| \\
         \ifeqCmd[t][\tau]{e_1}{e_2}{m_1}{m_2} & \ifeqCmd*{e_1}{e_2}{m_1}{m_2} & \verb|\ifeqCmd[t][\tau]{e_1}{e_2}{m_1}{m_2}| \\
       \end{array}
     \end{displaymath}
@@ -327,6 +327,7 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
 
 \begin{figure}
 
+  % shouldn't there be optional type arguments?
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}

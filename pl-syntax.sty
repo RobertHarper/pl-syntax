@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{pl-syntax}[2024/12/13 1.5.0 PL Syntax Macros]
+\ProvidesPackage{pl-syntax}[2026/09/17 1.6.0 PL Syntax Macros]
 \DeclareOption{abt}{
     \NewDocumentCommand{\Abt}{}{\A@bt}
     \NewDocumentCommand{\Abs}{}{\A@bs}
@@ -24,6 +24,9 @@
 }
 \DeclareOption{nosyn}{
     \NewDocumentCommand{\no@syn}{}{}
+}
+\DeclareOption{nominor}{
+    \ProvideDocumentCommand{\minor@bracks}{m}{}
 }
 \DeclareOption*{\PackageWarning{pl-syntax}{Unrecognized option `\CurrentOption'.}}
 \ProcessOptions\relax
@@ -52,6 +55,7 @@
 
 % abstractor of symbols in <>'s and variables in ()'s in an abs
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathord{.}}\IfValueT{#2}{#2\mathord{.}} #3}
+
 % abstract binding tree with operator, parameter, minor, and major arguments
 % starred form omits the minor arguments, a cheap form of concrete syntax
 % omitted minor and major arguments are dropped entirely from output
@@ -71,8 +75,10 @@
 \ifdefined\no@syn\else
 
 %%% consecutive optional arguments are problematic, because when one is omitted, which one is it?
+%%% the basic opn, abs, and abt macros have one of each form of argument, which is sensible.
+%%% default values for optional arguments are deprecated and should not be used
 
-%%% all variable arguments should be in parentheses, and hence optional.
+%%% *all* variable arguments should be in parentheses, and hence optional.
 %%% the option could default to \_, and omitted in concrete form.
 
 % product types
