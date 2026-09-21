@@ -66,16 +66,18 @@ The package option \verb|[sf]| indicates that keywords are to be set in sans ser
 
 The command \verb|\Sub{e}{x}{e'}| expands to $\Sub{e}{x}{e'}$, and \verb|\Sub*{e}{x}{e'}| expands to $\Sub*{e}{x}{e'}$, providing pre- and post-fix notation for substitution.  Substitutions may be written as \verb|\empSub| for the empty substitution, $\empSub$, and \verb|\extSub{\gamma}{x}{e}| for the extension $\extSub{\gamma}{x}{e}$ of a substitution $\gamma$ sending $x$ to $e$, and \verb|\extSub*{\gamma}{x}{e}| for $\extSub*{\gamma}{x}{e}$ written in the opposite order.  A substitution, $\gamma$, induces a function, \verb|\appSub{\gamma}|, on abt's performing the simultaneous, capture-avoiding substitution of $\gamma(x)$ for free occurrences of $x$ in its argument, $e$, yielding $\appSub{\gamma}(e)$, or $\appSub*{\gamma}(e)$, in its starred form.
 
+\clearpage
+
 \section*{Language-Specific Definitions}
 \label{sec:lang-defns}
 
-The commands for typesetting the many language constructs in \textsf{PFPL}, plus some others, are organized into a collection of tables grouped according to type structure.  The tables display the abstract and concrete syntax for a language construct, and give the \LaTeX{} command used to create them.  The minor arguments are generally required for the abstract syntax (but are suppressed when the package option \verb|[nominor]| is in effect), but may be omitted in the concrete syntax (starred form), which is more free-wheeling.  For the variadic forms in Figures~\ref{fig:prod-sum}, the notation $\tau_I$, for $I$ an index set, stands for the finite map $(\finMap{I}{i}{\tau})$; the notation $e_I$ is defined analogously.
+The commands for typesetting the many language constructs in \textsf{PFPL}, plus some others, are organized into a collection of tables grouped according to type structure.  The tables display the abstract and concrete syntax for a language construct, and give the \LaTeX{} command used to create them.  The minor arguments are generally required for the abstract syntax (but are suppressed when the package option \verb|[nominor]| is in effect), but may be omitted in the concrete syntax (starred form), which is more free-wheeling.  For the variadic forms in Figures~\ref{fig:prod} and~\ref{fig:sum}, the notation $\tau_I$, for $I$ an index set, stands for the finite map $(\finMap{I}{i}{\tau})$; the notation $e_I$ is defined analogously.
 
 \clearpage
 \newgeometry{hmargin=14mm}
 
 \begin{figure}
-  \SaveVerb{xcaseExVrb}|\xcaseEx[\tau_1][\tau_2][\rho]{e}{x_1}{e_1}{x_2}{e_2}|
+  \SaveVerb{splitExVrb}|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
   \begin{small}
     \begin{displaymath}
       \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
@@ -92,6 +94,27 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \vtupleEx<I><i>[\tau]{e}             & \vtupleEx*<I><i>{e}         & \verb|\vtupleEx<I><i>[\tau]{e}|                  \\
         \vprojEx<I><i>[\tau]{e}           & \vprojEx*<I><i>{e}          & \verb|\vprojEx<I><i>[\tau]{e}| \quad (i\in I) \\[1ex]
 
+        \tensorTy{\tau_1}{\tau_2}                      & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}|                      \\
+        \tensorEx[\tau_1][\tau_2]{v_1}{v_2}            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx[\tau_1][\tau_2]{v_1}{v_2}|                            \\
+        \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e}  & \\
+        \multicolumn{3}{r}{\UseVerb{splitExVrb}} \\[1ex]
+        \bothTy{\tau_1}{\tau_2}                        & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|                        \\
+        \bothEx{e_1}{e_2}                              & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|                              \\
+        \parEx{e}{x}{y}{e'}                            & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}| 
+      \end{array}
+    \end{displaymath}
+  \end{small} 
+
+  \caption{Product Types}
+  \label{fig:prod}
+\end{figure}
+
+\begin{figure}
+  \SaveVerb{xcaseExVrb}|\xcaseEx[\tau_1][\tau_2][\rho]{e}{x_1}{e_1}{x_2}{e_2}|
+  \begin{small}
+    \begin{displaymath}
+      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
         \voidTy                           & \voidTy*                & \verb|\voidTy|                                    \\
         \absurdEx[\rho]{e}                & \absurdEx*{e}           & \verb|\absurdEx[\rho]{e}|                         \\[1ex]
 
@@ -116,10 +139,10 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \vcaseEx<I><i>[\tau][\rho]{e}{x}{e'} & \vcaseEx*<I><i>{e}{x}{e'}  & \verb|\vcaseEx<I><i>[\tau][\rho]{e}{x}{e'}|
       \end{array}
     \end{displaymath}
-  \end{small} 
+  \end{small}
 
-  \caption{Product and Sum Types}
-  \label{fig:prod-sum}
+  \caption{Sum Types}
+  \label{fig:sum}
 \end{figure}
 
 \begin{figure}
@@ -179,27 +202,6 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
 
   \caption{Inductive and Coinductive Types}
   \label{fig:icoi}
-\end{figure}
-
-\begin{figure}
-  \SaveVerb{splitExVrb}|\splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e}|
-  \begin{small}
-    \begin{displaymath}
-      \begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
-        \textit{Abstract} & \textit{Concrete} & \textit{Invocation} \\
-        \tensorTy{\tau_1}{\tau_2}                      & \tensorTy*{\tau_1}{\tau_2} & \verb|\tensorTy{\tau_1}{\tau_2}|                      \\
-        \tensorEx[\tau_1][\tau_2]{v_1}{v_2}            & \tensorEx*{v_1}{v_2}       & \verb|\tensorEx[\tau_1][\tau_2]{v_1}{v_2}|                            \\
-        \splitEx[\tau_1][\tau_2][\rho]{v}{x_1}{x_2}{e} & \splitEx*{v}{x_1}{x_2}{e}  & \\
-        \multicolumn{3}{r}{\UseVerb{splitExVrb}} \\
-        \bothTy{\tau_1}{\tau_2}                        & \bothTy*{\tau_1}{\tau_2}   & \verb|\bothTy{\tau_1}{\tau_2}|                        \\
-        \bothEx{e_1}{e_2}                              & \bothEx*{e_1}{e_2}         & \verb|\bothEx{e_1}{e_2}|                              \\
-        \parEx{e}{x}{y}{e'}                            & \parEx*{e}{x}{y}{e'}       & \verb|\parEx{e}{x}{y}{e'}| 
-      \end{array}
-    \end{displaymath}
-  \end{small}
-
-  \caption{Parallel Types}
-  \label{fig:par}
 \end{figure}
 
 \begin{figure}
@@ -444,7 +446,7 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
     \end{displaymath}
   \end{small}
 
-  \caption{Process Calculus}
+  \caption{Processes}
   \label{fig:proc}
 \end{figure}
 
