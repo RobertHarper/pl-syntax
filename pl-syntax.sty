@@ -22,7 +22,7 @@
     \ProvideDocumentCommand{\minor@bracks}{m}{\{#1\}}
     \ProvideDocumentCommand{\major@bracks}{m}{(#1)}
 }
-\DeclareOption{nominor}{   % this should come after pfpl, because there minor arguments should not be suppressed
+\DeclareOption{nominor}{   % this should come after pfpl
     \ProvideDocumentCommand{\minor@bracks}{m}{}
 }
 \DeclareOption{nosyn}{
@@ -176,7 +176,8 @@
 % coinductive type
 \NewDocumentCommand{\coiTy}{s m m}{\A@bt{\O@pn{coi}}(\A@bs(#2){#3})}
 \NewDocumentCommand{\outEx}{s O{t} O{\tau} m}{\Abt@{#1}{\O@pn{out}}[\A@bs(#2){#3}](#4)}
-\NewDocumentCommand{\genEx}{s O{t} O{\tau} O{\sigma} m m m}{\Abt@{#1}{\O@pn{gen}}[\A@bs(#2){#3}\@sep #4](#5\@sep \A@bs(#6){#7})}
+% the third argument ought to be mandatory, as in \packEx
+\NewDocumentCommand{\genEx}{s O{t} O{\tau} O{\sigma} m m m}{\Abt@{#1}{\O@pn{gen}}[\A@bs(#2){#3}](#4\@sep #5\@sep \A@bs(#6){#7})}
 
 % conat
 \NewDocumentCommand{\conatTy}{s}{\A@bt{\O@pn{conat}}}
