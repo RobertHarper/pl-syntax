@@ -42,6 +42,7 @@
 \NewDocumentCommand{\fin@map}{m m m}{\sing@map{#2}{#3_#2}\mid #2\in #1}
 \NewDocumentCommand{\ext@map}{s m m m}{\IfBooleanF{#1}{#2,\,}\sing@map{#3}{#4}{\IfBooleanT{#1}{\,, #2}}}
 
+% abt operator with optional parameter, set as a subscript, and optional index, set in angle brackets
 \NewDocumentCommand{\O@pn}{s m o d<>}{\mathop{\IfBooleanTF{#1}{#2}{\textnormal{\@kw{#2}}\IfValueT{#3}{_{#3}}}\IfValueT{#4}{\langle #4\rangle}}\nolimits}
 \NewDocumentCommand{\Opn@}{m m m}{\IfBooleanTF{#1}{\O@pn*{#2}}{\O@pn{#3}}}
 
@@ -54,11 +55,11 @@
 % abstractor of symbols in <>'s and variables in ()'s in an abs
 \NewDocumentCommand{\A@bs}{d<> d() m}{\IfValueT{#1}{#1\mathord{.}}\IfValueT{#2}{#2\mathord{.}} #3}
 
-% abstract binding tree with operator, parameter, minor, and major arguments
-% starred form omits the minor arguments, a cheap form of concrete syntax
+% abstract binding tree with operator, minor, and major arguments
+% starred form omits the minor arguments, providing a cheap form of concrete syntax
 % omitted minor and major arguments are dropped entirely from output
+% index/paramter arguments in angle brackets are deprecated!
 \ProvideDocumentCommand{\A@bt}{s m d<> o d()}{#2\IfValueT{#3}{\param@bracks{#3}}\IfBooleanTF{#1}{}{\IfValueT{#4}{\minor@bracks{#4}}}\IfValueT{#5}{\major@bracks{#5}}}
-
 % choose starred form of \A@bt according to boolean argument
 \NewDocumentCommand{\Abt@}{m m}{\IfBooleanTF{#1}{\A@bt*{#2}}{\A@bt{#2}}}
 
