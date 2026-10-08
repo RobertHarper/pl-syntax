@@ -177,8 +177,9 @@
 % coinductive type
 \NewDocumentCommand{\coiTy}{s m m}{\A@bt{\O@pn{coi}}(\A@bs(#2){#3})}
 \NewDocumentCommand{\outEx}{s O{t} O{\tau} m}{\Abt@{#1}{\O@pn{out}}[\A@bs(#2){#3}](#4)}
-% the third argument ought to be mandatory, as in \packEx
-\NewDocumentCommand{\genEx}{s O{t} O{\tau} O{\sigma} m m m}{\Abt@{#1}{\O@pn{gen}}[\A@bs(#2){#3}](#4\@sep #5\@sep \A@bs(#6){#7})}
+\NewDocumentCommand{\genExalt}{s O{t} O{\tau} m m m m}{\Abt@{#1}{\O@pn{gen}}[\A@bs(#2){#3}](#4\@sep #5\@sep \A@bs(#6){#7})}
+% for backward compatibility, third argument is optional, but should be mandatory as in genExalt
+\NewDocumentCommand{\genEx}{s O{t} O{\tau} O{\sigma} m m m}{\IfBooleanTF{#1}{\genExalt*}{\genExalt}[#2][#3]{#4}{#5}{#6}{#7}}
 
 % conat
 \NewDocumentCommand{\conatTy}{s}{\A@bt{\O@pn{conat}}}

@@ -88,8 +88,8 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \checkEx[\rho]{e_1}{e_2}          & \checkEx*{e_1}{e_2}       & \verb|\checkEx[\rho]{e_1}{e_2}|                \\[1ex]
         
         \prodTy{\tau_1}{\tau_2}           & \prodTy*{\tau_1}{\tau_2} & \verb|\prodTy{\tau_1}{\tau_2}|                \\
-        \projEx<i>[\tau_1][\tau_2]{e}     & \projEx*<i>{e}           & \verb|\projEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2)            \\
-        \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\[1ex]
+        \pairEx[\tau_1][\tau_2]{e_1}{e_2} & \pairEx*{e_1}{e_2}       & \verb|\pairEx[\tau_1][\tau_2]{e_1}{e_2}|      \\
+        \projEx<i>[\tau_1][\tau_2]{e}     & \projEx*<i>{e}           & \verb|\projEx<i>[\tau_1][\tau_2]{e}| \quad (i=1,2)  \\[1ex]
 
         \vprodTy<I><i>{\tau}              & \vprodTy*<I><i>{\tau}          & \verb|\vprodTy<I><i>{\tau}|                   \\
         \vtupleEx<I><i>[\tau]{e}          & \vtupleEx*<I><i>{e}         & \verb|\vtupleEx<I><i>[\tau]{e}|                  \\
@@ -192,9 +192,9 @@ The commands for typesetting the many language constructs in \textsf{PFPL}, plus
         \listrecEx[\rho]{e}{e_1}{x}{y}{e_2}  & \listrecEx*{e}{e_1}{x}{y}{e_2}      & \verb|\listrecEx[\rho]{e}{e_1}{x}{y}{e_2}|     \\
         \listcaseEx[\rho]{e}{e_1}{x}{y}{e_2} & \listcaseEx*{e}{e_1}{x}{y}{e_2}     & \verb|\listcaseEx[\rho]{e}{e_1}{x}{y}{e_2}|    \\[1ex]
 
-        \coiTy{t}{\tau}                      & \coiTy*{t}{\tau}                    & \verb|\coiTy{t}{\tau}|                         \\
-        \outEx[t][\tau]{e}                   & \outEx*{e}                          & \verb|\outEx[t][\tau]{e}|                      \\
-        \genEx[t][\tau][\sigma]{e}{x}{e'}    & \genEx*[][][\sigma]{e}{x}{e'}                   & \verb|\genEx[t][\tau][\sigma]{e}{x}{e'}|       \\[1ex]
+        \coiTy{t}{\tau}                      & \coiTy*{t}{\tau}               & \verb|\coiTy{t}{\tau}|                         \\
+        \genEx[t][\tau][\sigma]{e}{x}{e'}    & \genEx*[t][\tau][\sigma]{e}{x}{e'}   & \verb|\genEx[t][\tau][\sigma]{e}{x}{e'}|       \\
+        \outEx[t][\tau]{e}                   & \outEx*{e}                          & \verb|\outEx[t][\tau]{e}|                      \\[1ex]
 
         \conatTy                             & \conatTy*                           & \verb|\conatTy|                                \\
         \streamTy{\tau}                      & \streamTy*{\tau}                    & \verb|\streamTy{\tau}|
